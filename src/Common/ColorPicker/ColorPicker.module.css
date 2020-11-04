@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+}
+
+.row:not(:last-of-type) {
+  margin-bottom: 13px;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.color.active {
+  transform: scale(1.4);
+}
+
+.color:hover {
+  transform: scale(1.4);
+}
+
+.color:not(:last-of-type) {
+  margin-right: 13px;
+}
+
+.clear {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 13px;
+  font-size: 26px;
+  line-height: 15px;
+  text-align: center;
+  border: 1px dashed #cfd4d9;
+}

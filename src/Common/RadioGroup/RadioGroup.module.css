@@ -1,0 +1,100 @@
+.wrapper {
+  position: relative;
+}
+
+.wrapper.withLabel {
+  height: 65px;
+}
+
+.wrapper.withoutLabel {
+  height: 40px;
+}
+
+.inputs {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  transform: translate(0, 50%);
+  display: flex;
+  justify-content: space-around;
+}
+
+.error {
+  position: absolute;
+  background-color: var(--main-red-color);
+  color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 4px;
+}
+
+.top {
+  bottom: 48px;
+  right: 0;
+  /* transform: translate(-50%); */
+}
+
+.top:before {
+  content: " ";
+  position: absolute;
+  bottom: -13px;
+  right: 15px;
+  border-top: 7px solid var(--main-red-color);
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+
+.bottom {
+  bottom: -40px;
+  right: 0;
+}
+
+.bottom:before {
+  content: " ";
+  position: absolute;
+  top: -13px;
+  right: 15px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid var(--main-red-color);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+
+.left {
+  bottom: 20px;
+  right: calc(100% + 10px);
+  transform: translate(0, 50%);
+}
+
+.left:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: -13px;
+  transform: translate(0, -50%);
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid var(--main-red-color);
+  border-right: 7px solid transparent;
+}
+
+.right {
+  bottom: 20px;
+  left: calc(100% + 10px);
+  transform: translate(0, 50%);
+}
+
+.right:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: -13px;
+  transform: translate(0, -50%);
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-right: 7px solid var(--main-red-color);
+}

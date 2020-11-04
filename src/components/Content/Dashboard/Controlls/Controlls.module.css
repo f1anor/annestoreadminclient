@@ -1,0 +1,25 @@
+.picker {
+  height: 38px;
+  border: 1px solid #2f7df6;
+  color: #2f7df6;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.pickerWrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.pickerWrapper:after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 0;
+  transform: translate(0, 40%);
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../../assets/svg/calendar.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}

@@ -1,0 +1,16 @@
+.wrapper {
+  position: relative;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  display: block;
+}
+
+.spinner {
+  margin-left: 10px;
+  position: relative;
+  top: -3px;
+}

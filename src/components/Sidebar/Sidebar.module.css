@@ -1,0 +1,28 @@
+.wrapper {
+  height: 100%;
+  width: 280px;
+  background-color: #f8f9fa;
+  border-right: 1px solid var(--main-border-color);
+}
+
+.navLink {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebarHeading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.sidebarSticky {
+  position: relative;
+  top: 0;
+  /* height: calc(100vh - 48px); */
+  height: 300px !important;
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  box-sizing: border-box;
+  border-right: 1px solid var(--main-border-color);
+}

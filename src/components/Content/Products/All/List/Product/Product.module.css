@@ -1,0 +1,25 @@
+.checkWrapper {
+  position: relative;
+}
+
+.check {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imgsWrapper {
+  height: 30px;
+}
+
+.icon {
+  height: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.icon path {
+  fill: #333;
+}

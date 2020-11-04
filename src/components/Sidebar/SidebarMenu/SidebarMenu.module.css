@@ -1,0 +1,49 @@
+.wrapper {
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 100%;
+}
+
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+  position: relative;
+  padding-left: 30px;
+  display: block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color: var(--main-text-color);
+  transition: color 0.2s;
+}
+
+.menu a:hover {
+  color: #2f7df6;
+  text-decoration: none;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+}
+
+.active {
+  color: #0070ff !important;
+  position: relative;
+}
+
+.active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 5px;
+  height: 30px;
+  top: 0;
+  right: 0;
+  background-color: #006eff8f;
+}

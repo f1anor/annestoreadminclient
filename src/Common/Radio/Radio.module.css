@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  position: relative;
+  margin-left: 20px;
+}
+
+.input {
+  display: none;
+}
+
+.label {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4663e6;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.input:checked + .label:before {
+  content: "";
+  display: block;
+  border-radius: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #4663e6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.titleLabel {
+  display: block;
+  color: #333;
+  cursor: pointer;
+}
