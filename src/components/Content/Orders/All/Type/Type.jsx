@@ -3,10 +3,11 @@ import { Button, ButtonGroup, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import css from "./Type.module.css";
 
-const Type = ({ counts, currentStatus, status }) => {
+const Type = ({ counts, currentStatus, status, isDisabled }) => {
   return (
-    <ButtonGroup className="mt-5">
+    <ButtonGroup>
       <Button
+        disabled={!!isDisabled}
         size="sm"
         className="m-0 p-0"
         variant={
@@ -31,6 +32,7 @@ const Type = ({ counts, currentStatus, status }) => {
       </Button>
 
       <Button
+        disabled={!!isDisabled}
         className="m-0 p-0"
         size="sm"
         variant={currentStatus === "new" ? "info" : "outline-info"}
@@ -47,6 +49,7 @@ const Type = ({ counts, currentStatus, status }) => {
       </Button>
 
       <Button
+        disabled={!!isDisabled}
         className="m-0 p-0"
         size="sm"
         variant={currentStatus === "process" ? "warning" : "outline-warning"}
@@ -63,6 +66,7 @@ const Type = ({ counts, currentStatus, status }) => {
       </Button>
 
       <Button
+        disabled={!!isDisabled}
         className="m-0 p-0"
         size="sm"
         variant={currentStatus === "warning" ? "danger" : "outline-danger"}
@@ -79,6 +83,7 @@ const Type = ({ counts, currentStatus, status }) => {
       </Button>
 
       <Button
+        disabled={!!isDisabled}
         className="m-0 p-0"
         size="sm"
         variant={currentStatus === "success" ? "success" : "outline-success"}
@@ -95,6 +100,7 @@ const Type = ({ counts, currentStatus, status }) => {
       </Button>
 
       <Button
+        disabled={!!isDisabled}
         className="m-0 p-0"
         size="sm"
         variant={
@@ -113,6 +119,7 @@ const Type = ({ counts, currentStatus, status }) => {
       </Button>
 
       <Button
+        disabled={!!isDisabled}
         className="m-0 p-0"
         size="sm"
         variant={currentStatus === "deleted" ? "dark" : "outline-dark"}

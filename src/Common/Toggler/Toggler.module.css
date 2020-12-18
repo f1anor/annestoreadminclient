@@ -1,0 +1,44 @@
+.wrapper {
+  height: 11px;
+}
+
+.input {
+  display: none;
+}
+
+.background {
+  width: 30px;
+  height: 11px;
+  border-radius: 50px 50px 50px 50px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #dadada;
+  background-color: #fff;
+}
+
+.disabled .background {
+  filter: grayscale(100%);
+  opacity: 50%;
+}
+
+.toggler {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #8b8b8b;
+  box-shadow: 0 0 3px 1px #dadada;
+}
+
+.input:checked + label .background {
+  background-color: #5ca0f8;
+}
+
+.input:checked + label .background .toggler {
+  left: unset;
+  right: -5px;
+  background-color: #0070ff;
+  box-shadow: 0 0 3px 1px #64a0ee;
+}

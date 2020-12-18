@@ -4,14 +4,14 @@ import TableTitleContainer from "../../../../../Common/TableTitle/TableTitleCont
 import ListItems from "./ListItems/ListItems";
 
 import css from "./List.module.css";
+import EmptySlots from "../../../../../Common/EmptySlots/EmptySlots";
 
 const List = ({ orders, sort, ...props }) => {
-  console.log(sort);
   return (
     <div className={css.wrapper}>
       <Table className="mt-3" striped bordered hover responsive>
-        <thead>
-          <tr>
+        <thead className={css.head}>
+          <tr className="table-active">
             <TableTitleContainer content="№" sort={sort.number} />
             <th>Состав</th>
             <TableTitleContainer content="Имя" sort={sort.firstName} />
@@ -29,6 +29,7 @@ const List = ({ orders, sort, ...props }) => {
         </thead>
         <tbody>
           <ListItems orders={orders} {...props} />
+          <EmptySlots rows={10 - orders.length} cells={9} />
         </tbody>
       </Table>
     </div>

@@ -1,0 +1,79 @@
+.formInner {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.input {
+  border-radius: 2px;
+  border: 1px solid #d9d8d4;
+  background-color: transparent;
+  height: 40px;
+  padding-left: 53px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputWrapper:not(:first-of-type) {
+  margin-top: 30px;
+}
+
+.inputWrapper:before {
+  content: "";
+  background-color: #cdcdcd;
+  width: 1px;
+  height: 30px;
+  position: absolute;
+  top: 6px;
+  left: 45px;
+}
+
+.userIcon,
+.lockIcon {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.userIcon path,
+.lockIcon path {
+  fill: #00bcff;
+}
+
+.loginBtn {
+  width: 100%;
+  border: none;
+  height: 52px;
+  background-color: #00b7fe;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  color: #f8f7f1;
+  transition: opacity 0.2s ease;
+}
+
+.loginBtn:hover {
+  opacity: 90%;
+}
+
+.checkLabel {
+  margin-bottom: 30px;
+  /* padding-left: px; */
+  display: flex;
+  color: #6e757c;
+}
+
+.checkLabel > span {
+  margin-left: 10px;
+}
+
+.regLink {
+  color: #6e757c;
+  text-decoration: underline;
+}
+
+.regLink:hover {
+  color: #6e757c;
+}

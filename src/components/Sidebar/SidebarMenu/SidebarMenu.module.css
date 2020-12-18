@@ -1,6 +1,6 @@
 .wrapper {
   margin-top: 30px;
-  margin-left: 30px;
+  /* margin-left: 30px; */
   width: 100%;
 }
 
@@ -12,7 +12,7 @@
 
 .menu a {
   position: relative;
-  padding-left: 30px;
+  padding-left: 60px;
   display: block;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -28,7 +28,7 @@
 .icon {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 30px;
   transform: translate(0, -50%);
 }
 
@@ -44,6 +44,6 @@
   width: 5px;
   height: 30px;
   top: 0;
-  right: 0;
+  left: 0;
   background-color: #006eff8f;
 }

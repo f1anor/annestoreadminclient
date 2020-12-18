@@ -3,25 +3,24 @@ import TypeContainer from "./Type/TypeContainer";
 
 import CustomPagination from "Common/CustomPagination/CustomPagination";
 import ListContainer from "./List/ListContainer";
-import ModalImg from "../../Products/All/ModalImg/ModalImg";
+import TextModal from "Common/TextModal/TextModal";
+import SearchContainer from "../../../../Common/Search/SearchContainer";
 
-const All = ({ orders, totalCount, modalImgShow, setModalImgShow }) => {
+const All = ({ orders, totalCount, clearNote, note, isDisabled }) => {
   return (
     <div>
-      <TypeContainer />
-      <ListContainer orders={orders} setModalImgShow={setModalImgShow} />
-      {totalCount > 10 && (
-        <CustomPagination
-          count={10}
-          totalCount={totalCount}
-          link="/orders/all"
-        />
-      )}
-      <ModalImg
-        show={!!modalImgShow}
-        img={modalImgShow}
-        onHide={() => setModalImgShow(null)}
+      <div className="mt-5 d-flex justify-content-between">
+        <TypeContainer />
+        <SearchContainer />
+      </div>
+      <ListContainer orders={orders} />
+      <CustomPagination
+        count={10}
+        totalCount={totalCount}
+        link="/orders/all"
+        disabled={isDisabled}
       />
+      <TextModal content={note} onHide={clearNote} show={!!note} />
     </div>
   );
 };

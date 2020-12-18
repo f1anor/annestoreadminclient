@@ -6,6 +6,10 @@ body {
   font-size: 0.875rem;
 }
 
+.table > tbody > tr > td {
+  height: 58px !important;
+}
+
 :root {
   --main-border-color: #dfe2e6;
   --main-text-color: #333;

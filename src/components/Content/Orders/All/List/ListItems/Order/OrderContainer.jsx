@@ -2,8 +2,9 @@ import React from "react";
 import Order from "./Order";
 import { convertStatus, useQuery } from "utils/utils";
 
-import { changeStatus } from "actions/orders-actions";
+import { changeStatus, setNote } from "actions/orders-actions";
 import { connect } from "react-redux";
+import { setImg } from "../../../../../../../actions/orders-actions";
 
 const OrderContainer = ({ changeStatus, order, ...props }) => {
   const query = useQuery();
@@ -36,5 +37,4 @@ const OrderContainer = ({ changeStatus, order, ...props }) => {
     />
   );
 };
-
-export default connect(null, { changeStatus })(OrderContainer);
+export default connect(null, { changeStatus, setNote, setImg })(OrderContainer);

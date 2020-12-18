@@ -1,12 +1,12 @@
 import React from "react";
 import css from "./Radio.module.css";
 
-const Radio = ({ input, label, checked, value, ...props }) => {
+const Radio = ({ input, label, checked, value, type = "radio", ...props }) => {
   return (
     <div className={css.wrapper}>
       <input
         {...input}
-        type="radio"
+        type={type}
         className={css.input}
         id={label}
         checked={checked}

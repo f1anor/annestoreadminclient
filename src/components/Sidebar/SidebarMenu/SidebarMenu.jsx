@@ -5,6 +5,7 @@ import { ReactComponent as DashboardIcon } from "../../../assets/svg/dashboard.s
 import { ReactComponent as OrdersIcon } from "../../../assets/svg/clipboard.svg";
 import { ReactComponent as ProductsIcon } from "../../../assets/svg/cart.svg";
 import { ReactComponent as CatIcon } from "../../../assets/svg/card-list.svg";
+import { ReactComponent as UsersIcon } from "../../../assets/svg/people.svg";
 
 const SidebarMenu = () => {
   return (
@@ -48,6 +49,16 @@ const SidebarMenu = () => {
           >
             <CatIcon className={css.icon} />
             Категории
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/users"
+            activeClassName={css.active}
+            className={css.menuItem}
+          >
+            <UsersIcon className={css.icon} />
+            Пользователи
           </NavLink>
         </li>
       </ul>

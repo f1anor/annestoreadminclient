@@ -17,3 +17,19 @@ export const getOrders = createSelector(
     });
   }
 );
+
+export const getIsStatusChanging = (state) => {
+  return state.orders.isStatusChanging;
+};
+
+export const getIsFetching = (state) => {
+  return state.orders.isFetching;
+};
+
+export const getOrdDisabled = createSelector(
+  getIsStatusChanging,
+  getIsFetching,
+  (isStatusChanging, isFetching) => {
+    return isStatusChanging || isFetching;
+  }
+);

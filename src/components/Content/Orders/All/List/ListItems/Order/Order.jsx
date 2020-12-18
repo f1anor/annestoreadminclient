@@ -1,5 +1,7 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { formatNumber } from "../../../../../../../utils/utils";
 import Notes from "./Notes/Notes";
 import Photo from "./photo/Photo";
 
@@ -9,20 +11,32 @@ const Order = ({
   status,
   allStatus,
   handleChangeStatus,
-  setModalImgShow,
+  setNote,
+  setImg,
 }) => {
-  console.log(order);
   return (
     <tr>
-      <td className="text-center">{order._id}</td>
-      <Photo products={order.products} setModalImgShow={setModalImgShow} />
+      <td className="text-center">
+        <Link to={`/orders/edit/${order._id}`}>
+          {formatNumber(order._id, 4)}
+        </Link>
+      </td>
+      <Photo products={order.products} setImg={setImg} />
       <td>
         {order.firstName} {order.lastName}
       </td>
       <td>{order.phone}</td>
       <td>{new Date(+order.creationDate).toLocaleString("ru")}</td>
-      <td>{order.changeDate || " "}</td>
-      <Notes userNotes={order.userNotes} managerNotes={order.managerNotes} />
+      <td>
+        {order.changeDate
+          ? new Date(+order.changeDate).toLocaleString("ru")
+          : " "}
+      </td>
+      <Notes
+        userNotes={order.userNotes}
+        managerNotes={order.managerNotes}
+        setNote={setNote}
+      />
       <td className="d-flex justify-content-center">
         <Dropdown>
           <Dropdown.Toggle
@@ -47,7 +61,7 @@ const Order = ({
           </Dropdown.Menu>
         </Dropdown>
       </td>
-      <td>{sum}₽</td>
+      <td>{sum} ₽</td>
     </tr>
   );
 };

@@ -8,6 +8,7 @@ const ManagerNotesContainer = ({
   meta: { form },
   input: { value },
   change,
+  editMode,
 }) => {
   const notes = value.notes ? value.notes : [];
 
@@ -27,6 +28,7 @@ const ManagerNotesContainer = ({
       setAddModalShow={setAddModalShow}
       notes={notes}
       form={form}
+      editMode={editMode}
     />
   );
 };

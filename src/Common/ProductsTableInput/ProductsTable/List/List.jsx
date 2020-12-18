@@ -1,7 +1,7 @@
 import React from "react";
 import ListItemContainer from "./ListItem/ListItemContainer";
 
-const List = ({ value, form }) => {
+const List = ({ value, form, editMode }) => {
   const products = value.products.sort((a, b) => {
     return b.price - a.price;
   });
@@ -13,6 +13,7 @@ const List = ({ value, form }) => {
           product={item}
           form={form}
           value={value}
+          editMode={editMode}
         />
       ))}
     </tbody>

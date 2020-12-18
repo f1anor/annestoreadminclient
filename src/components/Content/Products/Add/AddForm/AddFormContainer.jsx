@@ -6,6 +6,7 @@ import AddForm from "./AddForm";
 import { reset } from "redux-form";
 import { fetchCategories } from "../../../../../actions/cat-actions";
 import { getCatForFrom } from "../../../../../selectors/cat-selectors";
+import { preloadImage } from "../../../../../actions/product-actions";
 
 class AddFormContainer extends Component {
   constructor(props) {
@@ -28,7 +29,13 @@ class AddFormContainer extends Component {
   }
 
   render() {
-    const { addProduct, catForForm, isAdding, isCatFetching } = this.props;
+    const {
+      addProduct,
+      catForForm,
+      isAdding,
+      isCatFetching,
+      preloadImage,
+    } = this.props;
 
     return (
       <>
@@ -39,6 +46,7 @@ class AddFormContainer extends Component {
             isAdding={isAdding}
             handleClear={this.handleClear}
             isCatFetching={isCatFetching}
+            preloadImage={preloadImage}
           />
         )}
       </>
@@ -56,4 +64,5 @@ export default connect(mapStateToProps, {
   addProduct,
   reset,
   fetchCategories,
+  preloadImage,
 })(AddFormContainer);

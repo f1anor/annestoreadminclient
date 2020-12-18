@@ -12,6 +12,7 @@ const CustomPagination = React.memo(
     link = "/",
     disabled,
   }) => {
+    if (totalCount < 10) return <div />;
     const query = useQuery();
     const history = useHistory();
     const page = +query.get("page"); // текущая страница

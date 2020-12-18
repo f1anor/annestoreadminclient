@@ -9,6 +9,7 @@ const ManagerNotes = ({
   setAddModalShow,
   notes,
   form,
+  editMode,
 }) => {
   return (
     <>
@@ -17,8 +18,9 @@ const ManagerNotes = ({
           as="h5"
           className="d-flex justify-content-between align-items-center"
         >
-          Комментарии менеджера{" "}
+          Комментарии менеджера
           <Button
+            disabled={!editMode}
             variant="outline-primary"
             onClick={() => setAddModalShow(true)}
           >
@@ -26,7 +28,9 @@ const ManagerNotes = ({
           </Button>
         </Card.Header>
         <Card.Body>
-          {notes.length > 0 && <PrintNotes notes={notes} form={form} />}
+          {notes.length > 0 && (
+            <PrintNotes editMode={editMode} notes={notes} form={form} />
+          )}
         </Card.Body>
       </Card>
       <AddNoteModal

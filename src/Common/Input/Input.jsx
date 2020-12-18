@@ -5,6 +5,7 @@ const Input = ({
   label,
   input,
   change,
+  readOnly = false,
   meta: { touched, error, submitFailed },
   ...props
 }) => {
@@ -12,7 +13,13 @@ const Input = ({
   return (
     <Form.Group>
       {!!label && <Form.Label>{label}</Form.Label>}
-      <Form.Control isInvalid={!!isError} {...input} {...props} />
+      <Form.Control
+        isInvalid={!!isError}
+        plaintext={readOnly}
+        readOnly={readOnly}
+        {...input}
+        {...props}
+      />
       <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
     </Form.Group>
   );

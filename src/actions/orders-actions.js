@@ -1,4 +1,4 @@
-import { change } from "redux-form";
+import { change, initialize } from "redux-form";
 import {
   ADD_ORDER_FAILURE,
   ADD_ORDER_PRODUCT_FAILURE,
@@ -11,12 +11,25 @@ import {
   FETCH_ORDERS_FAILURE,
   FETCH_ORDERS_START,
   FETCH_ORDERS_SUCCESS,
+  CLEAR_NOTE,
+  SET_NOTE,
+  SET_IMG,
+  FETCH_EDIT_ORDER_START,
+  FETCH_EDIT_ORDER_FAILURE,
+  FETCH_EDIT_ORDER_SUCCESS,
+  EDIT_ORDER_START,
+  EDIT_ORDER_SUCCESS,
+  EDIT_ORDER_FAILURE,
+  TOGGLE_EDITING_SUCCESS,
+  SET_LAST_PARAMS,
 } from "../actionTypes";
 import {
   addOrderProductApi,
   addOrderApi,
   fetchOrdersApi,
   changeStatusApi,
+  fetchEditOrderApi,
+  editOrderApi,
 } from "../api/orders-api";
 
 export const addOrderProduct = (art, value, form) => (dispatch) => {
@@ -110,6 +123,35 @@ export const addOrder = (values) => (dispatch) => {
     });
 };
 
+export const editOrder = (id, values) => (dispatch) => {
+  console.log(12312312312);
+  if (!values) return;
+  dispatch({
+    type: EDIT_ORDER_START,
+  });
+
+  editOrderApi(id, values)
+    .then((ans) => {
+      if (!!ans.data.status) throw new Error(ans.data.message);
+      dispatch({
+        type: EDIT_ORDER_SUCCESS,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: EDIT_ORDER_FAILURE,
+        payload: err.message,
+      });
+    });
+};
+
+export const toggleEditingSuccess = () => (dispatch) => {
+  dispatch({
+    type: TOGGLE_EDITING_SUCCESS,
+  });
+};
+
 export const fetchOrders = (query) => async (dispatch) => {
   dispatch({
     type: FETCH_ORDERS_START,
@@ -154,4 +196,72 @@ export const changeStatus = (id, status, query) => async (dispatch) => {
       payload: err.message,
     });
   }
+};
+
+export const clearNote = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_NOTE,
+  });
+};
+
+export const setNote = (content) => (dispatch) => {
+  dispatch({
+    type: SET_NOTE,
+    payload: content,
+  });
+};
+
+export const setImg = (img) => (dispatch) => {
+  dispatch({
+    type: SET_IMG,
+    payload: img,
+  });
+};
+
+export const fetchEditOrder = (id) => async (dispatch) => {
+  dispatch({
+    type: FETCH_EDIT_ORDER_START,
+  });
+
+  try {
+    const ans = await fetchEditOrderApi(id);
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    const { order } = ans.data;
+
+    dispatch({
+      type: FETCH_EDIT_ORDER_SUCCESS,
+      payload: order,
+    });
+    console.log(order);
+    dispatch(
+      initialize("editOrder", {
+        firstName: order.firstName,
+        lastName: order.lastName,
+        phone: order.phone,
+        email: order.email,
+        managerNotes: { notes: order.managerNotes },
+        userNotes: { notes: order.userNotes },
+        products: {
+          products: order.products,
+          inProgress: null,
+          success: null,
+          message: null,
+        },
+      })
+    );
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: FETCH_EDIT_ORDER_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+export const setLastParams = (query) => (dispatch) => {
+  dispatch({
+    type: SET_LAST_PARAMS,
+    payload: query,
+  });
 };

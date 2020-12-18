@@ -5,7 +5,7 @@ import Input from "Common/Input/Input";
 
 import { required } from "utils/validators";
 
-const AboutUser = () => {
+const AboutUser = ({ editMode }) => {
   return (
     <Card>
       <Card.Header as="h5">Данные покупателя</Card.Header>
@@ -24,6 +24,7 @@ const AboutUser = () => {
               component={Input}
               placeholder="Email"
               validate={[required]}
+              readOnly={!editMode}
             />
           </Col>
         </Form.Group>
@@ -37,6 +38,7 @@ const AboutUser = () => {
               component={Input}
               placeholder="Телефон"
               validate={[required]}
+              readOnly={!editMode}
             />
           </Col>
         </Form.Group>
@@ -50,6 +52,7 @@ const AboutUser = () => {
               component={Input}
               placeholder="Имя"
               validate={[required]}
+              readOnly={!editMode}
             />
           </Col>
         </Form.Group>
@@ -63,6 +66,7 @@ const AboutUser = () => {
               component={Input}
               placeholder="Фамилия"
               validate={[required]}
+              readOnly={!editMode}
             />
           </Col>
         </Form.Group>

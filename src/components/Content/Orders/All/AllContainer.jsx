@@ -1,31 +1,48 @@
 import React from "react";
 import { connect } from "react-redux";
 import All from "./All";
-import { fetchOrders } from "actions/orders-actions";
-import { getOrders } from "selectors/orders-selectors";
+import {
+  fetchOrders,
+  clearNote,
+  toggleEditingSuccess,
+  setLastParams,
+} from "actions/orders-actions";
+import { getOrders, getOrdDisabled } from "selectors/orders-selectors";
 import { useEffect } from "react";
 import { useQuery } from "utils/utils";
-import { useState } from "react";
 
-const AllContainer = ({ fetchOrders, orders, totalCount }) => {
-  const [modalImgShow, setModalImgShow] = useState(null);
+const AllContainer = ({
+  fetchOrders,
+  isEditingSuccess,
+  toggleEditingSuccess,
+  setLastParams,
+  ...props
+}) => {
   const query = useQuery().toString();
+
+  useEffect(() => {
+    if (!!isEditingSuccess) toggleEditingSuccess();
+  }, [isEditingSuccess, toggleEditingSuccess]);
+
   useEffect(() => {
     fetchOrders(query);
-  }, [fetchOrders, query]);
-  return (
-    <All
-      orders={orders}
-      totalCount={totalCount}
-      modalImgShow={modalImgShow}
-      setModalImgShow={setModalImgShow}
-    />
-  );
+    setLastParams(query);
+  }, [fetchOrders, setLastParams, query]);
+
+  return <All {...props} />;
 };
 
 const mapStateToProps = (state) => ({
   orders: getOrders(state),
   totalCount: state.orders.totalCount,
+  note: state.orders.note,
+  isDisabled: getOrdDisabled(state),
+  isEditingSuccess: state.orders.isEditingSuccess,
 });
 
-export default connect(mapStateToProps, { fetchOrders })(AllContainer);
+export default connect(mapStateToProps, {
+  fetchOrders,
+  clearNote,
+  toggleEditingSuccess,
+  setLastParams,
+})(AllContainer);

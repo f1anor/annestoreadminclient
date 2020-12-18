@@ -1,5 +1,13 @@
-.admIcon path {
-  fill: red;
+.iconWrapper {
   cursor: pointer;
+}
+
+.userIcon path {
+  fill: red;
+  display: block;
+}
+
+.admIcon path {
+  fill: #0070ff;
   display: block;
 }

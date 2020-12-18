@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Modal, Button, FormControl, Col, Form } from "react-bootstrap";
+import { Modal, Button, FormControl } from "react-bootstrap";
 
 const AddNoteModal = ({ handler, ...props }) => {
   const [value, changeValue] = useState("");

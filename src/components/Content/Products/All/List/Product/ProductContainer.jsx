@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Product from "./Product";
 import { addSelected, clearSelected } from "actions/product-actions";
+import { setImg } from "actions/app-actions";
 import { getProdDisabled } from "selectors/products-selectors";
 
 const ProductContainer = ({
@@ -37,4 +38,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   addSelected,
   clearSelected,
+  setImg,
 })(ProductContainer);

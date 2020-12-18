@@ -1,0 +1,13 @@
+.input {
+  width: 150px;
+  border: none;
+  border-bottom: 1px solid #cfd4d9;
+  outline: none;
+  color: #333;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  outline: none !important;
+}

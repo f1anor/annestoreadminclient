@@ -1,17 +1,16 @@
 import React from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import css from "./Header.module.css";
 
-const Header = () => {
+const Header = ({ signOut }) => {
   return (
     <div>
-      <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a
-          className={[css.navbarBrand, "col-md-3 col-lg-2 mr-0 px-3"].join(" ")}
-          href="/"
-        >
-          PlumpMouse Админ
-        </a>
+      <nav className="navbar sticky-top bg-secondary flex-md-nowrap p-0 shadow">
+        <Link to="/dashboard" className={[css.navbarBrand].join(" ")}>
+          Админ
+        </Link>
         <button
           className="navbar-toggler position-absolute d-md-none collapsed"
           type="button"
@@ -31,9 +30,9 @@ const Header = () => {
         />
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap">
-            <a className="nav-link" href="/">
-              Sign out
-            </a>
+            <Button variant="" className={css.logoutBtn} onClick={signOut}>
+              Выйти
+            </Button>
           </li>
         </ul>
       </nav>

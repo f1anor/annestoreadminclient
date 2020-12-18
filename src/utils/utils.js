@@ -47,3 +47,45 @@ export const convertStatus = (status) => {
       return status;
   }
 };
+
+export const formatNumber = (num, length = 3) => {
+  if (num.toString().length >= length) {
+    return num;
+  } else {
+    let arr = num.toString().split("").reverse();
+    arr = [...arr, 0, 0, 0, 0];
+    arr.length = length;
+    return arr.reverse().join("");
+  }
+};
+
+export const getDropdounPath = (arr, param, query, location) => {
+  const ans = {};
+
+  const current = query.get(param);
+
+  const currentArr = arr.filter((item) => {
+    console.log(item.value.toString(), current);
+    return item.value.toString() === current;
+  });
+
+  ans.current =
+    !!currentArr.length && currentArr[0] ? currentArr[0].title : null;
+
+  query.delete(param);
+
+  ans.clear = `${location.pathname}?${query.toString()}`;
+
+  ans.pathArr = [];
+
+  arr.forEach((item, index) => {
+    query.set(param, item.value);
+    ans.pathArr.push({
+      title: item.title,
+      url: `${location.pathname}?${query.toString()}`,
+    });
+    query.delete(param);
+  });
+
+  return ans;
+};

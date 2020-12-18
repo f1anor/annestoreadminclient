@@ -11,6 +11,7 @@ const ProductTableInput = ({
   form,
   error,
   touched,
+  editMode,
 }) => {
   const isError = touched && error;
   return (
@@ -24,13 +25,14 @@ const ProductTableInput = ({
           <Button
             variant="outline-primary"
             onClick={() => setModalAddShow(true)}
+            disabled={!editMode}
           >
             Добавить
           </Button>
         </Card.Header>
         <Card.Body>
           {!!isError && <Alert variant="danger">{error}</Alert>}
-          <ProductsTable value={value} form={form} />
+          <ProductsTable value={value} form={form} editMode={editMode} />
         </Card.Body>
       </Card>
       <AddModal

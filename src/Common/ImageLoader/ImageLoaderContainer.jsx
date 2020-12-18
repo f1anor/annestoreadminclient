@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { preloadImage } from "../../actions/product-actions";
 import ImageLoader from "./ImageLoader";
 
 const ImageLoaderContainer = ({ preloadImage, input, ...props }) => {
@@ -20,8 +18,4 @@ const ImageLoaderContainer = ({ preloadImage, input, ...props }) => {
   );
 };
 
-const mapDispatchToProps = {
-  preloadImage,
-};
-
-export default connect(null, mapDispatchToProps)(ImageLoaderContainer);
+export default ImageLoaderContainer;

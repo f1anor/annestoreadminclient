@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import Type from "./Type";
 import { useQuery } from "utils/utils";
+import { getOrdDisabled } from "selectors/orders-selectors";
 
-const TypeContainer = ({ counts }) => {
+const TypeContainer = ({ counts, isDisabled }) => {
   const query = useQuery();
   const currentStatus = query.get("status");
 
@@ -23,13 +24,19 @@ const TypeContainer = ({ counts }) => {
     status[item] = `/orders/all?${query.toString()}`;
   });
 
-  console.log(status, currentStatus);
-
-  return <Type currentStatus={currentStatus} status={status} counts={counts} />;
+  return (
+    <Type
+      currentStatus={currentStatus}
+      status={status}
+      counts={counts}
+      isDisabled={isDisabled}
+    />
+  );
 };
 
 const mapStateToProps = (state) => ({
   counts: state.orders.counts,
+  isDisabled: getOrdDisabled(state),
 });
 
 export default connect(mapStateToProps, {})(TypeContainer);

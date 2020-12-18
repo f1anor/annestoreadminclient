@@ -10,24 +10,29 @@ import UserNotes from "./UserNotes/UserNotes";
 
 import { productsRequired } from "utils/validators";
 
-const MainOrderForm = () => {
+const MainOrderForm = ({ formName, editMode }) => {
   return (
     <>
       <Field
         name="products"
         component={ProductTableInputContainer}
         validate={[productsRequired]}
+        editMode={editMode}
       />
       <Row className="mt-4">
         <Col>
-          <AboutUser />
+          <AboutUser editMode={editMode} />
         </Col>
         <Col>
-          <PaymentContainer />
+          <PaymentContainer formName={formName} />
         </Col>
       </Row>
       <UserNotes />
-      <Field name="managerNotes" component={ManagerNotesContainer} />
+      <Field
+        name="managerNotes"
+        component={ManagerNotesContainer}
+        editMode={editMode}
+      />
     </>
   );
 };

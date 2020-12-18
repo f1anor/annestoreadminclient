@@ -21,6 +21,8 @@ const AllContainer = ({
   toggleAddingSuccess,
   selected,
   isProdDisabled,
+  message,
+  ...props
 }) => {
   useEffect(() => {
     if (!!isAddingSuccess) toggleAddingSuccess();
@@ -63,22 +65,22 @@ const AllContainer = ({
   };
   return (
     <>
-      {!!products && products.length > 0 && (
-        <All
-          products={products}
-          modalImgShow={modalImgShow}
-          setModalImgShow={setModalImgShow}
-          modalDelShow={modalDelShow}
-          setModalDelShow={setModalDelShow}
-          pagesize={pagesize}
-          totalCount={totalCount}
-          sort={sort}
-          handleRemoveSelection={handleRemoveSelection}
-          handleDelete={handleDelete}
-          selected={selected}
-          isProdDisabled={isProdDisabled}
-        />
-      )}
+      <All
+        products={products}
+        modalImgShow={modalImgShow}
+        setModalImgShow={setModalImgShow}
+        modalDelShow={modalDelShow}
+        setModalDelShow={setModalDelShow}
+        pagesize={pagesize}
+        totalCount={totalCount}
+        sort={sort}
+        handleRemoveSelection={handleRemoveSelection}
+        handleDelete={handleDelete}
+        selected={selected}
+        isProdDisabled={isProdDisabled}
+        message={message}
+        {...props}
+      />
     </>
   );
 };
@@ -90,6 +92,8 @@ const mapStateToProps = (state) => ({
   selected: state.product.selected,
   isAddingSuccess: state.product.isAddingSuccess,
   isProdDisabled: getProdDisabled(state),
+  message: state.product.message,
+  img: state.product.img,
 });
 
 export default connect(mapStateToProps, {

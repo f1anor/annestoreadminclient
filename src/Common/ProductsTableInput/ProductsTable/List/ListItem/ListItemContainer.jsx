@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { change } from "redux-form";
+import { setImg } from "../../../../../actions/orders-actions";
 import ListItem from "./ListItem";
 
 const ListItemContainer = ({ change, form, value, product, ...props }) => {
@@ -17,9 +18,7 @@ const ListItemContainer = ({ change, form, value, product, ...props }) => {
       ],
     });
   };
-  console.log("render", change, form);
   const handleRemove = () => {
-    console.log(product.id);
     change(form, "products", {
       ...value,
       products: [...value.products.filter((item) => item.id !== product.id)],
@@ -35,4 +34,4 @@ const ListItemContainer = ({ change, form, value, product, ...props }) => {
   );
 };
 
-export default connect(null, { change })(ListItemContainer);
+export default connect(null, { change, setImg })(ListItemContainer);

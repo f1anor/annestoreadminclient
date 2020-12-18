@@ -2,8 +2,15 @@ import React from "react";
 import Payment from "./Payment";
 import { formValueSelector } from "redux-form";
 import { connect } from "react-redux";
+import { useEffect } from "react";
 
-let PaymentContainer = ({ productsValues, ...props }) => {
+let selector;
+
+let PaymentContainer = ({ productsValues, formName, ...props }) => {
+  useEffect(() => {
+    selector = formValueSelector(formName);
+  }, [formName]);
+
   const products = !!productsValues ? productsValues.products : [];
   let price = 0;
   if (products.length > 0) {
@@ -18,10 +25,8 @@ let PaymentContainer = ({ productsValues, ...props }) => {
   return <Payment price={price} {...props} />;
 };
 
-const selector = formValueSelector("addOrder");
-
 const mapStateToProps = (state) => ({
-  productsValues: selector(state, "products"),
+  productsValues: selector && selector(state, "products"),
 });
 
 export default connect(mapStateToProps, null)(PaymentContainer);

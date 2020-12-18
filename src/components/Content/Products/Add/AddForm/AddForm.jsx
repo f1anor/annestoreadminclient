@@ -10,12 +10,16 @@ const AddForm = ({
   isAdding,
   handleClear,
   isCatFetching,
+  preloadImage,
 }) => {
   return (
     <form onSubmit={handleSubmit}>
       {!isCatFetching && (
         <>
-          <MainProductForm catForForm={catForForm} />
+          <MainProductForm
+            catForForm={catForForm}
+            preloadImage={preloadImage}
+          />
           <div className="d-flex justify-content-start mb-5">
             <Button style={{ width: "100px" }} type="submit">
               {!!isAdding ? (

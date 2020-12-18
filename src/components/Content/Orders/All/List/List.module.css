@@ -1,3 +1,11 @@
 .wrapper > div {
   min-height: 540px !important;
 }
+
+.head {
+  color: #333;
+}
+
+.head a {
+  color: #333;
+}

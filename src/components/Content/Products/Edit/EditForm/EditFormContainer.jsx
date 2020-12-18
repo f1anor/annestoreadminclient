@@ -5,6 +5,7 @@ import { editProduct } from "actions/product-actions";
 import EditForm from "./EditForm";
 import { clearFields } from "redux-form";
 import { getCatForFrom } from "../../../../../selectors/cat-selectors";
+import { preloadImage } from "../../../../../actions/product-actions";
 
 class AddFormContainer extends Component {
   constructor(props) {
@@ -19,11 +20,15 @@ class AddFormContainer extends Component {
   }
 
   render() {
-    const { editProduct, catForForm } = this.props;
+    const { editProduct, catForForm, preloadImage } = this.props;
     return (
       <>
         {!!catForForm && (
-          <EditForm onSubmit={editProduct} catForForm={catForForm} />
+          <EditForm
+            onSubmit={editProduct}
+            catForForm={catForForm}
+            preloadImage={preloadImage}
+          />
         )}
       </>
     );
@@ -38,4 +43,5 @@ export default connect(mapStateToProps, {
   editProduct,
   clearFields,
   fetchCategories,
+  preloadImage,
 })(AddFormContainer);

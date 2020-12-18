@@ -1,8 +1,7 @@
 import React from "react";
 import css from "./Photo.module.css";
 
-const Photo = ({ products, setModalImgShow }) => {
-  console.log(products);
+const Photo = ({ products, setImg }) => {
   return (
     <td>
       {products.map((product) => (
@@ -11,8 +10,8 @@ const Photo = ({ products, setModalImgShow }) => {
             src={`${process.env.REACT_APP_SERVER_ASSETS}${product.imgs.img1.small}`}
             className={css.img}
             onClick={() =>
-              setModalImgShow({
-                src: `${process.env.REACT_APP_SERVER_ASSETS}${product.imgs.img1.small}`,
+              setImg({
+                src: `${process.env.REACT_APP_SERVER_ASSETS}${product.imgs.img1.large}`,
               })
             }
             alt="product"

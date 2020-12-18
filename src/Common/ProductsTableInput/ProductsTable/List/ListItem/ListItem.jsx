@@ -1,13 +1,34 @@
 import React from "react";
 import { FormControl, InputGroup, Button } from "react-bootstrap";
+import css from "./ListItem.module.css";
 
 import { ReactComponent as TrashIcon } from "assets/svg/trash2-fill.svg";
+import { formatNumber } from "../../../../../utils/utils";
 
-const ListItem = ({ product, handleSetAmount, handleRemove }) => {
+const ListItem = ({
+  product,
+  handleSetAmount,
+  handleRemove,
+  editMode,
+  setImg,
+}) => {
   return (
     <tr className="border-top">
       <td className="w-50">{product.title}</td>
-      <td className="text-center">{product.article}</td>
+      <td>
+        <div className={css.img}>
+          <img
+            src={`${process.env.REACT_APP_SERVER_ASSETS}${product.imgs.img1.small}`}
+            alt="img"
+            onClick={() =>
+              setImg({
+                src: `${process.env.REACT_APP_SERVER_ASSETS}${product.imgs.img1.large}`,
+              })
+            }
+          />
+        </div>
+      </td>
+      <td className="text-center">{formatNumber(product.article, 5)}</td>
       <td className="text-center">{product.price}₽</td>
       <td
         style={{
@@ -17,6 +38,7 @@ const ListItem = ({ product, handleSetAmount, handleRemove }) => {
       >
         <InputGroup style={{ width: "100px" }} className="ml-auto mr-auto">
           <FormControl
+            readOnly={!editMode}
             aria-label="Amount (to the nearest dollar)"
             value={product.amount}
             onChange={(e) => handleSetAmount(e.target.value)}
@@ -34,6 +56,7 @@ const ListItem = ({ product, handleSetAmount, handleRemove }) => {
         }}
       >
         <Button
+          disabled={!editMode}
           onClick={handleRemove}
           variant="warning"
           className="d-block ml-auto mr-auto"

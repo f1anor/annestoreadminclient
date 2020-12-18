@@ -10,10 +10,20 @@
   transform: translate(-50%, -50%);
 }
 
-.imgsWrapper {
-  height: 30px;
+.imgs {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
+.imgsWrapper {
+  height: 100%;
+  display: flex;
+  padding-left: 15px;
+  align-items: center;
+}
+.imgsWrapper > div:not(:first-of-type) {
+  margin-left: 5px;
+}
 .icon {
   height: 50%;
   margin-right: 10px;

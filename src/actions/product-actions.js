@@ -22,6 +22,7 @@ import {
   FETCH_EDIT_PRODUCT_SUCCESS,
   FETCH_EDIT_PRODUCT_FAILURE,
   TOGGLE_ADDING_SUCCESS,
+  SET_IMG,
 } from "../actionTypes";
 import {
   preloadImageApi,
@@ -63,7 +64,10 @@ export const editProduct = (values) => (dispatch) => {
       });
     })
     .catch((err) => {
-      dispatch({ type: EDIT_PRODUCT_FAILURE, payload: err.message });
+      dispatch({
+        type: EDIT_PRODUCT_FAILURE,
+        payload: err.message,
+      });
     });
 };
 
@@ -206,5 +210,12 @@ export const fetchEditProduct = (article) => async (dispatch) => {
 export const toggleAddingSuccess = () => (dispatch) => {
   dispatch({
     type: TOGGLE_ADDING_SUCCESS,
+  });
+};
+
+export const setImg = (img) => (dispatch) => {
+  dispatch({
+    type: SET_IMG,
+    payload: img,
   });
 };

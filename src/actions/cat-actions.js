@@ -25,6 +25,7 @@ import {
   moveDownCatApi,
 } from "../api/cat-api";
 import { getSelectedNumber } from "../selectors/cat-selectors";
+import { addToastMessage } from "./app-actions";
 
 export const addCat = (title) => async (dispatch) => {
   dispatch({
@@ -39,6 +40,7 @@ export const addCat = (title) => async (dispatch) => {
     dispatch({
       type: ADD_CAT_SUCCESS,
     });
+    dispatch(addToastMessage(`Категория ${title} успешно добавлена`));
     dispatch(fetchCategories());
   } catch (err) {
     console.log(err);
@@ -100,6 +102,7 @@ export const removeCat = () => async (dispatch, getState) => {
     dispatch({
       type: REMOVE_CAT_SUCCESS,
     });
+    dispatch(addToastMessage(`Категория удалена`));
     dispatch(fetchCategories());
   } catch (err) {
     console.log(err);

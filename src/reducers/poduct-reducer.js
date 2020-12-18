@@ -10,6 +10,8 @@ import {
   ADD_PRODUCT_FAILURE,
   FETCH_PRODUCTS_START,
   FETCH_PRODUCTS_FAILURE,
+  DELETE_PRODUCTS_FAILURE,
+  SET_IMG,
 } from "../actionTypes";
 
 const initialState = {
@@ -27,6 +29,7 @@ const initialState = {
   isEditingSuccess: false,
   edit: null,
   message: null,
+  img: null,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -46,6 +49,7 @@ export default (state = initialState, { type, payload }) => {
         totalCount: payload.totalCount,
         selected: [],
         isFetching: false,
+        message: null,
       };
     case FETCH_PRODUCTS_FAILURE:
       return {
@@ -71,8 +75,14 @@ export default (state = initialState, { type, payload }) => {
     case DELETE_PRODUCTS_SUCCESS:
       return {
         ...state,
-        isDeleting: false,
+        isDeleting: null,
         selected: [],
+      };
+    case DELETE_PRODUCTS_FAILURE:
+      return {
+        ...state,
+        isDeleting: null,
+        message: payload,
       };
     case ADD_PRODUCT_START:
       return {
@@ -94,6 +104,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         isAddingSuccess: false,
+      };
+    case SET_IMG:
+      return {
+        ...state,
+        img: payload,
       };
     default:
       return state;
