@@ -26,3 +26,15 @@ export const deleteProductsApi = async (selected) => {
 export const fetchEditProductApi = async (article) => {
   return await instance.get(`/product/update/${article}`);
 };
+
+export const moveToArchiveApi = async (selected) => {
+  return await instance.post("/product/toarchive", { selected });
+};
+
+export const fetchArchiveProductsApi = async (query) => {
+  return await instance.get(`/product/archive?${query}`);
+};
+
+export const restoreFromArchiveApi = async (selected) => {
+  return await instance.post("/product/restore", { selected });
+};

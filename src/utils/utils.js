@@ -89,3 +89,20 @@ export const getDropdounPath = (arr, param, query, location) => {
 
   return ans;
 };
+
+export const getSortParams = (arr = [], query, url) => {
+  const sort = {};
+  arr.forEach((param) => {
+    sort[param] = {};
+    query.set("sort", param);
+    query.set("page", 1);
+    query.set("dir", 1);
+    sort[param].up = `${url}?${query.toString()}`;
+    query.set("dir", -1);
+    sort[param].down = `${url}?${query.toString()}`;
+    query.delete("sort");
+    query.delete("dir");
+  });
+
+  return sort;
+};

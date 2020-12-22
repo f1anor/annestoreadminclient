@@ -1,0 +1,24 @@
+.imgsWrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.imgsWrapper > div:not(:first-of-type) {
+  margin-left: 5px;
+}
+.icon {
+  height: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.check {
+  position: relative;
+}
+
+.checkbox {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(0, -50%);
+}

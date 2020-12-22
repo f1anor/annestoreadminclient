@@ -11,18 +11,36 @@ import {
   FETCH_PRODUCTS_START,
   FETCH_PRODUCTS_FAILURE,
   DELETE_PRODUCTS_FAILURE,
-  SET_IMG,
+  FETCH_ARCHIVE_PRODUCTS_SUCCESS,
+  MOVE_TO_ARCHIVE_START,
+  MOVE_TO_ARCHIVE_SUCCESS,
+  MOVE_TO_ARCHIVE_FAILURE,
+  RESTORE_FROM_ARCHIVE_FAILURE,
+  RESTORE_FROM_ARCHIVE_START,
+  RESTORE_FROM_ARCHIVE_SUCCESS,
+  FETCH_ARCHIVE_PRODUCTS_START,
+  FETCH_ARCHIVE_PRODUCTS_FAILURE,
+  SELECT_ALL,
+  SELECT_ARCHIVE_ALL,
 } from "../actionTypes";
 
 const initialState = {
   products: {},
+  archiveProducts: {},
   currentProducts: [],
+  currentArchiveProducts: [],
   page: 1,
+  archivePage: 1,
   pageSize: 10,
   totalCount: null,
+  archiveTotalCount: null,
   selected: [],
+  archiveSelected: [],
   isFetching: false,
+  isArchiveFetching: false,
   isDeleting: false,
+  isMovingToArchive: false,
+  isRestoring: false,
   isAdding: false,
   isAddingSuccess: false,
   isEditing: false,
@@ -61,6 +79,16 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         selected: [...state.selected, payload],
+      };
+    case SELECT_ALL:
+      return {
+        ...state,
+        selected: state.currentProducts,
+      };
+    case SELECT_ARCHIVE_ALL:
+      return {
+        ...state,
+        selected: state.currentArchiveProducts,
       };
     case CLEAR_SELECTED:
       return {
@@ -105,10 +133,60 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         isAddingSuccess: false,
       };
-    case SET_IMG:
+    case FETCH_ARCHIVE_PRODUCTS_START:
       return {
         ...state,
-        img: payload,
+        isArchiveFetching: true,
+      };
+    case FETCH_ARCHIVE_PRODUCTS_SUCCESS:
+      const object = {};
+      payload.products.forEach((product) => (object[product._id] = product));
+      return {
+        ...state,
+        archiveProducts: { ...state.products, ...object },
+        currentArchiveProducts: payload.products.map((product) => product._id),
+        archiveTotalCount: payload.totalCount,
+        selected: [],
+        isArchiveFetching: false,
+        message: null,
+      };
+    case FETCH_ARCHIVE_PRODUCTS_FAILURE:
+      return {
+        ...state,
+        isArchiveFetching: false,
+        message: payload,
+      };
+    case MOVE_TO_ARCHIVE_START:
+      return {
+        ...state,
+        isMovingToArchive: true,
+      };
+    case MOVE_TO_ARCHIVE_SUCCESS:
+      return {
+        ...state,
+        isMovingToArchive: false,
+      };
+    case MOVE_TO_ARCHIVE_FAILURE:
+      return {
+        ...state,
+        isMovingToArchive: false,
+        message: payload,
+      };
+    case RESTORE_FROM_ARCHIVE_START:
+      return {
+        ...state,
+        isRestoring: true,
+      };
+    case RESTORE_FROM_ARCHIVE_SUCCESS:
+      return {
+        ...state,
+        isRestoring: false,
+      };
+    case RESTORE_FROM_ARCHIVE_FAILURE:
+      return {
+        ...state,
+        isRestoring: false,
+        message: payload,
       };
     default:
       return state;

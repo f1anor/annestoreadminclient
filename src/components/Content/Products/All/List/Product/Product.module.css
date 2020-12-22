@@ -10,15 +10,14 @@
   transform: translate(-50%, -50%);
 }
 
-.imgs {
+/* .imgs {
   margin: 0 !important;
   padding: 0 !important;
-}
+} */
 
 .imgsWrapper {
   height: 100%;
   display: flex;
-  padding-left: 15px;
   align-items: center;
 }
 .imgsWrapper > div:not(:first-of-type) {
@@ -28,8 +27,4 @@
   height: 50%;
   margin-right: 10px;
   cursor: pointer;
-}
-
-.icon path {
-  fill: #333;
 }

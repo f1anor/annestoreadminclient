@@ -11,6 +11,7 @@ const ProductsContainer = (props) => {
 const mapStateToProps = (state) => ({
   isAddingSuccess: state.product.isAddingSuccess,
   isProdFetching: state.product.isFetching,
+  isArchiveProdFetching: state.product.isArchiveFetching,
   isCatFetching: state.category.isFetching,
 });
 

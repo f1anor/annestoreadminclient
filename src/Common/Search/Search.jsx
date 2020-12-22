@@ -11,10 +11,8 @@ const Search = ({ value, changeValue, handleSetSearch, handleSubmit }) => {
         value={value}
         onChange={(e) => changeValue(e.target.value)}
         onKeyDown={handleSubmit}
+        placeholder="Поиск"
       />
-      <button className={css.btn} onClick={handleSetSearch}>
-        <SearchIcon />
-      </button>
     </div>
   );
 };

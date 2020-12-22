@@ -22,7 +22,17 @@ import {
   FETCH_EDIT_PRODUCT_SUCCESS,
   FETCH_EDIT_PRODUCT_FAILURE,
   TOGGLE_ADDING_SUCCESS,
-  SET_IMG,
+  MOVE_TO_ARCHIVE_START,
+  MOVE_TO_ARCHIVE_FAILURE,
+  MOVE_TO_ARCHIVE_SUCCESS,
+  FETCH_ARCHIVE_PRODUCTS_START,
+  FETCH_ARCHIVE_PRODUCTS_SUCCESS,
+  FETCH_ARCHIVE_PRODUCTS_FAILURE,
+  RESTORE_FROM_ARCHIVE_START,
+  RESTORE_FROM_ARCHIVE_SUCCESS,
+  RESTORE_FROM_ARCHIVE_FAILURE,
+  SELECT_ALL,
+  SELECT_ARCHIVE_ALL,
 } from "../actionTypes";
 import {
   preloadImageApi,
@@ -31,6 +41,9 @@ import {
   fetchProductsApi,
   deleteProductsApi,
   fetchEditProductApi,
+  moveToArchiveApi,
+  restoreFromArchiveApi,
+  fetchArchiveProductsApi,
 } from "../api/product-api";
 
 export const addProduct = (values) => (dispatch) => {
@@ -115,6 +128,19 @@ export const fetchProducts = (params) => async (dispatch) => {
 export const addSelected = (id) => (dispatch) => {
   dispatch({ type: ADD_SELECTED, payload: id });
 };
+
+export const selectAll = () => (dispatch) => {
+  dispatch({
+    type: SELECT_ALL,
+  });
+};
+
+export const selectArchiveAll = () => (dispatch) => {
+  dispatch({
+    type: SELECT_ARCHIVE_ALL,
+  });
+};
+
 export const clearSelected = (id) => (dispatch) => {
   dispatch({ type: CLEAR_SELECTED, payload: id });
 };
@@ -138,7 +164,7 @@ export const deleteProducts = (query, history) => async (
 
   try {
     const ans = await deleteProductsApi(selected);
-
+    console.log(11111111111, ans);
     if (!!ans.data.status) throw new Error(ans.data.message);
 
     dispatch({
@@ -150,7 +176,7 @@ export const deleteProducts = (query, history) => async (
       query.set("page", page - 1);
       history.push(`${history.location.pathname}?${query}`);
     } else {
-      dispatch(fetchProducts(query.toString()));
+      dispatch(fetchArchiveProducts(query.toString()));
     }
   } catch (err) {
     console.log(err);
@@ -213,9 +239,95 @@ export const toggleAddingSuccess = () => (dispatch) => {
   });
 };
 
-export const setImg = (img) => (dispatch) => {
+export const moveToArchive = (query, history) => async (dispatch, getState) => {
   dispatch({
-    type: SET_IMG,
-    payload: img,
+    type: MOVE_TO_ARCHIVE_START,
   });
+
+  const product = getState().product;
+  const { selected, currentProducts } = product;
+
+  try {
+    const ans = await moveToArchiveApi(selected);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: MOVE_TO_ARCHIVE_SUCCESS,
+    });
+
+    const page = +query.get("page");
+    if (selected.length === currentProducts.length && page > 1) {
+      query.set("page", page - 1);
+      history.push(`${history.location.pathname}?${query}`);
+    } else {
+      dispatch(fetchProducts(query.toString()));
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: MOVE_TO_ARCHIVE_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+export const restoreFromArchive = (query, history) => async (
+  dispatch,
+  getState
+) => {
+  dispatch({
+    type: RESTORE_FROM_ARCHIVE_START,
+  });
+
+  const product = getState().product;
+  const { selected, currentArchiveProducts } = product;
+
+  try {
+    const ans = await restoreFromArchiveApi(selected);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: RESTORE_FROM_ARCHIVE_SUCCESS,
+    });
+
+    const page = +query.get("page");
+    if (selected.length === currentArchiveProducts.length && page > 1) {
+      query.set("page", page - 1);
+      history.push(`${history.location.pathname}?${query}`);
+    } else {
+      dispatch(fetchArchiveProducts(query.toString()));
+    }
+  } catch (err) {
+    console.log(err);
+
+    dispatch({
+      type: RESTORE_FROM_ARCHIVE_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+export const fetchArchiveProducts = (query) => async (dispatch) => {
+  dispatch({
+    type: FETCH_ARCHIVE_PRODUCTS_START,
+  });
+
+  try {
+    const ans = await fetchArchiveProductsApi(query);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: FETCH_ARCHIVE_PRODUCTS_SUCCESS,
+      payload: ans.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: FETCH_ARCHIVE_PRODUCTS_FAILURE,
+      payload: err.message,
+    });
+  }
 };

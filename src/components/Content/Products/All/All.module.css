@@ -2,10 +2,6 @@
   width: 30px;
 }
 
-.thead {
-  color: #333;
-}
-
-.thead a {
-  color: #333;
+.table {
+  margin-top: 20px !important;
 }

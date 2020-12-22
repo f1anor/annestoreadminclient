@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import All from "./All";
-import {
-  fetchProducts,
-  clearSelectedAll,
-  deleteProducts,
-  toggleAddingSuccess,
-} from "actions/product-actions";
+import { fetchProducts, toggleAddingSuccess } from "actions/product-actions";
 import { getProductsById, getProdDisabled } from "selectors/products-selectors";
-import { useQuery } from "../../../../utils/utils";
-import { useHistory } from "react-router-dom";
+import { getSortParams, useQuery } from "../../../../utils/utils";
 
 const AllContainer = ({
   fetchProducts,
@@ -27,56 +21,28 @@ const AllContainer = ({
   useEffect(() => {
     if (!!isAddingSuccess) toggleAddingSuccess();
   }, [isAddingSuccess, toggleAddingSuccess]);
-  const [modalImgShow, setModalImgShow] = useState(null);
-  const [modalDelShow, setModalDelShow] = useState(null);
 
   const query = useQuery();
   const queryString = query.toString();
-  const queryAfterDelete = useQuery();
-  const history = useHistory();
 
   const pagesize = 10;
 
   useEffect(() => {
     fetchProducts(queryString);
   }, [fetchProducts, queryString]);
-
-  const sort = {};
-
-  ["time", "article", "title", "category", "views", "price"].forEach(
-    (param) => {
-      query.set("sort", param);
-      query.set("page", 1);
-      sort[param] = {};
-      query.set("dir", 1);
-      sort[param].up = `/products/all?${query}`;
-      query.set("dir", -1);
-      sort[param].down = `/products/all?${query}`;
-      query.delete("dir");
-    }
+  const sort = getSortParams(
+    ["time", "article", "title", "category", "views", "price"],
+    query,
+    "/products/all"
   );
 
-  const handleRemoveSelection = () => {
-    clearSelectedAll();
-  };
-
-  const handleDelete = () => {
-    deleteProducts(queryAfterDelete, history);
-  };
   return (
     <>
       <All
         products={products}
-        modalImgShow={modalImgShow}
-        setModalImgShow={setModalImgShow}
-        modalDelShow={modalDelShow}
-        setModalDelShow={setModalDelShow}
         pagesize={pagesize}
         totalCount={totalCount}
         sort={sort}
-        handleRemoveSelection={handleRemoveSelection}
-        handleDelete={handleDelete}
-        selected={selected}
         isProdDisabled={isProdDisabled}
         message={message}
         {...props}
@@ -98,7 +64,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   fetchProducts,
-  clearSelectedAll,
-  deleteProducts,
   toggleAddingSuccess,
 })(AllContainer);

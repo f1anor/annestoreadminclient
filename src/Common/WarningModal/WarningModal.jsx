@@ -2,10 +2,11 @@ import React from "react";
 
 import { Modal, Button } from "react-bootstrap";
 
-const WarningModal = (props) => {
+const WarningModal = ({ onHide, content, handler, show }) => {
   return (
     <Modal
-      {...props}
+      show={show}
+      onHide={onHide}
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -16,15 +17,14 @@ const WarningModal = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-center">
-        Вы действительно хотите {props.content ? props.content : ""}
+        Вы действительно хотите {content ? content : ""}
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Закрыть</Button>
+        <Button onClick={onHide}>Закрыть</Button>
         <Button
-          variant="warning"
           onClick={() => {
-            props.handler();
-            props.onHide();
+            handler();
+            onHide();
           }}
         >
           Подтвердить

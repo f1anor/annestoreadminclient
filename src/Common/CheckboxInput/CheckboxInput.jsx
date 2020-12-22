@@ -1,16 +1,17 @@
 import React from "react";
 import css from "./Checkbox.module.css";
 
-const CheckboxInput = ({ input, value, className }) => {
+const CheckboxInput = ({ input, value, className = "", ...props }) => {
   const customID = `ID${Math.random().toString().slice(-3)}`;
   return (
-    <div className={css.wrapper}>
+    <div className={[css.wrapper, className].join(" ")}>
       <input
         type="checkbox"
         {...input}
         value={value}
         className={css.input}
         id={customID}
+        {...props}
       />
       <label className={css.label} htmlFor={customID} />
     </div>

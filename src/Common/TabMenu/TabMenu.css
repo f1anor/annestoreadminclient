@@ -1,0 +1,17 @@
+.active {
+  background-color: #fcfefc !important;
+  color: #5993c2 !important;
+  font-weight: bold !important;
+  position: relative;
+}
+
+.active:after {
+  content: "";
+  display: block;
+  background-color: #fcfefc;
+  height: 3px;
+  bottom: -3px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}

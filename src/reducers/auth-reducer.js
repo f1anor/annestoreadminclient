@@ -11,6 +11,7 @@ const initialState = {
   auth: null,
   email: null,
   name: null,
+  ava: null,
   root: false,
 };
 
@@ -32,6 +33,7 @@ export default (state = initialState, { type, payload }) => {
         auth: true,
         name: `${payload.firstName} ${payload.lastName}`,
         email: payload.email,
+        ava: payload.ava.small,
         root: payload.root,
       };
     case SIGN_OUT:

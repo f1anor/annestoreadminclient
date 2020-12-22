@@ -1,0 +1,34 @@
+.wrapper {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  margin-left: 60px;
+}
+
+.wrapper a {
+  display: block;
+  height: 40px;
+  border: 1px solid var(--main-border-color);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 1px solid transparent;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: transparent;
+  color: #6b6c69;
+}
+
+.wrapper li:not(:first-of-type) a {
+  margin-left: 10px;
+}
+
+.tabMenuActive {
+  border-bottom: 1px solid #fff;
+  background-color: #fcfefc;
+  color: #5993c2;
+  font-weight: bold;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import withFilters from "../../../../../../hoc/withFilters";
+import withFilters from "hoc/withFilters";
 import PriceFrom from "./PriceFrom";
 
 const PriceFromContainer = ({ query, filters, ...props }) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import css from "./Categories.module.css";
 
 const Categories = ({
   cat,
@@ -12,7 +13,8 @@ const Categories = ({
   return (
     <DropdownButton
       disabled={!!isFetchingCat || isProdDisabled}
-      title={`Категория: ${currentCat || "все"}`}
+      title={currentCat || "Все"}
+      variant="outline-secondary"
       className="ml-2"
       size="sm"
     >

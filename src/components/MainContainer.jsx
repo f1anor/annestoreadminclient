@@ -26,7 +26,7 @@ const MainContainer = ({
 const mapStateToProps = (state) => ({
   regSuccess: state.auth.regSuccess,
   logSuccess: state.auth.logSuccess,
-  img: state.product.img,
+  img: state.app.img,
 });
 
 export default connect(mapStateToProps, { toggleLog, toggleReg, setImg })(

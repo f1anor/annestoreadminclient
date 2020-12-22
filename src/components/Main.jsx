@@ -11,7 +11,9 @@ const Main = ({ setImg, img }) => {
     <div className={css.wrapper}>
       <HeaderContainer />
       <div className={css.main}>
-        <SidebarContainer />
+        <div className={css.sidebar}>
+          <SidebarContainer />
+        </div>
         <div className={css.content}>
           <Content />
         </div>

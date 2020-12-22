@@ -7,4 +7,9 @@ const HeaderContainer = (props) => {
   return <Header {...props} />;
 };
 
-export default connect(null, { signOut })(HeaderContainer);
+const mapStateToProps = (state) => ({
+  ava: state.auth.ava,
+  name: state.auth.name,
+});
+
+export default connect(mapStateToProps, { signOut })(HeaderContainer);

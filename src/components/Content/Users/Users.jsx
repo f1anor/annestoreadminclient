@@ -5,7 +5,6 @@ import AdminsContainer from "./Admins/AdminsContainer";
 import css from "./Users.module.css";
 
 const Users = ({ isFetching }) => {
-  console.log(11111, isFetching);
   return (
     <div className={css.wrapper}>
       <div className={css.header}>

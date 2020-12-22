@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import withFilters from "../../../../../../hoc/withFilters";
+import withFilters from "hoc/withFilters";
 import PriceTo from "./PriceTo";
 
 const PriceToContainer = ({ query, filters, ...props }) => {

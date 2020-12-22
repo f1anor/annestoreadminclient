@@ -4,13 +4,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   font-size: 0.875rem;
+  background-color: #fcfefc !important;
+}
+
+.table td {
+  color: #656467 !important;
+}
+
+.table thead {
+  color: #292829 !important;
+}
+
+.table thead a {
+  color: #292829 !important;
+}
+
+.table > thead > tr > th {
+  border: none !important;
+  background-color: #f9fbf8;
 }
 
 .table > tbody > tr > td {
   height: 58px !important;
+  line-height: 58px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 :root {
-  --main-border-color: #dfe2e6;
-  --main-text-color: #333;
+  --main-border-color: #e6e8e5;
+  --main-text-color: #7a7c7b;
 }

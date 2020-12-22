@@ -1,9 +1,21 @@
 .input {
-  width: 150px;
+  width: 235px;
+  height: 31px;
   border: none;
-  border-bottom: 1px solid #cfd4d9;
+  border: 1px solid #cfd4d9;
+  box-sizing: border-box;
+  border-radius: 4px;
   outline: none;
   color: #333;
+  padding-left: 10px;
+}
+
+.input::placeholder {
+  color: #c7c9c6;
+  padding-left: 25px;
+  background-image: url(../../assets/svg/search.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
 }
 
 .btn {

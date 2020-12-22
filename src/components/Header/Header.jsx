@@ -1,41 +1,28 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import css from "./Header.module.css";
+import Logo from "./Logo/Logo";
 
-const Header = ({ signOut }) => {
+const Header = ({ signOut, ava, name }) => {
   return (
-    <div>
-      <nav className="navbar sticky-top bg-secondary flex-md-nowrap p-0 shadow">
-        <Link to="/dashboard" className={[css.navbarBrand].join(" ")}>
-          Админ
-        </Link>
-        <button
-          className="navbar-toggler position-absolute d-md-none collapsed"
-          type="button"
-          data-toggle="collapse"
-          data-target="#sidebarMenu"
-          aria-controls="sidebarMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <input
-          className={[css.formControl, css.formControlDark, "w-100"].join(" ")}
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <ul className="navbar-nav px-3">
-          <li className="nav-item text-nowrap">
-            <Button variant="" className={css.logoutBtn} onClick={signOut}>
-              Выйти
+    <div className={css.wrapper}>
+      <div className={css.logo}>
+        <Logo />
+      </div>
+      <div className={css.mainSide}>
+        <div className={css.controls}>
+          <div className={css.btnWrapper}>
+            <Button size="sm" onClick={signOut}>
+              Выйти из системы
             </Button>
-          </li>
-        </ul>
-      </nav>
+          </div>
+          <div className={css.avatar}>
+            <img src={`${process.env.REACT_APP_SERVER_ASSETS}${ava}`} alt="" />
+          </div>
+          <span>{name}</span>
+        </div>
+      </div>
     </div>
   );
 };

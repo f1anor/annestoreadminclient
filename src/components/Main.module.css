@@ -3,14 +3,18 @@
 }
 
 .main {
-  height: calc(100% - 48px);
+  height: calc(100vh - 65px);
   display: flex;
 }
 
-.content {
-  width: 100%;
+.sidebar {
+  width: 200px;
   height: 100%;
-  padding: 30px;
-  box-sizing: border-box;
-  overflow: scroll;
+  height: inherit;
+}
+
+.content {
+  height: 100%;
+  width: calc(100vw - 200px);
+  background-color: #f2f4f1;
 }

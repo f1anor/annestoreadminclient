@@ -1,28 +1,21 @@
 import React from "react";
-import { Alert, Button, Table } from "react-bootstrap";
+import { Alert, Table } from "react-bootstrap";
 import css from "./All.module.css";
 import List from "./List/List";
 import CustomPagination from "../../../../Common/CustomPagination/CustomPagination";
 import TableTitleContainer from "../../../../Common/TableTitle/TableTitleContainer";
-import WarningModal from "../../../../Common/WarningModal/WarningModal";
-import Parametrs from "./Parametrs/Parametrs";
 import SearchContainer from "../../../../Common/Search/SearchContainer";
+import ParametersContainer from "./Parametrs/ParametersContainer";
 
 const All = React.memo(
   ({
     products,
-    modalDelShow,
-    setModalDelShow,
     pagesize,
     totalCount,
     sort,
-    handleRemoveSelection,
-    handleDelete,
-    selected,
     isProdDisabled,
     message,
-    img,
-    setImg,
+    moveToArchive,
   }) => {
     return (
       <div className={css.wrapper}>
@@ -31,13 +24,16 @@ const All = React.memo(
             {message}
           </Alert>
         )}
-        <div className="mt-5 d-flex justify-content-between">
-          <Parametrs isProdDisabled={isProdDisabled} />
+        <div className="d-flex justify-content-between">
           <SearchContainer />
+          <ParametersContainer
+            isProdDisabled={isProdDisabled}
+            moveToArchive={moveToArchive}
+          />
         </div>
-        <Table striped bordered hover responsive className="mt-3">
+        <Table hover responsive className={css.table}>
           <thead className={css.thead}>
-            <tr className="table-active">
+            <tr>
               <th className={css.check}>Выбрать</th>
               <TableTitleContainer
                 disabled={!!isProdDisabled}
@@ -67,7 +63,7 @@ const All = React.memo(
               />
             </tr>
           </thead>
-          {!!products && <List products={products} />}
+          <List products={products} />
         </Table>
 
         <div className="d-flex justify-content-between">
@@ -77,26 +73,7 @@ const All = React.memo(
             link="/products/all"
             disabled={isProdDisabled}
           />
-          <div>
-            <Button
-              className="mr-2"
-              disabled={!selected.length}
-              variant="outline-primary"
-              onClick={handleRemoveSelection}
-            >
-              Отменить выбор
-            </Button>
-            <Button disabled={!selected.length} onClick={setModalDelShow}>
-              Удалить выбранное
-            </Button>
-          </div>
         </div>
-        <WarningModal
-          show={!!modalDelShow}
-          content="Вы действительно хотите удалить выбранные продукты? (Действие является необратимым)"
-          handler={() => handleDelete()}
-          onHide={() => setModalDelShow(null)}
-        />
       </div>
     );
   }

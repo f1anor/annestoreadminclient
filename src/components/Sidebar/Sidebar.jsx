@@ -6,9 +6,9 @@ import SidebarMenu from "./SidebarMenu/SidebarMenu";
 
 const Sidebar = () => {
   return (
-    <Nav className={css.wrapper}>
+    <div className={css.wrapper}>
       <SidebarMenu />
-    </Nav>
+    </div>
   );
 };
 

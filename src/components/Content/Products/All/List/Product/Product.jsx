@@ -42,7 +42,7 @@ const Product = ({
       <td>{time}</td>
       <td>
         <Link to={`/products/edit/${product.article}`}>
-          {formatNumber(product.article, 5)}
+          {formatNumber(product._id, 5)}
         </Link>
       </td>
       <td>{product.title}</td>
