@@ -1,22 +1,28 @@
 import React from "react";
 import { Form } from "react-bootstrap";
+import css from "./Input.module.css";
 
 const Input = ({
   label,
   input,
   change,
+  className = "",
   readOnly = false,
+  placeholder = "",
   meta: { touched, error, submitFailed },
   ...props
 }) => {
   const isError = touched && error;
   return (
-    <Form.Group>
+    <Form.Group className={css.wrapper}>
       {!!label && <Form.Label>{label}</Form.Label>}
-      <Form.Control
-        isInvalid={!!isError}
-        plaintext={readOnly}
-        readOnly={readOnly}
+
+      <input
+        className={[css.input, className].join(" ")}
+        // isInvalid={!!isError}
+        // plaintext={readOnly}
+        // readOnly={readOnly}
+        placeholder={placeholder}
         {...input}
         {...props}
       />

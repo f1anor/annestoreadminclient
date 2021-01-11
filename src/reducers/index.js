@@ -9,12 +9,12 @@ import authReducer from "./auth-reducer";
 import appReducer from "./app-reducer";
 
 export default combineReducers({
-  form: formReducer,
-  product: productReducer,
-  category: catReducer,
   dashboard: dashboardReducer,
+  category: catReducer,
+  product: productReducer,
   orders: ordersReducer,
   users: usersReducer,
   auth: authReducer,
+  form: formReducer,
   app: appReducer,
 });

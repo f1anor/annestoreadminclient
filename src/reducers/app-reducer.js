@@ -3,12 +3,17 @@ import {
   INIT_APP,
   REMOVE_TOAST_MESSAGE,
   SET_IMG,
+  SET_TOOLTIP,
 } from "../actionTypes";
 
 const initialState = {
   init: null,
   messages: [],
   img: null,
+  tooltip: {
+    text: "",
+    target: null,
+  },
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -39,6 +44,15 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         img: payload,
+      };
+    case SET_TOOLTIP:
+      console.log(33333, payload);
+      return {
+        ...state,
+        tooltip: {
+          text: payload.text,
+          target: payload.target,
+        },
       };
     default:
       return state;

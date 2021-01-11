@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+}
+
+.input {
+  display: block;
+  /* width: 100%; */
+  flex-grow: 1;
+  background-color: #f5f7f8;
+  border: 1px solid #e0e6e9;
+  border-right: none;
+  height: 50px;
+  padding: 10px;
+  outline: none !important;
+}
+
+.dropdown {
+  width: 100px !important;
+  display: block;
+}
+
+.btn {
+  width: 60px !important;
+  background-color: #f5f7f8;
+  border: 1px solid #e0e6e9;
+  border-right: none;
+  height: 50px;
+  outline: none !important;
+}
+
+.btn svg path {
+  fill: #838689;
+}

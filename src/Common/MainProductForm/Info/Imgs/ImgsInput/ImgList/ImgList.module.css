@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  margin-top: 20px;
+  overflow: scroll;
+  height: 390px;
+  position: relative;
+}
+
+.wrapper > div:not(:last-of-type) {
+  margin-right: 20px;
+}
+
+.main {
+  position: absolute;
+  width: 100px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  background-color: #ffd645;
+  color: #333;
+  top: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  pointer-events: none;
+  font-weight: bold;
+}

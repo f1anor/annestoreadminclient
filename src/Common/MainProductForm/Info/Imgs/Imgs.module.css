@@ -1,0 +1,90 @@
+.wrapper {
+  margin-top: 20px;
+}
+
+.imgWrapper {
+  position: relative;
+  width: 100%;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='rgb(230, 237, 239)' stroke-width='5' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.imgWrapper:not(:first-of-type) {
+  margin-top: 20px;
+}
+
+.imgLabelMeta {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 350px;
+  color: #989492;
+  font-weight: 500;
+  text-align: center;
+}
+
+.imgLabelMeta span:first-of-type > span {
+  color: #6cbaf3;
+  font-weight: bold;
+}
+
+.imgLabelMeta span:not(:first-of-type) {
+  display: block;
+  margin-top: 20px;
+  color: #b1b1b1;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.img > div {
+  border: none;
+  width: 100% !important;
+}
+
+.img label {
+  background-image: none;
+}
+
+.uploadIcon {
+  width: 18%;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  pointer-events: none;
+}
+
+.uploadIcon path {
+  fill: #eaeaea;
+}
+
+.btnLine {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnLine > button {
+  display: block;
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  color: #6cbaf3;
+  outline: none;
+}
+
+.btnLine > button .arrow {
+  width: 25px;
+  height: 20px;
+}
+
+.btnLine > button .arrow path {
+  fill: #6cbaf3;
+}
+
+.animWrapper {
+  margin-top: 20px;
+}

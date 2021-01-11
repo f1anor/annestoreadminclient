@@ -141,6 +141,8 @@ export const ADD_TOAST_MESSAGE = "ADD_TOAST_MESSAGE";
 
 export const REMOVE_TOAST_MESSAGE = "REMOVE_TOAST_MESSAGE";
 
+export const SET_TOOLTIP = "SET_TOOLTIP";
+
 // users
 
 export const FETCH_ADMINS_START = "FETCH_ADMINS_START";

@@ -1,10 +1,10 @@
 import instance from ".";
 
-export const preloadImageApi = async (img, name) => {
+export const preloadImageApi = async (img, imgName) => {
   const formData = new FormData();
   formData.append("myImage", img);
   formData.name = img.name;
-  return await instance.post(`/product/preloadimg/${name}`, formData);
+  return await instance.post(`/product/preloadimg/${imgName}`, formData);
 };
 
 export const addProductApi = async (product) => {

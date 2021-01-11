@@ -1,0 +1,41 @@
+.isActive {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.isActive > span {
+  color: #7b767a;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.label {
+  color: #7b767a;
+  font-weight: 500;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.input {
+  background-color: #f3f7f8;
+  border-color: #dde6e9;
+  height: 50px;
+  color: #757b82;
+}
+
+.inputWrapper {
+  margin-top: 5px;
+  position: relative;
+}
+
+.inputWrapper > span {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  font-weight: bold;
+  transform: translate(0, -50%);
+  pointer-events: none;
+}

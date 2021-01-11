@@ -2,9 +2,9 @@ import React from "react";
 import { Spinner } from "react-bootstrap";
 import css from "./Title.module.css";
 
-const Title = ({ children, anim }) => {
+const Title = ({ children, anim, className = "" }) => {
   return (
-    <div className={css.wrapper}>
+    <div className={[css.wrapper, className].join(" ")}>
       <h2 className={css.title}>
         {children}{" "}
         {!!anim && (

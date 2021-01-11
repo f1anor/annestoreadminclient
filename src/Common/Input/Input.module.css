@@ -1,0 +1,13 @@
+.input {
+  outline: none;
+  border: 1px solid #cfd4d9;
+  border-radius: 2px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.wrapper {
+  margin: 0;
+  padding: 0;
+}

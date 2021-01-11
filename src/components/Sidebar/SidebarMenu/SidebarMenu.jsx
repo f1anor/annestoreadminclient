@@ -43,6 +43,15 @@ const SidebarMenu = () => {
         </li>
         <li>
           <NavLink
+            to="/addproduct"
+            activeClassName={css.active}
+            className={[css.menuItem, css.secondary].join(" ")}
+          >
+            <span>Новый</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/categories"
             activeClassName={css.active}
             className={css.menuItem}

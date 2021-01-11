@@ -1,0 +1,21 @@
+.btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: #cbeff7;
+  outline: none !important;
+  color: #00b0d4;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 2px;
+  transition: background-color 0.2s, color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #00b0d4;
+  color: #cbeff7;
+}

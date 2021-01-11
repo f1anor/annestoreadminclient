@@ -1,0 +1,10 @@
+.addBtn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: #7eb9ee;
+  font-weight: bold;
+  width: 100%;
+  text-align: right;
+  outline: none !important;
+}

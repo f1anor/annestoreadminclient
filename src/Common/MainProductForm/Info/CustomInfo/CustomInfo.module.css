@@ -1,0 +1,54 @@
+.showBtn {
+  display: block;
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+  color: #4fb6f8;
+  outline: none;
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  top: 0;
+  right: 0;
+  outline: none !important;
+}
+
+.hidBlock {
+  margin-top: 20px;
+}
+
+.formDoubleLine > label:first-of-type {
+  margin-right: 20px;
+}
+
+.br {
+  width: 100%;
+  height: 2px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
+}
+
+.dropdown {
+  margin-top: 5px;
+}
+
+.label {
+  color: #7b767a;
+  font-weight: 500;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.formDoubleLine > label {
+  display: block;
+  width: 50%;
+}
+
+.formDoubleLine {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

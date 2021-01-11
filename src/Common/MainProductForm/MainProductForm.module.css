@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftSide {
+  width: calc(100% - 20px - 28%);
+}
+
+.rightSide {
+  width: 28%;
+  display: flex;
+  flex-direction: column;
+}

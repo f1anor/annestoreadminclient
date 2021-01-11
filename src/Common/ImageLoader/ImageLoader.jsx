@@ -3,12 +3,19 @@ import EditImageContainer from "./EditImage/EditImageContainer";
 
 import css from "./ImageLoader.module.css";
 
-const ImageLoader = ({ input, handlePreloadImg, width, height, form }) => {
+const ImageLoader = ({
+  input,
+  handlePreloadImg,
+  width,
+  height,
+  form,
+  className = "",
+}) => {
   const { value } = input;
 
   const isLoaded = value.preloadedImg;
   return (
-    <div className={css.wrapper}>
+    <div className={[css.wrapper, className].join(" ")}>
       <div
         className={css.imgWrapper}
         style={{ width: width + "px", height: height + "px" }}

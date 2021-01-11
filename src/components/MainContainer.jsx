@@ -29,6 +29,8 @@ const mapStateToProps = (state) => ({
   img: state.app.img,
 });
 
-export default connect(mapStateToProps, { toggleLog, toggleReg, setImg })(
-  MainContainer
-);
+export default connect(mapStateToProps, {
+  toggleLog,
+  toggleReg,
+  setImg,
+})(MainContainer);

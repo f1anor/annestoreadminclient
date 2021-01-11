@@ -1,0 +1,37 @@
+.wrapper {
+  width: 100%;
+}
+.inner {
+  position: relative;
+  width: 100%;
+}
+
+.inner:after {
+  content: "";
+  display: block;
+  background-image: url(../../assets/svg/arrow-down.svg);
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: 100%;
+  background-position: 0 0;
+  position: absolute;
+  top: 19px;
+  right: 12px;
+  pointer-events: none;
+}
+
+.inner > select {
+  width: 100% !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #dfe6e9;
+  border-radius: 2px;
+  background-color: #f5f7f8;
+  height: 50px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  color: #7d8185;
+  outline: none;
+  cursor: pointer;
+}

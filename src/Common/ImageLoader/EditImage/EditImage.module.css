@@ -3,6 +3,12 @@
   animation: fadeIn 1s;
 }
 
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .sliderWrapper {
   overflow: hidden;
   background-color: #000;
@@ -16,8 +22,6 @@
 }
 
 .slider {
-  /* min-width: 270px; */
-  /* min-height: 350px; */
   position: absolute;
   transition: transform 0.5s ease;
 }

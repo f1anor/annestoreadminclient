@@ -3,6 +3,7 @@ import {
   ADD_TOAST_MESSAGE,
   REMOVE_TOAST_MESSAGE,
   SET_IMG,
+  SET_TOOLTIP,
 } from "../actionTypes";
 import { restore } from "./auth-actions";
 
@@ -31,5 +32,12 @@ export const setImg = (img) => (dispatch) => {
   dispatch({
     type: SET_IMG,
     payload: img,
+  });
+};
+
+export const setTooltip = (text, target) => (dispatch) => {
+  dispatch({
+    type: SET_TOOLTIP,
+    payload: { text, target },
   });
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import AddProductContainer from "./AddProduct/AddProductContainer";
 import CategoriesContainer from "./Categories/CategoriesContainer";
 import DashboardContainer from "./Dashboard/DashboardContainer";
 import OrdersContainer from "./Orders/OrdersContainer";
@@ -10,6 +11,7 @@ const Content = () => {
   return (
     <Switch>
       <Route path="/products" render={() => <ProductsContainer />} />
+      <Route path="/addproduct" render={() => <AddProductContainer />} />
       <Route path="/categories" render={() => <CategoriesContainer />} />
       <Route path="/dashboard" render={() => <DashboardContainer />} />
       <Route path="/orders" render={() => <OrdersContainer />} />

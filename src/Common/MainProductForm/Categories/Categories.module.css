@@ -1,0 +1,17 @@
+.wrapper {
+  height: 445px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.addCatBtn {
+  border: none;
+  color: #6cbaf3;
+  background-color: transparent;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  outline: none !important;
+  width: 100%;
+  text-align: right;
+}

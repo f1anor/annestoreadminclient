@@ -47,6 +47,8 @@ import {
 } from "../api/product-api";
 
 export const addProduct = (values) => (dispatch) => {
+  console.log(123123, values);
+  return;
   dispatch({
     type: ADD_PRODUCT_START,
   });
@@ -84,25 +86,50 @@ export const editProduct = (values) => (dispatch) => {
     });
 };
 
-export const preloadImage = (img, name) => async (dispatch) => {
+export const preloadImage = (files, form, name, value) => async (dispatch) => {
   dispatch({
     type: PRELOAD_IMAGE_START,
   });
 
-  try {
-    const ans = await preloadImageApi(img, name);
+  const arr = Array.from(files);
 
-    dispatch(change("addProduct", name, { preloadedImg: ans.data.file }));
-    dispatch({
-      type: PRELOAD_IMAGE_SUCCESS,
-      payload: ans.data.file,
-    });
-  } catch (err) {
-    dispatch({
-      type: PRELOAD_IMAGE_FAILURE,
-      payload: err.message,
-    });
-  }
+  const preloadImg = async (img, imgName) => {
+    try {
+      const ans = await preloadImageApi(img, imgName);
+
+      dispatch({
+        type: PRELOAD_IMAGE_SUCCESS,
+        payload: ans.data.file,
+      });
+
+      return ans;
+    } catch (err) {
+      dispatch({
+        type: PRELOAD_IMAGE_FAILURE,
+        payload: err.message,
+      });
+    }
+  };
+
+  Promise.all(arr.map((file) => preloadImg(file, file.name))).then((ans) => {
+    dispatch(
+      change(form, name, [
+        ...value,
+        ...ans.map((file, index) => ({
+          id: Date.now() + index,
+          preloadImg: `${process.env.REACT_APP_SERVER_ASSETS}${
+            file.data.file
+          }?${Math.random()}`,
+          orientation: false,
+          currentX: 0,
+          currentY: 0,
+          x: 0,
+          y: 0,
+          zoom: 1,
+        })),
+      ])
+    );
+  });
 };
 
 export const fetchProducts = (params) => async (dispatch) => {
@@ -164,7 +191,7 @@ export const deleteProducts = (query, history) => async (
 
   try {
     const ans = await deleteProductsApi(selected);
-    console.log(11111111111, ans);
+
     if (!!ans.data.status) throw new Error(ans.data.message);
 
     dispatch({

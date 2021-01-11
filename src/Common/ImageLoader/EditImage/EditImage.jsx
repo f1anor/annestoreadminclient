@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./EditImage.module.css";
 
-const EditImage = ({
+const ImgEditor = ({
   img,
   width,
   height,
@@ -17,7 +17,6 @@ const EditImage = ({
 }) => {
   return (
     <div className={css.wrapper}>
-      {/* <img src={img} alt="" className={css.img} /> */}
       <div className={css.content}>
         <div
           className={css.sliderWrapper}
@@ -46,19 +45,20 @@ const EditImage = ({
               }}
             />
           </div>
+
           <button type="button" className={css.zoomBtn} onClick={handleZoomOut}>
             -
           </button>
           <button type="button" className={css.zoomBtn} onClick={handleZoomIn}>
             +
           </button>
+          <button className={css.clear} onClick={clear}>
+            &times;
+          </button>
         </div>
       </div>
-      <button className={css.clear} onClick={clear}>
-        &times;
-      </button>
     </div>
   );
 };
 
-export default EditImage;
+export default ImgEditor;
