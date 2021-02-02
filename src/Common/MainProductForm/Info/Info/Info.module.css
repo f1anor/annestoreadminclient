@@ -1,0 +1,16 @@
+.formLine {
+  margin-top: 20px;
+}
+
+.label {
+  color: var(--color-title);
+  font-weight: 500;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.name {
+  border-radius: 50px;
+}

@@ -1,11 +1,42 @@
 import React from "react";
 import CheckboxInput from "../../../CheckboxInput/CheckboxInput";
+import CustomCheckbox from "./CustomCheckbox/CustomCheckbox";
 import css from "./SizeInput.module.css";
 
 const SizeInput = ({ handleSelect, value }) => {
   return (
     <div className={css.wrapper}>
-      <label className={css.label}>
+      <CustomCheckbox
+        value={value.find((item) => item === "S")}
+        onChange={() => handleSelect("S")}
+        content="S"
+        className={css.s}
+      />
+      <CustomCheckbox
+        value={value.find((item) => item === "M")}
+        onChange={() => handleSelect("M")}
+        content="M"
+        className={css.m}
+      />
+      <CustomCheckbox
+        value={value.find((item) => item === "L")}
+        onChange={() => handleSelect("L")}
+        content="L"
+        className={css.l}
+      />
+      <CustomCheckbox
+        value={value.find((item) => item === "XL")}
+        onChange={() => handleSelect("XL")}
+        content="XL"
+        className={css.xl}
+      />
+      <CustomCheckbox
+        value={value.find((item) => item === "XXL")}
+        onChange={() => handleSelect("XXL")}
+        content="XXL"
+        className={css.xxl}
+      />
+      {/* <label className={css.label}>
         <CheckboxInput
           value={value.find((item) => item === "XS")}
           onChange={() => handleSelect("XS")}
@@ -53,7 +84,7 @@ const SizeInput = ({ handleSelect, value }) => {
           onChange={() => handleSelect("3XL")}
         />{" "}
         <span>3XL</span>
-      </label>
+      </label> */}
     </div>
   );
 };

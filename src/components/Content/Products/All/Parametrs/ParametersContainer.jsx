@@ -2,8 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "../../../../../utils/utils";
-import { moveToArchive, clearSelectedAll } from "actions/product-actions";
-import { getProdDisabled } from "selectors/products-selectors";
+import { moveToArchive } from "actions/product-actions";
 import Parametrs from "./Parametrs";
 
 const ParametersContainer = ({ moveToArchive, ...props }) => {
@@ -25,9 +24,6 @@ const ParametersContainer = ({ moveToArchive, ...props }) => {
 
 const mapStateToProps = (state) => ({
   selected: state.product.selected,
-  isProdDisabled: getProdDisabled(state),
 });
 
-export default connect(mapStateToProps, { moveToArchive, clearSelectedAll })(
-  ParametersContainer
-);
+export default connect(mapStateToProps, { moveToArchive })(ParametersContainer);

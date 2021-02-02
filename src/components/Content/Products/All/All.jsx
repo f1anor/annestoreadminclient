@@ -1,21 +1,19 @@
 import React from "react";
-import { Alert, Table } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import css from "./All.module.css";
-import List from "./List/List";
 import CustomPagination from "../../../../Common/CustomPagination/CustomPagination";
-import TableTitleContainer from "../../../../Common/TableTitle/TableTitleContainer";
-import SearchContainer from "../../../../Common/Search/SearchContainer";
 import ParametersContainer from "./Parametrs/ParametersContainer";
+import ListContainer from "./List/ListContainer";
+import CustomPaginationCounter from "../../../../Common/CustomPaginationCounter/CustomPaginationCounter";
 
 const All = React.memo(
   ({
-    products,
-    pagesize,
+    pageSize,
     totalCount,
-    sort,
     isProdDisabled,
     message,
-    moveToArchive,
+    isProdFetching,
+    products,
   }) => {
     return (
       <div className={css.wrapper}>
@@ -24,51 +22,17 @@ const All = React.memo(
             {message}
           </Alert>
         )}
-        <div className="d-flex justify-content-between">
-          <SearchContainer />
-          <ParametersContainer
-            isProdDisabled={isProdDisabled}
-            moveToArchive={moveToArchive}
+        <ParametersContainer isProdDisabled={isProdDisabled} />
+        <ListContainer pageSize={pageSize} products={products} />
+        <div className={css.pagination}>
+          <CustomPaginationCounter
+            pageSize={pageSize}
+            totalCount={totalCount}
+            elems={products.length}
+            disabled={isProdFetching}
           />
-        </div>
-        <Table hover responsive className={css.table}>
-          <thead className={css.thead}>
-            <tr>
-              <th className={css.check}>Выбрать</th>
-              <TableTitleContainer
-                disabled={!!isProdDisabled}
-                sort={sort.time}
-                content="Время"
-              />
-              <TableTitleContainer
-                disabled={!!isProdDisabled}
-                sort={sort.article}
-                content="Артикуль"
-              />
-              <TableTitleContainer
-                disabled={!!isProdDisabled}
-                sort={sort.title}
-                content="Название"
-              />
-              <TableTitleContainer
-                disabled={!!isProdDisabled}
-                sort={sort.category}
-                content="Категория"
-              />
-              <th>Изображения</th>
-              <TableTitleContainer
-                disabled={!!isProdDisabled}
-                sort={sort.price}
-                content="Цена"
-              />
-            </tr>
-          </thead>
-          <List products={products} />
-        </Table>
-
-        <div className="d-flex justify-content-between">
           <CustomPagination
-            count={pagesize}
+            count={pageSize}
             totalCount={totalCount}
             link="/products/all"
             disabled={isProdDisabled}

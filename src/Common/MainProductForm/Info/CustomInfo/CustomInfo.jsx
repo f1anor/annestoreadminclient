@@ -13,7 +13,11 @@ const CustomInfo = ({ showAdw, handleSetShowAdw }) => {
       <div className={css.br} />
       <FormBlockTitle>
         Дополнительно{" "}
-        <button className={css.showBtn} onClick={handleSetShowAdw}>
+        <button
+          type="button"
+          className={css.showBtn}
+          onClick={handleSetShowAdw}
+        >
           {!!showAdw ? "Скрыть" : "Показать"}
         </button>
       </FormBlockTitle>
@@ -58,7 +62,7 @@ const CustomInfo = ({ showAdw, handleSetShowAdw }) => {
         </div>
         <div className={css.formDoubleLine}>
           <label className={css.label}>
-            Размер
+            Состав
             <Field name="structure" component={StructureInputContainer} />
             <TooltipBtn value="test3" />
           </label>

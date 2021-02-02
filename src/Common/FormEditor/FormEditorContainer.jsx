@@ -11,7 +11,7 @@ const FormEditorContainer = ({
   const onHandleChange = (e, editor) => {
     change("addProduct", "content", { ...value, data: editor.getData() });
   };
-  console.log(form, value);
+
   return <FormEditor onHandleChange={onHandleChange} />;
 };
 

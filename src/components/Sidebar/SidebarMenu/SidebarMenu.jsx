@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import css from "./SidebarMenu.module.css";
-import { ReactComponent as DashboardIcon } from "../../../assets/svg/dashboard.svg";
+import { ReactComponent as DashboardIcon } from "../../../assets/svg/house-fill.svg";
 import { ReactComponent as OrdersIcon } from "../../../assets/svg/clipboard.svg";
-import { ReactComponent as ProductsIcon } from "../../../assets/svg/cart.svg";
+import { ReactComponent as ProductsIcon } from "../../../assets/svg/cart-fill.svg";
 import { ReactComponent as CatIcon } from "../../../assets/svg/card-list.svg";
-import { ReactComponent as UsersIcon } from "../../../assets/svg/people.svg";
+import { ReactComponent as UsersIcon } from "../../../assets/svg/people-fill.svg";
 
 const SidebarMenu = () => {
   return (
@@ -36,12 +36,21 @@ const SidebarMenu = () => {
             to="/products"
             activeClassName={css.active}
             className={css.menuItem}
+            isActive={(match, location) => {
+              if (
+                location.pathname === "/products/all" ||
+                location.pathname === "/products/archive" ||
+                location.pathname === "/addproduct"
+              )
+                return true;
+              else return false;
+            }}
           >
             <ProductsIcon className={css.icon} />
             Продукты
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             to="/addproduct"
             activeClassName={css.active}
@@ -49,7 +58,7 @@ const SidebarMenu = () => {
           >
             <span>Новый</span>
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
             to="/categories"

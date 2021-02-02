@@ -3,9 +3,28 @@ import { connect } from "react-redux";
 import { addCat } from "../../../actions/cat-actions";
 import { getCatDisabled } from "../../../selectors/cat-selectors";
 import Categories from "./Categories";
+import { formValueSelector } from "redux-form";
 
-const CategoriesContainer = ({ addCat, catAdding, catMessage, ...props }) => {
-  console.log("error", catMessage);
+let selector;
+
+const CategoriesContainer = ({
+  addCat,
+  catAdding,
+  catMessage,
+  form,
+  ...props
+}) => {
+  useEffect(() => {
+    selector = formValueSelector(form);
+  }, [form]);
+
+  const [isOpen, setOpen] = useState(true);
+
+  const handleSetOpen = () => {
+    if (!isOpen) setOpen(true);
+    else setOpen(false);
+  };
+
   const [modalAddShow, setModalAddShow] = useState(null);
 
   const handleAddCategory = (title) => {
@@ -23,6 +42,8 @@ const CategoriesContainer = ({ addCat, catAdding, catMessage, ...props }) => {
       handleAddCategory={handleAddCategory}
       catAdding={catAdding}
       catMessage={catMessage}
+      isOpen={isOpen}
+      handleSetOpen={handleSetOpen}
       {...props}
     />
   );
@@ -31,6 +52,7 @@ const CategoriesContainer = ({ addCat, catAdding, catMessage, ...props }) => {
 const mapStateToProps = (state) => ({
   catAdding: getCatDisabled(state),
   catMessage: state.category.message,
+  catValues: selector && selector(state, "category"),
 });
 
 export default connect(mapStateToProps, { addCat })(CategoriesContainer);

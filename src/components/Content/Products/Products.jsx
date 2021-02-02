@@ -30,9 +30,6 @@ const Products = ({
           <li>
             <NavLink to="/products/archive?page=1">Архив</NavLink>
           </li>
-          <li>
-            <NavLink to="/products/add">Добавить</NavLink>
-          </li>
           {!!isEdit && (
             <li>
               <NavLink to="/products/edit">Редактировать</NavLink>

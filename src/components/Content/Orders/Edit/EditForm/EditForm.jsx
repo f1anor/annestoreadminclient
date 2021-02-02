@@ -13,7 +13,7 @@ const EditForm = ({
   lastParams,
 }) => {
   const disabled = !isEditing && editMode;
-  console.log(disabled);
+
   return (
     <>
       <form onSubmit={handleSubmit} className="mb-5">

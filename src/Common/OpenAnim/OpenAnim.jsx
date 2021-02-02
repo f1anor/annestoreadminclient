@@ -2,37 +2,37 @@ import React, { useEffect, useRef, useState } from "react";
 import css from "./OpenAnim.module.css";
 
 const OpenAnim = ({ children, isOpen, className = "" }) => {
-  const inner = useRef(null);
+  const wrapper = useRef(null);
   const [size, changeSize] = useState("auto");
+  const [overflow, setOverflow] = useState("hidden");
 
-  const prevSize = inner.current && inner.current.offsetHeight + "px";
+  const maxHeight = wrapper.current && wrapper.current.scrollHeight + "px";
 
   useEffect(() => {
     if (!!isOpen) {
-      changeSize(inner.current.offsetHeight + "px");
+      changeSize(wrapper.current.scrollHeight + "px");
+
       setTimeout(() => {
+        setOverflow("unset");
         changeSize("auto");
       }, 400);
     } else {
-      changeSize(prevSize);
+      setOverflow("hidden");
+      changeSize(maxHeight);
       setTimeout(() => {
         changeSize("0px");
       }, 1);
     }
-  }, [isOpen, changeSize, prevSize]);
-
-  const handleAutoSize = () => {
-    if (!!isOpen) changeSize("auto");
-  };
+  }, [isOpen, changeSize, maxHeight]);
 
   return (
     <div
       className={[css.wrapper, className].join(" ")}
-      style={{ height: size }}
-      onTransitionEnd={handleAutoSize}
+      style={{ height: size, overflow: overflow }}
+      ref={wrapper}
     >
-      <div ref={inner} className={css.inner}>
-        <div style={{ display: !!isOpen ? "unset" : "none" }}>{children}</div>
+      <div className={css.inner}>
+        <div>{children}</div>
       </div>
     </div>
   );

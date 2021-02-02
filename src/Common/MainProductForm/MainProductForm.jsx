@@ -2,20 +2,30 @@ import React from "react";
 import Publication from "./Publication/Publication";
 
 import css from "./MainProductForm.module.css";
-import Info from "./Info/Info";
-import Size from "./Size/Size";
 import CategoriesContainer from "./Categories/CategoriesContainer";
+import Main from "./Info/Main";
+import SizeContainer from "./Size/SizeContainer";
 
-const MainProductForm = ({ catForForm, preloadImage, setTooltip }) => {
+const MainProductForm = ({
+  catForForm,
+  isCatFetching,
+  preloadImage,
+  setTooltip,
+  form,
+}) => {
   return (
     <div className={css.wrapper}>
       <div className={css.leftSide}>
-        <Info preloadImage={preloadImage} setTooltip={setTooltip} />
+        <Main preloadImage={preloadImage} setTooltip={setTooltip} form={form} />
       </div>
       <div className={css.rightSide}>
         <Publication />
-        <CategoriesContainer catForForm={catForForm} />
-        <Size />
+        <SizeContainer form={form} />
+        <CategoriesContainer
+          catForForm={catForForm}
+          isCatFetching={isCatFetching}
+          form={form}
+        />
       </div>
     </div>
   );

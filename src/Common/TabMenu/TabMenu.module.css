@@ -3,23 +3,22 @@
   padding: 0;
   list-style-type: none;
   display: flex;
-  margin-left: 60px;
+  margin-left: 105px;
 }
 
 .wrapper a {
   display: block;
-  height: 40px;
-  border: 1px solid var(--main-border-color);
+  height: 45px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-bottom: 1px solid transparent;
   box-sizing: border-box;
   text-align: center;
-  line-height: 40px;
-  padding-left: 16px;
-  padding-right: 16px;
+  line-height: 45px;
+  padding-left: 30px;
+  padding-right: 30px;
   background-color: transparent;
   color: #6b6c69;
+  position: relative;
 }
 
 .wrapper li:not(:first-of-type) a {

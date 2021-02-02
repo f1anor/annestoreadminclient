@@ -58,7 +58,7 @@ const EditImage = ({
         </div>
       </div>
       <div className={css.moveBtns}>
-        <button className={css.left} onClick={handleMoveLeft}>
+        <button type="button" className={css.left} onClick={handleMoveLeft}>
           <LeftArrow />
         </button>
         <button type="button" className={css.zoomBtn} onClick={handleZoomOut}>
@@ -67,7 +67,7 @@ const EditImage = ({
         <button type="button" className={css.zoomBtn} onClick={handleZoomIn}>
           <ZoomIn />
         </button>
-        <button className={css.right} onClick={handleMoveRight}>
+        <button type="button" className={css.right} onClick={handleMoveRight}>
           <RightArrow />
         </button>
       </div>

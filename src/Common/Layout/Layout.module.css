@@ -1,10 +1,27 @@
 .wrapper {
-  background-color: #fcfefc;
+  background-color: #fff;
   padding-top: 30px;
-  padding-left: 60px;
-  padding-right: 60px;
+  margin-left: 65px;
+  margin-right: 65px;
+  padding-left: 40px;
+  padding-right: 40px;
   box-sizing: border-box;
-  border-top: 2px solid var(--main-border-color);
-  height: calc(100% - 141px);
+  box-shadow: var(--main-shadow);
+  height: calc(100% - 160px);
   overflow: scroll;
+  border-radius: 6px;
+}
+
+.inner {
+  animation: fadeIn 0.6s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

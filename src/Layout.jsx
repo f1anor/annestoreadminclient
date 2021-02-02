@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import LoginPageContainer from "./components/LoginPage/LoginPageContainer";
 

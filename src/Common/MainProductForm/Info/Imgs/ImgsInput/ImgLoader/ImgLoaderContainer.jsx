@@ -3,12 +3,20 @@ import { connect } from "react-redux";
 import { preloadImage } from "../../../../../../actions/product-actions";
 import ImgLoader from "./ImgLoder";
 
-const ImgLoaderContainer = ({ preloadImage, name, form, value }) => {
-  console.log("VALUE: ", value);
+const ImgLoaderContainer = ({ preloadImage, name, form, value = [] }) => {
   const [active, setActive] = useState(false);
 
+  const checkTotal = (files) => {
+    if (!files && !files.length) return;
+    const newFiles = Array.from(files);
+    if (newFiles.length + value.length > 10) {
+      newFiles.length = 10 - value.length;
+    }
+    return newFiles;
+  };
+
   const handleChange = (e) => {
-    const files = e.target.files;
+    const files = checkTotal(e.target.files);
     preloadImage(files, form, name, value);
   };
 
@@ -41,7 +49,8 @@ const ImgLoaderContainer = ({ preloadImage, name, form, value }) => {
     if (!!active) setActive(false);
 
     const dt = e.dataTransfer;
-    const files = dt.files;
+    const files = checkTotal(dt.files);
+
     preloadImage(files, form, name, value);
   };
 

@@ -124,7 +124,6 @@ export const addOrder = (values) => (dispatch) => {
 };
 
 export const editOrder = (id, values) => (dispatch) => {
-  console.log(12312312312);
   if (!values) return;
   dispatch({
     type: EDIT_ORDER_START,

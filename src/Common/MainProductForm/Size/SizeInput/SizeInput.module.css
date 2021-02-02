@@ -1,15 +1,28 @@
 .wrapper {
-  padding-left: 20px;
   margin-top: 20px;
   width: 100%;
-}
-
-.label {
-  /* display: block; */
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
-.label > span {
-  margin-left: 10px;
+.s label {
+  background: linear-gradient(#5ecbfa, #3f91f7);
+  box-shadow: 0 15px 12px 1px #3f92f71a;
+}
+.m label {
+  background: linear-gradient(#855eff, #3a5aff);
+  box-shadow: 0 15px 12px 1px #3a5aff1a;
+}
+.l label {
+  background: linear-gradient(#24ee91, #12aed9);
+  box-shadow: 0 15px 12px 1px #12aed91a;
+}
+.xl label {
+  background: linear-gradient(#c432ff, #8949ff);
+  box-shadow: 0 15px 12px 1px #8949ff1a;
+}
+.xxl label {
+  background: linear-gradient(#fdd4b7, #f081aa);
+  box-shadow: 0 15px 12px 1px #f081aa1a;
 }

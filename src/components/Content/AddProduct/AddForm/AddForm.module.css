@@ -1,6 +1,7 @@
 .formInner {
   margin: 0 auto;
-  max-width: 1350px;
+  /* max-width: 1350px; */
+  max-width: 1300px;
 }
 
 .title {

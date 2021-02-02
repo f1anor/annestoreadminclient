@@ -11,7 +11,7 @@
 }
 
 .label {
-  color: #7b767a;
+  color: var(--color-title);
   font-weight: 500;
   width: 100%;
   margin: 0;
@@ -19,23 +19,55 @@
   margin-top: 20px;
 }
 
-.input {
-  background-color: #f3f7f8;
-  border-color: #dde6e9;
-  height: 50px;
-  color: #757b82;
-}
-
 .inputWrapper {
-  margin-top: 5px;
   position: relative;
 }
 
 .inputWrapper > span {
   position: absolute;
   top: 50%;
-  right: 20px;
+  left: 82%;
+  color: #333;
   font-weight: bold;
   transform: translate(0, -50%);
   pointer-events: none;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btns button {
+  display: block;
+  width: 135px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  margin-top: 40px;
+  background-color: transparent;
+  transition: background-color 0.2s, color 0.2s ease;
+  box-sizing: border-box;
+  outline: none;
+  font-weight: 500;
+}
+
+.btns .cancelBtn {
+  color: var(--color-violet);
+}
+
+.btns > .submit {
+  background-color: var(--color-red);
+  color: #fff;
+  box-shadow: 0 0 15px 1px #ff275248;
+}
+
+.btns .cancelBtn:hover {
+  background-color: var(--color-violet);
+  color: #fff;
+  text-decoration: none;
+}
+
+.btns > .submit:hover {
+  background-color: #fa4d70;
 }

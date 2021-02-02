@@ -33,7 +33,11 @@ import {
   RESTORE_FROM_ARCHIVE_FAILURE,
   SELECT_ALL,
   SELECT_ARCHIVE_ALL,
+  TOGGLE_STATUS_START,
+  TOGGLE_STATUS_FAILURE,
+  TOGGLE_STATUS_SUCCESS,
 } from "../actionTypes";
+
 import {
   preloadImageApi,
   addProductApi,
@@ -44,11 +48,11 @@ import {
   moveToArchiveApi,
   restoreFromArchiveApi,
   fetchArchiveProductsApi,
+  toggleStatusApi,
 } from "../api/product-api";
 
 export const addProduct = (values) => (dispatch) => {
-  console.log(123123, values);
-  return;
+  console.log("SUBMIT ADD PRODUCT", values);
   dispatch({
     type: ADD_PRODUCT_START,
   });
@@ -117,9 +121,7 @@ export const preloadImage = (files, form, name, value) => async (dispatch) => {
         ...value,
         ...ans.map((file, index) => ({
           id: Date.now() + index,
-          preloadImg: `${process.env.REACT_APP_SERVER_ASSETS}${
-            file.data.file
-          }?${Math.random()}`,
+          preloadImg: file.data.file,
           orientation: false,
           currentX: 0,
           currentY: 0,
@@ -354,6 +356,30 @@ export const fetchArchiveProducts = (query) => async (dispatch) => {
     console.log(err);
     dispatch({
       type: FETCH_ARCHIVE_PRODUCTS_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+export const toggleStatus = (id, status, query) => async (dispatch) => {
+  dispatch({
+    type: TOGGLE_STATUS_START,
+  });
+
+  try {
+    const ans = await toggleStatusApi(id, status);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: TOGGLE_STATUS_SUCCESS,
+    });
+
+    dispatch(fetchProducts(query));
+  } catch (err) {
+    console.log(err.message);
+    dispatch({
+      type: TOGGLE_STATUS_FAILURE,
       payload: err.message,
     });
   }

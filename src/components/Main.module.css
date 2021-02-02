@@ -8,13 +8,15 @@
 }
 
 .sidebar {
-  width: 200px;
+  width: 250px !important;
+  box-sizing: border-box;
   height: 100%;
   height: inherit;
 }
 
 .content {
   height: 100%;
-  width: calc(100vw - 200px);
-  background-color: #f2f4f1;
+  width: calc(100vw - 250px);
+  background-color: #f8f8fe;
+  z-index: 1;
 }

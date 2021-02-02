@@ -3,9 +3,9 @@
   border: none;
   background-color: transparent;
   font-weight: 500;
-  color: #4fb6f8;
+  color: #ff2753;
   outline: none;
-  position: absolute;
+  float: right;
   font-size: 16px;
   font-weight: bold;
   top: 0;

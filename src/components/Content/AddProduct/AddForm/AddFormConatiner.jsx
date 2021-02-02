@@ -15,6 +15,7 @@ const AddFormContainer = ({ addProduct, fetchCategories, ...props }) => {
 
 const mapStateToProps = (state) => ({
   catForForm: state.category.cat,
+  isCatFetching: state.category.isFetching,
 });
 
 export default connect(mapStateToProps, {

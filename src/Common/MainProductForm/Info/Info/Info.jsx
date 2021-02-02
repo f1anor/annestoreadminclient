@@ -1,21 +1,20 @@
 import React from "react";
-import FormBlock from "../../FormBlock/FormBlock";
-import FormBlockTitle from "../../FormBlockTitle/FormBlockTitle";
+import FormBlockTitle from "../../../FormBlockTitle/FormBlockTitle";
 import { Field } from "redux-form";
 import css from "./Info.module.css";
 import Input from "Common/Input/Input";
-import FormEditorContainer from "../../FormEditor/FormEditorContainer";
-import ImgsContainer from "./Imgs/ImgsContainer";
-import CustomInfoContainer from "./CustomInfo/CustomInfoContainer";
+import FormEditorContainer from "../../../FormEditor/FormEditorContainer";
+import TooltipBtn from "../../../TooltipBtn/TooltipBtn";
 
 const Info = ({ preloadImage }) => {
   return (
-    <FormBlock>
+    <div>
       <FormBlockTitle>Информация</FormBlockTitle>
       <div className={css.formLine}>
         <label className={css.label}>
           Название продукта
-          <Field name="title" component={Input} className={css.input} />
+          <Field name="title" component={Input} className={css.name} />
+          <TooltipBtn value="Обязательно" />
         </label>
       </div>
       <div className={css.formLine}>
@@ -23,10 +22,7 @@ const Info = ({ preloadImage }) => {
         <Field name="content" component={FormEditorContainer} />
       </div>
       <div className={css.br} />
-      <FormBlockTitle>Изображения</FormBlockTitle>
-      <ImgsContainer preloadImage={preloadImage} />
-      <CustomInfoContainer />
-    </FormBlock>
+    </div>
   );
 };
 

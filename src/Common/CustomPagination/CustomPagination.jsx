@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import { Pagination } from "react-bootstrap";
 import { useQuery } from "../../utils/utils";
 
+import css from "./CustomPagination.module.css";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 const CustomPagination = React.memo(
   ({
     totalCount, // общее количество элеметов
@@ -12,7 +15,6 @@ const CustomPagination = React.memo(
     link = "/",
     disabled,
   }) => {
-    if (totalCount < 10) return <div />;
     const query = useQuery();
     const history = useHistory();
     const page = +query.get("page"); // текущая страница
@@ -24,11 +26,6 @@ const CustomPagination = React.memo(
     for (let i = 1; i <= allPages; i++) {
       pagesArr.push(i);
     }
-
-    query.set("page", pagesArr[0]);
-    const first = `${link}?${query}`;
-    query.set("page", pagesArr[pagesArr.length - 1]);
-    const last = `${link}?${query}`;
 
     const halfPS = Math.floor(portionSize / 2);
 
@@ -97,44 +94,50 @@ const CustomPagination = React.memo(
       query.set("page", p);
       const url = `${link}?${query}`;
       return (
-        <Pagination.Item
-          disabled={disabled}
-          key={p}
-          active={page === p}
-          onClick={() => history.push(url)}
-        >
-          {p}
-        </Pagination.Item>
+        <li key={p}>
+          <Link
+            className={[
+              disabled ? css.btnDisabled : " ",
+              page === p ? css.active : " ",
+              css.page,
+            ].join(" ")}
+            to={url}
+          >
+            {p}
+          </Link>
+        </li>
       );
     });
 
     return (
-      <div>
-        <Pagination>
-          <Pagination.First
-            disabled={disabled}
-            onClick={() => history.push(first)}
-          />
-          {!!prevArr && (
-            <Pagination.Prev
-              disabled={disabled}
-              onClick={() => history.push(prevArr)}
-            />
-          )}
-          {!!dotLeft && <Pagination.Ellipsis disabled />}
+      <div className={css.pagination}>
+        <ul className={css.list}>
+          <li>
+            <Link
+              className={[
+                !!disabled || !prevArr ? css.btnDisabled : " ",
+                css.btn,
+              ].join(" ")}
+              to={prevArr}
+            >
+              Назад
+            </Link>
+          </li>
+          {!!dotLeft && <li>...</li>}
           {pagesArr}
-          {!!dotRight && <Pagination.Ellipsis disabled />}
-          {!!nextArr && (
-            <Pagination.Next
-              disabled={disabled}
-              onClick={() => history.push(nextArr)}
-            />
-          )}
-          <Pagination.Last
-            disabled={disabled}
-            onClick={() => history.push(last)}
-          />
-        </Pagination>
+          {!!dotRight && <li>...</li>}
+          <li>
+            <Link
+              className={[
+                !!disabled || !nextArr ? css.btnDisabled : " ",
+                css.btn,
+              ].join(" ")}
+              to={nextArr}
+            >
+              Вперед
+            </Link>
+          </li>
+        </ul>
       </div>
     );
   }

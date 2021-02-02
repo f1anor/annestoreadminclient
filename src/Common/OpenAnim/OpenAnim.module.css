@@ -1,5 +1,5 @@
 .wrapper {
   width: 100%;
-  overflow: scroll;
+  height: 0;
   transition: height 0.4s;
 }

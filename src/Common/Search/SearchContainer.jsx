@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useQuery } from "../../utils/utils";
 import Search from "./Search";
 
-const SearchContainer = () => {
+const SearchContainer = ({ ...props }) => {
   const query = useQuery();
   const search = query.get("search");
   const [value, changeValue] = useState("");
@@ -32,6 +32,7 @@ const SearchContainer = () => {
       changeValue={changeValue}
       handleSetSearch={handleSetSearch}
       handleSubmit={handleSubmit}
+      {...props}
     />
   );
 };

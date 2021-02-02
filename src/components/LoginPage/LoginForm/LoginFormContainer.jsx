@@ -5,7 +5,6 @@ import LoginForm from "./LoginForm";
 
 const LoginFormContainer = ({ signIn }) => {
   const handleSubmit = (values) => {
-    console.log(values);
     signIn(values);
   };
   return <LoginForm onSubmit={handleSubmit} />;

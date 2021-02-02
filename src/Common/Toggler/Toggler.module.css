@@ -1,9 +1,17 @@
 .wrapper {
   height: 11px;
+  width: 30px;
+  position: relative;
 }
 
 .input {
   display: none;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .background {
@@ -33,12 +41,12 @@
 }
 
 .input:checked + label .background {
-  background-color: #5ca0f8;
+  background-color: #abb3e7;
 }
 
 .input:checked + label .background .toggler {
   left: unset;
   right: -5px;
-  background-color: #0070ff;
-  box-shadow: 0 0 3px 1px #64a0ee;
+  background-color: var(--color-violet);
+  box-shadow: 0 0 3px 1px #9aa5e9;
 }

@@ -8,7 +8,6 @@ const StatusContainer = (props) => {
   const location = useLocation();
 
   const status = query.get("status");
-  console.log(status);
 
   const pathObj = getDropdounPath(
     [

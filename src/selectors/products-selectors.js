@@ -94,3 +94,11 @@ export const getIsArchiveSelectedAll = createSelector(
     );
   }
 );
+
+export const getIsProductsSelectedAll = createSelector(
+  getProductsOnPage,
+  getSelected,
+  (productsOnPage, selected) => {
+    return productsOnPage.length === selected.length && selected.length !== 0;
+  }
+);

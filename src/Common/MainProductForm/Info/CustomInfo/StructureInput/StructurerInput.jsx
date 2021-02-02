@@ -18,7 +18,7 @@ const StructureInput = ({ handleAdd, value, form, name }) => {
             />
           ))}
       </div>
-      <button onClick={handleAdd} className={css.addBtn}>
+      <button type="button" onClick={handleAdd} className={css.addBtn}>
         Добавить материал
       </button>
     </div>

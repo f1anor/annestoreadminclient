@@ -47,7 +47,6 @@ export const preloadAvatar = (img, name) => async (dispatch) => {
 };
 
 export const regNewAdmin = (values) => (dispatch) => {
-  console.log(values);
   dispatch({
     type: REG_NEW_ADMIN_START,
   });

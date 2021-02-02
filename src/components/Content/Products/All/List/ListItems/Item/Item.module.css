@@ -1,0 +1,87 @@
+.checkWrapper {
+  position: relative;
+}
+
+.check {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* .imgs {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
+
+.imgs {
+  height: 100%;
+  position: relative;
+}
+
+.imgs > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon {
+  height: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.art {
+  text-align: center;
+}
+
+.art > a {
+  color: var(--color-red);
+  text-align: center;
+}
+
+.category {
+  position: relative;
+}
+
+.tooltip {
+  position: unset;
+  display: inline-block;
+}
+
+.amount {
+  text-align: center;
+}
+
+.time {
+  text-align: center;
+}
+
+.status {
+  position: relative;
+}
+
+.status .toggler {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.price {
+  text-align: center;
+}
+
+.views {
+  text-align: center;
+}
+
+.stars {
+  text-align: center;
+}
+
+.comments {
+  text-align: center;
+}

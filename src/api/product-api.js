@@ -38,3 +38,8 @@ export const fetchArchiveProductsApi = async (query) => {
 export const restoreFromArchiveApi = async (selected) => {
   return await instance.post("/product/restore", { selected });
 };
+
+export const toggleStatusApi = async (id, status) => {
+  console.log(123123123, id);
+  return await instance.put("/product/status", { id, status });
+};

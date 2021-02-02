@@ -1,8 +1,43 @@
 .wrapper {
   height: 100%;
-  background-color: #fcfefc;
-  border-right: 2px solid var(--main-border-color);
+  background-color: #e9e9ef;
   box-sizing: border-box;
-  padding-top: 30px;
-  /* background-color: red; */
+  padding-top: 40px;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.logo {
+  margin-left: 55px;
+  padding-left: 50px;
+  font-size: 24px;
+  position: relative;
+  font-family: "Roboto-bold", sans-serif;
+  color: var(--color-title);
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  position: absolute;
+  top: -3px;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 1px rgba(122, 121, 121, 0.1);
+}
+
+.icon:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ff2753;
+  box-shadow: 0px 6px 8px 1px #ff275244;
+  border-radius: 50%;
 }

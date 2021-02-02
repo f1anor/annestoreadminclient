@@ -17,7 +17,7 @@
   background-position: 0 0;
   position: absolute;
   top: 19px;
-  right: 12px;
+  right: 17px;
   pointer-events: none;
 }
 
@@ -34,4 +34,18 @@
   color: #7d8185;
   outline: none;
   cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--color-background);
+  box-shadow: var(--inset-shadow);
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
+  height: 50px;
+  color: #757b82;
+  margin-top: 5px;
 }

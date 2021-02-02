@@ -1,5 +1,5 @@
 .wrapper {
-  /* height: calc((100% - 333px - 40px) / 2); */
-  height: 330px;
   position: relative;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }

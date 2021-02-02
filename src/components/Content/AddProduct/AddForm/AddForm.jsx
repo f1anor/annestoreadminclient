@@ -11,9 +11,9 @@ const AddForm = ({ handleSubmit, ...props }) => {
     <form onSubmit={handleSubmit} className={css.form}>
       <div className={css.formInner}>
         <Title className={css.title}>Добавить продукт</Title>
-        <MainProductForm {...props} />
+        <MainProductForm form="addProduct" {...props} />
       </div>
-      <AddButtons />
+      {/* <AddButtons /> */}
     </form>
   );
 };

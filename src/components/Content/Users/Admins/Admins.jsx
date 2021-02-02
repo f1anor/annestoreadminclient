@@ -3,7 +3,6 @@ import List from "./List/List";
 import { Params } from "./Params/Params";
 
 const Admins = ({ admins, root, isDisabled }) => {
-  console.log(admins);
   return (
     <div className="pt-5">
       <div>

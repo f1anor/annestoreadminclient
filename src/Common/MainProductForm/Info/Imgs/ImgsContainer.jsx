@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Imgs from "./Imgs";
+import { formValueSelector } from "redux-form";
+import { connect } from "react-redux";
 
-const ImgsContainer = (props) => {
-  const [img2, setImg2] = useState(false);
-  const [img3, setImg3] = useState(false);
+let selector;
 
-  return (
-    <Imgs
-      {...props}
-      img2={img2}
-      img3={img3}
-      setImg2={setImg2}
-      setImg3={setImg3}
-    />
-  );
+const ImgsContainer = ({ form, ...props }) => {
+  useEffect(() => {
+    selector = formValueSelector(form);
+  }, [form]);
+
+  return <Imgs {...props} />;
 };
 
-export default ImgsContainer;
+const mapStateToProps = (state) => ({
+  imgsValue: selector && selector(state, "imgs"),
+});
+
+export default connect(mapStateToProps, null)(ImgsContainer);

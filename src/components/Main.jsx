@@ -6,22 +6,23 @@ import SidebarContainer from "./Sidebar/SidebarContainer";
 import ToastsContainer from "./Toasts/ToastsContainer";
 import ModalImg from "Common/ModalImg/ModalImg";
 
-const Main = ({ setImg, img }) => {
-  return (
-    <div className={css.wrapper}>
-      <HeaderContainer />
-      <div className={css.main}>
-        <div className={css.sidebar}>
-          <SidebarContainer />
+
+const Main = ({setImg, img}) => {
+    return (
+        <div className={css.wrapper}>
+            <HeaderContainer/>
+            <div className={css.main}>
+                <div className={css.sidebar}>
+                    <SidebarContainer/>
+                </div>
+                <div className={css.content}>
+                    <Content/>
+                </div>
+            </div>
+            <ToastsContainer/>
+            <ModalImg show={!!img} img={img} onHide={() => setImg(null)}/>
         </div>
-        <div className={css.content}>
-          <Content />
-        </div>
-      </div>
-      <ToastsContainer />
-      <ModalImg show={!!img} img={img} onHide={() => setImg(null)} />
-    </div>
-  );
+    );
 };
 
 export default Main;

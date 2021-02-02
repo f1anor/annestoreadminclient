@@ -1,17 +1,33 @@
 .active {
-  background-color: #fcfefc !important;
-  color: #5993c2 !important;
-  font-weight: bold !important;
+  background-color: #fff !important;
+  color: var(--color-title) !important;
+  font-family: "Roboto-bold", sans-serif;
   position: relative;
+}
+
+.active:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 85%;
+  box-shadow: var(--main-shadow);
+  display: block;
+  z-index: -1 !important;
+  background-color: transparent;
+  top: 0;
+  left: 0;
 }
 
 .active:after {
   content: "";
   display: block;
-  background-color: #fcfefc;
-  height: 3px;
-  bottom: -3px;
-  width: 100%;
   position: absolute;
+  top: 0;
   left: 0;
+  background-color: var(--color-red);
+  z-index: 999;
+  width: 100%;
+  height: 4px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }

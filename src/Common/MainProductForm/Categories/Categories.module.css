@@ -1,17 +1,18 @@
-.wrapper {
-  height: 445px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.btns {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .addCatBtn {
+  display: block;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: normal;
+  color: #fff;
+  background-color: var(--color-violet);
+  border-radius: 4px;
   border: none;
-  color: #6cbaf3;
-  background-color: transparent;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
+  height: 35px;
   outline: none !important;
-  width: 100%;
-  text-align: right;
+  margin-top: 20px;
 }

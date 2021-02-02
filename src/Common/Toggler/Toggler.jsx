@@ -5,11 +5,11 @@ const Toggler = ({
   value = false,
   disabled = false,
   handler = () => {},
-  className,
+  className = "",
 }) => {
   const customID = `ID${Math.random().toString().slice(-3)}`;
   return (
-    <div className={[className ? className : "", css.wrapper].join(" ")}>
+    <div className={[className, css.wrapper].join(" ")}>
       <input
         type="checkbox"
         onChange={handler}
@@ -21,6 +21,7 @@ const Toggler = ({
       <label
         htmlFor={customID}
         className={[
+          css.label,
           !!value ? css.on : css.off,
           !!disabled ? css.disabled : "",
         ].join(" ")}

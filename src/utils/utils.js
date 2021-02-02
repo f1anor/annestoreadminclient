@@ -21,6 +21,11 @@ export const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 
+export const getQuery = (location) => {
+  if (!location) return null;
+  return new URLSearchParams(location.search);
+};
+
 export const compareArrs = (arr1, arr2) => {
   return arr1.join(" ") === arr2.join(" ");
 };
@@ -65,7 +70,6 @@ export const getDropdounPath = (arr, param, query, location) => {
   const current = query.get(param);
 
   const currentArr = arr.filter((item) => {
-    console.log(item.value.toString(), current);
     return item.value.toString() === current;
   });
 

@@ -2,7 +2,13 @@ import React from "react";
 import css from "./Search.module.css";
 import { ReactComponent as SearchIcon } from "assets/svg/search.svg";
 
-const Search = ({ value, changeValue, handleSetSearch, handleSubmit }) => {
+const Search = ({
+  value,
+  changeValue,
+  handleSetSearch,
+  handleSubmit,
+  placeholder = "Поиск",
+}) => {
   return (
     <div>
       <input
@@ -11,7 +17,7 @@ const Search = ({ value, changeValue, handleSetSearch, handleSubmit }) => {
         value={value}
         onChange={(e) => changeValue(e.target.value)}
         onKeyDown={handleSubmit}
-        placeholder="Поиск"
+        placeholder={placeholder}
       />
     </div>
   );

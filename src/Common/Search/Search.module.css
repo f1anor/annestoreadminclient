@@ -1,21 +1,24 @@
 .input {
-  width: 235px;
-  height: 31px;
+  width: 375px;
+  height: 45px;
   border: none;
-  border: 1px solid #cfd4d9;
+  background-color: #f8f8fd;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 50px;
   outline: none;
   color: #333;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .input::placeholder {
-  color: #c7c9c6;
+  color: var(--color-lightgray);
   padding-left: 25px;
-  background-image: url(../../assets/svg/search.svg);
+  background-image: url(../../assets/svg/search-fill.svg);
   background-repeat: no-repeat;
-  background-position: 0 0;
+  background-position: 0px 1px;
+  font-family: "Roboto-bold", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .btn {

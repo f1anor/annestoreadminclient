@@ -2,19 +2,17 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import All from "./All";
 import { fetchProducts, toggleAddingSuccess } from "actions/product-actions";
+import { useQuery } from "../../../../utils/utils";
 import { getProductsById, getProdDisabled } from "selectors/products-selectors";
-import { getSortParams, useQuery } from "../../../../utils/utils";
 
 const AllContainer = ({
   fetchProducts,
-  products,
   totalCount,
   clearSelectedAll,
   deleteProducts,
   isAddingSuccess,
   toggleAddingSuccess,
-  selected,
-  isProdDisabled,
+  pageSize,
   message,
   ...props
 }) => {
@@ -23,27 +21,18 @@ const AllContainer = ({
   }, [isAddingSuccess, toggleAddingSuccess]);
 
   const query = useQuery();
+  query.set("size", pageSize);
   const queryString = query.toString();
-
-  const pagesize = 10;
 
   useEffect(() => {
     fetchProducts(queryString);
   }, [fetchProducts, queryString]);
-  const sort = getSortParams(
-    ["time", "article", "title", "category", "views", "price"],
-    query,
-    "/products/all"
-  );
 
   return (
     <>
       <All
-        products={products}
-        pagesize={pagesize}
+        pageSize={pageSize}
         totalCount={totalCount}
-        sort={sort}
-        isProdDisabled={isProdDisabled}
         message={message}
         {...props}
       />
@@ -52,14 +41,14 @@ const AllContainer = ({
 };
 
 const mapStateToProps = (state) => ({
-  products: getProductsById(state),
   totalCount: state.product.totalCount,
-  currentProducts: state.product.currentProducts,
-  selected: state.product.selected,
+  pageSize: state.app.tableSize.size,
   isAddingSuccess: state.product.isAddingSuccess,
-  isProdDisabled: getProdDisabled(state),
   message: state.product.message,
   img: state.product.img,
+  products: getProductsById(state),
+  isProdFetching: state.product.isFetching,
+  isProdDisabled: getProdDisabled(state),
 });
 
 export default connect(mapStateToProps, {

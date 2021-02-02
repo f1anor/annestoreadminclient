@@ -11,23 +11,25 @@ const Categories = ({
   isProdDisabled,
 }) => {
   return (
-    <DropdownButton
-      disabled={!!isFetchingCat || isProdDisabled}
-      title={currentCat || "Все"}
-      variant="outline-secondary"
-      className="ml-2"
-      size="sm"
-    >
-      {cat.map((item) => (
-        <Dropdown.Item as="div" key={item._id} eventKey="1">
-          <Link to={item.link}>{item.title}</Link>
+    <div className={css.wrapper}>
+      Фильтровать:
+      <DropdownButton
+        disabled={!!isFetchingCat || isProdDisabled}
+        title={currentCat || "Все"}
+        className={css.catBtn}
+        variant=""
+      >
+        {cat.map((item) => (
+          <Dropdown.Item as="div" key={item._id} eventKey="1">
+            <Link to={item.link}>{item.title}</Link>
+          </Dropdown.Item>
+        ))}
+        <Dropdown.Divider />
+        <Dropdown.Item as="div" eventKey="1">
+          <Link to={clearCat}>Все</Link>
         </Dropdown.Item>
-      ))}
-      <Dropdown.Divider />
-      <Dropdown.Item as="div" eventKey="1">
-        <Link to={clearCat}>Все</Link>
-      </Dropdown.Item>
-    </DropdownButton>
+      </DropdownButton>
+    </div>
   );
 };
 

@@ -1,7 +1,5 @@
-.check {
-  width: 30px;
-}
-
-.table {
-  margin-top: 20px !important;
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1,33 +1,43 @@
 .up,
 .down {
-  display: block;
-  width: 100%;
-  height: 100%;
+  display: table-cell;
+  /* width: 100%; */
+  /* height: 100%; */
   position: relative;
 }
 
-.up:after,
-.down:after {
+.link {
+  user-select: none;
+  position: relative;
+}
+
+.up .link:after,
+.down .link:after {
   content: " ";
   display: block;
   position: absolute;
   top: 50%;
-  left: calc(100% - 30px);
+  right: -20px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
 }
 
-.up:after {
+.up .link:after {
   border-top: 5px solid transparent;
   border-bottom: 5px solid #333;
-  top: 35%;
+  top: 0px;
 }
 
-.down:after {
+.down .link:after {
   border-top: 5px solid #333;
   border-bottom: 5px solid transparent;
+  top: 5px;
 }
 
 .disabledLink {
   pointer-events: none;
+}
+
+.test {
+  background-color: red;
 }

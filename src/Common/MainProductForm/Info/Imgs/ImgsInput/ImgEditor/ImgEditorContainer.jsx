@@ -82,6 +82,7 @@ class ImgEditorContainer extends Component {
 
   handleChange(prop, val, clear) {
     const { change, value, form, name, element } = this.props;
+    console.log(11111, prop, value);
     if (!!clear) {
       change(form, name, [...value.filter((item) => item.id !== element.id)]);
     } else if (typeof prop === "object") {
@@ -98,7 +99,6 @@ class ImgEditorContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("UPDATE!!!");
     if (!this.configured && this.img) {
       let orientation = "";
       const img = this.img.querySelector("img");
@@ -110,7 +110,12 @@ class ImgEditorContainer extends Component {
         }
 
         this.configured = true;
-        this.handleChange("orientation", orientation);
+
+        this.handleChange({
+          orientation: orientation,
+          width: 348,
+          height: 348,
+        });
         const self = this;
         setTimeout(() => {
           if (!!self.configured && !self.loaded) {
@@ -299,13 +304,13 @@ class ImgEditorContainer extends Component {
   clear() {
     this.handleChange(null, null, true);
   }
-
+  // ?${Math.random()}
   render() {
     const { width, height, element } = this.props;
     return (
       <div ref={(item) => (this.img = item)}>
         <ImgEditor
-          img={element.preloadImg}
+          img={`${process.env.REACT_APP_SERVER_ASSETS}${element.preloadImg}`}
           width={width}
           height={height}
           orientation={element.orientation}

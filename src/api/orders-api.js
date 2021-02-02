@@ -21,6 +21,5 @@ export const editOrderApi = async (id, order) => {
 };
 
 export const changeStatusApi = async (id, status) => {
-  console.log(id, status);
   return instance.put("/orders/changeStatus", { id, status });
 };

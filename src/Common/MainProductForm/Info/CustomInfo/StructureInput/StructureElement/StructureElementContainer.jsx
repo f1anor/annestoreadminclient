@@ -8,7 +8,6 @@ const StructureElementContainer = ({ element, form, name, value, change }) => {
     value
       .map((item) => item.id !== element.id && item.value)
       .reduce((acc, currentValue) => +acc + +currentValue) || 0;
-  console.log("total: ", total);
 
   const handleChangeName = (e) => {
     const newElement = { ...element };
