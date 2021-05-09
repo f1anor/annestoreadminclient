@@ -1,5 +1,9 @@
 import instance from ".";
 
+export const checkArticleApi = async (article) => {
+  return await instance.get(`/product/check/${article}`);
+};
+
 export const preloadImageApi = async (img, imgName) => {
   const formData = new FormData();
   formData.append("myImage", img);
@@ -11,12 +15,12 @@ export const addProductApi = async (product) => {
   return await instance.post(`/product`, product);
 };
 
-export const editProductApi = async (product) => {
-  return await instance.update(`/product`, product);
+export const editProductApi = async (product, id) => {
+  return await instance.post(`/product/edit`, { fields: product, id });
 };
 
-export const fetchProductsApi = async (params) => {
-  return await instance.get(`/product/?${params}`);
+export const fetchProductsApi = async (params, pageSize) => {
+  return await instance.get(`/product/?${params}&size=${pageSize}`);
 };
 
 export const deleteProductsApi = async (selected) => {
@@ -40,6 +44,5 @@ export const restoreFromArchiveApi = async (selected) => {
 };
 
 export const toggleStatusApi = async (id, status) => {
-  console.log(123123123, id);
   return await instance.put("/product/status", { id, status });
 };

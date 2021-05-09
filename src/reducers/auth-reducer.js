@@ -15,7 +15,7 @@ const initialState = {
   root: false,
 };
 
-export default (state = initialState, { type, payload }) => {
+export const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case REG_NEW_ADMIN_SUCCESS:
       return {

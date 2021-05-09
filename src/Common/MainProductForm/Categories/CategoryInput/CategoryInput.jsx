@@ -8,7 +8,7 @@ const CategoryInput = ({ cat, handleSelect, value }) => {
       {cat.map((item) => (
         <label key={item._id} className={css.label}>
           <CheckboxInput
-            value={value.find((val) => val === item.title)}
+            value={!!value.find((val) => val === item.title)}
             onChange={() => handleSelect(item.title)}
           />
           <span>{item.title}</span>

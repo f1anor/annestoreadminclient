@@ -1,4 +1,4 @@
-import { change, initialize } from "redux-form";
+import { arrayPush, change, initialize, stopSubmit, touch } from "redux-form";
 import {
   ADD_ORDER_FAILURE,
   ADD_ORDER_PRODUCT_FAILURE,
@@ -22,6 +22,13 @@ import {
   EDIT_ORDER_FAILURE,
   TOGGLE_EDITING_SUCCESS,
   SET_LAST_PARAMS,
+  SET_MODAL_ADD_PRODUCT,
+  ADD_ORDER_PRODUCT_SUCCESS,
+  ADD_ORDER_MANAGER_NOTE,
+  GET_DELIVERY_PRICE_START,
+  GET_DELIVERY_PRICE_SUCCESS,
+  GET_DELIVERY_PRICE_FAILURE,
+  SET_MODAL_ADD_MANAGER_NOTE,
 } from "../actionTypes";
 import {
   addOrderProductApi,
@@ -30,67 +37,90 @@ import {
   changeStatusApi,
   fetchEditOrderApi,
   editOrderApi,
+  checkDeliveryPriceApi,
 } from "../api/orders-api";
 
-export const addOrderProduct = (art, value, form) => (dispatch) => {
-  const val = value || { products: [] };
+export const fetchOrders = (type, query, pageSize) => async (dispatch) => {
+  dispatch({
+    type: FETCH_ORDERS_START,
+  });
+
+  try {
+    const ans = await fetchOrdersApi(type, query, pageSize);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+    dispatch({
+      type: FETCH_ORDERS_SUCCESS,
+      payload: ans.data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: FETCH_ORDERS_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+export const addOrderNote = (form, values) => (dispatch, getState) => {
+  const email = getState().auth.email;
+  const val = values || {};
+  dispatch({ type: ADD_ORDER_MANAGER_NOTE });
+  dispatch(
+    arrayPush(form, "managerNotes", {
+      ...val,
+      date: Date.now(),
+      owner: !val.visible ? email : null,
+    })
+  );
+  dispatch(setModalAddManagerNote(null));
+};
+
+export const addOrderProduct = (art, form, values) => (dispatch) => {
+  const val = values || [];
+
   dispatch({
     type: ADD_ORDER_PRODUCT_START,
   });
 
-  dispatch(
-    change(form, "products", {
-      ...val,
-      inProgress: true,
-      success: null,
-      message: null,
-    })
-  );
-
   addOrderProductApi(art)
     .then((ans) => {
-      if (!!ans.data.status) throw new Error(ans.data.message);
+      if (!!ans.data.status) {
+        try {
+          const error = JSON.parse(ans.data.message);
+          dispatch(stopSubmit("ordAddProdForm", error));
+          dispatch({ type: ADD_ORDER_PRODUCT_FAILURE, payload: error });
+        } catch (err) {
+          dispatch(stopSubmit("ordAddProdForm", { _error: ans.data.message }));
+          dispatch({ type: ADD_ORDER_PRODUCT_FAILURE, payload: err.message });
+        }
+      } else {
+        const { product } = ans.data;
+        const exist = val.filter((item) => item.id === product._id);
+        if (exist.length > 0) {
+          console.log(123123);
+          dispatch(
+            stopSubmit("ordAddProdForm", { name: "Продукт уже в списке" })
+          );
+          return;
+        }
 
-      const { product } = ans.data;
-
-      if (!product) {
         dispatch(
-          change(form, "products", { ...val, message: "Продукт не найден" })
-        );
-        return;
-      }
-
-      const exist = val.products.filter((item) => item.id === product._id);
-
-      if (exist.length > 0) {
-        dispatch(
-          change(form, "products", {
-            ...val,
-            message: "Этот продукт уже в списке",
+          arrayPush(form, "products", {
+            id: product._id,
+            title: product.title,
+            article: product.article,
+            amount: 1,
+            imgs: product.imgs,
+            price: product.price,
           })
         );
-        return;
-      }
 
-      dispatch(
-        change(form, "products", {
-          ...val,
-          products: [
-            ...val.products,
-            {
-              id: product._id,
-              title: product.title,
-              article: product.article,
-              amount: 1,
-              imgs: product.imgs,
-              price: product.price,
-            },
-          ],
-          inProgress: null,
-          success: true,
-          message: null,
-        })
-      );
+        dispatch({
+          type: ADD_ORDER_PRODUCT_SUCCESS,
+        });
+        dispatch(setModalAddProduct(null));
+      }
     })
     .catch((err) => {
       dispatch({
@@ -151,29 +181,6 @@ export const toggleEditingSuccess = () => (dispatch) => {
   });
 };
 
-export const fetchOrders = (query) => async (dispatch) => {
-  dispatch({
-    type: FETCH_ORDERS_START,
-  });
-
-  try {
-    const ans = await fetchOrdersApi(query);
-
-    if (!!ans.data.status) throw new Error(ans.data.message);
-    console.log(ans);
-    dispatch({
-      type: FETCH_ORDERS_SUCCESS,
-      payload: ans.data,
-    });
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: FETCH_ORDERS_FAILURE,
-      payload: err.message,
-    });
-  }
-};
-
 export const changeStatus = (id, status, query) => async (dispatch) => {
   dispatch({
     type: CHANGE_STATUS_START,
@@ -232,7 +239,7 @@ export const fetchEditOrder = (id) => async (dispatch) => {
       type: FETCH_EDIT_ORDER_SUCCESS,
       payload: order,
     });
-    console.log(order);
+
     dispatch(
       initialize("editOrder", {
         firstName: order.firstName,
@@ -263,4 +270,53 @@ export const setLastParams = (query) => (dispatch) => {
     type: SET_LAST_PARAMS,
     payload: query,
   });
+};
+
+export const setModalAddProduct = (form) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ADD_PRODUCT,
+    payload: form,
+  });
+};
+
+export const setModalAddManagerNote = (form) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ADD_MANAGER_NOTE,
+    payload: form,
+  });
+};
+
+export const checkDeliveryPrice = (form, index = 299804, weight = 500) => (
+  dispatch
+) => {
+  dispatch({
+    type: GET_DELIVERY_PRICE_START,
+  });
+
+  dispatch(touch(form, "deliveryPrice"));
+  dispatch(change(form, "deliveryPrice", ""));
+
+  checkDeliveryPriceApi(index, weight)
+    .then((ans) => {
+      if (!ans.paynds) {
+        dispatch(
+          stopSubmit(form, {
+            deliveryPrice: "Не удалось рассчитать стоимость доставки",
+          })
+        );
+        throw new Error("Не удалось рассчитать стоимость доставки");
+      } else {
+        dispatch(change(form, "deliveryPrice", +ans.paynds / 100));
+        dispatch({
+          type: GET_DELIVERY_PRICE_SUCCESS,
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: GET_DELIVERY_PRICE_FAILURE,
+        payload: err.message,
+      });
+    });
 };

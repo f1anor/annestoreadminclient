@@ -10,7 +10,7 @@ const initialState = {
   message: null,
 };
 
-export default (state = initialState, { type, payload }) => {
+export const dashboardReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_STATISTIC_START:
       return {

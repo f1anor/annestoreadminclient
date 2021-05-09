@@ -17,14 +17,18 @@ import {
   FETCH_EDIT_ORDER_SUCCESS,
   SET_IMG,
   SET_LAST_PARAMS,
+  SET_MODAL_ADD_PRODUCT,
+  SET_MODAL_ADD_MANAGER_NOTE,
+  GET_DELIVERY_PRICE_SUCCESS,
 } from "../actionTypes";
 
 const initialState = {
-  isFetching: null,
   orders: {}, //	Все заказы
   currentOrders: [], // Заказы на странице
   counts: {},
+  pageSize: null,
   totalCount: null,
+  isFetching: null,
   isAddedSuccess: null,
   isStatusChanging: null,
   isEditing: null,
@@ -33,9 +37,12 @@ const initialState = {
   img: null,
   message: null,
   lastParams: "", //Последние параметны просмотра таблицы
+  modalAddProduct: null,
+  modalAddManagerNote: null,
+  deliveryPrice: null,
 };
 
-export default (state = initialState, { type, payload }) => {
+export const ordersReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_ORDER_SUCCESS:
       return {
@@ -137,6 +144,21 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         lastParams: payload,
+      };
+    case SET_MODAL_ADD_PRODUCT:
+      return {
+        ...state,
+        modalAddProduct: payload,
+      };
+    case SET_MODAL_ADD_MANAGER_NOTE:
+      return {
+        ...state,
+        modalAddManagerNote: payload,
+      };
+    case GET_DELIVERY_PRICE_SUCCESS:
+      return {
+        ...state,
+        deliveryPrice: payload,
       };
     default:
       return state;

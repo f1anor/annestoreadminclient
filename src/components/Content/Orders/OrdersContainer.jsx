@@ -1,21 +1,25 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Orders from "./Orders";
 import { getOrdDisabled } from "selectors/orders-selectors";
-import { useRouteMatch } from "react-router-dom";
-import { setImg } from "../../../actions/orders-actions";
+import { useQuery } from "utils/utils";
+import { fetchOrders } from "actions/orders-actions";
+import { useParams } from "react-router-dom";
+import { getPageSize } from "selectors/app-selectors";
 
-const OrdersContainer = (props) => {
-  const isEdit = useRouteMatch("/orders/edit/:id");
-  return <Orders isEdit={isEdit} {...props} />;
-};
+const OrdersContainer = React.memo(({ ...props }) => {
+  const isDisabled = useSelector((state) => getOrdDisabled(state));
+  const pageSize = useSelector((state) => getPageSize(state));
+  const dispatch = useDispatch();
 
-const mapStateToProps = (state) => ({
-  isAddedSuccess: state.orders.isAddedSuccess,
-  isDisabled: getOrdDisabled(state),
-  isEditingSuccess: state.orders.isEditingSuccess,
-  img: state.orders.img,
-  lastParams: state.orders.lastParams,
+  const query = useQuery().toString();
+  const { type } = useParams();
+
+  useEffect(() => {
+    dispatch(fetchOrders(type, query, pageSize));
+  }, [dispatch, type, query, pageSize]);
+
+  return <Orders {...props} />;
 });
 
-export default connect(mapStateToProps, { setImg })(OrdersContainer);
+export default OrdersContainer;

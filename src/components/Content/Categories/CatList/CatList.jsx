@@ -1,20 +1,21 @@
 import React from "react";
-import { ListGroup, Card } from "react-bootstrap";
-import CatContainer from "./Cat/CatContainer";
+import css from "./CatList.module.css";
+import ListItemContainer from "./ListItem/ListItemContainer";
 
 const CatList = ({ cat }) => {
   return (
-    <>
-      <Card className="w-100 h-100 overflow-auto">
-        <Card.Body>
-          <ListGroup variant="flush">
-            {cat.map((item) => (
-              <CatContainer key={item.number} item={item} />
-            ))}
-          </ListGroup>
-        </Card.Body>
-      </Card>
-    </>
+    <div className={css.wrapper}>
+      {cat
+        .sort((a, b) => a.number - b.number)
+        .map((item, index) => (
+          <ListItemContainer
+            key={item._id}
+            category={item}
+            first={index === 0}
+            last={index === cat.length - 1}
+          />
+        ))}
+    </div>
   );
 };
 

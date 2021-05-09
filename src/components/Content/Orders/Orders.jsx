@@ -1,81 +1,54 @@
 import React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
-import Title from "../../../Common/Title/Title";
-import AllContainer from "./All/AllContainer";
-import EditContainer from "./Edit/EditContainer";
-import NewContainer from "./New/NewContainer";
+import Title from "Common/Title/Title";
+import Layout from "Common/Layout/Layout";
+import TabMenu from "Common/TabMenu/TabMenu";
 import css from "./Orders.module.css";
-import ModalImg from "Common/ModalImg/ModalImg";
+import ListContainer from "./List/ListContainer";
+import TitleMainBtn from "Common/TitleMainBtn/TitleMainBtn";
+import SearchContainer from "Common/Search/SearchContainer";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-const Orders = ({
-  isAddedSuccess,
-  isEditingSuccess,
-  isDisabled,
-  isEdit,
-  img,
-  setImg,
-  lastParams,
-}) => {
+const Orders = ({ isDisabled, isEdit, img, setImg, lastParams }) => {
   return (
     <div className={css.wrapper}>
-      <div className={css.header}>
-        <Title anim={!!isDisabled}>Заказы</Title>
-        <ul className={css.menu}>
+      <div className={css.content}>
+        <div className={css.titleLine}>
+          <Title>Заказы</Title>
+          <div className={css.tools}>
+            <SearchContainer placeholder="Поиск по заказам..." />
+            <TitleMainBtn>
+              <Link className={css.addLink} to="/addorder">
+                Создать
+              </Link>
+            </TitleMainBtn>
+          </div>
+        </div>
+        <TabMenu>
           <li>
-            <NavLink
-              activeClassName={css.active}
-              to={`/orders/all?${lastParams ? lastParams : "page=1"}`}
-            >
-              Все
-            </NavLink>
+            <NavLink to="/orders/all">Все</NavLink>
           </li>
-          {!!isEdit && (
-            <li>
-              <NavLink activeClassName={css.active} to="/orders/edit">
-                Просмотр
-              </NavLink>
-            </li>
-          )}
           <li>
-            <NavLink activeClassName={css.active} to="/orders/new">
-              Новый
-            </NavLink>
+            <NavLink to="/orders/new">Новые</NavLink>
           </li>
-        </ul>
+          <li>
+            <NavLink to="/orders/process">В обработке</NavLink>
+          </li>
+          <li>
+            <NavLink to="/orders/warning">Проблемные</NavLink>
+          </li>
+          <li>
+            <NavLink to="/orders/success">Ожидают самовывоза</NavLink>
+          </li>
+          <li>
+            <NavLink to="/orders/completed">Завершенные</NavLink>
+          </li>
+          <li>
+            <NavLink to="/orders/deleted">Удаленные</NavLink>
+          </li>
+        </TabMenu>
       </div>
-      <Switch>
-        <Route
-          path="/orders/new"
-          render={() =>
-            !isAddedSuccess ? (
-              <NewContainer />
-            ) : (
-              <Redirect
-                to={`/orders/all?${lastParams ? lastParams : "page=1"}`}
-              />
-            )
-          }
-        />
-        <Route
-          path="/orders/edit/:id"
-          render={() =>
-            !isEditingSuccess ? (
-              <EditContainer />
-            ) : (
-              <Redirect
-                to={`/orders/all?${lastParams ? lastParams : "page=1"}`}
-              />
-            )
-          }
-        />
-        <Route path="/orders/all" render={() => <AllContainer />} />
-        <Route
-          path="/orders/"
-          render={() => <Redirect to="/orders/all?page=1" />}
-        />
-      </Switch>
-
-      <ModalImg show={!!img} img={img} onHide={() => setImg(null)} />
+      <Layout>{/* <ListContainer /> */}</Layout>
     </div>
   );
 };

@@ -1,0 +1,29 @@
+.wrapper {
+  position: relative;
+  margin-top: 5px;
+}
+
+.errorBadge {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #fff;
+  border-radius: 50px;
+  background-color: var(--color-red);
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(0, -50%);
+  font-size: 14px;
+  pointer-events: none;
+  animation: fadeIn 0.8s;
+}
+
+.errorTooltip {
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
+  font-family: "Roboto-Bold", sans-serif !important;
+  background-color: var(--color-red);
+}

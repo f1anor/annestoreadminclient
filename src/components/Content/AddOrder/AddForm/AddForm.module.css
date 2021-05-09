@@ -1,0 +1,13 @@
+.formInner {
+  margin: 0 auto;
+  /* max-width: 1350px; */
+  max-width: 1300px;
+}
+
+.title {
+  padding-left: 0 !important;
+}
+
+.title > h2 {
+  margin-left: 0px;
+}

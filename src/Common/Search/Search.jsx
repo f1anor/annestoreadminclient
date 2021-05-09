@@ -8,12 +8,13 @@ const Search = ({
   handleSetSearch,
   handleSubmit,
   placeholder = "Поиск",
+  className = "",
 }) => {
   return (
     <div>
       <input
         type="text"
-        className={css.input}
+        className={[css.input, className].join(" ")}
         value={value}
         onChange={(e) => changeValue(e.target.value)}
         onKeyDown={handleSubmit}

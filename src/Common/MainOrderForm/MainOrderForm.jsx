@@ -1,39 +1,30 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
 import { Field } from "redux-form";
+import css from "./MainOrderForm.module.css";
 
-import ProductTableInputContainer from "../ProductsTableInput/ProductTableInputContainer";
-import AboutUser from "./AboutUser/AboutUser";
 import ManagerNotesContainer from "./ManagerNotes/ManagerNotesContainer";
 import PaymentContainer from "./Payment/PaymentContainer";
 import UserNotes from "./UserNotes/UserNotes";
 
-import { productsRequired } from "utils/validators";
+import Info from "./Info/Info";
+import ErrorProvider from "Common/ErrorProvider/ErrorProvider";
 
-const MainOrderForm = ({ formName, editMode }) => {
+const MainOrderForm = ({ form, editMode }) => {
   return (
-    <>
-      <Field
-        name="products"
-        component={ProductTableInputContainer}
-        validate={[productsRequired]}
-        editMode={editMode}
-      />
-      <Row className="mt-4">
-        <Col>
-          <AboutUser editMode={editMode} />
-        </Col>
-        <Col>
-          <PaymentContainer formName={formName} />
-        </Col>
-      </Row>
-      <UserNotes />
-      <Field
-        name="managerNotes"
-        component={ManagerNotesContainer}
-        editMode={editMode}
-      />
-    </>
+    <div className={css.wrapper}>
+      <div className={css.leftSide}>
+        <Info formName={form} editMode={editMode} />
+      </div>
+      <div className={css.rightSide}>
+        <PaymentContainer formName={form} />
+        {/* <UserNotes /> */}
+        <Field
+          name="managerNotes"
+          component={ManagerNotesContainer}
+          editMode={editMode}
+        />
+      </div>
+    </div>
   );
 };
 

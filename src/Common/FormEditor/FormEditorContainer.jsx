@@ -4,15 +4,25 @@ import { connect } from "react-redux";
 import FormEditor from "./FormEditior";
 
 const FormEditorContainer = ({
-  input: { value },
+  input: { value, onFocus, onBlur },
   meta: { form, error, touched },
   change,
 }) => {
-  const onHandleChange = (e, editor) => {
-    change("addProduct", "content", { ...value, data: editor.getData() });
-  };
+  const isError = touched && error;
 
-  return <FormEditor onHandleChange={onHandleChange} />;
+  const onHandleChange = (e, editor) => {
+    change(form, "content", { ...value, data: editor.getData() });
+  };
+  return (
+    <FormEditor
+      error={error}
+      isError={isError}
+      value={value}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onHandleChange={onHandleChange}
+    />
+  );
 };
 
 export default connect(null, { change })(FormEditorContainer);

@@ -10,5 +10,4 @@ const AddProduct = () => {
   );
 };
 
-// export default reduxForm({ form: "addProduct" })(AddProduct);
 export default AddProduct;

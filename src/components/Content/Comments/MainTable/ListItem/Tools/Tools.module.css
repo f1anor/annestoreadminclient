@@ -1,0 +1,15 @@
+.menu {
+  padding: 30px;
+  background-color: red;
+  position: absolute;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+.dots {
+  width: 16px;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import css from "./TooltipBtn.module.css";
 
-const TooltipBtn = ({ className = "", value = "" }) => {
+const TooltipBtn = ({ className = "", value = "", placeholder = "?" }) => {
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       {value}
@@ -17,7 +17,7 @@ const TooltipBtn = ({ className = "", value = "" }) => {
         data-tooltip={value}
         data-attr="tooltip-btn"
       >
-        ?
+        {placeholder}
       </button>
     </OverlayTrigger>
   );

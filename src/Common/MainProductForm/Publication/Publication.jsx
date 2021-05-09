@@ -6,7 +6,7 @@ import Input from "Common/Input/Input";
 import css from "./Publication.module.css";
 import CheckboxInput from "Common/CheckboxInput/CheckboxInput";
 import { Link } from "react-router-dom";
-
+import { required, isNumber } from "utils/validators";
 const Price = ({ catForForm }) => {
   return (
     <div>
@@ -21,6 +21,7 @@ const Price = ({ catForForm }) => {
               placeholder="За одну штуку"
               component={Input}
               className={css.input}
+              validate={[required, isNumber]}
             />
           </div>
         </label>
@@ -28,7 +29,12 @@ const Price = ({ catForForm }) => {
           Количество
           <div className={css.inputWrapper}>
             <span>шт.</span>
-            <Field name="amount" component={Input} className={css.input} />
+            <Field
+              name="amount"
+              component={Input}
+              className={css.input}
+              validate={[required, isNumber]}
+            />
           </div>
         </label>
         <div className={css.isActive}>
@@ -43,7 +49,7 @@ const Price = ({ catForForm }) => {
           </Link>
 
           <button type="submit" className={css.submit}>
-            Добавить
+            Сохранить
           </button>
         </div>
       </FormBlock>

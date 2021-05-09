@@ -33,3 +33,23 @@ export const getOrdDisabled = createSelector(
     return isStatusChanging || isFetching;
   }
 );
+
+export const getIsOrderAddingSuccess = (state) => {
+  return state.orders.isAddedSuccess;
+};
+
+export const getIsOrderEditingSuccess = (state) => {
+  return state.orders.isEditingSuccess;
+};
+
+export const getModalAddProduct = (state) => {
+  return state.orders.modalAddProduct;
+};
+
+export const getModalAddManagerNote = (state) => {
+  return state.orders.modalAddManagerNote;
+};
+
+export const getDeliveryPrice = (state) => {
+  return state.orders.deliveryPrice;
+};

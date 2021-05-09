@@ -1,44 +1,34 @@
+import FormBlock from "Common/FormBlock/FormBlock";
+import FormBlockTitle from "Common/FormBlockTitle/FormBlockTitle";
 import React from "react";
-import { Card, Button } from "react-bootstrap";
-import AddNoteModal from "./AddNoteModal/AddNoteModal";
 import PrintNotes from "./PrintNotes/PrintNotes";
+import { ReactComponent as CommentsIcon } from "assets/svg/chat-square-dots-fill.svg";
+import css from "./ManagerNotes.module.css";
+import FormButtonMini from "Common/FormButtonMini/FormButtonMini";
 
-const ManagerNotes = ({
-  addModalShow,
-  handleAddNote,
-  setAddModalShow,
-  notes,
-  form,
-  editMode,
-}) => {
+const ManagerNotes = ({ handleSetModal, notes, form, editMode }) => {
   return (
-    <>
-      <Card className="mt-4">
-        <Card.Header
-          as="h5"
-          className="d-flex justify-content-between align-items-center"
-        >
-          Комментарии менеджера
-          <Button
-            disabled={!editMode}
-            variant="outline-primary"
-            onClick={() => setAddModalShow(true)}
-          >
-            Добавить
-          </Button>
-        </Card.Header>
-        <Card.Body>
-          {notes.length > 0 && (
-            <PrintNotes editMode={editMode} notes={notes} form={form} />
-          )}
-        </Card.Body>
-      </Card>
-      <AddNoteModal
-        show={!!addModalShow}
-        handler={handleAddNote}
-        onHide={() => setAddModalShow(null)}
-      />
-    </>
+    <FormBlock>
+      <FormBlockTitle>Заметки Менеджера</FormBlockTitle>
+      <div className={css.content}>
+        {notes.length === 0 && (
+          <div className={css.label}>
+            <CommentsIcon className={css.commentsIcon} />
+            <div className={css.text}>Заметки отсутствуют</div>
+          </div>
+        )}
+
+        {notes.length > 0 && (
+          <PrintNotes notes={notes} form={form} editMode={editMode} />
+        )}
+      </div>
+
+      <div className={css.btnLine}>
+        <FormButtonMini type="button" onClick={handleSetModal}>
+          Добавить
+        </FormButtonMini>
+      </div>
+    </FormBlock>
   );
 };
 

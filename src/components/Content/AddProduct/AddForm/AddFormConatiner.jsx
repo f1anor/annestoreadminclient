@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import AddForm from "./AddForm";
 import { preloadImage, addProduct } from "actions/product-actions";
 import { fetchCategories } from "actions/cat-actions";
-import { setTooltip } from "../../../../actions/app-actions";
+import { setTooltip } from "actions/app-actions";
 
 const AddFormContainer = ({ addProduct, fetchCategories, ...props }) => {
   useEffect(() => {

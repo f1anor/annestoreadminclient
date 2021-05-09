@@ -1,0 +1,21 @@
+.btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addBtn {
+  border: none;
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: block;
+  float: right;
+  font-size: 16px;
+  background-color: var(--color-violet);
+  border-radius: 4px;
+  color: #fff;
+  height: 35px;
+  line-height: 35px;
+}

@@ -1,0 +1,93 @@
+.inputWrapper {
+  position: relative;
+  margin-top: 5px;
+}
+
+.container {
+  width: 100%;
+}
+
+.input {
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--color-background);
+  box-shadow: var(--inset-shadow);
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
+  height: 50px;
+  color: #757b82;
+}
+
+.suggestion {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  box-sizing: border-box;
+  line-height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  transition: background-color 0.1s, color 0.1s ease;
+}
+
+.suggestion:hover {
+  background-color: var(--color-violet);
+  color: #fff;
+}
+
+.suggestion:hover * {
+  color: #fff;
+}
+
+.highlight {
+  color: var(--color-red);
+}
+
+/* Относится к ошибкам */
+
+.error {
+  box-shadow: var(--inset-shadow-error);
+}
+
+.errorBadge {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #fff;
+  border-radius: 50px;
+  background-color: var(--color-red);
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(0, -50%);
+  font-size: 14px;
+  pointer-events: none;
+  animation: fadeIn 0.8s;
+}
+
+.errorTooltip {
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
+  font-family: "Roboto-Bold", sans-serif !important;
+  background-color: var(--color-red);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

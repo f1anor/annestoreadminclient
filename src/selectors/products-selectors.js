@@ -28,6 +28,14 @@ export const getIsRestoring = (state) => {
   return state.product.isRestoring;
 };
 
+export const getIsProductAddingSuccess = (state) => {
+  return state.product.isAddingSuccess;
+};
+
+export const getIsProductEditingSuccess = (state) => {
+  return state.product.isEditingSuccess;
+};
+
 export const getProductsById = createSelector(
   getProducts,
   getProductsOnPage,
@@ -102,3 +110,15 @@ export const getIsProductsSelectedAll = createSelector(
     return productsOnPage.length === selected.length && selected.length !== 0;
   }
 );
+
+export const getTotalCount = (state) => {
+  return state.product.totalCount;
+};
+
+export const getMessage = (state) => {
+  return state.product.message;
+};
+
+export const getProductImg = (state) => {
+  return state.product.img;
+};

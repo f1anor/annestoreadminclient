@@ -1,0 +1,47 @@
+.label {
+  color: var(--color-title);
+  font-weight: 500;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  margin-top: 20px;
+}
+
+.btns {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btns button {
+  display: block;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  height: 45px;
+  outline: none !important;
+  border: none;
+  margin-right: 10px;
+}
+
+.btns .cancelBtn {
+  background-color: transparent;
+  color: var(--color-violet);
+  transition: background-color 0.2s, color 0.2s ease;
+}
+
+.btns .cancelBtn:hover {
+  background-color: var(--color-violet);
+  color: #fff;
+}
+
+.btns .apply {
+  color: #fff;
+  background-color: var(--color-red);
+  transition: opacity 0.2s ease;
+}
+
+.btns .apply:hover {
+  opacity: 0.8;
+}

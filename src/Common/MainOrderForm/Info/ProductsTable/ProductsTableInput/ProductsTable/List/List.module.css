@@ -1,0 +1,27 @@
+.img {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.img > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.removeBtn {
+  line-height: 0px;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: -3px;
+  width: min-content;
+  height: min-content;
+}

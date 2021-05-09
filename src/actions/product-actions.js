@@ -1,4 +1,5 @@
-import { change, initialize } from "redux-form";
+import { change, initialize, stopSubmit } from "redux-form";
+import { getPageSize } from "selectors/app-selectors";
 import {
   ADD_PRODUCT_START,
   ADD_PRODUCT_SUCCESS,
@@ -22,6 +23,7 @@ import {
   FETCH_EDIT_PRODUCT_SUCCESS,
   FETCH_EDIT_PRODUCT_FAILURE,
   TOGGLE_ADDING_SUCCESS,
+  TOGGLE_EDITING_SUCCESS,
   MOVE_TO_ARCHIVE_START,
   MOVE_TO_ARCHIVE_FAILURE,
   MOVE_TO_ARCHIVE_SUCCESS,
@@ -36,6 +38,7 @@ import {
   TOGGLE_STATUS_START,
   TOGGLE_STATUS_FAILURE,
   TOGGLE_STATUS_SUCCESS,
+  CHECK_ARTICLE_START,
 } from "../actionTypes";
 
 import {
@@ -49,38 +52,79 @@ import {
   restoreFromArchiveApi,
   fetchArchiveProductsApi,
   toggleStatusApi,
+  checkArticleApi,
 } from "../api/product-api";
 
+export const checkArticle = (values, history) => (dispatch) => {
+  if (!values.article) return;
+
+  dispatch({
+    type: CHECK_ARTICLE_START,
+  });
+
+  checkArticleApi(values.article).then((ans) => {
+    if (!!ans.data.status) {
+      try {
+        const error = JSON.parse(ans.data.message);
+        dispatch(stopSubmit("findProduct", error));
+      } catch (err) {
+        dispatch(stopSubmit("findProduct", { _error: ans.data.message }));
+      }
+    } else {
+      history.push(`/comments/${values.article}?page=1`);
+      dispatch({
+        type: ADD_PRODUCT_SUCCESS,
+      });
+    }
+  });
+};
+
 export const addProduct = (values) => (dispatch) => {
-  console.log("SUBMIT ADD PRODUCT", values);
   dispatch({
     type: ADD_PRODUCT_START,
   });
 
   addProductApi(values)
     .then((ans) => {
-      if (!!ans.data.status) throw new Error(ans.data.message);
-      dispatch({
-        type: ADD_PRODUCT_SUCCESS,
-        payload: ans.data.product,
-      });
+      if (!!ans.data.status) {
+        try {
+          const error = JSON.parse(ans.data.message);
+          dispatch(stopSubmit("addProduct", error));
+        } catch (err) {
+          dispatch(stopSubmit("addProduct", { _error: ans.data.message }));
+        }
+      } else {
+        dispatch({
+          type: ADD_PRODUCT_SUCCESS,
+          payload: ans.data.product,
+        });
+      }
     })
     .catch((err) => {
       dispatch({ type: ADD_PRODUCT_FAILURE, payload: err.message });
     });
 };
 
-export const editProduct = (values) => (dispatch) => {
+export const editProduct = (values, id) => (dispatch) => {
   dispatch({
     type: EDIT_PRODUCT_START,
   });
 
-  editProductApi(values)
+  editProductApi(values, id)
     .then((ans) => {
-      dispatch({
-        type: EDIT_PRODUCT_SUCCESS,
-        payload: ans.data.product,
-      });
+      if (!!ans.data.status) {
+        try {
+          const error = JSON.parse(ans.data.message);
+          dispatch(stopSubmit("editProduct", error));
+        } catch (err) {
+          dispatch(stopSubmit("editProduct", { _error: ans.data.message }));
+        }
+      } else {
+        dispatch({
+          type: EDIT_PRODUCT_SUCCESS,
+          payload: ans.data.product,
+        });
+      }
     })
     .catch((err) => {
       dispatch({
@@ -134,13 +178,62 @@ export const preloadImage = (files, form, name, value) => async (dispatch) => {
   });
 };
 
-export const fetchProducts = (params) => async (dispatch) => {
+export const fetchEditProduct = (id) => async (dispatch) => {
+  dispatch({
+    type: FETCH_EDIT_PRODUCT_START,
+  });
+
+  try {
+    const ans = await fetchEditProductApi(id);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    const { product } = ans.data;
+
+    dispatch(
+      initialize("editProduct", {
+        active: product.active,
+        amount: product.amount,
+        category: product.category,
+        color: product.color,
+        title: product.title,
+        content: product.description ? JSON.parse(product.description) : "",
+        gender: product.gender,
+        size: product.size,
+        imgs: product.imgs.map((item, index) => ({
+          id: Date.now() + index,
+          preloadImg: item.large,
+          noedit: true,
+          imgs: item,
+        })),
+        price: product.price,
+        structure: product.structure.map((item, index) => ({
+          id: index,
+          name: item.name,
+          value: item.value,
+        })),
+      })
+    );
+
+    dispatch({
+      type: FETCH_EDIT_PRODUCT_SUCCESS,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: FETCH_EDIT_PRODUCT_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+export const fetchProducts = (params, pageSize) => async (dispatch) => {
   dispatch({
     type: FETCH_PRODUCTS_START,
   });
 
   try {
-    const ans = await fetchProductsApi(params);
+    const ans = await fetchProductsApi(params, pageSize);
 
     dispatch({
       type: FETCH_PRODUCTS_SUCCESS,
@@ -216,55 +309,15 @@ export const deleteProducts = (query, history) => async (
   }
 };
 
-export const fetchEditProduct = (article) => async (dispatch) => {
-  dispatch({
-    type: FETCH_EDIT_PRODUCT_START,
-  });
-
-  try {
-    const ans = await fetchEditProductApi(article);
-    const { product } = ans.data;
-    dispatch({
-      type: FETCH_EDIT_PRODUCT_SUCCESS,
-      payload: ans.data.product,
-    });
-
-    dispatch(
-      initialize("editProduct", {
-        title: product.title,
-        content: product.description,
-        price: product.price,
-        color: product.color,
-        composition1title: product.composition.material1.title,
-        composition1value: product.composition.material1.percent,
-        composition2title: product.composition.material2.title,
-        composition2value: product.composition.material2.percent,
-        composition3title: product.composition.material3.title,
-        composition3value: product.composition.material3.percent,
-        composition4title: product.composition.material4.title,
-        composition4value: product.composition.material4.percent,
-        composition5title: product.composition.material5.title,
-        composition5value: product.composition.material5.percent,
-        size: product.size,
-        gender: product.gender,
-        category: product.category,
-        img1: { preloadedImg: product.imgs.img1.large },
-        img2: { preloadedImg: product.imgs.img2.large },
-        img3: { preloadedImg: product.imgs.img3.large },
-      })
-    );
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: FETCH_EDIT_PRODUCT_FAILURE,
-      payload: err.message,
-    });
-  }
-};
-
 export const toggleAddingSuccess = () => (dispatch) => {
   dispatch({
     type: TOGGLE_ADDING_SUCCESS,
+  });
+};
+
+export const toggleEditingSuccess = () => (dispatch) => {
+  dispatch({
+    type: TOGGLE_EDITING_SUCCESS,
   });
 };
 
@@ -361,7 +414,10 @@ export const fetchArchiveProducts = (query) => async (dispatch) => {
   }
 };
 
-export const toggleStatus = (id, status, query) => async (dispatch) => {
+export const toggleStatus = (id, status, query) => async (
+  dispatch,
+  getState
+) => {
   dispatch({
     type: TOGGLE_STATUS_START,
   });
@@ -375,7 +431,9 @@ export const toggleStatus = (id, status, query) => async (dispatch) => {
       type: TOGGLE_STATUS_SUCCESS,
     });
 
-    dispatch(fetchProducts(query));
+    // TODO: Проверить
+    const pageSize = getPageSize(getState());
+    dispatch(fetchProducts(query, pageSize));
   } catch (err) {
     console.log(err.message);
     dispatch({

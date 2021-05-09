@@ -15,7 +15,6 @@ const Item = ({
   handleToggleStatus,
   setImg,
 }) => {
-  console.log(product);
   const { imgs } = product;
   const time = !!product.time
     ? new Date(product.time).toLocaleDateString("ru", {
@@ -29,14 +28,13 @@ const Item = ({
     <tr className={sel ? "table-warning" : ""}>
       <td className={css.checkWrapper}>
         <CheckboxInput
-          // disabled={!!prodDisabled}
+          disabled={!!prodDisabled}
           onChange={handleAddSelected}
           checked={sel ? "checked" : ""}
           className={css.check}
         />
       </td>
       <td className={css.imgs}>
-        {/* <div className={css.imgsWrapper}> */}
         {imgs.length > 0 && (
           <ImgPreview
             key={imgs[0].small}
@@ -49,7 +47,6 @@ const Item = ({
             }
           />
         )}
-        {/* </div> */}
       </td>
       <td>{product.title}</td>
       <td className={css.category}>
@@ -63,7 +60,7 @@ const Item = ({
       </td>
       <td className={css.time}>{time}</td>
       <td className={css.art}>
-        <Link to={`/products/edit/${product.article}`}>
+        <Link to={`/editproduct/${product._id}`}>
           {formatNumber(product._id, 5)}
         </Link>
       </td>
@@ -76,8 +73,8 @@ const Item = ({
         {product.comments.length === 0 ? (
           "Нет"
         ) : (
-          <Link to={`/products/comments/${product.article}`}>
-            product.comments.length
+          <Link to={`/comments/${product._id}?page=1`}>
+            {product.comments.length}
           </Link>
         )}
       </td>
@@ -87,6 +84,7 @@ const Item = ({
           handler={handleToggleStatus}
           className={css.toggler}
           value={!!product.active}
+          disabled={!!prodDisabled}
         />
       </td>
     </tr>

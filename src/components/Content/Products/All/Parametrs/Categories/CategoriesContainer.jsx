@@ -1,21 +1,19 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import withFilters from "../../../../../../hoc/withFilters";
+import { useDispatch, useSelector } from "react-redux";
+import withFilters from "hoc/withFilters";
 import Categories from "./Categories";
 import { fetchCategories } from "actions/cat-actions";
+import { getCat, getIsFetching } from "selectors/cat-selectors";
 
-const CategoriesContainer = ({
-  query,
-  filters,
-  cat,
-  isFetchingCat,
-  fetchCategories,
-  ...props
-}) => {
+const CategoriesContainer = React.memo(({ query, filters, ...props }) => {
+  const cat = useSelector((state) => getCat(state));
+  const isFetchingCat = useSelector((state) => getIsFetching(state));
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const currentCat = filters.category;
 
@@ -24,8 +22,9 @@ const CategoriesContainer = ({
   query.set("filter", JSON.stringify(clearFilters));
   const clearCat = `/products/all?${query.toString()}`;
 
-  const catArr = cat.map((item) => {
+  const catArr = cat.map((category) => {
     const f = { ...filters };
+    const item = { ...category };
     f.category = item.title.toString();
     query.set("filter", JSON.stringify(f));
     item.link = `/products/all?${query.toString()}`;
@@ -41,14 +40,6 @@ const CategoriesContainer = ({
       {...props}
     />
   );
-};
-
-const mapStateToProps = (state) => ({
-  cat: state.category.cat,
-  isFetchingCat: state.category.isFetching,
 });
 
-export default compose(
-  connect(mapStateToProps, { fetchCategories }),
-  withFilters
-)(CategoriesContainer);
+export default withFilters(CategoriesContainer);

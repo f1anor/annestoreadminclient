@@ -1,0 +1,48 @@
+.wrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tools {
+  padding-top: 3px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #e9e9ef;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.time {
+  color: #727b9c;
+}
+
+.content {
+  color: var(--color-title);
+  margin-top: 10px;
+  word-wrap: break-word;
+}
+
+.content > svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  float: left;
+}
+
+.dotsBtn {
+  width: 20px;
+  margin-left: 5px;
+  position: relative;
+  top: -1px;
+}
+
+.dotsBtn path {
+  fill: #727b9c;
+}
+
+.menuBtn {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+}

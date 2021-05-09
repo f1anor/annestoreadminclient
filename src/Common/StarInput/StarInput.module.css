@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+}
+
+.star {
+  width: 30px;
+  cursor: pointer;
+}
+
+.star path {
+  fill: #5a5e6b;
+}

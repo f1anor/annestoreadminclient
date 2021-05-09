@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Payment from "./Payment";
-import { formValueSelector } from "redux-form";
-import { connect } from "react-redux";
-import { useEffect } from "react";
+import { change, formValueSelector } from "redux-form";
+import { useDispatch, useSelector } from "react-redux";
 
-let selector;
+let PaymentContainer = ({ formName, ...props }) => {
+  const dispatch = useDispatch();
+  const products =
+    useSelector((state) => formValueSelector(formName)(state, "products")) ||
+    [];
 
-let PaymentContainer = ({ productsValues, formName, ...props }) => {
-  useEffect(() => {
-    selector = formValueSelector(formName);
-  }, [formName]);
+  const customPrice = useSelector((state) =>
+    formValueSelector(formName)(state, "customPrice")
+  );
 
-  const products = !!productsValues ? productsValues.products : [];
+  const delivery =
+    useSelector((state) =>
+      formValueSelector(formName)(state, "deliveryPrice")
+    ) || 0;
+
+  console.log(delivery);
+
   let price = 0;
+
   if (products.length > 0) {
     const prices = products.map((item) => {
       return item.price * item.amount;
@@ -22,11 +31,13 @@ let PaymentContainer = ({ productsValues, formName, ...props }) => {
     });
   }
 
-  return <Payment price={price} {...props} />;
+  price += +delivery;
+
+  useEffect(() => {
+    dispatch(change(formName, "price", price));
+  }, [price, dispatch, formName, customPrice]);
+
+  return <Payment price={price} customPrice={customPrice} {...props} />;
 };
 
-const mapStateToProps = (state) => ({
-  productsValues: selector && selector(state, "products"),
-});
-
-export default connect(mapStateToProps, null)(PaymentContainer);
+export default PaymentContainer;

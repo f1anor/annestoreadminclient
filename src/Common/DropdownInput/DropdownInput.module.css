@@ -1,7 +1,8 @@
 .wrapper {
   width: 100%;
+  margin-top: 5px;
 }
-.inner {
+.wrapper .inner {
   position: relative;
   width: 100%;
 }
@@ -22,7 +23,7 @@
 }
 
 .inner > select {
-  width: 100% !important;
+  width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;

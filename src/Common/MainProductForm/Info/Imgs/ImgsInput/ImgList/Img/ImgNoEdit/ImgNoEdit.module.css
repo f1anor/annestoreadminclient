@@ -1,0 +1,74 @@
+.wrapper {
+  opacity: 1;
+  position: relative;
+}
+
+.img {
+  display: block;
+  object-fit: cover;
+  width: inherit;
+  height: inherit;
+}
+.moveBtns {
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: opacity 0.4s ease;
+}
+
+.moveBtns > button {
+  outline: none;
+  display: block;
+  border: none;
+  position: relative;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.moveBtns > button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.moveBtns > button:not(first-of-type) {
+  margin-left: 10px;
+}
+
+.wrapper:hover .clear,
+.wrapper:hover .zoomBtn,
+.wrapper:hover .moveBtns {
+  opacity: 1;
+}
+
+.clear {
+  position: absolute;
+  opacity: 0;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: #ffd645;
+  border-radius: 50%;
+  border: none;
+  outline: none !important;
+  transition: opacity 0.4s ease;
+  box-shadow: 0 0 5px 1px rgb(128, 128, 128);
+}
+
+.clear > svg {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.clear > svg path {
+  fill: #333;
+}

@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import css from "./SidebarMenu.module.css";
-import { ReactComponent as DashboardIcon } from "../../../assets/svg/house-fill.svg";
-import { ReactComponent as OrdersIcon } from "../../../assets/svg/clipboard.svg";
-import { ReactComponent as ProductsIcon } from "../../../assets/svg/cart-fill.svg";
-import { ReactComponent as CatIcon } from "../../../assets/svg/card-list.svg";
-import { ReactComponent as UsersIcon } from "../../../assets/svg/people-fill.svg";
+import { ReactComponent as DashboardIcon } from "assets/svg/house-fill.svg";
+import { ReactComponent as OrdersIcon } from "assets/svg/clipboard.svg";
+import { ReactComponent as ProductsIcon } from "assets/svg/cart-fill.svg";
+import { ReactComponent as CatIcon } from "assets/svg/card-list.svg";
+import { ReactComponent as UsersIcon } from "assets/svg/people-fill.svg";
+import { ReactComponent as CommentsIcon } from "assets/svg/comments.svg";
 
 const SidebarMenu = () => {
   return (
@@ -23,9 +24,14 @@ const SidebarMenu = () => {
         </li>
         <li>
           <NavLink
-            to="/orders"
+            to="/orders/all"
             activeClassName={css.active}
             className={css.menuItem}
+            isActive={(match, location) =>
+              location.pathname.indexOf("/orders") > -1 ||
+              location.pathname.indexOf("/editorder") > -1 ||
+              location.pathname.indexOf("/addorder") > -1
+            }
           >
             <OrdersIcon className={css.icon} />
             Заказы
@@ -40,7 +46,8 @@ const SidebarMenu = () => {
               if (
                 location.pathname === "/products/all" ||
                 location.pathname === "/products/archive" ||
-                location.pathname === "/addproduct"
+                location.pathname.indexOf("/editproduct") > -1 ||
+                location.pathname.indexOf("/addproduct") > -1
               )
                 return true;
               else return false;
@@ -50,15 +57,16 @@ const SidebarMenu = () => {
             Продукты
           </NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink
-            to="/addproduct"
+            to="/comments/?page=1"
             activeClassName={css.active}
-            className={[css.menuItem, css.secondary].join(" ")}
+            className={css.menuItem}
           >
-            <span>Новый</span>
+            <CommentsIcon className={css.icon} />
+            Комментарии
           </NavLink>
-        </li> */}
+        </li>
         <li>
           <NavLink
             to="/categories"

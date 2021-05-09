@@ -7,7 +7,7 @@ const CustomCheckbox = ({ value, className, content, ...props }) => {
     <div className={[css.wrapper, className].join(" ")}>
       <input
         type="checkbox"
-        value={value}
+        checked={!!value}
         className={css.input}
         id={customID}
         {...props}

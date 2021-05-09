@@ -14,10 +14,6 @@ export const getCatForFrom = createSelector(getCat, (cat) => {
   return arr;
 });
 
-export const getSelected = (state) => {
-  return state.category.selected;
-};
-
 export const getIsFetching = (state) => {
   return state.category.isFetching;
 };
@@ -38,7 +34,7 @@ export const getIsMovingUp = (state) => {
   return state.category.isMovingUp;
 };
 
-export const getCatDisabled = createSelector(
+export const getIsBisy = createSelector(
   getIsMovingUp,
   getIsMovingDown,
   getIsDeleting,
@@ -49,29 +45,22 @@ export const getCatDisabled = createSelector(
   }
 );
 
-export const getSelectedTitle = createSelector(
-  getCat,
-  getSelected,
-  (cat, selected) => {
-    const selectedCat = cat.filter((item) => item._id === selected);
-    return selectedCat.length ? selectedCat[0].title : null;
-  }
-);
+export const getActiveCat = createSelector(getCat, (cat) => {
+  return cat.filter((item) => +item.count > 0);
+});
 
-export const getSelectedNumber = createSelector(
-  getCat,
-  getSelected,
-  (cat, selected) => {
-    const selectedCat = cat.filter((item) => item._id === selected);
-    return selectedCat.length ? selectedCat[0].number : null;
-  }
-);
+export const getPassiveCat = createSelector(getCat, (cat) => {
+  return cat.filter((item) => +item.count === 0);
+});
 
-export const getSelectedCount = createSelector(
-  getCat,
-  getSelected,
-  (cat, selected) => {
-    const selectedCat = cat.filter((item) => item._id === selected);
-    return selectedCat.length ? selectedCat[0].count : null;
-  }
-);
+export const getModalEdit = (state) => {
+  return state.category.modalEdit;
+};
+
+export const getModalNew = (state) => {
+  return state.category.modalNew;
+};
+
+export const getModalDelete = (state) => {
+  return state.category.modalDelete;
+};

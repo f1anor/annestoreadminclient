@@ -1,0 +1,16 @@
+.label {
+  color: var(--color-title);
+  font-weight: 500;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.check {
+  display: flex;
+}
+
+.check > div {
+  margin-right: 10px;
+}

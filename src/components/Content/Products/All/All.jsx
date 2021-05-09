@@ -1,19 +1,19 @@
 import React from "react";
 import { Alert } from "react-bootstrap";
 import css from "./All.module.css";
-import CustomPagination from "../../../../Common/CustomPagination/CustomPagination";
+import CustomPagination from "Common/CustomPagination/CustomPagination";
 import ParametersContainer from "./Parametrs/ParametersContainer";
 import ListContainer from "./List/ListContainer";
-import CustomPaginationCounter from "../../../../Common/CustomPaginationCounter/CustomPaginationCounter";
+import CustomPaginationCounter from "Common/CustomPaginationCounter/CustomPaginationCounter";
 
 const All = React.memo(
   ({
+    products,
     pageSize,
     totalCount,
     isProdDisabled,
     message,
     isProdFetching,
-    products,
   }) => {
     return (
       <div className={css.wrapper}>

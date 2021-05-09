@@ -1,0 +1,42 @@
+.info {
+  margin-top: 20px;
+  color: var(--color-text-modal);
+}
+
+.accent1 {
+  font-family: "Roboto-bold", sans-serif;
+}
+
+.checkPriceBtnWrapper {
+  width: 49%;
+  position: relative;
+}
+
+.checkPriceBtn {
+  height: 50px;
+  border-radius: 6px;
+  background-color: var(--color-violet);
+  color: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.showBtn {
+  display: block;
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+  color: #ff2753;
+  outline: none;
+  float: right;
+  font-size: 16px;
+  font-weight: bold;
+  top: 0;
+  right: 0;
+  outline: none !important;
+}

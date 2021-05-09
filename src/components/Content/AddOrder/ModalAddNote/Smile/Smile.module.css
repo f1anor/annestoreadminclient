@@ -1,0 +1,40 @@
+.smileLine {
+  position: relative;
+  left: -5px;
+}
+
+.smileLine .button {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.smileLine .button:hover {
+  background-color: #e9e9ef;
+}
+
+.smileLine label:not(:first-of-type) {
+  margin-left: 5px;
+}
+
+.smileLine .button > svg {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio {
+  display: none;
+}
+
+.radio:checked ~ .button {
+  background-color: #e9e9ef;
+}

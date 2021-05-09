@@ -21,7 +21,7 @@ const initialState = {
   },
 };
 
-export default (state = initialState, { type, payload }) => {
+export const appReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case INIT_APP:
       return {

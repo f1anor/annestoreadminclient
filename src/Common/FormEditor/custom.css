@@ -1,41 +1,81 @@
-.ck-editor {
+.formEditorWrapper {
+  position: relative;
+}
+
+.formEditorWrapper .ck-editor {
   color: #767c81 !important;
   margin-top: 5px !important;
 }
 
-.ck-toolbar {
+.formEditorWrapper .ck-toolbar {
   border: 1px solid #f2f3f7 !important;
   border-bottom: none !important;
   background-color: #fff !important;
 }
 
-.ck-toolbar_grouping {
+.formEditorWrapper .ck-toolbar_grouping {
   border-top-right-radius: 4px !important;
   border-top-left-radius: 4px !important;
 }
 
-.ck-toolbar_grouping path {
+.formEditorWrapper .ck-toolbar_grouping path {
   color: #85878a !important;
 }
 
-.ck-content {
+.formEditorWrapper .ck-content {
   border: 1px solid var(--color-background) !important;
-  /* border: 1px solid #000; */
   border-bottom-left-radius: 6px !important;
   border-bottom-right-radius: 6px !important;
 }
-.ck-content p {
+.formEditorWrapper .ck-content p {
   margin-top: 0px;
   margin-bottom: 0px;
   background-color: transparent;
 }
-.ck-editor__editable_inline {
+.formEditorWrapper .ck-editor__editable_inline {
   height: 200px;
   background-color: var(--color-background) !important;
   box-shadow: var(--inset-shadow) !important;
   outline: none !important;
 }
 
-.ck-editor__editable.ck-focused {
+.formEditorWrapper .ck-editor__editable.ck-focused {
   box-shadow: var(--inset-shadow) !important;
+}
+
+.formEditorWrapper.error .ck-editor__editable_inline {
+  box-shadow: var(--inset-shadow-error) !important;
+}
+
+.formEditorWrapper.error .ck-editor__editable.ck-focused {
+  box-shadow: var(--inset-shadow-error) !important;
+}
+
+.formEditorWrapper .errorBadge {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #fff;
+  border-radius: 50px;
+  background-color: var(--color-red);
+  position: absolute;
+  top: 50px;
+  right: 2%;
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 999;
+  animation: fadeIn 2.8s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0 !important;
+  }
+  90% {
+    opacity: 1% !important;
+  }
+  100% {
+    opacity: 1;
+  }
 }

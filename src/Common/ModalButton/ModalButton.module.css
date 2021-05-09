@@ -1,0 +1,15 @@
+.button {
+  width: 48%;
+  height: 50px;
+  border-radius: 8px;
+  margin-top: 30px;
+  border: none;
+  background-color: var(--color-violet-modal);
+  color: #fff;
+}
+
+.secondary {
+  background-color: #f6f6f7;
+  color: var(--color-title);
+  font-family: "Roboto-bold", sans-serif;
+}

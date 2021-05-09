@@ -13,10 +13,32 @@
   text-shadow: 0 0 1px #333;
   color: var(--color-title);
   font-family: "Roboto-bold", sans-serif;
+  position: relative;
+  display: inline-block;
+}
+
+.preloader {
+  width: 50px;
+  height: 50px;
+  animation: fadeIn 0.3s;
+  position: absolute;
+  top: 50%;
+  right: -65px;
+  transform: translate(0, -50%);
 }
 
 .spinner {
   margin-left: 10px;
   position: relative;
   top: -3px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

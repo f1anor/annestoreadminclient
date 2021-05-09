@@ -1,0 +1,47 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.productImg {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.productImg img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.imgWrapper {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 10px 35px 1px #ee981f4d;
+}
+
+.imgContainer {
+  border-radius: 50%;
+
+  overflow: hidden;
+}
+.title {
+  margin-left: 15px;
+}
+.title .name {
+  font-family: "Roboto-bold", sans-serif;
+  font-size: 22px;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 4px;
+  color: var(--color-title);
+}
+
+.title .article {
+  font-size: 18px;
+  color: #90919d;
+  margin: 0;
+  padding: 0;
+}

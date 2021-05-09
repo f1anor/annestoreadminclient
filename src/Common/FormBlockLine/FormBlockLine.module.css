@@ -1,0 +1,12 @@
+.wrapper {
+  margin-top: 20px;
+}
+
+.double {
+  display: flex;
+  justify-content: space-between;
+}
+
+.double label {
+  width: 49%;
+}

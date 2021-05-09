@@ -1,0 +1,39 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  width: 360px;
+  text-align: center;
+}
+
+.iconWrapper {
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon {
+  width: inherit;
+}
+
+.icon path {
+  fill: #f08492;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  color: #90919b;
+  padding: 0;
+}
+
+.content {
+  margin-top: 10px;
+  display: block;
+  color: var(--color-title);
+}

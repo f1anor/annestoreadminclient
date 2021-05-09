@@ -1,0 +1,19 @@
+.checkPriceBtnWrapper {
+  width: 49%;
+  position: relative;
+}
+
+.checkPriceBtn {
+  height: 50px;
+  width: 50px;
+  border-radius: 6px;
+  background-color: var(--color-violet);
+  color: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}

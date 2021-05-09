@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { addCat } from "../../../actions/cat-actions";
-import { getCatDisabled } from "../../../selectors/cat-selectors";
+import { getIsBisy } from "selectors/cat-selectors";
 import Categories from "./Categories";
 import { formValueSelector } from "redux-form";
 
@@ -34,7 +34,6 @@ const CategoriesContainer = ({
   useEffect(() => {
     if (!catAdding && !catMessage) setModalAddShow(false);
   }, [catAdding, catMessage]);
-
   return (
     <Categories
       modalAddShow={modalAddShow}
@@ -50,7 +49,7 @@ const CategoriesContainer = ({
 };
 
 const mapStateToProps = (state) => ({
-  catAdding: getCatDisabled(state),
+  catAdding: getIsBisy(state),
   catMessage: state.category.message,
   catValues: selector && selector(state, "category"),
 });

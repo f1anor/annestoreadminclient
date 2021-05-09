@@ -10,11 +10,6 @@
   transform: translate(-50%, -50%);
 }
 
-/* .imgs {
-  margin: 0 !important;
-  padding: 0 !important;
-} */
-
 .imgs {
   height: 100%;
   position: relative;
@@ -84,4 +79,8 @@
 
 .comments {
   text-align: center;
+}
+
+.comments a {
+  color: var(--color-red);
 }

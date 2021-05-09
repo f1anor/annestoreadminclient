@@ -1,0 +1,37 @@
+.wrapper {
+  margin-top: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.star path {
+  fill: #595e6c;
+  transition: fill 0.1s ease;
+}
+
+.row:hover .star path {
+  fill: gold;
+}
+
+.starRow {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.star {
+  width: 30px;
+  height: 30px;
+}
+
+.count {
+  font-size: 18px;
+  color: var(--color-title);
+}
+
+.active .star path {
+  fill: gold;
+}

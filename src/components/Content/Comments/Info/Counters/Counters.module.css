@@ -1,0 +1,47 @@
+.wrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modered,
+.published {
+  width: 130px;
+  height: 130px;
+  border-radius: 4px;
+  border: 2px solid rgb(240, 239, 239);
+  text-align: center;
+}
+
+.modered svg,
+.published svg {
+  width: 30px;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.published svg path {
+  fill: var(--color-violet);
+}
+
+.modered svg path {
+  fill: var(--color-red);
+}
+
+.count {
+  color: var(--color-title);
+  font-family: "Roboto-bold", sans-serif;
+  font-size: 22px;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.description {
+  color: #90919c;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  lighting-color: 18px;
+}

@@ -1,30 +1,18 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
+
 import css from "./CustomPaginationCounter.module.css";
-import { withRouter } from "react-router-dom";
-import { getQuery } from "../../utils/utils";
-import { compose } from "redux";
+import { useQuery } from "../../utils/utils";
 
-class CustomPaginationCounter extends Component {
-  render() {
-    const { pageSize, totalCount, elems, page } = this.props;
-    return (
-      <div className={css.wrapper}>
-        Показано с {pageSize * page - (pageSize - 1)} по{" "}
-        {pageSize * page - (pageSize - elems)} из {totalCount}
-      </div>
-    );
-  }
-}
+const CustomPaginationCounter = ({ pageSize, totalCount, elems }) => {
+  const query = useQuery();
+  const page = +query.get("page");
 
-const mapStateToProps = (ownProps) => {
-  const page = ownProps.location ? +getQuery(ownProps.location).get("page") : 1;
-  return {
-    page,
-  };
+  return (
+    <div className={css.wrapper}>
+      Показано с {pageSize * page - (pageSize - 1)} по{" "}
+      {pageSize * page - (pageSize - elems)} из {totalCount}
+    </div>
+  );
 };
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps, null)
-)(CustomPaginationCounter);
+export default CustomPaginationCounter;

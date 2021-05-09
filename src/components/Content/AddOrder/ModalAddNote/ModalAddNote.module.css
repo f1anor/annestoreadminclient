@@ -1,0 +1,26 @@
+.modal {
+  width: 490px;
+}
+
+.modal .icon {
+  width: 25px;
+  height: 25px;
+  top: 0px;
+}
+
+.icon path {
+  fill: #1d63f6;
+}
+
+.areaWrapper {
+  margin-top: 20px;
+  color: var(--color-title);
+}
+
+.area textarea {
+  margin-top: 5px;
+  border: 2px solid var(--color-violet-modal);
+  background-color: transparent;
+  box-shadow: none;
+  height: 200px;
+}

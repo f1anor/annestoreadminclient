@@ -12,10 +12,39 @@
   border-radius: 6px;
   height: 50px;
   color: #757b82;
-  margin-top: 5px;
 }
 
 .wrapper {
   margin: 0;
   padding: 0;
+}
+
+.error {
+  box-shadow: var(--inset-shadow-error);
+}
+
+.lock {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
+  font-family: "Roboto-Bold", sans-serif !important;
+}
+
+.lock path {
+  fill: #757b82;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

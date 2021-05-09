@@ -5,11 +5,8 @@ import {
   getProdDisabled,
   getIsProductsSelectedAll,
 } from "selectors/products-selectors";
-import { getSortParams, useQuery } from "../../../../../utils/utils";
-import {
-  clearSelectedAll,
-  selectAll,
-} from "../../../../../actions/product-actions";
+import { getSortParams, useQuery } from "utils/utils";
+import { clearSelectedAll, selectAll } from "actions/product-actions";
 
 const ListContainer = ({
   selectAll,
@@ -46,7 +43,6 @@ const mapStateToProps = (state) => ({
   isProdDisabled: getProdDisabled(state),
   selected: state.product.selected,
   isSelectedAll: getIsProductsSelectedAll(state),
-  // currentProducts: state.product.currentProducts,
 });
 
 export default connect(mapStateToProps, { selectAll, clearSelectedAll })(

@@ -10,45 +10,17 @@
   transform: translate(-50%, 0);
 }
 
-.art {
-  /* width: 60px; */
+.date,
+.art,
+.status,
+.photo,
+.price,
+.views,
+.stars,
+.comments {
   text-align: center;
-}
-
-.date {
-  /* width: 70px; */
-  text-align: center;
-}
-
-.amount {
-  /* width: 50px; */
 }
 
 .status {
   width: 60px;
-  text-align: center;
-}
-
-.photo {
-  text-align: center;
-}
-
-.price {
-  /* width: 100px; */
-  text-align: center;
-}
-
-.views {
-  /* width: 100px; */
-  text-align: center;
-}
-
-.stars {
-  /* width: 100px; */
-  text-align: center;
-}
-
-.comments {
-  /* width: 100px; */
-  text-align: center;
 }

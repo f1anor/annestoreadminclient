@@ -16,7 +16,7 @@ const initialState = {
   isTogglingAccess: null,
 };
 
-export default (state = initialState, { type, payload }) => {
+export const usersReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_ADMINS_START:
       return {

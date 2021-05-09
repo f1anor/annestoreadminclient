@@ -6,6 +6,7 @@ import {
   DELETE_PRODUCTS_SUCCESS,
   ADD_PRODUCT_SUCCESS,
   TOGGLE_ADDING_SUCCESS,
+  TOGGLE_EDITING_SUCCESS,
   ADD_PRODUCT_START,
   ADD_PRODUCT_FAILURE,
   FETCH_PRODUCTS_START,
@@ -22,6 +23,9 @@ import {
   FETCH_ARCHIVE_PRODUCTS_FAILURE,
   SELECT_ALL,
   SELECT_ARCHIVE_ALL,
+  EDIT_PRODUCT_START,
+  EDIT_PRODUCT_SUCCESS,
+  EDIT_PRODUCT_FAILURE,
 } from "../actionTypes";
 
 const initialState = {
@@ -31,7 +35,6 @@ const initialState = {
   currentArchiveProducts: [],
   page: 1,
   archivePage: 1,
-  pageSize: 10,
   totalCount: null,
   archiveTotalCount: null,
   selected: [],
@@ -50,7 +53,7 @@ const initialState = {
   img: null,
 };
 
-export default (state = initialState, { type, payload }) => {
+export const productReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_PRODUCTS_START:
       return {
@@ -128,10 +131,31 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         isAdding: false,
       };
+    case EDIT_PRODUCT_START:
+      return {
+        ...state,
+        isEditing: true,
+      };
+    case EDIT_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isEditing: false,
+        isEditingSuccess: true,
+      };
+    case EDIT_PRODUCT_FAILURE:
+      return {
+        ...state,
+        isEditing: false,
+      };
     case TOGGLE_ADDING_SUCCESS:
       return {
         ...state,
         isAddingSuccess: false,
+      };
+    case TOGGLE_EDITING_SUCCESS:
+      return {
+        ...state,
+        isEditingSuccess: false,
       };
     case FETCH_ARCHIVE_PRODUCTS_START:
       return {

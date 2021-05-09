@@ -1,30 +1,38 @@
 import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { clearSelectCat, fetchCategories } from "../../../actions/cat-actions";
-import { getIsFetching } from "../../../selectors/cat-selectors";
+import { clearSelectCat, fetchCategories } from "actions/cat-actions";
+import {
+  getIsBisy,
+  getIsFetching,
+  getActiveCat,
+  getPassiveCat,
+} from "selectors/cat-selectors";
 import Categories from "./Categories";
+import { useQuery } from "utils/utils";
 
-const CategoriesContainer = ({ fetchCategories, clearSelectCat, ...props }) => {
+const CategoriesContainer = ({
+  fetchCategories,
+  clearSelectCat,
+  setModalEdit,
+  ...props
+}) => {
+  const query = useQuery().toString();
   useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
+    fetchCategories(query);
+  }, [fetchCategories, query]);
 
-  const handleClearSelectCat = (e) => {
-    const { target } = e;
-    const closestTarget = target.closest(".list-group-item");
-    if (closestTarget) return;
-    clearSelectCat();
-  };
-
-  return <Categories {...props} handleClearSelectCat={handleClearSelectCat} />;
+  return <Categories {...props} />;
 };
 
 const mapStateToProps = (state) => ({
-  cat: state.category.cat,
+  isBisy: getIsBisy(state),
+  activeCat: getActiveCat(state),
+  passiveCat: getPassiveCat(state),
   isFetching: getIsFetching(state),
 });
 
-export default connect(mapStateToProps, { fetchCategories, clearSelectCat })(
-  CategoriesContainer
-);
+export default connect(mapStateToProps, {
+  fetchCategories,
+  clearSelectCat,
+})(CategoriesContainer);

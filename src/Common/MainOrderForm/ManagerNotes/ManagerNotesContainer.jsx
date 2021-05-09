@@ -1,32 +1,25 @@
+import { setModalAddManagerNote } from "actions/orders-actions";
 import React from "react";
 import { useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { change } from "redux-form";
 import ManagerNotes from "./ManagerNotes";
 
 const ManagerNotesContainer = ({
   meta: { form },
   input: { value },
-  change,
   editMode,
 }) => {
-  const notes = value.notes ? value.notes : [];
+  const dispatch = useDispatch();
 
-  const [addModalShow, setAddModalShow] = useState("");
-
-  const handleAddNote = (val) => {
-    if (!val) return;
-    change(form, "managerNotes", {
-      notes: [...notes, { date: Date.now(), note: val }],
-    });
+  const handleSetModal = () => {
+    dispatch(setModalAddManagerNote(form));
   };
 
   return (
     <ManagerNotes
-      handleAddNote={handleAddNote}
-      addModalShow={addModalShow}
-      setAddModalShow={setAddModalShow}
-      notes={notes}
+      handleSetModal={handleSetModal}
+      notes={value}
       form={form}
       editMode={editMode}
     />

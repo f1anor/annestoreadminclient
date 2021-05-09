@@ -1,0 +1,37 @@
+.wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchWrapper {
+  width: 100%;
+}
+
+.searchWrapper .input {
+  background-color: #fff;
+  border-radius: 4px;
+  height: 50px;
+  width: 100%;
+}
+
+.btn {
+  height: 50px;
+  padding-left: 45px;
+  padding-right: 20px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-violet-modal);
+  margin-left: 20px;
+  position: relative;
+}
+
+.btn svg {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  width: 21px;
+  height: 21px;
+  transform: translate(0, -50%);
+}

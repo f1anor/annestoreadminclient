@@ -1,0 +1,44 @@
+.tabMenu {
+  margin-left: 0px;
+}
+
+.formBlock {
+  animation: none;
+  border-top-left-radius: 0;
+  height: 100%;
+}
+
+/* FIXME: косяк со схлопыванием */
+.wrapper {
+  animation: fadeIn 0.6s;
+  margin-bottom: 45px;
+  flex-grow: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+}
+
+.list {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.paginationWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

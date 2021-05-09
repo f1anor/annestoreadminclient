@@ -16,6 +16,9 @@ import {
   REMOVE_CAT_START,
   REMOVE_CAT_SUCCESS,
   SELECT_CAT,
+  SET_MODAL_EDIT,
+  SET_MODAL_NEW,
+  SET_MODAL_DELETE,
 } from "../actionTypes";
 
 const initialState = {
@@ -27,9 +30,12 @@ const initialState = {
   isDeleting: null,
   isAdding: null,
   message: "",
+  modalEdit: null,
+  modalNew: null,
+  modalDelete: null,
 };
 
-export default (state = initialState, { type, payload }) => {
+export const catReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_CAT_START:
       return {
@@ -40,7 +46,7 @@ export default (state = initialState, { type, payload }) => {
     case FETCH_CAT_SUCCESS:
       return {
         ...state,
-        cat: payload,
+        cat: Array.from(payload),
         isFetching: null,
       };
     case FETCH_CAT_FAILURE:
@@ -125,6 +131,21 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         isDeleting: null,
         message: payload,
+      };
+    case SET_MODAL_EDIT:
+      return {
+        ...state,
+        modalEdit: payload,
+      };
+    case SET_MODAL_NEW:
+      return {
+        ...state,
+        modalNew: payload,
+      };
+    case SET_MODAL_DELETE:
+      return {
+        ...state,
+        modalDelete: payload,
       };
     default:
       return state;

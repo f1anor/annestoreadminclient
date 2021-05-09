@@ -14,7 +14,6 @@ export const fetchStatistic = (query) => async (dispatch) => {
     const ans = await fetchStatisticApi(query);
 
     if (!!ans.data.status) throw new Error(ans.data.message);
-    console.log(ans);
     dispatch({
       type: FETCH_STATISTIC_SUCCESS,
       payload: ans.data,

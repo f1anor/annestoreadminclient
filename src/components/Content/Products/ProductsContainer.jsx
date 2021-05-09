@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
 import Products from "./Products";
+import {
+  toggleAddingSuccess,
+  toggleEditingSuccess,
+} from "actions/product-actions";
 
-const ProductsContainer = (props) => {
-  let isEdit = useRouteMatch("/products/edit/:article");
-  return <Products isEdit={isEdit} {...props} />;
-};
+const ProductsContainer = React.memo(
+  ({
+    isAddingSuccess,
+    isEditingSuccess,
+    toggleAddingSuccess,
+    toggleEditingSuccess,
+    ...props
+  }) => {
+    useEffect(() => {
+      if (!!isAddingSuccess) toggleAddingSuccess();
+    }, [isAddingSuccess, toggleAddingSuccess]);
+
+    useEffect(() => {
+      if (!!isEditingSuccess) toggleEditingSuccess();
+    }, [isEditingSuccess, toggleEditingSuccess]);
+
+    return <Products {...props} />;
+  }
+);
 
 const mapStateToProps = (state) => ({
   isAddingSuccess: state.product.isAddingSuccess,
+  isEditingSuccess: state.product.isEditingSuccess,
   isProdFetching: state.product.isFetching,
   isArchiveProdFetching: state.product.isArchiveFetching,
   isCatFetching: state.category.isFetching,
 });
 
-export default connect(mapStateToProps, null)(ProductsContainer);
+export default connect(mapStateToProps, {
+  toggleAddingSuccess,
+  toggleEditingSuccess,
+})(ProductsContainer);

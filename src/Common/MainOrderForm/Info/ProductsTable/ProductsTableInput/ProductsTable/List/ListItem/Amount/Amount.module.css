@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  width: min-content;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.btn {
+  color: var(--color-red);
+  height: 20px;
+  line-height: 10px;
+  background-color: transparent;
+  border: none;
+}
