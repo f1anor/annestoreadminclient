@@ -2,13 +2,15 @@ import React from "react";
 import { Field } from "redux-form";
 import Input from "Common/Input/Input";
 import css from "./AboutUser.module.css";
-import { required } from "utils/validators";
+import { required, isNumber } from "utils/validators";
 import FormBlockTitle from "Common/FormBlockTitle/FormBlockTitle";
 import OpenAnim from "Common/OpenAnim/OpenAnim";
 import FormBlockLine from "Common/FormBlockLine/FormBlockLine";
 import FormBlockLabel from "Common/FormBlockLabel/FormBlockLabel";
+import PhoneContainer from "./Phone/PhoneContainer";
+import TooltipBtn from "Common/TooltipBtn/TooltipBtn";
 
-const AboutUser = ({ editMode, handleSetShowAdw, showAdw }) => {
+const AboutUser = ({ editMode, handleSetShowAdw, showAdw, formName }) => {
   return (
     <div>
       <FormBlockTitle>
@@ -32,6 +34,7 @@ const AboutUser = ({ editMode, handleSetShowAdw, showAdw }) => {
               readOnly={!editMode}
               className={css.name}
             />
+            <TooltipBtn value="Имя и фамилия через пробел" />
           </FormBlockLabel>
         </FormBlockLine>
         <FormBlockLine double="true">
@@ -46,12 +49,7 @@ const AboutUser = ({ editMode, handleSetShowAdw, showAdw }) => {
           </FormBlockLabel>
           <FormBlockLabel>
             Телефон*
-            <Field
-              name="phone"
-              component={Input}
-              validate={[required]}
-              readOnly={!editMode}
-            />
+            <PhoneContainer editMode={editMode} formName={formName} />
           </FormBlockLabel>
         </FormBlockLine>
       </OpenAnim>

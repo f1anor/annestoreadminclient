@@ -1,22 +1,36 @@
 import React from "react";
-import { NavLink, Redirect, Route, Switch } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Title from "Common/Title/Title";
 import Layout from "Common/Layout/Layout";
 import TabMenu from "Common/TabMenu/TabMenu";
 import css from "./Orders.module.css";
 import ListContainer from "./List/ListContainer";
 import TitleMainBtn from "Common/TitleMainBtn/TitleMainBtn";
-import SearchContainer from "Common/Search/SearchContainer";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import CustomPagination from "Common/CustomPagination/CustomPagination";
+import withPageRedirect from "hoc/withPageRedirect";
+import TotalCounterContainer from "./TotalCounter/TotalCounterContainer";
+import ToolsContainer from "./Tools/ToolsContainer";
+import ModalPriceFilterFromContainer from "./ModalPriceFilterFrom/ModalPriceFilterFromContainer";
+import ModalPriceFilterToContainer from "./ModalPriceFilterTo/ModalPriceFilterToContainer";
+import ModalDeleteContainer from "./ModalDelete/ModalDeleteContainer";
+import ModalOrderPreviewContainer from "./ModalOrderPreview/ModalOrderPreviewContainer";
 
-const Orders = ({ isDisabled, isEdit, img, setImg, lastParams }) => {
+const Orders = ({
+  pageSize,
+  totalCount,
+  pathName,
+  isDisabled,
+  isEdit,
+  img,
+  setImg,
+  lastParams,
+}) => {
   return (
     <div className={css.wrapper}>
       <div className={css.content}>
         <div className={css.titleLine}>
           <Title>Заказы</Title>
           <div className={css.tools}>
-            <SearchContainer placeholder="Поиск по заказам..." />
             <TitleMainBtn>
               <Link className={css.addLink} to="/addorder">
                 Создать
@@ -38,19 +52,34 @@ const Orders = ({ isDisabled, isEdit, img, setImg, lastParams }) => {
             <NavLink to="/orders/warning">Проблемные</NavLink>
           </li>
           <li>
-            <NavLink to="/orders/success">Ожидают самовывоза</NavLink>
+            <NavLink to="/orders/success">Доставка</NavLink>
           </li>
           <li>
             <NavLink to="/orders/completed">Завершенные</NavLink>
           </li>
-          <li>
-            <NavLink to="/orders/deleted">Удаленные</NavLink>
-          </li>
         </TabMenu>
       </div>
-      <Layout>{/* <ListContainer /> */}</Layout>
+      <Layout className={css.layout}>
+        <ToolsContainer />
+        <TotalCounterContainer />
+        <ListContainer pageSize={pageSize} />
+
+        <div className={css.pagination}>
+          <CustomPagination
+            count={pageSize}
+            totalCount={totalCount}
+            link={pathName}
+            disabled={false}
+          />
+        </div>
+      </Layout>
+      {/* Модальные окна */}
+      <ModalPriceFilterFromContainer />
+      <ModalPriceFilterToContainer />
+      <ModalDeleteContainer />
+      <ModalOrderPreviewContainer />
     </div>
   );
 };
 
-export default Orders;
+export default withPageRedirect(Orders);

@@ -1,5 +1,4 @@
 .wrapper {
-  padding-left: 65px;
   padding-top: 40px;
   padding-bottom: 30px;
 }
@@ -12,7 +11,7 @@
   display: block;
   text-shadow: 0 0 1px #333;
   color: var(--color-title);
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
   position: relative;
   display: inline-block;
 }

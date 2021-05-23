@@ -45,11 +45,11 @@ const Content = ({
           !isOrderAddingSuccess ? <AddOrder /> : <Redirect to="/orders/all" />
         }
       />
+      <Route path="/editorder/:id" render={() => <OrdersContainer />} />
+      <Route path="/orders/:type" render={() => <OrdersContainer />} />
       <Route path="/comments/:id?" render={() => <CommentsContainer />} />
       <Route path="/categories" render={() => <CategoriesContainer />} />
       <Route path="/dashboard" render={() => <DashboardContainer />} />
-      <Route path="/orders/:type" render={() => <OrdersContainer />} />
-      <Route path="/editorder" render={() => <OrdersContainer />} />
       <Route path="/users" render={() => <UsersContainer />} />
       <Route path="/" render={() => <Redirect to="/dashboard" />} />
     </Switch>

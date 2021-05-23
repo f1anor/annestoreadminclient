@@ -9,13 +9,14 @@ body {
   min-height: 100vh;
   font-size: 0.875rem;
   background-color: #fcfefc !important;
-  font-family: Roboto !important;
+  /* font-family: Roboto !important; */
+  font-family: "Montserrat" !important;
 }
 
 a:hover {
   text-decoration: none !important;
 }
-
+/* 
 .table {
   box-sizing: border-box;
   border-bottom: 2px solid #f0f0f0 !important;
@@ -49,27 +50,30 @@ a:hover {
   padding-bottom: 0 !important;
   color: var(--color-darkgray) !important;
   font-family: "Roboto-bold", sans-serif;
-}
+} */
 
 :root {
   --main-border-color: #e6e8e5;
   --main-text-color: #7a7c7b;
+  --main-table-color: #8793a2;
   --color-violet: #6c7af7;
   --color-violet-modal: #4f4ce6;
   --color-title: #2f2f35;
   --color-text-modal: #6b7597;
   --color-background: #f8f8fe;
   --color-red: #ff2753;
-  /* --color-darkgray: #5a667d; */
   --color-darkgray: #333;
-  /* --color-lightgray: #999ea8; */
   --color-lightgray: #676a72;
   --inset-shadow: inset 0 0 10px 1px rgba(160, 160, 160, 0.1);
   --inset-shadow-error: inset 0 0 10px 1px #ff275228;
   --main-shadow: 0 0 25px 1px rgba(122, 121, 121, 0.1);
+  --font-bold: "Montserrat-bold", sans-serif;
+  --font-medium: "Montserrat-medium", sans-serif;
+  --font: "Montserrat", sans-serif;
+  /* --font-bold: "Roboto-bold", sans-serif; */
 }
 
-@font-face {
+/* @font-face {
   font-family: "Roboto-Bold";
   src: local("MyFont"),
     url(./assets/fonts/Roboto/Roboto-Bold.ttf) format("woff");
@@ -79,4 +83,21 @@ a:hover {
   font-family: "Roboto";
   src: local("MyFont"),
     url(./assets/fonts/Roboto/Roboto-Regular.ttf) format("woff");
+} */
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: local("MyFont"),
+    url(./assets/fonts/Montserrat/Montserrat-Bold.ttf) format("woff");
+}
+
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: local("MyFont"),
+    url(./assets/fonts/Montserrat/Montserrat-Medium.ttf) format("woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  src: local("MyFont"),
+    url(./assets/fonts/Montserrat/Montserrat-Regular.ttf) format("woff");
 }

@@ -1,0 +1,22 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuBtn {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+.icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translate(0, -50%);
+}

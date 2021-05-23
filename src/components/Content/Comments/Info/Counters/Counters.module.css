@@ -30,7 +30,7 @@
 
 .count {
   color: var(--color-title);
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
   font-size: 22px;
   line-height: 22px;
   margin: 0;

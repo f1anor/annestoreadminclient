@@ -10,7 +10,7 @@ const Info = ({ formName, editMode }) => {
   return (
     <FormBlock className={css.wrapper}>
       <ProductsTable editMode={editMode} />
-      <AboutUserContainer />
+      <AboutUserContainer formName={formName} />
       <DeliveryContainer formName={formName} />
     </FormBlock>
   );

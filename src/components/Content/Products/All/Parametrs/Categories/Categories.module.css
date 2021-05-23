@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   color: var(--color-lightgray);
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
   align-items: center;
   font-size: 18px;
 }
@@ -18,7 +18,7 @@
   text-align: center;
   background-color: transparent;
   color: var(--color-darkgray);
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
   height: 40px;
   position: relative;
   padding-right: 25px;

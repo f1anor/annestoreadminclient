@@ -6,9 +6,6 @@
   align-items: center;
 }
 
-.pagination {
-}
-
 .list {
   list-style-type: none;
   display: flex;
@@ -18,17 +15,18 @@
 .btn,
 .legend,
 .page {
-  color: var(--color-lightgray);
-  font-size: 18px;
-  font-family: "Roboto-bold", sans-serif;
+  color: var(--color-title);
+  font-size: 16px;
+  font-family: var(--font-medium);
 }
 
 .legend {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 .btn:hover {
   text-decoration: none;
+  color: var(--color-violet-modal);
 }
 
 .list > li:first-of-type .btn {
@@ -41,20 +39,18 @@
 .btn.btnDisabled {
   pointer-events: none;
   user-select: none;
-  filter: opacity(0.5);
 }
 
 .page {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   box-sizing: border-box;
   display: block;
-  line-height: 40px;
+  line-height: 35px;
   text-align: center;
   border-radius: 50%;
-  margin-left: 10px;
-  margin-right: 10px;
-  transition: color 0.2s, background-color 0.2s ease;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .page:hover {
@@ -64,6 +60,6 @@
 }
 
 .page.active {
-  background-color: var(--color-violet);
+  background-color: var(--color-violet-modal);
   color: #fff;
 }

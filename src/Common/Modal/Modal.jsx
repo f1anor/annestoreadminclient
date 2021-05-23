@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import css from "./Modal.module.css";
 
-const Modal = ({ close, children, className = "" }) => {
+const Modal = ({ close, children, className = "", wrapperClassName = "" }) => {
   const inner = useRef();
 
   const handleClose = (e) => {
@@ -12,9 +12,24 @@ const Modal = ({ close, children, className = "" }) => {
     close(null);
   };
 
+  // Закрытие модального окна при нажатии ESC
+  useEffect(() => {
+    const keyClose = (e) => {
+      if (e.keyCode === 27) close(null);
+    };
+    window.addEventListener("keydown", keyClose);
+
+    return () => {
+      window.removeEventListener("keydown", keyClose);
+    };
+  }, []);
+
   return (
     <div>
-      <div className={css.wrapper} onClick={handleClose}>
+      <div
+        className={[css.wrapper, wrapperClassName].join(" ")}
+        onClick={handleClose}
+      >
         <div className={[css.inner, className].join(" ")} ref={inner}>
           <button
             className={css.closeBtn}

@@ -4,7 +4,7 @@
 }
 
 .accent1 {
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
 }
 
 .checkPriceBtnWrapper {

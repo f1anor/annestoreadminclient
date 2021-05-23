@@ -1,29 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import ImgList from "./ImgList";
 
-const ImgListContainer = ({ ...props }) => {
-  const wrapper = useRef();
-  // const handleMouseOver = () => {
-  //   document.querySelector("#scroll-wrapper").style.overflow = "hidden";
-  // };
-  // const handleMouseOut = () => {
-  //   document.querySelector("#scroll-wrapper").style.overflow = "scroll";
-  // };
-  // const handleMooveWheel = (e) => {
-  //   const target = wrapper.current;
-  //   if (!target) return;
-  //   target.scrollBy(e.deltaY, 0);
-  // };
-
-  return (
-    <ImgList
-      {...props}
-      wrapper={wrapper}
-      // handleMouseOver={handleMouseOver}
-      // handleMouseOut={handleMouseOut}
-      // handleMooveWheel={handleMooveWheel}
-    />
-  );
+const ImgListContainer = ({ value, ...props }) => {
+  const imgs = Array.from(value).sort((a, b) => a.id - b.id);
+  return <ImgList value={imgs} {...props} />;
 };
 
 export default ImgListContainer;

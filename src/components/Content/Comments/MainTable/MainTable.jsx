@@ -11,7 +11,6 @@ import NewContainer from "./New/NewContainer";
 import Empty from "./Empty/Empty";
 
 const MainTable = ({ comments, id, totalCount, ansId, isDisabled }) => {
-  console.log(totalCount);
   const location = useLocation();
   return (
     <div className={css.wrapper}>

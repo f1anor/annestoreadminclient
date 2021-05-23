@@ -30,12 +30,6 @@ const Categories = ({
         </div>
       </div>
 
-      {/* {!!modalEdit && (
-        <Modal close={handleCloseModal}>
-          <EditFormContainer id={modalEdit} />
-        </Modal>
-      )} */}
-
       <ModalNewContainer />
       <ModalDeleteContainer />
       <ModalEditContainer />

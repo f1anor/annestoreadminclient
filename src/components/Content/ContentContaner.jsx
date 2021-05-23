@@ -9,6 +9,7 @@ import {
   getIsOrderEditingSuccess,
 } from "selectors/orders-selectors";
 import Content from "./Content";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const ContentContainer = React.memo(({ ...props }) => {
   const isProductAddingSuccess = useSelector((state) =>
@@ -23,7 +24,9 @@ const ContentContainer = React.memo(({ ...props }) => {
   const isOrderEditingSuccess = useSelector((state) =>
     getIsOrderEditingSuccess(state)
   );
-  console.log(isOrderAddingSuccess);
+
+  const pathName = useLocation().pathname;
+
   return (
     <Content
       isProductAddingSuccess={isProductAddingSuccess}

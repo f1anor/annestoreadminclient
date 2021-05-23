@@ -7,3 +7,10 @@
   color: #fff;
   border-radius: 6px;
 }
+
+.btn:disabled {
+  background-color: #f6f6f7;
+  color: var(--color-title);
+  font-family: var(--font-bold);
+  cursor: no-drop;
+}

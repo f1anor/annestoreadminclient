@@ -1,0 +1,62 @@
+.menu {
+  display: block;
+  position: fixed;
+  width: max-content;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: var(--main-shadow);
+  z-index: 999;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.menu > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s;
+}
+
+.menu > ul > li {
+  transition: background-color 0.1, color 0.1 ease;
+  color: var(--color-title);
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu > ul > li:hover {
+  background-color: var(--color-violet);
+  color: #fff;
+}
+
+.menu > ul > li:hover * {
+  color: #fff;
+}
+
+.menu > ul > li:hover svg path {
+  fill: #fff;
+}
+
+.menu > ul > li > * {
+  display: block;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.menu.withIcons > ul > li > * {
+  padding-left: 60px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

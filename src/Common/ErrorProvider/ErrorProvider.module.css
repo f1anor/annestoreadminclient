@@ -24,6 +24,6 @@
   top: 50%;
   right: 20px;
   transform: translate(0, -50%);
-  font-family: "Roboto-Bold", sans-serif !important;
+  font-family: var(--font-bold) !important;
   background-color: var(--color-red);
 }

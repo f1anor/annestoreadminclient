@@ -1,0 +1,18 @@
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-title);
+  position: relative;
+}
+
+.button > svg {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translate(0, -50%);
+}
+
+.button > svg > path {
+  fill: var(--color-title);
+}

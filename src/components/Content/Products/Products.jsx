@@ -1,6 +1,5 @@
 import React from "react";
 import Title from "../../../Common/Title/Title";
-
 import css from "./Products.module.css";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import AllContainer from "./All/AllContainer";

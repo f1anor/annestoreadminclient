@@ -1,0 +1,62 @@
+.table {
+  width: 100%;
+}
+
+.table > thead > tr {
+  height: 76px;
+}
+
+.table > tbody > tr {
+  height: 76px;
+}
+
+/* чередование цветов  */
+.table > tbody > tr:nth-of-type(odd) {
+  background-color: #fbfbfb;
+}
+
+/* ховер */
+.table > tbody > tr:hover {
+  background-color: #f6f6f7;
+}
+
+/* отступы */
+.table > tbody > tr > td:first-of-type {
+  padding-left: 40px !important;
+}
+.table > thead > tr > th:first-of-type {
+  padding-left: 40px !important;
+}
+.table > tbody > tr > td:last-of-type {
+  padding-right: 40px !important;
+}
+.table > thead > tr > th:last-of-type {
+  padding-right: 40px !important;
+}
+
+/* шрифты и цвета шрифтов */
+
+.table > thead {
+  font-family: var(--font-bold);
+  font-size: 16px;
+  color: #4c6077;
+}
+
+.table > thead a {
+  font-family: var(--font-bold);
+  font-size: 16px;
+  color: #4c6077;
+}
+
+.table > tbody {
+  font-family: var(--font-medium);
+  font-size: 16px;
+  /* color: var(--main-table-color); */
+  color: var(--color-title);
+}
+
+.table > tbody a {
+  font-family: var(--font-medium);
+  font-size: 16px;
+  color: var(--main-table-color);
+}

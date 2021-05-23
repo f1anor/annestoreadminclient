@@ -13,7 +13,6 @@ const ModalAddNoteContainer = ({ ...props }) => {
   };
 
   const handleAddNote = (values) => {
-    console.log(values);
     dispatch(addOrderNote(data, values));
   };
   return (

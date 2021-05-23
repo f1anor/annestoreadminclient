@@ -16,7 +16,6 @@ const CustomPagination = React.memo(
     disabled,
   }) => {
     const query = useQuery();
-    const history = useHistory();
     const page = +query.get("page"); // текущая страница
 
     const allPages = Math.ceil(totalCount / count); // количество страниц

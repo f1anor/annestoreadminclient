@@ -1,79 +1,53 @@
-import React, { Component } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DropdownMenu from "./DropdownMenu";
-import css from "./DropdownMenu.module.css";
 
-class DropdownMenuContainer extends Component {
-  constructor(props) {
-    super(props);
+const DropdownMenuContainer = ({ button, children, ...props }) => {
+  const title = useRef();
+  const menu = useRef();
+  const [open, setOpen] = useState(false);
 
-    this.title = React.createRef();
-    this.menu = React.createRef();
+  const handleToggle = () => {
+    if (!open) setOpen(true);
+    else setOpen(false);
+  };
 
-    this.state = {
-      open: false,
-      x: null,
-      y: null,
-    };
-
-    this.handleSetOpen = this.handleSetOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
-    document.addEventListener("click", this.handleClose);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("click", this.handleClose);
-  }
-
-  handleClose(e) {
-    if (!this.menu.current) return;
-
+  const handleClose = (e) => {
     const button = e.target.closest("button");
 
     if (!!button) {
-      if (button === this.title.current) return;
+      if (button === title.current) return;
     }
 
-    this.setState({
-      open: false,
-    });
-  }
+    setOpen(false);
+  };
 
-  handleSetOpen() {
-    this.setState({
-      open: !this.state.open,
-    });
-  }
+  const handleCancel = (e) => {
+    if (e.keyCode !== 27) return;
+    setOpen(false);
+  };
 
-  setDirection(dir) {
-    switch (dir) {
-      case "center":
-        return css.center;
-      case "left":
-        return css.left;
-      case "right":
-        return css.right;
-      default:
-        return css.center;
-    }
-  }
+  useEffect(() => {
+    window.addEventListener("click", handleClose);
+    window.addEventListener("keydown", handleCancel);
 
-  render() {
-    const { open } = this.state;
-    const { button, children, dir } = this.props;
-    const direction = this.setDirection(dir);
-    return (
-      <DropdownMenu
-        open={open}
-        handleSetOpen={this.handleSetOpen}
-        title={this.title}
-        menu={this.menu}
-        button={button}
-        children={children}
-        direction={direction}
-      />
-    );
-  }
-}
+    return () => {
+      window.removeEventListener("click", handleClose);
+      window.removeEventListener("keydown", handleCancel);
+    };
+  }, []);
+
+  return (
+    <DropdownMenu
+      open={open}
+      handleToggle={handleToggle}
+      title={title}
+      menu={menu}
+      ref={title}
+      button={button}
+      children={children}
+      {...props}
+    />
+  );
+};
 
 export default DropdownMenuContainer;

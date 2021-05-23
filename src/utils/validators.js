@@ -16,3 +16,19 @@ export const productsRequired = (value) =>
 export const isNumber = (value) => {
   return !!value && !isNaN(parseInt(value)) ? undefined : "Только цифры";
 };
+
+export const createMinNumber = (minNumber) => {
+  return (value) => {
+    return value >= minNumber
+      ? undefined
+      : `Не должно быть меньше чем ${minNumber}`;
+  };
+};
+
+export const createMaxNumber = (maxNumber) => {
+  return (value) => {
+    return value <= maxNumber
+      ? undefined
+      : `Не должно быть больше чем ${maxNumber}`;
+  };
+};

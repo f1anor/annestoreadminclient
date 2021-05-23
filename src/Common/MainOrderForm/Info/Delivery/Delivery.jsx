@@ -11,13 +11,7 @@ import css from "./Delivery.module.css";
 
 import PostContainer from "./Post/PostContainer";
 
-const Delivery = ({
-  method,
-  formName,
-  handleSetShowAdw,
-  showAdw,
-  ...props
-}) => {
+const Delivery = ({ method, formName, handleSetShowAdw, showAdw }) => {
   return (
     <div>
       <FormBlockTitle>

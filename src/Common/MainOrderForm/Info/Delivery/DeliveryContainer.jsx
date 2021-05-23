@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { formValueSelector } from "redux-form";
 import Delivery from "./Delivery";
 
-const DeliveryContainer = ({ formName, ...props }) => {
+const DeliveryContainer = ({ formName }) => {
   const [showAdw, setShowAdw] = useState(true);
 
   const handleSetShowAdw = () => {

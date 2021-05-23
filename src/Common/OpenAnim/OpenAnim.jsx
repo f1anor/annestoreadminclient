@@ -31,9 +31,7 @@ const OpenAnim = ({ children, isOpen, className = "" }) => {
       style={{ height: size, overflow: overflow }}
       ref={wrapper}
     >
-      <div className={css.inner}>
-        <div>{children}</div>
-      </div>
+      <div>{children}</div>
     </div>
   );
 };

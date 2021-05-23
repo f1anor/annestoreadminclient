@@ -45,7 +45,7 @@
   background-color: transparent;
   border: none;
   outline: none !important;
-  font-family: "RobotoSlab-Bold", serif;
+  font-family: var(--font-bold);
   font-size: 30px;
   color: #fff;
   position: absolute;

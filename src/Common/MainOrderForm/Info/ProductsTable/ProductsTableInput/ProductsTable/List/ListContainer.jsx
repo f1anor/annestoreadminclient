@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { formValueSelector } from "redux-form";
 import List from "./List";
 
 const ListContainer = ({ form, value, ...props }) => {

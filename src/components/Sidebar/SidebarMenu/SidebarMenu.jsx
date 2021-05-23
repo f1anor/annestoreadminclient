@@ -24,7 +24,7 @@ const SidebarMenu = () => {
         </li>
         <li>
           <NavLink
-            to="/orders/all"
+            to="/orders/all?page=1"
             activeClassName={css.active}
             className={css.menuItem}
             isActive={(match, location) =>

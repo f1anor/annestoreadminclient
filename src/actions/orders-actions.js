@@ -5,6 +5,12 @@ import {
   ADD_ORDER_PRODUCT_START,
   ADD_ORDER_START,
   ADD_ORDER_SUCCESS,
+  FETCH_ORDER_START,
+  FETCH_ORDER_SUCCESS,
+  FETCH_ORDER_FAILURE,
+  REMOVE_ORDER_START,
+  REMOVE_ORDER_SUCCESS,
+  REMOVE_ORDER_FAILURE,
   CHANGE_STATUS_FAILURE,
   CHANGE_STATUS_START,
   CHANGE_STATUS_SUCCESS,
@@ -29,6 +35,9 @@ import {
   GET_DELIVERY_PRICE_SUCCESS,
   GET_DELIVERY_PRICE_FAILURE,
   SET_MODAL_ADD_MANAGER_NOTE,
+  SET_MODAL_PRICE_FILTER,
+  SET_MODAL_ORDER_DELETE,
+  SET_MODAL_ORDER_PREVIEW,
 } from "../actionTypes";
 import {
   addOrderProductApi,
@@ -38,6 +47,8 @@ import {
   fetchEditOrderApi,
   editOrderApi,
   checkDeliveryPriceApi,
+  removeOrderApi,
+  fetchOrderApi,
 } from "../api/orders-api";
 
 export const fetchOrders = (type, query, pageSize) => async (dispatch) => {
@@ -54,7 +65,7 @@ export const fetchOrders = (type, query, pageSize) => async (dispatch) => {
       payload: ans.data,
     });
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: FETCH_ORDERS_FAILURE,
       payload: err.message,
@@ -98,7 +109,6 @@ export const addOrderProduct = (art, form, values) => (dispatch) => {
         const { product } = ans.data;
         const exist = val.filter((item) => item.id === product._id);
         if (exist.length > 0) {
-          console.log(123123);
           dispatch(
             stopSubmit("ordAddProdForm", { name: "Продукт уже в списке" })
           );
@@ -197,6 +207,7 @@ export const changeStatus = (id, status, query) => async (dispatch) => {
 
     dispatch(fetchOrders(query));
   } catch (err) {
+    console.info(err);
     dispatch({
       type: CHANGE_STATUS_FAILURE,
       payload: err.message,
@@ -257,7 +268,7 @@ export const fetchEditOrder = (id) => async (dispatch) => {
       })
     );
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: FETCH_EDIT_ORDER_FAILURE,
       payload: err.message,
@@ -265,6 +276,30 @@ export const fetchEditOrder = (id) => async (dispatch) => {
   }
 };
 
+export const fetchOrder = (id) => async (dispatch) => {
+  dispatch({
+    type: FETCH_ORDER_START,
+  });
+
+  try {
+    const ans = await fetchOrderApi(id);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: FETCH_ORDER_SUCCESS,
+      payload: ans.data,
+    });
+  } catch (err) {
+    console.info(err);
+    dispatch({
+      type: FETCH_ORDER_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+// FIXME: не используется. проверить
 export const setLastParams = (query) => (dispatch) => {
   dispatch({
     type: SET_LAST_PARAMS,
@@ -272,13 +307,73 @@ export const setLastParams = (query) => (dispatch) => {
   });
 };
 
+export const checkDeliveryPrice =
+  (form, index = 299804, weight = 500) =>
+  (dispatch) => {
+    dispatch({
+      type: GET_DELIVERY_PRICE_START,
+    });
+
+    dispatch(touch(form, "deliveryPrice"));
+    dispatch(change(form, "deliveryPrice", ""));
+
+    checkDeliveryPriceApi(index, weight)
+      .then((ans) => {
+        if (!ans.paynds) {
+          dispatch(
+            stopSubmit(form, {
+              deliveryPrice: "Не удалось рассчитать стоимость доставки",
+            })
+          );
+          throw new Error("Не удалось рассчитать стоимость доставки");
+        } else {
+          dispatch(change(form, "deliveryPrice", +ans.paynds / 100));
+          dispatch({
+            type: GET_DELIVERY_PRICE_SUCCESS,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: GET_DELIVERY_PRICE_FAILURE,
+          payload: err.message,
+        });
+      });
+  };
+
+export const removeOrder = (id) => async (dispatch) => {
+  dispatch({
+    type: REMOVE_ORDER_START,
+  });
+
+  try {
+    const ans = await removeOrderApi(id);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: REMOVE_ORDER_SUCCESS,
+    });
+
+    dispatch(setModalOrderDelete(null));
+  } catch (err) {
+    console.info(err);
+    dispatch({
+      type: REMOVE_ORDER_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+// Управление модальным окном добавления продукта в форму заказа
 export const setModalAddProduct = (form) => (dispatch) => {
   dispatch({
     type: SET_MODAL_ADD_PRODUCT,
     payload: form,
   });
 };
-
+// Управление модальным окном добавления заметки менеджера в форму заказа
 export const setModalAddManagerNote = (form) => (dispatch) => {
   dispatch({
     type: SET_MODAL_ADD_MANAGER_NOTE,
@@ -286,37 +381,26 @@ export const setModalAddManagerNote = (form) => (dispatch) => {
   });
 };
 
-export const checkDeliveryPrice = (form, index = 299804, weight = 500) => (
-  dispatch
-) => {
+// Управление модальным окном фильтра стоимости
+export const setModalPriceFilter = (type) => (dispatch) => {
   dispatch({
-    type: GET_DELIVERY_PRICE_START,
+    type: SET_MODAL_PRICE_FILTER,
+    payload: type,
   });
+};
 
-  dispatch(touch(form, "deliveryPrice"));
-  dispatch(change(form, "deliveryPrice", ""));
+// Управление модальным окном удаления заказа
+export const setModalOrderDelete = (id) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ORDER_DELETE,
+    payload: id,
+  });
+};
 
-  checkDeliveryPriceApi(index, weight)
-    .then((ans) => {
-      if (!ans.paynds) {
-        dispatch(
-          stopSubmit(form, {
-            deliveryPrice: "Не удалось рассчитать стоимость доставки",
-          })
-        );
-        throw new Error("Не удалось рассчитать стоимость доставки");
-      } else {
-        dispatch(change(form, "deliveryPrice", +ans.paynds / 100));
-        dispatch({
-          type: GET_DELIVERY_PRICE_SUCCESS,
-        });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: GET_DELIVERY_PRICE_FAILURE,
-        payload: err.message,
-      });
-    });
+// Управление модальным окном предпросмотра заказа
+export const setModalOrderPreview = (id) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ORDER_PREVIEW,
+    payload: id,
+  });
 };

@@ -1,7 +1,7 @@
 .active {
   background-color: #fff !important;
   color: var(--color-title) !important;
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
   position: relative;
 }
 

@@ -1,0 +1,64 @@
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  animation: fadeIn 0.2s;
+  overflow: scroll;
+}
+
+.modal {
+  width: 800px;
+  font-size: 14px;
+  position: absolute;
+  top: 10%;
+  transform: translate(-50%, 0);
+  padding-bottom: 100px;
+}
+
+.modal:after {
+  content: " ";
+  width: 100%;
+  background-color: transparent;
+  height: 50px;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+}
+
+.btnsLine {
+  position: absolute;
+  right: 60px;
+  bottom: 50px;
+}
+
+.btnsLine > button {
+  background-color: #f6f6f7;
+  color: var(--color-title);
+  font-family: var(--font-bold);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 10px;
+}
+
+.btnsLine > button svg {
+  margin-right: 10px;
+  margin-right: 10px;
+}
+
+.printIcon {
+  width: 23px;
+  height: 23px;
+}
+
+.editIcon {
+  width: 19px;
+  height: 19px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -8,6 +8,10 @@ export const getAllOrders = (state) => {
   return state.orders.orders;
 };
 
+export const getTotalCount = (state) => {
+  return state.orders.totalCount;
+};
+
 export const getOrders = createSelector(
   getCurrentOrders,
   getAllOrders,
@@ -42,6 +46,10 @@ export const getIsOrderEditingSuccess = (state) => {
   return state.orders.isEditingSuccess;
 };
 
+export const getOrder = (state) => {
+  return state.orders.order;
+};
+
 export const getModalAddProduct = (state) => {
   return state.orders.modalAddProduct;
 };
@@ -52,4 +60,16 @@ export const getModalAddManagerNote = (state) => {
 
 export const getDeliveryPrice = (state) => {
   return state.orders.deliveryPrice;
+};
+
+export const getModalPriceFilter = (state) => {
+  return state.orders.modalPriceFilter;
+};
+
+export const getModalOrderDelete = (state) => {
+  return state.orders.modalOrderDelete;
+};
+
+export const getModalOrderPreview = (state) => {
+  return state.orders.modalOrderPreview;
 };

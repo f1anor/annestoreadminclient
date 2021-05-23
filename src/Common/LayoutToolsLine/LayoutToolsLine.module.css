@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.wrapper > * {
+  height: 50px;
+  flex-grow: 1;
+}

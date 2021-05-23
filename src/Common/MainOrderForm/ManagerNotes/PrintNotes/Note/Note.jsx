@@ -1,6 +1,4 @@
 import React from "react";
-import { Badge, Col, Row, Button } from "react-bootstrap";
-import { ReactComponent as TrashIcon } from "assets/svg/trash2-fill.svg";
 import css from "./Note.module.css";
 import DropdownMenuContainer from "Common/DropdownMenu/DropdownMenuContainer";
 import { ReactComponent as DotsIcon } from "assets/svg/three-dots.svg";
@@ -11,7 +9,6 @@ import { ReactComponent as Smile4Icon } from "assets/svg/smile-4.svg";
 import { ReactComponent as Smile5Icon } from "assets/svg/smile-5.svg";
 
 const Note = ({ handleRemove, note, editMode }) => {
-  console.log(note.smile);
   return (
     <div className={css.wrapper}>
       <div className={css.tools}>

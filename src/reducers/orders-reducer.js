@@ -20,11 +20,16 @@ import {
   SET_MODAL_ADD_PRODUCT,
   SET_MODAL_ADD_MANAGER_NOTE,
   GET_DELIVERY_PRICE_SUCCESS,
+  SET_MODAL_PRICE_FILTER,
+  SET_MODAL_ORDER_DELETE,
+  SET_MODAL_ORDER_PREVIEW,
+  FETCH_ORDER_SUCCESS,
 } from "../actionTypes";
 
 const initialState = {
   orders: {}, //	Все заказы
   currentOrders: [], // Заказы на странице
+  order: null, // Один заказ, который просматривается
   counts: {},
   pageSize: null,
   totalCount: null,
@@ -39,7 +44,9 @@ const initialState = {
   lastParams: "", //Последние параметны просмотра таблицы
   modalAddProduct: null,
   modalAddManagerNote: null,
-  deliveryPrice: null,
+  modalPriceFilter: null,
+  modalOrderDelete: null,
+  modalOrderPreview: { id: null, print: null },
 };
 
 export const ordersReducer = (state = initialState, { type, payload }) => {
@@ -145,20 +152,45 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         lastParams: payload,
       };
+
+    case GET_DELIVERY_PRICE_SUCCESS:
+      return {
+        ...state,
+      };
+    case FETCH_ORDER_SUCCESS:
+      return {
+        ...state,
+        order: payload.order,
+      };
+    // Управление модальным окном добавления продукта в заказ
     case SET_MODAL_ADD_PRODUCT:
       return {
         ...state,
         modalAddProduct: payload,
       };
+    // Управление модальным окном добавления заметки менеджера в заказ
     case SET_MODAL_ADD_MANAGER_NOTE:
       return {
         ...state,
         modalAddManagerNote: payload,
       };
-    case GET_DELIVERY_PRICE_SUCCESS:
+    // Управление модальным окном фильтра стоимости
+    case SET_MODAL_PRICE_FILTER:
       return {
         ...state,
-        deliveryPrice: payload,
+        modalPriceFilter: payload,
+      };
+    // Управление модальным окном удаления заказа
+    case SET_MODAL_ORDER_DELETE:
+      return {
+        ...state,
+        modalOrderDelete: payload,
+      };
+    // Управление модальным окном предпросмотра заказа
+    case SET_MODAL_ORDER_PREVIEW:
+      return {
+        ...state,
+        modalOrderPreview: payload,
       };
     default:
       return state;

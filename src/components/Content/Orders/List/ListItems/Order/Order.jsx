@@ -1,67 +1,31 @@
 import React from "react";
-import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { formatNumber } from "utils/utils";
+import MenuContainer from "./Menu/MenuContainer";
 import Notes from "./Notes/Notes";
-import Photo from "./photo/Photo";
+import css from "./Order.module.css";
+import StatusContainer from "./Status/StatusContainer";
+import Structure from "./Structure/Structure";
 
-const Order = ({
-  order,
-  sum,
-  status,
-  allStatus,
-  handleChangeStatus,
-  setNote,
-  setImg,
-}) => {
+const Order = ({ order, creationDate, changeDate, id, setNote, setImg }) => {
   return (
     <tr>
       <td className="text-center">
-        <Link to={`/orders/edit/${order._id}`}>
-          {formatNumber(order._id, 4)}
-        </Link>
+        <Link to={`/orders/edit/${order._id}`}>#{id}</Link>
       </td>
-      <Photo products={order.products} setImg={setImg} />
       <td>
-        {order.firstName} {order.lastName}
+        <Structure products={order.products} />
       </td>
+      <td>{order.name}</td>
       <td>{order.phone}</td>
-      <td>{new Date(+order.creationDate).toLocaleString("ru")}</td>
-      <td>
-        {order.changeDate
-          ? new Date(+order.changeDate).toLocaleString("ru")
-          : " "}
+      <td className={css.center}>{!!creationDate && creationDate}</td>
+      <td className={css.center}>{!!changeDate && changeDate}</td>
+      <td className={css.center}>{order.price} ₽</td>
+      <td className={css.status}>
+        <StatusContainer id={order._id} currentStatus={order.status} />
       </td>
-      <Notes
-        userNotes={order.userNotes}
-        managerNotes={order.managerNotes}
-        setNote={setNote}
-      />
-      <td className="d-flex justify-content-center">
-        <Dropdown>
-          <Dropdown.Toggle
-            style={{ width: "176px" }}
-            size="sm"
-            variant={status.variant}
-            id="dropdown-basic"
-          >
-            {status.title}
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            {allStatus.map((status) => (
-              <Dropdown.Item
-                as="button"
-                key={status.value}
-                onClick={() => handleChangeStatus(status.value)}
-              >
-                {status.title}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
+      <td className={css.menu}>
+        <MenuContainer id={order._id} />
       </td>
-      <td>{sum} ₽</td>
     </tr>
   );
 };

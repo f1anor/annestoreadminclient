@@ -19,18 +19,15 @@ const ImgList = ({
       onMouseOut={handleMouseOut}
       ref={wrapper}
     >
-      {value.length > 0 &&
-        value
-          .sort((a, b) => a.id - b.id)
-          .map((item) => (
-            <ImgContainer
-              key={item.preloadImg}
-              form={form}
-              element={item}
-              value={value}
-              name={name}
-            />
-          ))}
+      {value.map((item) => (
+        <ImgContainer
+          key={item.preloadImg}
+          form={form}
+          element={item}
+          value={value}
+          name={name}
+        />
+      ))}
 
       <span className={css.main}>Основное</span>
     </div>
@@ -38,27 +35,3 @@ const ImgList = ({
 };
 
 export default ImgList;
-
-// value
-//   .sort((a, b) => a.id - b.id)
-//   .map((item) => (
-//     <div key={item.preloadImg}>
-//       {item.noedit ? (
-//         <ImgNoEditContainer
-//           form={form}
-//           element={item}
-//           value={value}
-//           name={name}
-//         />
-//       ) : (
-//         <ImgEditorContainer
-//           element={item}
-//           value={value}
-//           form={form}
-//           name={name}
-//           width={348}
-//           height={348}
-//         />
-//       )}
-//     </div>
-//   ))}

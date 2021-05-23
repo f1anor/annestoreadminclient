@@ -28,8 +28,6 @@ class ImgEditorContainer extends Component {
     this.handleZoomOut = this.handleZoomOut.bind(this);
     this.handleZoomIn = this.handleZoomIn.bind(this);
     this.handleStopCheckSize = this.handleStopCheckSize.bind(this);
-
-    // this.handleSuccess = this.handleSuccess.bind(this);
   }
 
   handleChange(prop, val) {

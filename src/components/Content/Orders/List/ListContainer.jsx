@@ -11,9 +11,10 @@ const ListContainer = ({ ...props }) => {
     "number",
     "creationDate",
     "changeDate",
-    "firstName",
+    "name",
     "phone",
     "status",
+    "price",
   ].forEach((param) => {
     sort[param] = {};
     query.set("sort", param);

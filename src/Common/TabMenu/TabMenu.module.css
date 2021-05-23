@@ -3,7 +3,6 @@
   padding: 0;
   list-style-type: none;
   display: flex;
-  margin-left: 105px;
 }
 
 .wrapper a {
@@ -29,5 +28,4 @@
   border-bottom: 1px solid #fff;
   background-color: #fcfefc;
   color: #5993c2;
-  font-weight: bold;
 }

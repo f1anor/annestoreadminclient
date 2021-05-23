@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AboutUser from "./AboutUser";
 
-const AboutUserContainer = ({ ...props }) => {
+const AboutUserContainer = ({ formName, ...props }) => {
   const [showAdw, setShowAdw] = useState(true);
 
   const handleSetShowAdw = () => {
@@ -11,6 +11,13 @@ const AboutUserContainer = ({ ...props }) => {
       setShowAdw(true);
     }
   };
-  return <AboutUser handleSetShowAdw={handleSetShowAdw} showAdw={showAdw} />;
+
+  return (
+    <AboutUser
+      handleSetShowAdw={handleSetShowAdw}
+      showAdw={showAdw}
+      formName={formName}
+    />
+  );
 };
 export default AboutUserContainer;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "../utils/utils";
 
-export default (Comp) => {
+const withFilters = (Comp) => {
   const WrapperComponent = (props) => {
     const query = useQuery();
     const filters = JSON.parse(query.get("filter") || "{}");
@@ -10,3 +10,5 @@ export default (Comp) => {
 
   return WrapperComponent;
 };
+
+export default withFilters;

@@ -31,3 +31,11 @@ export const checkDeliveryPriceApi = async (index, weight) => {
 
   return await response.json(); // читаем ответ в формате JSON
 };
+
+export const removeOrderApi = async (id) => {
+  return instance.delete(`/orders/${id}`);
+};
+
+export const fetchOrderApi = async (id) => {
+  return instance.get(`/orders/single/${id}`);
+};

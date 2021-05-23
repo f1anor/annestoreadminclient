@@ -1,11 +1,8 @@
-.wrapper > div {
-  min-height: 540px !important;
+.center {
+  text-align: center;
 }
 
-.head {
-  color: #333;
-}
-
-.head a {
-  color: #333;
+.structure {
+  text-align: center;
+  min-width: 120px;
 }

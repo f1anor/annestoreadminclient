@@ -3,7 +3,7 @@
 }
 
 .name {
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
   color: var(--color-red);
 }
 
@@ -22,7 +22,7 @@
 .btnsLine button:first-of-type {
   background-color: #f6f6f7;
   color: var(--color-title);
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
 }
 
 .btnsLine button:last-of-type {

@@ -1,6 +1,7 @@
 .wrapper {
-  width: 100%;
-  height: 100%;
+  height: calc(100% - 20px);
+  margin: 0 auto;
+  max-width: 1300px;
 }
 
 .titleLine {
@@ -12,7 +13,6 @@
   display: flex;
   margin-top: 40px;
   margin-bottom: 30px;
-  margin-right: 65px;
 }
 
 .addLink {
@@ -22,4 +22,16 @@
 
 .addLink:hover {
   color: #fff;
+}
+
+.pagination {
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 40px;
+  border-top: 1px solid #c5c5c5;
+}
+
+.layout {
+  border-top-left-radius: 0px !important;
 }

@@ -1,9 +1,6 @@
 .up,
 .down {
   display: table-cell;
-  /* width: 100%; */
-  /* height: 100%; */
-  position: relative;
 }
 
 .link {
@@ -11,33 +8,46 @@
   position: relative;
 }
 
-.up .link:after,
-.down .link:after {
+.link:before {
   content: " ";
-  display: block;
+  width: 0px;
+  height: 0px;
+  border-top: 4px solid #bdcad8;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
   position: absolute;
-  top: 50%;
-  right: -20px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
+  top: calc(50% + 1px);
+  right: -15px;
+  transition: transform 0.4s ease;
 }
 
-.up .link:after {
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid #333;
-  top: 0px;
+.link:after {
+  content: " ";
+  width: 0px;
+  height: 0px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid #bdcad8;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  position: absolute;
+  bottom: calc(50% + 1px);
+  right: -15px;
+  transition: transform 0.4s ease;
+  /* display: none; */
 }
 
+.link svg path {
+  fill: var(--color-red);
+}
+
+.up .link:before {
+  border-top: 4px solid #4c6077;
+}
 .down .link:after {
-  border-top: 5px solid #333;
-  border-bottom: 5px solid transparent;
-  top: 5px;
+  border-bottom: 4px solid #4c6077;
 }
 
 .disabledLink {
   pointer-events: none;
-}
-
-.test {
-  background-color: red;
 }

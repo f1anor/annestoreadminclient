@@ -18,8 +18,6 @@ let PaymentContainer = ({ formName, ...props }) => {
       formValueSelector(formName)(state, "deliveryPrice")
     ) || 0;
 
-  console.log(delivery);
-
   let price = 0;
 
   if (products.length > 0) {

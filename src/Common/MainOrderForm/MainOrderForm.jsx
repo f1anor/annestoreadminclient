@@ -7,7 +7,6 @@ import PaymentContainer from "./Payment/PaymentContainer";
 import UserNotes from "./UserNotes/UserNotes";
 
 import Info from "./Info/Info";
-import ErrorProvider from "Common/ErrorProvider/ErrorProvider";
 
 const MainOrderForm = ({ form, editMode }) => {
   return (

@@ -14,7 +14,7 @@
   padding-left: 50px;
   font-size: 24px;
   position: relative;
-  font-family: "Roboto-bold", sans-serif;
+  font-family: var(--font-bold);
   color: var(--color-title);
 }
 

@@ -7,8 +7,9 @@ import Adress from "./Adress/Adress";
 import { required } from "utils/validators";
 import Input from "Common/Input/Input";
 import { ReactComponent as CalcIcon } from "assets/svg/calculator.svg";
+import TooltipBtn from "Common/TooltipBtn/TooltipBtn";
 
-const Post = ({ postIndex, handleGetDeliveryPrice, ...props }) => {
+const Post = ({ postIndex, handleGetDeliveryPrice }) => {
   return (
     <div>
       <div className={css.info}>
@@ -22,6 +23,7 @@ const Post = ({ postIndex, handleGetDeliveryPrice, ...props }) => {
         <FormBlockLabel>
           Адресс доставки
           <Field name="adress" component={Adress} validate={[required]} />
+          <TooltipBtn value="Начать ввод и выбрать один из предложенных вариантов для автозаполнения почтового индекса" />
         </FormBlockLabel>
       </FormBlockLine>
       <FormBlockLine double="true">

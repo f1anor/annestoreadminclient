@@ -13,8 +13,6 @@ const ErrorProvider = ({ children, isError, error, className, ...props }) => {
       wrapper.current.querySelector("input") ||
       wrapper.current.querySelector("textarea");
 
-    console.log(inputElement, errorBadge);
-
     if (!errorBadge || !inputElement) return;
     if (inputElement.clientWidth - errorBadge.offsetWidth < 170)
       setErrType(true);

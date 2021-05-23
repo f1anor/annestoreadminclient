@@ -1,10 +1,8 @@
 .wrapper {
   background-color: #fff;
   padding-top: 30px;
-  margin-left: 65px;
-  margin-right: 65px;
-  padding-left: 40px;
-  padding-right: 40px;
+  /* padding-left: 40px; */
+  /* padding-right: 40px; */
   box-sizing: border-box;
   box-shadow: var(--main-shadow);
   height: calc(100% - 160px);

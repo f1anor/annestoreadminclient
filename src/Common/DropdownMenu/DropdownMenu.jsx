@@ -1,33 +1,25 @@
-import React from "react";
-import css from "./DropdownMenu.module.css";
+import React, { forwardRef } from "react";
 
-const DropdownMenu = ({
-  children,
-  button,
-  open,
-  handleSetOpen,
-  title,
-  menu,
-  direction = "center",
-}) => {
+import css from "./DropdownMenu.module.css";
+import MenuContainer from "./Menu/MenuContainer";
+
+const DropdownMenu = (
+  { button, open, handleToggle, title, menu, className = "", ...props },
+  ref
+) => {
   return (
-    <div className={css.wrapper}>
+    <div className={[css.wrapper, className].join(" ")}>
       <button
         className={css.title}
-        onClick={handleSetOpen}
-        ref={title}
+        onClick={handleToggle}
+        ref={ref}
         type="button"
       >
         {button}
       </button>
-      <div
-        className={[css.menu, !!open ? css.open : "", direction].join(" ")}
-        ref={menu}
-      >
-        {children}
-      </div>
+      {!!open && <MenuContainer menu={menu} title={title} {...props} />}
     </div>
   );
 };
 
-export default DropdownMenu;
+export default forwardRef(DropdownMenu);

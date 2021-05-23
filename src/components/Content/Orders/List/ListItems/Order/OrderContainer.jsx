@@ -1,40 +1,40 @@
 import React from "react";
 import Order from "./Order";
-import { convertStatus, useQuery } from "utils/utils";
+import { formatNumber } from "utils/utils";
 
-import { changeStatus, setNote } from "actions/orders-actions";
-import { connect } from "react-redux";
-import { setImg } from "actions/orders-actions";
+const OrderContainer = React.memo(({ order }) => {
+  let creationDate = order.creationDate ? new Date(+order.creationDate) : null;
 
-const OrderContainer = ({ changeStatus, order, ...props }) => {
-  const query = useQuery();
-  const sum = order.products
-    .map((product) => product.price * product.amount)
-    .reduce((acc, current) => acc + current);
+  if (!!creationDate) {
+    creationDate = `${formatNumber(creationDate.getDate(), 2)}-${formatNumber(
+      creationDate.getMonth() + 1,
+      2
+    )}-${creationDate.getFullYear().toString().slice(-2)} ${formatNumber(
+      creationDate.getHours(),
+      2
+    )}:${formatNumber(creationDate.getMinutes(), 2)}`;
+  }
 
-  const status = convertStatus(order.status);
-  const allStatus = [
-    "new",
-    "process",
-    "warning",
-    "success",
-    "complited",
-    "deleted",
-  ].map((status) => convertStatus(status));
+  let changeDate = order.changeDate ? new Date(+order.changeDate) : null;
+  if (!!changeDate) {
+    changeDate = `${formatNumber(changeDate.getDate(), 2)}-${formatNumber(
+      changeDate.getMonth() + 1,
+      2
+    )}-${changeDate.getFullYear().toString().slice(-2)} ${formatNumber(
+      changeDate.getHours(),
+      2
+    )}:${formatNumber(creationDate.getMinutes(), 2)}`;
+  }
 
-  const handleChangeStatus = (value) => {
-    changeStatus(order._id, value, query);
-  };
+  const id = formatNumber(order._id, 5);
 
   return (
     <Order
-      allStatus={allStatus}
-      status={status}
       order={order}
-      sum={sum}
-      handleChangeStatus={handleChangeStatus}
-      {...props}
+      creationDate={creationDate}
+      changeDate={changeDate}
+      id={id}
     />
   );
-};
-export default connect(null, { changeStatus, setNote, setImg })(OrderContainer);
+});
+export default OrderContainer;

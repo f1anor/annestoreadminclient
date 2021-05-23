@@ -5,8 +5,10 @@ export const getCoords = (elem) => {
   return {
     left: box.left + window.pageXOffset,
     top: box.top + window.pageYOffset,
-    bottom: box.bottom + window.pageYOffset,
-    right: box.right + window.pageXOffset,
+    right:
+      document.documentElement.clientWidth - (box.right + window.pageXOffset),
+    bottom:
+      document.documentElement.clientHeight - (box.bottom + window.pageYOffset),
     width: box.width,
     height: box.height,
   };
@@ -28,29 +30,6 @@ export const getQuery = (location) => {
 
 export const compareArrs = (arr1, arr2) => {
   return arr1.join(" ") === arr2.join(" ");
-};
-
-export const convertStatus = (status) => {
-  switch (status) {
-    case "new":
-      return { title: "Новый", value: "new", variant: "info" };
-    case "process":
-      return { title: "В обработке", value: "process", variant: "warning" };
-    case "warning":
-      return { title: "Проблемный", value: "warning", variant: "danger" };
-    case "success":
-      return {
-        title: "Ожидает самовывоза",
-        value: "success",
-        variant: "success",
-      };
-    case "complited":
-      return { title: "Завершенный", value: "completed", variant: "secondary" };
-    case "deleted":
-      return { title: "Удаленный", value: "deleted", variant: "dark" };
-    default:
-      return status;
-  }
 };
 
 export const formatNumber = (num, length = 3) => {
@@ -113,4 +92,29 @@ export const getSortParams = (arr = [], query, url) => {
 
 export const ID = () => {
   return "_" + Math.random().toString(36).substr(2, 9);
+};
+
+export const printComponent = (component, styles) => {
+  if (!component) return;
+
+  const mywindow = window.open("", "PRINT");
+
+  if (!mywindow) return;
+
+  mywindow.document.write(
+    "<html><head><title>" +
+      document.title +
+      "</title><style>" +
+      styles +
+      "</style>"
+  );
+  mywindow.document.write("</head><body>");
+  mywindow.document.write(component.innerHTML);
+  mywindow.document.write("</body></html>");
+
+  mywindow.document.close();
+  mywindow.focus();
+
+  mywindow.print();
+  mywindow.close();
 };

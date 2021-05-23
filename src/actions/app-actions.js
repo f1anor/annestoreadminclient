@@ -30,12 +30,14 @@ export const initApp = () => async (dispatch, getState) => {
   });
 };
 
-export const addToastMessage = (text, variant = "primary") => (dispatch) => {
-  dispatch({
-    type: ADD_TOAST_MESSAGE,
-    payload: { text, variant },
-  });
-};
+export const addToastMessage =
+  (text, variant = "primary") =>
+  (dispatch) => {
+    dispatch({
+      type: ADD_TOAST_MESSAGE,
+      payload: { text, variant },
+    });
+  };
 
 export const removeToastMessage = (id) => (dispatch) => {
   dispatch({
@@ -62,7 +64,10 @@ export const setTableSize = () => (dispatch) => {
   dispatch({
     type: SET_TABLE_SIZE,
     payload: {
-      size: Math.floor((window.innerHeight - 357 - 100) / 70),
+      size:
+        window.innerHeight - 486 - 100 > 76
+          ? Math.floor((window.innerHeight - 486 - 100) / 76)
+          : 1,
       window: window.innerHeight,
     },
   });
