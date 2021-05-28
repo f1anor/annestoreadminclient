@@ -42,6 +42,7 @@ const DateFromFilterContainer = ({ query, filters, ...props }) => {
       startDate={startDate}
       handleTimeChange={handleTimeChange}
       minDate={minDate}
+      {...props}
     />
   );
 };

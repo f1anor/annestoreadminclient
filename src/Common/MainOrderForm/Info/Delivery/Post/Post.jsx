@@ -9,7 +9,7 @@ import Input from "Common/Input/Input";
 import { ReactComponent as CalcIcon } from "assets/svg/calculator.svg";
 import TooltipBtn from "Common/TooltipBtn/TooltipBtn";
 
-const Post = ({ postIndex, handleGetDeliveryPrice }) => {
+const Post = ({ postIndex, handleGetDeliveryPrice, deliveryPriceAnim }) => {
   return (
     <div>
       <div className={css.info}>
@@ -45,7 +45,11 @@ const Post = ({ postIndex, handleGetDeliveryPrice }) => {
       <FormBlockLine double="true">
         <FormBlockLabel>
           Стоимость отправления
-          <Field name="deliveryPrice" component={Input} />
+          <Field
+            name="deliveryPrice"
+            component={Input}
+            anim={deliveryPriceAnim}
+          />
         </FormBlockLabel>
       </FormBlockLine>
     </div>

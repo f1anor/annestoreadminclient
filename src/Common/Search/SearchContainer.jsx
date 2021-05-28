@@ -30,7 +30,6 @@ const SearchContainer = ({ ...props }) => {
     <Search
       value={value}
       changeValue={changeValue}
-      handleSetSearch={handleSetSearch}
       handleSubmit={handleSubmit}
       {...props}
     />

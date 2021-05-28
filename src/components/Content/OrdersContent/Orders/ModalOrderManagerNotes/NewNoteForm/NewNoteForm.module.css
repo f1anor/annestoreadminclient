@@ -1,0 +1,14 @@
+.smiles {
+  position: absolute;
+  top: -10px;
+  right: -20px;
+  transform: scale(0.8);
+}
+
+.area textarea {
+  margin-top: 5px;
+  border: 2px solid var(--color-violet-modal);
+  background-color: transparent;
+  box-shadow: none;
+  height: 100px;
+}

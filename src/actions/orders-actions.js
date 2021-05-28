@@ -1,4 +1,11 @@
-import { arrayPush, change, initialize, stopSubmit, touch } from "redux-form";
+import {
+  arrayPush,
+  change,
+  initialize,
+  stopSubmit,
+  touch,
+  clearFields,
+} from "redux-form";
 import {
   ADD_ORDER_FAILURE,
   ADD_ORDER_PRODUCT_FAILURE,
@@ -17,17 +24,16 @@ import {
   FETCH_ORDERS_FAILURE,
   FETCH_ORDERS_START,
   FETCH_ORDERS_SUCCESS,
-  CLEAR_NOTE,
-  SET_NOTE,
   SET_IMG,
+  FETCH_ORDER_NOTES_START,
+  FETCH_ORDER_NOTES_SUCCESS,
+  FETCH_ORDER_NOTES_FAILURE,
   FETCH_EDIT_ORDER_START,
   FETCH_EDIT_ORDER_FAILURE,
   FETCH_EDIT_ORDER_SUCCESS,
   EDIT_ORDER_START,
   EDIT_ORDER_SUCCESS,
   EDIT_ORDER_FAILURE,
-  TOGGLE_EDITING_SUCCESS,
-  SET_LAST_PARAMS,
   SET_MODAL_ADD_PRODUCT,
   ADD_ORDER_PRODUCT_SUCCESS,
   ADD_ORDER_MANAGER_NOTE,
@@ -38,24 +44,30 @@ import {
   SET_MODAL_PRICE_FILTER,
   SET_MODAL_ORDER_DELETE,
   SET_MODAL_ORDER_PREVIEW,
+  SET_MODAL_ORDER_MANAGER_NOTES,
+  SET_MODAL_ORDER_ERROR,
+  ADD_MANAGER_NOTE_START,
+  ADD_MANAGER_NOTE_FAILURE,
+  ADD_MANAGER_NOTE_SUCCESS,
 } from "../actionTypes";
 import {
   addOrderProductApi,
   addOrderApi,
   fetchOrdersApi,
   changeStatusApi,
-  fetchEditOrderApi,
   editOrderApi,
   checkDeliveryPriceApi,
   removeOrderApi,
   fetchOrderApi,
+  fetchOrderNotesApi,
+  addManagerNoteApi,
 } from "../api/orders-api";
 
+// Получить заказы
 export const fetchOrders = (type, query, pageSize) => async (dispatch) => {
   dispatch({
     type: FETCH_ORDERS_START,
   });
-
   try {
     const ans = await fetchOrdersApi(type, query, pageSize);
 
@@ -73,6 +85,7 @@ export const fetchOrders = (type, query, pageSize) => async (dispatch) => {
   }
 };
 
+// Добавление заметки менеджера к заказу
 export const addOrderNote = (form, values) => (dispatch, getState) => {
   const email = getState().auth.email;
   const val = values || {};
@@ -87,6 +100,7 @@ export const addOrderNote = (form, values) => (dispatch, getState) => {
   dispatch(setModalAddManagerNote(null));
 };
 
+// Добавить продукт к заказу (Добавление или редактирование заказа)
 export const addOrderProduct = (art, form, values) => (dispatch) => {
   const val = values || [];
 
@@ -140,6 +154,7 @@ export const addOrderProduct = (art, form, values) => (dispatch) => {
     });
 };
 
+// Сохранение созданного заказа
 export const addOrder = (values) => (dispatch) => {
   if (!values) return;
 
@@ -163,6 +178,7 @@ export const addOrder = (values) => (dispatch) => {
     });
 };
 
+// Сохранение отредактированного заказа
 export const editOrder = (id, values) => (dispatch) => {
   if (!values) return;
   dispatch({
@@ -185,48 +201,75 @@ export const editOrder = (id, values) => (dispatch) => {
     });
 };
 
-export const toggleEditingSuccess = () => (dispatch) => {
-  dispatch({
-    type: TOGGLE_EDITING_SUCCESS,
-  });
-};
-
-export const changeStatus = (id, status, query) => async (dispatch) => {
-  dispatch({
-    type: CHANGE_STATUS_START,
-  });
-
-  try {
-    const ans = await changeStatusApi(id, status);
-
-    if (!!ans.data.status) throw new Error(ans.data.message);
-
+// Сохранение измененного статуса заказа
+export const changeStatus =
+  (id, status, type, query) => async (dispatch, getState) => {
     dispatch({
-      type: CHANGE_STATUS_SUCCESS,
+      type: CHANGE_STATUS_START,
     });
 
-    dispatch(fetchOrders(query));
-  } catch (err) {
-    console.info(err);
+    try {
+      const ans = await changeStatusApi(id, status);
+
+      if (!!ans.data.status) throw new Error(ans.data.message);
+
+      dispatch({
+        type: CHANGE_STATUS_SUCCESS,
+      });
+
+      const { size } = getState().app.tableSize;
+
+      dispatch(fetchOrders(type, query, size));
+    } catch (err) {
+      console.info(err);
+      dispatch({
+        type: CHANGE_STATUS_FAILURE,
+        payload: err.message,
+      });
+    }
+  };
+
+// Добавить заметку в заказ
+export const addManagerNote =
+  (id, values, type, query) => (dispatch, getState) => {
+    const name = getState().auth.name;
+
     dispatch({
-      type: CHANGE_STATUS_FAILURE,
-      payload: err.message,
+      type: ADD_MANAGER_NOTE_START,
     });
-  }
-};
 
-export const clearNote = () => (dispatch) => {
-  dispatch({
-    type: CLEAR_NOTE,
-  });
-};
+    addManagerNoteApi(id, { ...values, owner: name })
+      .then((ans) => {
+        if (!!ans.data.status) {
+          try {
+            const error = JSON.parse(ans.data.message);
+            dispatch(stopSubmit("ordAddNoteForm", error));
+            dispatch({
+              type: ADD_MANAGER_NOTE_FAILURE,
+              payload: error.message,
+            });
+          } catch (err) {
+            dispatch(
+              stopSubmit("ordAddNoteForm", { _error: ans.data.message })
+            );
+            dispatch({ type: ADD_MANAGER_NOTE_FAILURE, payload: err.message });
+          }
+        } else {
+          dispatch({ type: ADD_MANAGER_NOTE_SUCCESS });
+          dispatch(fetchOrderNotes(id));
+          dispatch(clearFields("ordAddNoteForm", false, false, "comment", ""));
+          const { size } = getState().app.tableSize;
 
-export const setNote = (content) => (dispatch) => {
-  dispatch({
-    type: SET_NOTE,
-    payload: content,
-  });
-};
+          dispatch(fetchOrders(type, query, size));
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: ADD_MANAGER_NOTE_FAILURE,
+          payload: err.message,
+        });
+      });
+  };
 
 export const setImg = (img) => (dispatch) => {
   dispatch({
@@ -235,36 +278,48 @@ export const setImg = (img) => (dispatch) => {
   });
 };
 
+// Получить заметки из заказа
+export const fetchOrderNotes = (id) => async (dispatch) => {
+  dispatch({
+    type: FETCH_ORDER_NOTES_START,
+  });
+
+  try {
+    const ans = await fetchOrderNotesApi(id);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: FETCH_ORDER_NOTES_SUCCESS,
+      payload: ans.data.notes,
+    });
+  } catch (err) {
+    console.info(err.message);
+    dispatch({
+      type: FETCH_ORDER_NOTES_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+// Предзагрузка заказа для редактирования
 export const fetchEditOrder = (id) => async (dispatch) => {
   dispatch({
     type: FETCH_EDIT_ORDER_START,
   });
 
   try {
-    const ans = await fetchEditOrderApi(id);
-    if (!!ans.data.status) throw new Error(ans.data.message);
+    const order = await dispatch(fetchOrder(id));
 
-    const { order } = ans.data;
+    console.log("editOrder: ", order);
 
     dispatch({
       type: FETCH_EDIT_ORDER_SUCCESS,
-      payload: order,
     });
 
     dispatch(
       initialize("editOrder", {
-        firstName: order.firstName,
-        lastName: order.lastName,
-        phone: order.phone,
-        email: order.email,
-        managerNotes: { notes: order.managerNotes },
-        userNotes: { notes: order.userNotes },
-        products: {
-          products: order.products,
-          inProgress: null,
-          success: null,
-          message: null,
-        },
+        ...order,
       })
     );
   } catch (err) {
@@ -276,6 +331,7 @@ export const fetchEditOrder = (id) => async (dispatch) => {
   }
 };
 
+// Получить заказ по ID
 export const fetchOrder = (id) => async (dispatch) => {
   dispatch({
     type: FETCH_ORDER_START,
@@ -290,6 +346,7 @@ export const fetchOrder = (id) => async (dispatch) => {
       type: FETCH_ORDER_SUCCESS,
       payload: ans.data,
     });
+    return ans.data.order;
   } catch (err) {
     console.info(err);
     dispatch({
@@ -299,14 +356,7 @@ export const fetchOrder = (id) => async (dispatch) => {
   }
 };
 
-// FIXME: не используется. проверить
-export const setLastParams = (query) => (dispatch) => {
-  dispatch({
-    type: SET_LAST_PARAMS,
-    payload: query,
-  });
-};
-
+//Получить стоимость перевозки почтой
 export const checkDeliveryPrice =
   (form, index = 299804, weight = 500) =>
   (dispatch) => {
@@ -342,7 +392,8 @@ export const checkDeliveryPrice =
       });
   };
 
-export const removeOrder = (id) => async (dispatch) => {
+// Удалить заказ
+export const removeOrder = (id, query, type) => async (dispatch, getState) => {
   dispatch({
     type: REMOVE_ORDER_START,
   });
@@ -357,6 +408,10 @@ export const removeOrder = (id) => async (dispatch) => {
     });
 
     dispatch(setModalOrderDelete(null));
+
+    const { size } = getState().app.tableSize;
+
+    dispatch(fetchOrders(type, query, size));
   } catch (err) {
     console.info(err);
     dispatch({
@@ -402,5 +457,20 @@ export const setModalOrderPreview = (id) => (dispatch) => {
   dispatch({
     type: SET_MODAL_ORDER_PREVIEW,
     payload: id,
+  });
+};
+
+// Управлением модальным окном заметок менеджера
+export const setModalOrderManagerNotes = (id) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ORDER_MANAGER_NOTES,
+    payload: id,
+  });
+};
+
+// Управление модальным окном ошибок
+export const setModalOrderError = () => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ORDER_ERROR,
   });
 };

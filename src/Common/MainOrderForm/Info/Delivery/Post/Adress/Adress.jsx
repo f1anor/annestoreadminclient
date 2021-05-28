@@ -1,4 +1,4 @@
-import TooltipBtn from "Common/TooltipBtn/TooltipBtn";
+import ErrorProvider from "Common/ErrorProvider/ErrorProvider";
 import React, { useEffect, useState } from "react";
 import { AddressSuggestions } from "react-dadata";
 import "react-dadata/dist/react-dadata.css";
@@ -7,22 +7,24 @@ import { change } from "redux-form";
 import css from "./Adress.module.css";
 
 const Adress = React.memo(
-  ({ meta: { touched, form, error }, input: { name, onFocus, onBlur } }) => {
+  ({
+    meta: { touched, form, error },
+    input: { name, onFocus, onBlur, value },
+  }) => {
     const dispatch = useDispatch();
-    const [val, setVal] = useState();
-    const [errType, setErrType] = useState(false);
+    const [val, setVal] = useState({});
 
-    let errorBadge = null;
-    let inputElement = null;
+    // Устанавливаем первоначальное значение если оно уже есть в заказе (при редактировании заказа)
+    useEffect(() => {
+      if (!!value && !val.value) {
+        setVal({ value });
+      }
+    }, [val, value]);
+
     const isError = touched && error;
 
-    useEffect(() => {
-      if (!errorBadge || !inputElement) return;
-      if (inputElement.clientWidth - errorBadge.offsetWidth < 170)
-        setErrType(true);
-    }, [errorBadge, inputElement, isError]);
-
     const handleSetVal = (val) => {
+      console.log(val);
       setVal(val);
       dispatch(change(form, name, val.value));
       if (val.data.postal_code) {
@@ -37,8 +39,8 @@ const Adress = React.memo(
     };
 
     return (
-      <div>
-        <div className={css.inputWrapper}>
+      <div className={css.inputWrapper}>
+        <ErrorProvider error={error} isError={isError}>
           <AddressSuggestions
             token={process.env.REACT_APP_DADATA_KEY}
             value={val}
@@ -55,22 +57,7 @@ const Adress = React.memo(
             currentSuggestionClassName={css.currentSuggestion}
             highlightClassName={css.highlight}
           />
-          {!!isError && !errType && (
-            <span
-              ref={(item) => (errorBadge = item)}
-              className={css.errorBadge}
-            >
-              {error}
-            </span>
-          )}
-          {!!isError && !!errType && (
-            <TooltipBtn
-              className={css.errorTooltip}
-              value={error}
-              placeholder="!"
-            />
-          )}
-        </div>
+        </ErrorProvider>
       </div>
     );
   }

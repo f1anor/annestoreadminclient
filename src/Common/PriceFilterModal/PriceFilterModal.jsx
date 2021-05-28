@@ -4,7 +4,7 @@ import ModalText from "Common/ModalText/ModalText";
 import ModalTitle from "Common/ModalTitle/ModalTitle";
 import React from "react";
 import { reduxForm, Field } from "redux-form";
-import { required } from "utils/validators";
+import { isNumber, required } from "utils/validators";
 import { ReactComponent as WalletIcon } from "assets/svg/wallet2.svg";
 import ModalButton from "Common/ModalButton/ModalButton";
 import css from "./PriceFilterModal.module.css";
@@ -26,7 +26,7 @@ const PriceFilterModal = ({
           component={Input}
           name="value"
           className={css.input}
-          validate={[validator || required]}
+          validate={[validator || required, isNumber]}
         />
         <div className={css.btnsLine}>
           <ModalButton type="button" data-modal-close="true" secondary={true}>

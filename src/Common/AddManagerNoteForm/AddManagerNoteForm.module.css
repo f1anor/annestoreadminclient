@@ -1,0 +1,12 @@
+.areaWrapper {
+  margin-top: 20px;
+  color: var(--color-title);
+}
+
+.area textarea {
+  margin-top: 5px;
+  border: 2px solid var(--color-violet-modal);
+  background-color: transparent;
+  box-shadow: none;
+  height: 200px;
+}

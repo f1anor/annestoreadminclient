@@ -3,7 +3,7 @@ import css from "./DateFormFilter.module.css";
 import { ReactComponent as CalendarIcon } from "assets/svg/calendar3.svg";
 import CustomDatePicker from "Common/CustomDatePicker/CustomDatePicker";
 
-const DateFormFilter = ({ handleTimeChange, startDate, maxDate }) => {
+const DateFormFilter = ({ handleTimeChange, startDate, maxDate, disabled }) => {
   const CustomButton = forwardRef(({ value, onClick }, ref) => {
     let date = null;
     if (!!value) {
@@ -13,7 +13,12 @@ const DateFormFilter = ({ handleTimeChange, startDate, maxDate }) => {
     }
 
     return (
-      <button className={css.dateWrapper} onClick={onClick} ref={ref}>
+      <button
+        className={css.dateWrapper}
+        onClick={onClick}
+        ref={ref}
+        disabled={disabled}
+      >
         <CalendarIcon />
         Дата от: <span>{date || "Нет"}</span>
       </button>

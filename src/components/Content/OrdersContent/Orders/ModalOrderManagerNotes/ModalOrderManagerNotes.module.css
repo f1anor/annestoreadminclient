@@ -1,0 +1,102 @@
+.modal {
+  width: 550px !important;
+}
+
+.menuLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menuButton {
+  display: block;
+  flex-grow: 1;
+  border: none;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-medium);
+  color: #7d86a3;
+}
+
+.menuLine .menuButton.active {
+  color: var(--color-title);
+  text-align: left;
+}
+
+.menuButton.active::after {
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 56px;
+  background-color: var(--color-violet-modal);
+  left: 0;
+  bottom: 0;
+}
+
+.menuButton:first-of-type {
+  text-align-last: left;
+}
+
+.menuButton:last-of-type {
+  text-align: right;
+}
+
+.counterBadge {
+  background-color: #ff715b;
+  color: #fff;
+  padding-left: 8px;
+  padding-right: 8px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  height: 18px;
+  font-size: 14px;
+  line-height: 18px;
+  border-radius: 50px;
+  font-family: var(--font-bold);
+}
+
+.notesContent {
+  height: 350px;
+  overflow: scroll;
+  position: relative;
+}
+
+.emptyMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.message {
+  background-color: #f6f6f7;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.comment {
+  clear: both;
+  margin-top: 10px;
+}
+
+.message .smile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: yellow;
+  float: left;
+  margin-right: 10px;
+}
+
+.message .info {
+  font-family: var(--font-bold);
+}

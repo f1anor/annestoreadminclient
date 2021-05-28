@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 import css from "./Input.module.css";
 import { ReactComponent as LockIcon } from "assets/svg/lock2.svg";
 import ErrorProvider from "Common/ErrorProvider/ErrorProvider";
+import InputAnimProvider from "Common/InputAnimProvider/InputAnimProvider";
 
 const Input = React.memo(
   ({
@@ -13,6 +14,7 @@ const Input = React.memo(
     readOnly = false,
     placeholder = "",
     disabled,
+    anim = false,
     meta: { touched, error, submitFailed } = false,
     ...props
   }) => {
@@ -22,16 +24,18 @@ const Input = React.memo(
       <div className={css.wrapper}>
         {!!label && <label>{label}</label>}
         <ErrorProvider error={error} isError={isError}>
-          <input
-            disabled={disabled}
-            className={[css.input, isError ? css.error : "", className].join(
-              " "
-            )}
-            placeholder={placeholder}
-            {...input}
-            {...props}
-          />
-          {!!disabled && <LockIcon className={css.lock} />}
+          <InputAnimProvider anim={anim}>
+            <input
+              disabled={disabled}
+              className={[css.input, isError ? css.error : "", className].join(
+                " "
+              )}
+              placeholder={placeholder}
+              {...input}
+              {...props}
+            />
+            {!!disabled && <LockIcon className={css.lock} />}
+          </InputAnimProvider>
         </ErrorProvider>
 
         <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>

@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper > button:not(:first-of-type) {
+  margin-left: -60px;
+}
+
+.wrapper > button:hover {
+  z-index: 999;
+}

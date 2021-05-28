@@ -12,10 +12,6 @@ export const addOrderApi = async (order) => {
   return instance.post("/orders", order);
 };
 
-export const fetchEditOrderApi = async (id) => {
-  return instance.get(`/orders/getedit/${id}`);
-};
-
 export const editOrderApi = async (id, order) => {
   return instance.put(`/orders/${id}`, order);
 };
@@ -38,4 +34,12 @@ export const removeOrderApi = async (id) => {
 
 export const fetchOrderApi = async (id) => {
   return instance.get(`/orders/single/${id}`);
+};
+
+export const fetchOrderNotesApi = async (id) => {
+  return instance.get(`/orders/notes/${id}`);
+};
+
+export const addManagerNoteApi = async (id, values) => {
+  return instance.post(`/orders/addnote/${id}`, values);
 };

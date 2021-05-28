@@ -3,7 +3,7 @@ import css from "./DateToFilter.module.css";
 import { ReactComponent as CalendarIcon } from "assets/svg/calendar3.svg";
 import CustomDatePicker from "Common/CustomDatePicker/CustomDatePicker";
 
-const DateToFilter = ({ handleTimeChange, startDate, minDate }) => {
+const DateToFilter = ({ handleTimeChange, startDate, minDate, disabled }) => {
   const CustomButton = forwardRef(({ value, onClick }, ref) => {
     let date = null;
     if (!!value) {
@@ -13,7 +13,12 @@ const DateToFilter = ({ handleTimeChange, startDate, minDate }) => {
     }
 
     return (
-      <button className={css.dateWrapper} onClick={onClick} ref={ref}>
+      <button
+        className={css.dateWrapper}
+        onClick={onClick}
+        ref={ref}
+        disabled={disabled}
+      >
         <CalendarIcon />
         Дата до: <span>{date || "Нет"}</span>
       </button>

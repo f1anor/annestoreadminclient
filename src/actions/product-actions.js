@@ -273,41 +273,39 @@ export const clearSelectedAll = () => (dispatch) => {
   });
 };
 
-export const deleteProducts = (query, history) => async (
-  dispatch,
-  getState
-) => {
-  dispatch({
-    type: DELETE_PRODUCTS_START,
-  });
-
-  const product = getState().product;
-  const { selected, currentProducts } = product;
-
-  try {
-    const ans = await deleteProductsApi(selected);
-
-    if (!!ans.data.status) throw new Error(ans.data.message);
-
+export const deleteProducts =
+  (query, history) => async (dispatch, getState) => {
     dispatch({
-      type: DELETE_PRODUCTS_SUCCESS,
+      type: DELETE_PRODUCTS_START,
     });
 
-    const page = +query.get("page");
-    if (selected.length === currentProducts.length && page > 1) {
-      query.set("page", page - 1);
-      history.push(`${history.location.pathname}?${query}`);
-    } else {
-      dispatch(fetchArchiveProducts(query.toString()));
+    const product = getState().product;
+    const { selected, currentProducts } = product;
+
+    try {
+      const ans = await deleteProductsApi(selected);
+
+      if (!!ans.data.status) throw new Error(ans.data.message);
+
+      dispatch({
+        type: DELETE_PRODUCTS_SUCCESS,
+      });
+
+      const page = +query.get("page");
+      if (selected.length === currentProducts.length && page > 1) {
+        query.set("page", page - 1);
+        history.push(`${history.location.pathname}?${query}`);
+      } else {
+        dispatch(fetchArchiveProducts(query.toString()));
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({
+        type: DELETE_PRODUCTS_FAILURE,
+        payload: err.message,
+      });
     }
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: DELETE_PRODUCTS_FAILURE,
-      payload: err.message,
-    });
-  }
-};
+  };
 
 export const toggleAddingSuccess = () => (dispatch) => {
   dispatch({
@@ -354,42 +352,40 @@ export const moveToArchive = (query, history) => async (dispatch, getState) => {
   }
 };
 
-export const restoreFromArchive = (query, history) => async (
-  dispatch,
-  getState
-) => {
-  dispatch({
-    type: RESTORE_FROM_ARCHIVE_START,
-  });
-
-  const product = getState().product;
-  const { selected, currentArchiveProducts } = product;
-
-  try {
-    const ans = await restoreFromArchiveApi(selected);
-
-    if (!!ans.data.status) throw new Error(ans.data.message);
-
+export const restoreFromArchive =
+  (query, history) => async (dispatch, getState) => {
     dispatch({
-      type: RESTORE_FROM_ARCHIVE_SUCCESS,
+      type: RESTORE_FROM_ARCHIVE_START,
     });
 
-    const page = +query.get("page");
-    if (selected.length === currentArchiveProducts.length && page > 1) {
-      query.set("page", page - 1);
-      history.push(`${history.location.pathname}?${query}`);
-    } else {
-      dispatch(fetchArchiveProducts(query.toString()));
+    const product = getState().product;
+    const { selected, currentArchiveProducts } = product;
+
+    try {
+      const ans = await restoreFromArchiveApi(selected);
+
+      if (!!ans.data.status) throw new Error(ans.data.message);
+
+      dispatch({
+        type: RESTORE_FROM_ARCHIVE_SUCCESS,
+      });
+
+      const page = +query.get("page");
+      if (selected.length === currentArchiveProducts.length && page > 1) {
+        query.set("page", page - 1);
+        history.push(`${history.location.pathname}?${query}`);
+      } else {
+        dispatch(fetchArchiveProducts(query.toString()));
+      }
+    } catch (err) {
+      console.log(err);
+
+      dispatch({
+        type: RESTORE_FROM_ARCHIVE_FAILURE,
+        payload: err.message,
+      });
     }
-  } catch (err) {
-    console.log(err);
-
-    dispatch({
-      type: RESTORE_FROM_ARCHIVE_FAILURE,
-      payload: err.message,
-    });
-  }
-};
+  };
 
 export const fetchArchiveProducts = (query) => async (dispatch) => {
   dispatch({
@@ -414,31 +410,29 @@ export const fetchArchiveProducts = (query) => async (dispatch) => {
   }
 };
 
-export const toggleStatus = (id, status, query) => async (
-  dispatch,
-  getState
-) => {
-  dispatch({
-    type: TOGGLE_STATUS_START,
-  });
-
-  try {
-    const ans = await toggleStatusApi(id, status);
-
-    if (!!ans.data.status) throw new Error(ans.data.message);
-
+export const toggleStatus =
+  (id, status, query) => async (dispatch, getState) => {
     dispatch({
-      type: TOGGLE_STATUS_SUCCESS,
+      type: TOGGLE_STATUS_START,
     });
 
-    // TODO: Проверить
-    const pageSize = getPageSize(getState());
-    dispatch(fetchProducts(query, pageSize));
-  } catch (err) {
-    console.log(err.message);
-    dispatch({
-      type: TOGGLE_STATUS_FAILURE,
-      payload: err.message,
-    });
-  }
-};
+    try {
+      const ans = await toggleStatusApi(id, status);
+
+      if (!!ans.data.status) throw new Error(ans.data.message);
+
+      dispatch({
+        type: TOGGLE_STATUS_SUCCESS,
+      });
+
+      // TODO: Проверить
+      const pageSize = getPageSize(getState());
+      dispatch(fetchProducts(query, pageSize));
+    } catch (err) {
+      console.log(err.message);
+      dispatch({
+        type: TOGGLE_STATUS_FAILURE,
+        payload: err.message,
+      });
+    }
+  };

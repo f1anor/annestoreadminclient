@@ -51,5 +51,3 @@ const MenuContainer = ({ title, menu, ...props }) => {
   return <Menu ref={menu} posx={posx} posy={posy} {...props} />;
 };
 export default MenuContainer;
-// menu.current.offsetWidth / 2 +
-// title.current.offsetWidth / 2

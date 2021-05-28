@@ -23,22 +23,41 @@
   transform: translate(-50%, -50%);
   animation: fadeIn 0.3s;
   box-shadow: 0 0 60px 4px rgba(0, 0, 0, 0.1);
-  cursor: unset;
+  cursor: default;
+  width: 490px;
 }
 
+.inner .icon {
+  width: 25px;
+  height: 25px;
+  top: 0px;
+}
 .closeBtn {
-  color: rgb(153, 153, 153);
-  font-size: 25px;
   position: absolute;
-  right: 20px;
-  top: 20px;
-  width: 20px;
-  height: 20px;
-  line-height: 0;
+  top: 26px;
+  right: 60px;
+  width: 35px;
+  height: 35px;
   margin: 0;
   padding: 0;
+  cursor: pointer;
   border: none;
+  box-sizing: border-box;
   background-color: transparent;
+  z-index: 9999;
+}
+
+.closeBtn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  /* background-color: red; */
+}
+
+.closeBtn svg path {
+  fill: var(--color-title);
 }
 
 @keyframes fadeIn {

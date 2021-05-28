@@ -1,0 +1,36 @@
+.button {
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-medium);
+  letter-spacing: 0px;
+  font-size: 16px;
+  width: 140px;
+  height: 27px;
+  line-height: 27px;
+  border: none;
+}
+
+.new {
+  background-color: #baefff;
+  color: #3a8ca3;
+}
+
+.process {
+  background-color: #eae6ff;
+  color: #675ab5;
+}
+
+.warning {
+  background-color: #fff1b4;
+  color: #fc950e;
+}
+
+.delivery {
+  background-color: #abf5d2;
+  color: #278564;
+}
+
+.completed {
+  background-color: #edeef2;
+  color: #909ca9;
+}

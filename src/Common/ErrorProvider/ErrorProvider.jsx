@@ -2,28 +2,27 @@ import TooltipBtn from "Common/TooltipBtn/TooltipBtn";
 import React, { useEffect, useRef, useState } from "react";
 import css from "./ErrorProvider.module.css";
 
-const ErrorProvider = ({ children, isError, error, className, ...props }) => {
+const ErrorProvider = ({ children, isError, error, className }) => {
   const [errType, setErrType] = useState(false);
   const wrapper = useRef();
-
-  let errorBadge = null;
+  let errorBadge = useRef();
 
   useEffect(() => {
     const inputElement =
       wrapper.current.querySelector("input") ||
       wrapper.current.querySelector("textarea");
 
-    if (!errorBadge || !inputElement) return;
-    if (inputElement.clientWidth - errorBadge.offsetWidth < 170)
+    if (!errorBadge.current || !inputElement) return;
+    if (inputElement.clientWidth - errorBadge.current.offsetWidth < 170)
       setErrType(true);
-  }, [errorBadge, isError]);
+  }, [errorBadge.current, isError]);
 
   return (
     <div ref={wrapper} className={css.wrapper}>
       {children}
       {!!isError && !errType && (
         <span
-          ref={(item) => (errorBadge = item)}
+          ref={errorBadge}
           className={[css.errorBadge, className].join(" ")}
         >
           {error}

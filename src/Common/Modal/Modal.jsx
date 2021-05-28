@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import css from "./Modal.module.css";
+import { ReactComponent as XIcon } from "assets/svg/x.svg";
 
 const Modal = ({ close, children, className = "", wrapperClassName = "" }) => {
   const inner = useRef();
@@ -36,7 +37,7 @@ const Modal = ({ close, children, className = "", wrapperClassName = "" }) => {
             data-modal-close="true"
             type="button"
           >
-            &times;
+            <XIcon />
           </button>
           {children}
         </div>

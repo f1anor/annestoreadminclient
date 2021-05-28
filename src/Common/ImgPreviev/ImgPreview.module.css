@@ -8,6 +8,7 @@
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
+  border: none;
 }
 
 .wrapper img {

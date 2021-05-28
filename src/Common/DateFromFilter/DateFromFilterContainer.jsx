@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import DateFormFilter from "./DateFormFilter";
 
-const DateFromFilterContainer = ({ query, filters }) => {
+const DateFromFilterContainer = ({ query, filters, ...props }) => {
   const pathName = useLocation().pathname;
   const history = useHistory();
 
@@ -38,6 +38,7 @@ const DateFromFilterContainer = ({ query, filters }) => {
       startDate={startDate}
       handleTimeChange={handleTimeChange}
       maxDate={maxDate}
+      {...props}
     />
   );
 };

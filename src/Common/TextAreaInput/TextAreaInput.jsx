@@ -13,6 +13,8 @@ const TextAreaInput = ({
   ...props
 }) => {
   const isError = touched && error;
+
+  console.log(error);
   return (
     <div className={[css.wrapper, className].join(" ")}>
       <ErrorProvider

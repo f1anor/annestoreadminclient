@@ -4,9 +4,19 @@ import css from "./DropdownMenu.module.css";
 import MenuContainer from "./Menu/MenuContainer";
 
 const DropdownMenu = (
-  { button, open, handleToggle, title, menu, className = "", ...props },
+  {
+    button,
+    open,
+    handleToggle,
+    title,
+    menu,
+    className = "",
+    disabled,
+    ...props
+  },
   ref
 ) => {
+  console.log(disabled);
   return (
     <div className={[css.wrapper, className].join(" ")}>
       <button
@@ -14,6 +24,7 @@ const DropdownMenu = (
         onClick={handleToggle}
         ref={ref}
         type="button"
+        disabled={disabled}
       >
         {button}
       </button>
