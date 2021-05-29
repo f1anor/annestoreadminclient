@@ -1,4 +1,5 @@
 import ErrorProvider from "Common/ErrorProvider/ErrorProvider";
+import InputAnimProvider from "Common/InputAnimProvider/InputAnimProvider";
 import React from "react";
 import css from "./TextAreaInput.module.css";
 
@@ -9,12 +10,12 @@ const TextAreaInput = ({
   className = "",
   readOnly = false,
   placeholder = "",
+  anim = false,
   meta: { touched, error } = false,
   ...props
 }) => {
   const isError = touched && error;
 
-  console.log(error);
   return (
     <div className={[css.wrapper, className].join(" ")}>
       <ErrorProvider
@@ -22,12 +23,14 @@ const TextAreaInput = ({
         isError={isError}
         error={error}
       >
-        <textarea
-          className={[css.area, isError ? css.error : ""].join(" ")}
-          placeholder={placeholder}
-          {...input}
-          {...props}
-        />
+        <InputAnimProvider anim={anim} className={css.anim}>
+          <textarea
+            className={[css.area, isError ? css.error : ""].join(" ")}
+            placeholder={placeholder}
+            {...input}
+            {...props}
+          />
+        </InputAnimProvider>
       </ErrorProvider>
     </div>
   );

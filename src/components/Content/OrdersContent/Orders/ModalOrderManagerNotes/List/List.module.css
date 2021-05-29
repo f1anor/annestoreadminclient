@@ -1,0 +1,46 @@
+.notesContent {
+  height: 350px;
+  overflow: scroll;
+  position: relative;
+}
+
+.emptyMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.message {
+  background-color: #f6f6f7;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.comment {
+  clear: both;
+  margin-top: 10px;
+}
+
+.message .smile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: yellow;
+  float: left;
+  margin-right: 10px;
+}
+
+.message .info {
+  font-family: var(--font-bold);
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  margin-left: 20px;
+  font-family: var(--font-medium);
+}

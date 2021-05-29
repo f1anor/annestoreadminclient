@@ -4,6 +4,7 @@
   cursor: pointer;
   color: var(--color-title);
   position: relative;
+  font-family: var(--font-medium);
 }
 
 .button > svg {

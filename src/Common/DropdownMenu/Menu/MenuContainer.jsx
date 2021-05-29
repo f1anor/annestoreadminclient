@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
 import { getCoords } from "utils/utils";
 
-const MenuContainer = ({ title, menu, ...props }) => {
+const MenuContainer = ({ title, menu, noScroll, ...props }) => {
   const [posx, setPosx] = useState(false);
   const [posy, setPosy] = useState(false);
+  console.log("posx: ", posx);
 
   useEffect(() => {
     let timeout = null;
@@ -40,11 +41,11 @@ const MenuContainer = ({ title, menu, ...props }) => {
       );
     };
 
-    window.addEventListener("mousewheel", checkCoords);
+    if (!noScroll) window.addEventListener("mousewheel", checkCoords);
     correctCoords();
 
     return () => {
-      window.removeEventListener("mousewheel", checkCoords);
+      if (!noScroll) window.removeEventListener("mousewheel", checkCoords);
     };
   }, [setPosx, setPosy, menu, title]);
 

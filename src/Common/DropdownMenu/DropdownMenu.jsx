@@ -12,11 +12,11 @@ const DropdownMenu = (
     menu,
     className = "",
     disabled,
+    noScroll,
     ...props
   },
   ref
 ) => {
-  console.log(disabled);
   return (
     <div className={[css.wrapper, className].join(" ")}>
       <button
@@ -28,7 +28,14 @@ const DropdownMenu = (
       >
         {button}
       </button>
-      {!!open && <MenuContainer menu={menu} title={title} {...props} />}
+      {!!open && (
+        <MenuContainer
+          menu={menu}
+          title={title}
+          noScroll={noScroll}
+          {...props}
+        />
+      )}
     </div>
   );
 };

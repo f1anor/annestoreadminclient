@@ -29,12 +29,14 @@
 .menuButton.active::after {
   content: " ";
   display: block;
+  position: absolute;
   width: 100%;
   height: 3px;
   border-radius: 56px;
   background-color: var(--color-violet-modal);
   left: 0;
   bottom: 0;
+  z-index: 999;
 }
 
 .menuButton:first-of-type {
@@ -58,45 +60,5 @@
   font-size: 14px;
   line-height: 18px;
   border-radius: 50px;
-  font-family: var(--font-bold);
-}
-
-.notesContent {
-  height: 350px;
-  overflow: scroll;
-  position: relative;
-}
-
-.emptyMessage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.message {
-  background-color: #f6f6f7;
-  border-radius: 6px;
-  box-sizing: border-box;
-  padding: 10px;
-  margin-top: 20px;
-}
-
-.comment {
-  clear: both;
-  margin-top: 10px;
-}
-
-.message .smile {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: yellow;
-  float: left;
-  margin-right: 10px;
-}
-
-.message .info {
   font-family: var(--font-bold);
 }

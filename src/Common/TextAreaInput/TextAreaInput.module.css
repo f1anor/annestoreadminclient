@@ -18,3 +18,7 @@
 .errorProvider {
   top: 30px;
 }
+
+.anim {
+  top: 30px !important;
+}

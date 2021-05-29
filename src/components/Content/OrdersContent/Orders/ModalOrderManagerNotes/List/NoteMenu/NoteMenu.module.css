@@ -1,0 +1,8 @@
+.icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.icon path {
+  fill: var(--color-title);
+}

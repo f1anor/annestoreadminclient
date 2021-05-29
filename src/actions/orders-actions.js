@@ -49,6 +49,9 @@ import {
   ADD_MANAGER_NOTE_START,
   ADD_MANAGER_NOTE_FAILURE,
   ADD_MANAGER_NOTE_SUCCESS,
+  REMOVE_NOTE_FROM_ORDER_START,
+  REMOVE_NOTE_FROM_ORDER_FAILURE,
+  REMOVE_NOTE_FROM_ORDER_SUCCESS,
 } from "../actionTypes";
 import {
   addOrderProductApi,
@@ -61,6 +64,7 @@ import {
   fetchOrderApi,
   fetchOrderNotesApi,
   addManagerNoteApi,
+  removeNoteFromOrderApi,
 } from "../api/orders-api";
 
 // Получить заказы
@@ -279,28 +283,30 @@ export const setImg = (img) => (dispatch) => {
 };
 
 // Получить заметки из заказа
-export const fetchOrderNotes = (id) => async (dispatch) => {
-  dispatch({
-    type: FETCH_ORDER_NOTES_START,
-  });
-
-  try {
-    const ans = await fetchOrderNotesApi(id);
-
-    if (!!ans.data.status) throw new Error(ans.data.message);
-
+export const fetchOrderNotes =
+  (id, position = "1") =>
+  async (dispatch) => {
     dispatch({
-      type: FETCH_ORDER_NOTES_SUCCESS,
-      payload: ans.data.notes,
+      type: FETCH_ORDER_NOTES_START,
     });
-  } catch (err) {
-    console.info(err.message);
-    dispatch({
-      type: FETCH_ORDER_NOTES_FAILURE,
-      payload: err.message,
-    });
-  }
-};
+
+    try {
+      const ans = await fetchOrderNotesApi(id, position);
+
+      if (!!ans.data.status) throw new Error(ans.data.message);
+
+      dispatch({
+        type: FETCH_ORDER_NOTES_SUCCESS,
+        payload: ans.data.notes,
+      });
+    } catch (err) {
+      console.info(err.message);
+      dispatch({
+        type: FETCH_ORDER_NOTES_FAILURE,
+        payload: err.message,
+      });
+    }
+  };
 
 // Предзагрузка заказа для редактирования
 export const fetchEditOrder = (id) => async (dispatch) => {
@@ -420,6 +426,34 @@ export const removeOrder = (id, query, type) => async (dispatch, getState) => {
     });
   }
 };
+
+// Удалить заметку из заказа
+export const removeNoteFromOrder =
+  (id, time, type, query) => async (dispatch, getState) => {
+    dispatch({
+      type: REMOVE_NOTE_FROM_ORDER_START,
+    });
+
+    try {
+      const ans = await removeNoteFromOrderApi(id, time);
+
+      if (!!ans.data.status) throw new Error(ans.data.message);
+      const { size } = getState().app.tableSize;
+
+      dispatch({
+        type: REMOVE_NOTE_FROM_ORDER_SUCCESS,
+      });
+
+      dispatch(fetchOrderNotes(id));
+      dispatch(fetchOrders(type, query, size));
+    } catch (err) {
+      console.info(err);
+      dispatch({
+        type: REMOVE_NOTE_FROM_ORDER_FAILURE,
+        payload: err.message,
+      });
+    }
+  };
 
 // Управление модальным окном добавления продукта в форму заказа
 export const setModalAddProduct = (form) => (dispatch) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import DropdownMenu from "./DropdownMenu";
 
-const DropdownMenuContainer = ({ button, children, ...props }) => {
+const DropdownMenuContainer = ({ button, children, noScroll, ...props }) => {
   const title = useRef();
   const menu = useRef();
   const [open, setOpen] = useState(false);
@@ -21,6 +21,11 @@ const DropdownMenuContainer = ({ button, children, ...props }) => {
     setOpen(false);
   };
 
+  // Закрываем меню при прокручивании скроллом
+  const handleScrollClose = () => {
+    setOpen(false);
+  };
+
   const handleCancel = (e) => {
     if (e.keyCode !== 27) return;
     setOpen(false);
@@ -29,10 +34,13 @@ const DropdownMenuContainer = ({ button, children, ...props }) => {
   useEffect(() => {
     window.addEventListener("click", handleClose);
     window.addEventListener("keydown", handleCancel);
+    if (!!noScroll) window.addEventListener("mousewheel", handleScrollClose);
 
     return () => {
       window.removeEventListener("click", handleClose);
       window.removeEventListener("keydown", handleCancel);
+      if (!!noScroll)
+        window.removeEventListener("mousewheel", handleScrollClose);
     };
   }, []);
 
@@ -45,6 +53,7 @@ const DropdownMenuContainer = ({ button, children, ...props }) => {
       ref={title}
       button={button}
       children={children}
+      noScroll={noScroll}
       {...props}
     />
   );

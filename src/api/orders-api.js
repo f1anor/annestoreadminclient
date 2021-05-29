@@ -36,10 +36,14 @@ export const fetchOrderApi = async (id) => {
   return instance.get(`/orders/single/${id}`);
 };
 
-export const fetchOrderNotesApi = async (id) => {
-  return instance.get(`/orders/notes/${id}`);
+export const fetchOrderNotesApi = async (id, position) => {
+  return instance.get(`/orders/notes/${id}/${position}`);
 };
 
 export const addManagerNoteApi = async (id, values) => {
   return instance.post(`/orders/addnote/${id}`, values);
+};
+
+export const removeNoteFromOrderApi = async (id, time) => {
+  return instance.put(`/orders/removenote/${id}/${time}`);
 };
