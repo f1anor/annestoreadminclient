@@ -15,11 +15,12 @@ import ModalPriceFilterToContainer from "./ModalPriceFilterTo/ModalPriceFilterTo
 import ModalDeleteContainer from "./ModalDelete/ModalDeleteContainer";
 import ModalOrderPreviewContainer from "./ModalOrderPreview/ModalOrderPreviewContainer";
 import ModalOrderManagerNotesContainer from "./ModalOrderManagerNotes/ModalOrderManagerNotesContainer";
+import LayoutWrapper from "Common/LayoutWrapper/LayoutWrapper";
 
 const Orders = React.memo(({ pageSize, totalCount, pathName, isDisabled }) => {
   return (
-    <div className={css.wrapper}>
-      <div className={css.content}>
+    <LayoutWrapper>
+      <div>
         <div className={css.titleLine}>
           <Title anim={isDisabled}>Заказы</Title>
           <div className={css.tools}>
@@ -105,7 +106,7 @@ const Orders = React.memo(({ pageSize, totalCount, pathName, isDisabled }) => {
       <ModalDeleteContainer />
       <ModalOrderPreviewContainer />
       <ModalOrderManagerNotesContainer />
-    </div>
+    </LayoutWrapper>
   );
 });
 

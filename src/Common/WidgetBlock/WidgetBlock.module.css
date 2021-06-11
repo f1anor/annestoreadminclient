@@ -1,0 +1,33 @@
+.wrapper {
+  cursor: default;
+  border-radius: 16px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: var(--main-shadow);
+  width: 23%;
+  min-height: 150px;
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #4c6077;
+  font-family: var(--font-medium);
+  padding-left: 45px;
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: -2px;
+  right: 0px;
+}
+
+.button {
+  width: 20px;
+  height: 20px;
+}
+
+.button path {
+  fill: #4c6077;
+}

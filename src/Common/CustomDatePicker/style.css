@@ -2,7 +2,7 @@
   background-color: #fff;
   box-sizing: border-box;
   border-radius: 16px;
-  border: none;
+  border: none !important;
   box-shadow: 0 0 25px 1px rgba(122, 121, 121, 0.1);
 }
 

@@ -1,0 +1,19 @@
+.dateWrapper {
+  padding: 10px;
+  background-color: #f6f6f7;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #4c6077;
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+  border: none;
+}
+
+.dateWrapper.nodate > svg {
+  margin-right: 0px;
+}
+
+.dateWrapper > svg {
+  margin-right: 10px;
+}

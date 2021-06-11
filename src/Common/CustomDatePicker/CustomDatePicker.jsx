@@ -13,8 +13,6 @@ const CustomDatePicker = ({
   onHandleChange,
   input,
 }) => {
-  //
-
   const MyContainer = ({ className, children }) => {
     return (
       <CalendarContainer className={[className, "custom__calendar"].join(" ")}>

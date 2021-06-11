@@ -3,47 +3,82 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  LineChart,
   Tooltip,
   Line,
-  Legend,
   ResponsiveContainer,
+  Area,
+  ComposedChart,
 } from "recharts";
+import css from "./Chart.module.css";
+import Metricks from "./Metricks/Metricks";
+import ToolsContainer from "./Tools/ToolsContainer";
 
 const Chart = ({ data, isFetching }) => {
+  const renderTooltip = ({ payload }) => {
+    const { visitors, makedOrders } =
+      !!payload && payload[0] && payload[0].payload ? payload[0].payload : {};
+
+    return (
+      <div className={css.tooltip}>
+        <div className={css.value}>Заказы: {makedOrders}</div>
+        <div className={css.value}>Посетители: {visitors}</div>
+      </div>
+    );
+  };
+
   return (
-    <div className="w-100 h-50 mt-5">
-      {!isFetching && (
-        <ResponsiveContainer>
-          <LineChart data={data}>
-            <Legend
-              verticalAlign="top"
-              height={36}
-              iconSize={20}
-              payload={[
-                {
-                  value: "Уникальные посетители",
-                  type: "line",
-                  id: "visitors",
-                  color: "#2f7df6",
-                },
-                {
-                  value: "Заказы",
-                  type: "line",
-                  id: "orders",
-                  color: "#ffca28",
-                },
-              ]}
-            />
-            <XAxis dataKey="time" />
-            <YAxis />
-            <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-            <Line dataKey="makedOrders" stroke="#ffc323" strokeWidth={3} />
-            <Line dataKey="visitors" stroke="#0070ff" strokeWidth={3} />
-            <Tooltip />
-          </LineChart>
-        </ResponsiveContainer>
-      )}
+    <div className={css.wrapper}>
+      <h2 className={css.title}>
+        Активность за период <ToolsContainer />
+      </h2>
+      {data.length > 0 && <Metricks data={data} />}
+
+      <div className={css.chart}>
+        {!isFetching && (
+          <ResponsiveContainer>
+            <ComposedChart data={data}>
+              <defs>
+                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#6C7AF7" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#6C7AF7" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <XAxis
+                dataKey="time"
+                axisLine={false}
+                tickMargin="10"
+                tick={{ stroke: "#54677D", strokeWidth: 1 }}
+                tickLine={false}
+              />
+              <YAxis
+                axisLine={false}
+                tickMargin="20"
+                tickLine={false}
+                tick={{ stroke: "#54677D", strokeWidth: 1 }}
+              />
+              <CartesianGrid stroke="#F4F4F4" vertical={false} />
+              <Tooltip content={renderTooltip} />
+              <Area
+                type="monotone"
+                dataKey="visitors"
+                stroke="#6C7AF7"
+                fillOpacity={1}
+                fill="url(#colorUv)"
+                dot={false}
+                strokeWidth={3}
+              />
+              <Line
+                type="monotone"
+                dot={false}
+                dataKey="makedOrders"
+                stroke="#82ca9d"
+                strokeWidth={3}
+                strokeDasharray="6 9"
+              />
+            </ComposedChart>
+          </ResponsiveContainer>
+        )}
+      </div>
     </div>
   );
 };

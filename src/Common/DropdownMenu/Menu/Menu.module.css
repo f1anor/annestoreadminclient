@@ -48,6 +48,10 @@
   padding-right: 30px;
 }
 
+.menu > ul > li > a {
+  color: var(--color-title);
+}
+
 .menu.withIcons > ul > li > * {
   padding-left: 60px;
 }

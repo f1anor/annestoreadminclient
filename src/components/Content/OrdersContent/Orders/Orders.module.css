@@ -1,8 +1,8 @@
-.wrapper {
+/* .wrapper {
   height: calc(100% - 20px);
   margin: 0 auto;
   max-width: 1300px;
-}
+} */
 
 .titleLine {
   display: flex;
