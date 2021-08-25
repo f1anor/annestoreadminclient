@@ -4,6 +4,10 @@ export const fetchOrdersApi = async (type, query, pageSize) => {
   return instance.get(`/orders/${type}?${query}&size=${pageSize}`);
 };
 
+export const fetchLastOrdersApi = async () => {
+  return instance.get("/orders/last");
+};
+
 export const addOrderProductApi = async (art) => {
   return instance.get(`/product/${art}`);
 };

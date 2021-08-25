@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: min-content;
+}
+
+.wrapper > button:not(:first-of-type) {
+  margin-left: -60px;
+}
+
+.wrapper > button:hover {
+  z-index: 999;
+}
+
+.badge {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background-color: var(--color-badge-red);
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+  border-radius: 50%;
+  font-family: var(--font-bold);
+  font-size: 14px;
+}
+
+.card {
+  position: absolute;
+  height: min-content;
+  left: -20px;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card > *:not(:last-child) {
+  margin-right: 10px;
+}

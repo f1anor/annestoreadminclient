@@ -16,6 +16,11 @@ body {
 a:hover {
   text-decoration: none !important;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
 /* 
 .table {
   box-sizing: border-box;
@@ -62,6 +67,7 @@ a:hover {
   --color-text-modal: #6b7597;
   --color-background: #f8f8fe;
   --color-red: #ff2753;
+  --color-badge-red: #ff705b;
   --color-darkgray: #333;
   --color-lightgray: #676a72;
   --inset-shadow: inset 0 0 10px 1px rgba(160, 160, 160, 0.1);

@@ -118,3 +118,70 @@ export const printComponent = (component, styles) => {
   mywindow.print();
   mywindow.close();
 };
+
+export const convertToTimeAgo = (time) => {
+  const dif = Date.now() - time;
+
+  let ans = "";
+
+  switch (true) {
+    case dif < 3600000:
+      ans = "Менее часа";
+      break;
+    case dif >= 3600000 && dif < 3600000 * 2:
+      ans = "Час";
+      break;
+    case dif >= 3600000 * 2 && dif < 3600000 * 5:
+      ans = Math.floor(dif / 3600000) + " часа";
+      break;
+    case dif >= 3600000 * 5 && dif < 3600000 * 21:
+      ans = Math.floor(dif / 3600000) + " часов";
+      break;
+    case dif >= 3600000 * 21 && dif < 3600000 * 22:
+      ans = Math.floor(dif / 3600000) + " час";
+      break;
+    case dif >= 3600000 * 22 && dif < 3600000 * 25:
+      ans = Math.floor(dif / 3600000) + " часа";
+      break;
+    case dif >= 86400000 && dif < 86400000 * 2:
+      ans = "День";
+      break;
+    case dif >= 86400000 * 2 && dif < 86400000 * 5:
+      ans = Math.floor(dif / 86400000) + " дня";
+      break;
+    case dif >= 86400000 * 5 && dif < 86400000 * 21:
+      ans = Math.floor(dif / 86400000) + " дней";
+      break;
+    case dif >= 86400000 * 21 && dif < 86400000 * 22:
+      ans = Math.floor(dif / 86400000) + " день";
+      break;
+    case dif >= 86400000 * 22 && dif < 86400000 * 25:
+      ans = Math.floor(dif / 86400000) + " дня";
+      break;
+    case dif >= 86400000 * 25 && dif < 86400000 * 31:
+      ans = Math.floor(dif / 86400000) + " дней";
+      break;
+    case dif >= 2592000000 && dif < 2592000000 * 2:
+      ans = "Месяц";
+      break;
+    case dif >= 2592000000 * 2 && dif < 2592000000 * 5:
+      ans = Math.floor(dif / 2592000000) + " месяца";
+      break;
+    case dif >= 2592000000 * 5 && dif < 2592000000 * 13:
+      ans = Math.floor(dif / 2592000000) + " месяцев";
+      break;
+    case dif >= 686880000000 && dif < 686880000000 * 2:
+      ans = "Год";
+      break;
+    case dif >= 686880000000 * 2 && dif < 686880000000 * 5:
+      ans = Math.floor(dif / 686880000000) + " года";
+      break;
+    case dif >= 686880000000 * 5 && dif < 686880000000 * 21:
+      ans = Math.ceil(dif / 686880000000) + " лет";
+      break;
+    default:
+      return "";
+  }
+
+  return ans + " назад";
+};

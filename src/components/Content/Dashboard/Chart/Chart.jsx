@@ -1,3 +1,5 @@
+import AnimatedCard from "Common/AnimatedCard/AnimatedCard";
+import CardTitle from "Common/CardTitle/CardTitle";
 import React from "react";
 import {
   XAxis,
@@ -27,10 +29,10 @@ const Chart = ({ data, isFetching }) => {
   };
 
   return (
-    <div className={css.wrapper}>
-      <h2 className={css.title}>
+    <AnimatedCard className={css.wrapper}>
+      <CardTitle className={css.title}>
         Активность за период <ToolsContainer />
-      </h2>
+      </CardTitle>
       {data.length > 0 && <Metricks data={data} />}
 
       <div className={css.chart}>
@@ -79,7 +81,7 @@ const Chart = ({ data, isFetching }) => {
           </ResponsiveContainer>
         )}
       </div>
-    </div>
+    </AnimatedCard>
   );
 };
 

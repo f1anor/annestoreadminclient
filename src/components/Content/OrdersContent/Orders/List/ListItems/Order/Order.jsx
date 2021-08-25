@@ -2,7 +2,7 @@ import React from "react";
 import MenuContainer from "./Menu/MenuContainer";
 import css from "./Order.module.css";
 import StatusContainer from "./Status/StatusContainer";
-import Structure from "./Structure/Structure";
+import Structure from "Common/Structure/Structure";
 
 const Order = ({
   order,

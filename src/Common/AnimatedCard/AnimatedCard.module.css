@@ -1,0 +1,18 @@
+.wrapper {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--main-shadow);
+  height: 100%;
+  align-self: stretch;
+  animation: fadeOut 0.6s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

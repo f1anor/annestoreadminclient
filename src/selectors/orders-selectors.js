@@ -15,6 +15,10 @@ export const getOrder = (state) => {
   return state.orders.order;
 };
 
+export const getLastOrders = (state) => {
+  return state.orders.lastOrders;
+};
+
 // Количество заказов
 export const getTotalCount = (state) => {
   return state.orders.totalCount;

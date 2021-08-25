@@ -32,6 +32,16 @@
   width: 9px;
   height: 3px;
 }
+
+.custom__calendar
+  .react-datepicker__navigation-icon.react-datepicker__navigation-icon--previous {
+  display: none;
+}
+.custom__calendar
+  .react-datepicker__navigation-icon.react-datepicker__navigation-icon--next {
+  display: none;
+}
+
 .custom__calendar
   .react-datepicker__navigation.react-datepicker__navigation--next:after {
   content: "";

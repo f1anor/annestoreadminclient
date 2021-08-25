@@ -6,6 +6,9 @@ import {
   CHANGE_STATUS_FAILURE,
   FETCH_ORDERS_START,
   FETCH_ORDERS_FAILURE,
+  FETCH_LAST_ORDERS_START,
+  FETCH_LAST_ORDERS_SUCCESS,
+  FETCH_LAST_ORDERS_FAILURE,
   EDIT_ORDER_START,
   EDIT_ORDER_SUCCESS,
   EDIT_ORDER_FAILURE,
@@ -42,6 +45,7 @@ import {
 const initialState = {
   orders: {}, //	Все заказы
   currentOrders: [], // Заказы на странице
+  lastOrders: [], //Последние заказы для дашборда
   order: null, // Один заказ, который просматривается
   counts: {}, // Колличество заказов по всем категориям
   totalCount: null, // Колличество заказов с учетом выбранной категории
@@ -126,6 +130,26 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         message: payload,
       };
 
+    // Получение последних заказов
+    case FETCH_LAST_ORDERS_START:
+      return {
+        ...state,
+        isFetching: true,
+        lastOrders: [],
+      };
+
+    case FETCH_LAST_ORDERS_SUCCESS:
+      return {
+        ...state,
+        isFetching: null,
+        lastOrders: payload,
+      };
+    case FETCH_LAST_ORDERS_FAILURE:
+      return {
+        ...state,
+        isFetching: null,
+        message: payload,
+      };
     // Изменение статуса заказа
     case CHANGE_STATUS_START:
       return {

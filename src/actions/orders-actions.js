@@ -24,6 +24,9 @@ import {
   FETCH_ORDERS_FAILURE,
   FETCH_ORDERS_START,
   FETCH_ORDERS_SUCCESS,
+  FETCH_LAST_ORDERS_START,
+  FETCH_LAST_ORDERS_SUCCESS,
+  FETCH_LAST_ORDERS_FAILURE,
   SET_IMG,
   FETCH_ORDER_NOTES_START,
   FETCH_ORDER_NOTES_SUCCESS,
@@ -57,6 +60,7 @@ import {
   addOrderProductApi,
   addOrderApi,
   fetchOrdersApi,
+  fetchLastOrdersApi,
   changeStatusApi,
   editOrderApi,
   checkDeliveryPriceApi,
@@ -85,6 +89,30 @@ export const fetchOrders = (type, query, pageSize) => async (dispatch) => {
     dispatch({
       type: FETCH_ORDERS_FAILURE,
       payload: err.message,
+    });
+  }
+};
+
+// Получить поледние заказы
+
+export const fetchLastOrders = () => async (dispatch) => {
+  dispatch({
+    type: FETCH_LAST_ORDERS_START,
+  });
+
+  try {
+    const ans = await fetchLastOrdersApi();
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: FETCH_LAST_ORDERS_SUCCESS,
+      payload: ans.data.orders,
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_LAST_ORDERS_FAILURE,
+      layload: err.message,
     });
   }
 };
