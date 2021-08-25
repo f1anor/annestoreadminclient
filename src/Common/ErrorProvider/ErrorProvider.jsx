@@ -15,7 +15,7 @@ const ErrorProvider = ({ children, isError, error, className }) => {
     if (!errorBadge.current || !inputElement) return;
     if (inputElement.clientWidth - errorBadge.current.offsetWidth < 170)
       setErrType(true);
-  }, [errorBadge.current, isError]);
+  }, [errorBadge, isError]);
 
   return (
     <div ref={wrapper} className={css.wrapper}>

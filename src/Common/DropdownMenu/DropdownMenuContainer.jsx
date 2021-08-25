@@ -42,7 +42,7 @@ const DropdownMenuContainer = ({ button, children, noScroll, ...props }) => {
       if (!!noScroll)
         window.removeEventListener("mousewheel", handleScrollClose);
     };
-  }, []);
+  }, [noScroll]);
 
   return (
     <DropdownMenu

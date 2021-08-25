@@ -5,7 +5,6 @@ import { getCoords } from "utils/utils";
 const MenuContainer = ({ title, menu, noScroll, ...props }) => {
   const [posx, setPosx] = useState(false);
   const [posy, setPosy] = useState(false);
-  console.log("posx: ", posx);
 
   useEffect(() => {
     let timeout = null;
@@ -47,7 +46,7 @@ const MenuContainer = ({ title, menu, noScroll, ...props }) => {
     return () => {
       if (!noScroll) window.removeEventListener("mousewheel", checkCoords);
     };
-  }, [setPosx, setPosy, menu, title]);
+  }, [setPosx, setPosy, menu, title, noScroll]);
 
   return <Menu ref={menu} posx={posx} posy={posy} {...props} />;
 };

@@ -185,3 +185,7 @@ export const convertToTimeAgo = (time) => {
 
   return ans + " назад";
 };
+
+export const generateRandom = (min, max) => {
+  return Math.floor(min + Math.random() * (max + 1 - min));
+};

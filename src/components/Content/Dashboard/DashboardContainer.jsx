@@ -1,23 +1,37 @@
 import React from "react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getChartData,
+  getIsFetching,
+  getSessions,
+  getTotalCount,
+} from "selectors/dashboard-selectors";
 import { fetchStatistic } from "../../../actions/dashboard-actions";
 import { useQuery } from "../../../utils/utils";
 import Dashboard from "./Dashboard";
 
-const DashboardContainer = ({ fetchStatistic, ...props }) => {
+const DashboardContainer = () => {
   const query = useQuery().toString();
 
-  useEffect(() => {
-    fetchStatistic(query);
-  }, [fetchStatistic, query]);
-  return <Dashboard {...props} />;
-};
-const mapStateToProps = (state) => ({
-  data: state.dashboard.data,
-  sessions: state.dashboard.sessions,
-  totalCount: state.dashboard.totalCount,
-  isFetching: state.dashboard.isFetching,
-});
+  const dispatch = useDispatch();
 
-export default connect(mapStateToProps, { fetchStatistic })(DashboardContainer);
+  const data = useSelector((state) => getChartData(state));
+  const sessions = useSelector((state) => getSessions(state));
+  const totalCount = useSelector((state) => getTotalCount(state));
+  const isFetching = useSelector((state) => getIsFetching(state));
+
+  useEffect(() => {
+    dispatch(fetchStatistic(query));
+  }, [query, dispatch]);
+  return (
+    <Dashboard
+      data={data}
+      sessions={sessions}
+      totalCount={totalCount}
+      isFetching={isFetching}
+    />
+  );
+};
+
+export default DashboardContainer;

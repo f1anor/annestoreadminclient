@@ -1,6 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { Pagination } from "react-bootstrap";
 import { useQuery } from "../../utils/utils";
 
 import css from "./CustomPagination.module.css";

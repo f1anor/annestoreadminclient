@@ -24,7 +24,6 @@ const Adress = React.memo(
     const isError = touched && error;
 
     const handleSetVal = (val) => {
-      console.log(val);
       setVal(val);
       dispatch(change(form, name, val.value));
       if (val.data.postal_code) {

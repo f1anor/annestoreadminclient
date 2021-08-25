@@ -345,8 +345,6 @@ export const fetchEditOrder = (id) => async (dispatch) => {
   try {
     const order = await dispatch(fetchOrder(id));
 
-    console.log("editOrder: ", order);
-
     dispatch({
       type: FETCH_EDIT_ORDER_SUCCESS,
     });

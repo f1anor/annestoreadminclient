@@ -1,10 +1,13 @@
 import AnimatedCard from "Common/AnimatedCard/AnimatedCard";
 import ImgPreview from "Common/ImgPreviev/ImgPreview";
 import React, { useState } from "react";
+import { generateRandom } from "utils/utils";
 import css from "./Structure.module.css";
 
 const Structure = ({ products = [], isDisabled }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const tmp = generateRandom(1000, 9999).toString();
 
   const setEnable = () => {
     if (!!isOpen) return;
@@ -12,7 +15,8 @@ const Structure = ({ products = [], isDisabled }) => {
   };
 
   const setDisable = (e) => {
-    if (!isOpen || !!e.relatedTarget.closest("div[data-wrapper]")) return;
+    if (!isOpen || !!e.relatedTarget.closest(`div[data-wrapper='${tmp}']`))
+      return;
     setIsOpen(false);
   };
 
@@ -22,7 +26,7 @@ const Structure = ({ products = [], isDisabled }) => {
       className={css.wrapper}
       onMouseOver={setEnable}
       onMouseOut={setDisable}
-      data-wrapper={true}
+      data-wrapper={tmp}
     >
       <div>
         <ImgPreview img={imgs[0].small} disabled={isDisabled} />

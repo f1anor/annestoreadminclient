@@ -1,5 +1,5 @@
 import { fetchOrder, setModalOrderPreview } from "actions/orders-actions";
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getModalOrderPreview, getOrder } from "selectors/orders-selectors";
 import ModalOrderPreview from "./ModalOrderPreview";
@@ -20,19 +20,19 @@ const ModalOrderPreviewContainer = () => {
 
   useEffect(() => {
     if (!!id) dispatch(fetchOrder(id));
-  }, [id]);
+  }, [id, dispatch]);
+
+  const handleCloseModal = useCallback(() => {
+    dispatch(setModalOrderPreview({}));
+  }, [dispatch]);
 
   useEffect(() => {
     if (!!order && !!print) {
-      console.log("Заказ:", order);
       printComponent(pritable.current, styles);
       handleCloseModal();
     }
-  }, [order, print]);
+  }, [order, print, handleCloseModal]);
 
-  const handleCloseModal = () => {
-    dispatch(setModalOrderPreview({}));
-  };
   return (
     <>
       {!!id && !!order && (
