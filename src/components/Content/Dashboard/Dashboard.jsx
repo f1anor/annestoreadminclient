@@ -1,7 +1,6 @@
 import React from "react";
 import Title from "../../../Common/Title/Title";
 import Chart from "./Chart/Chart";
-import ControllsContainer from "./Controlls/ControllsContainer";
 import WidgetsLine from "./WidgetsLine/WidgetsLine";
 import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
 import css from "./Dashboard.module.css";
@@ -17,7 +16,6 @@ const Dashboard = ({ data, sessions, totalCount, isFetching }) => {
         <Chart data={data} isFetching={isFetching} />
         <LastOrderContainer />
       </div>
-      <ControllsContainer />
       {sessions && <Sessions sessions={sessions} totalCount={totalCount} />}
     </LayoutWrapperScroll>
   );
