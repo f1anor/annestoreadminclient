@@ -13,6 +13,7 @@ import ModalOrderManagerNotes from "./ModalOrderManagerNotes";
 
 const ModalOrderManagerNotesContainer = () => {
   const [position, setPosition] = useState(1);
+  const dispatch = useDispatch();
 
   const data = useSelector((state) => getModalOrderManagerNotes(state));
   const notes = useSelector((state) => getOrderNotes(state)) || [];
@@ -23,9 +24,7 @@ const ModalOrderManagerNotesContainer = () => {
 
   useEffect(() => {
     if (!!data) dispatch(fetchOrderNotes(data, position));
-  }, [data, position]);
-
-  const dispatch = useDispatch();
+  }, [data, position, dispatch]);
 
   const handleClose = () => {
     dispatch(setModalOrderManagerNotes(null));

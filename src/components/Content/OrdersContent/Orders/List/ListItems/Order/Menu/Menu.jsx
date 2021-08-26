@@ -1,5 +1,5 @@
 import DropdownMenuContainer from "Common/DropdownMenu/DropdownMenuContainer";
-import React, { useEffect } from "react";
+import React from "react";
 import css from "./Menu.module.css";
 import { ReactComponent as DotsIcon } from "assets/svg/three-dots.svg";
 import { ReactComponent as ViewIcon } from "assets/svg/credit-card-2-front.svg";

@@ -2,7 +2,6 @@ import React from "react";
 import FormBlock from "Common/FormBlock/FormBlock";
 import ProductName from "./ProductName/ProductName";
 import Counters from "./Counters/Counters";
-import Clear from "./Clear/Clear";
 import FiltersContainer from "./Filters/FiltersContainer";
 import ClearContainer from "./Clear/ClearContainer";
 

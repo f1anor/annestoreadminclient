@@ -1,13 +1,11 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { getDropdounPath, useQuery } from "../../../../../../utils/utils";
+import { getDropdounPath, useQuery } from "utils/utils";
 import Status from "./Status";
 
 const StatusContainer = (props) => {
   const query = useQuery();
   const location = useLocation();
-
-  const status = query.get("status");
 
   const pathObj = getDropdounPath(
     [

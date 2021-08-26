@@ -11,7 +11,6 @@ import {
   getMessage,
   getProductImg,
   getIsFetching,
-  getIsProductAddingSuccess,
 } from "selectors/products-selectors";
 import { getPageSize } from "selectors/app-selectors";
 

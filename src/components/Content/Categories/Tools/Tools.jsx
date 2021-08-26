@@ -1,7 +1,6 @@
 import React from "react";
 import css from "./Tools.module.css";
 import SearchContainer from "Common/Search/SearchContainer";
-import Modal from "Common/Modal/Modal";
 import { ReactComponent as PlusIcon } from "assets/svg/plus-circle-fill.svg";
 
 const Tools = ({ newModal, handleModalOpen }) => {

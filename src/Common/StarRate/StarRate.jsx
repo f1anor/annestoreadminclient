@@ -5,7 +5,6 @@ import { ReactComponent as EmptyStarIcon } from "assets/svg/star-empty.svg";
 
 const StarRate = ({ stars }) => {
   const arr = [1, 2, 3, 4, 5];
-  const empty = [];
   // for (let i = 1; i <= stars; i++) {
   //   full.push(i);
   // }

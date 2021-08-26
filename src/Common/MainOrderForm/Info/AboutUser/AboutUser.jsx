@@ -2,7 +2,7 @@ import React from "react";
 import { Field } from "redux-form";
 import Input from "Common/Input/Input";
 import css from "./AboutUser.module.css";
-import { required, isNumber } from "utils/validators";
+import { required } from "utils/validators";
 import FormBlockTitle from "Common/FormBlockTitle/FormBlockTitle";
 import OpenAnim from "Common/OpenAnim/OpenAnim";
 import FormBlockLine from "Common/FormBlockLine/FormBlockLine";

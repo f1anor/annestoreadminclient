@@ -3,8 +3,7 @@ import { Button } from "react-bootstrap";
 import SearchContainer from "Common/Search/SearchContainer";
 import { ReactComponent as ArrowIcon } from "assets/svg/arrow-left-circle.svg";
 import { ReactComponent as TrashIcon } from "assets/svg/trash.svg";
-import WarningModal from "../../../../../Common/WarningModal/WarningModal";
-import css from "./Parameters.module.css";
+import WarningModal from "Common/WarningModal/WarningModal";
 
 const Parameters = ({
   handleRestoreFromArchive,

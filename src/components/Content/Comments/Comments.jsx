@@ -1,7 +1,6 @@
 import React from "react";
 import Title from "Common/Title/Title";
 import css from "./Comments.module.css";
-import { Route, Redirect } from "react-router-dom";
 import FindContainer from "./Find/FindContainer";
 import InfoContainer from "./Info/InfoContainer";
 import MainTableContainer from "./MainTable/MainTableContainer";

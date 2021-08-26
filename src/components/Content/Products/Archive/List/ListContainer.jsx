@@ -4,12 +4,9 @@ import {
   fetchArchiveProducts,
   selectArchiveAll,
   clearSelectedAll,
-} from "../../../../../actions/product-actions";
-import { getSortParams, useQuery } from "../../../../../utils/utils";
-import {
-  getArchiveProductsById,
-  getIsArchiveSelectedAll,
-} from "selectors/products-selectors";
+} from "actions/product-actions";
+import { getSortParams, useQuery } from "utils/utils";
+import { getIsArchiveSelectedAll } from "selectors/products-selectors";
 import List from "./List";
 import { getProdDisabled } from "selectors/products-selectors";
 

@@ -4,7 +4,6 @@ import css from "./MainOrderForm.module.css";
 
 import ManagerNotesContainer from "./ManagerNotes/ManagerNotesContainer";
 import PaymentContainer from "./Payment/PaymentContainer";
-import UserNotes from "./UserNotes/UserNotes";
 
 import Info from "./Info/Info";
 
@@ -16,7 +15,6 @@ const MainOrderForm = ({ form, editMode }) => {
       </div>
       <div className={css.rightSide}>
         <PaymentContainer formName={form} />
-        {/* <UserNotes /> */}
         <Field
           name="managerNotes"
           component={ManagerNotesContainer}

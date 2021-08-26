@@ -10,7 +10,7 @@ const EditOrderContainer = ({ ...props }) => {
 
   useEffect(() => {
     dispatch(fetchEditOrder(id));
-  }, [id]);
+  }, [id, dispatch]);
 
   const handleSubmit = (values) => {
     dispatch(editOrder(id, values));

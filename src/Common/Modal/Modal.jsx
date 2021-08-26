@@ -23,7 +23,7 @@ const Modal = ({ close, children, className = "", wrapperClassName = "" }) => {
     return () => {
       window.removeEventListener("keydown", keyClose);
     };
-  }, []);
+  }, [close]);
 
   return (
     <div>

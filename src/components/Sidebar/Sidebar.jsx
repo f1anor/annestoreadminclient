@@ -1,6 +1,5 @@
 import React from "react";
-import { Nav } from "react-bootstrap";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 import css from "./Sidebar.module.css";
 import SidebarMenu from "./SidebarMenu/SidebarMenu";
