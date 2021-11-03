@@ -2,7 +2,6 @@ import React from "react";
 import FormBlock from "Common/FormBlock/FormBlock";
 import TabMenu from "Common/TabMenu/TabMenu";
 import CustomPagination from "Common/CustomPagination/CustomPagination";
-import CustomPaginationCounter from "Common/CustomPaginationCounter/CustomPaginationCounter";
 import { NavLink, useLocation } from "react-router-dom";
 import css from "./MainTable.module.css";
 import { getQuery } from "utils/utils";
@@ -60,12 +59,6 @@ const MainTable = ({ comments, id, totalCount, ansId, isDisabled }) => {
                 ))}
               </div>
               <div className={css.paginationWrapper}>
-                <CustomPaginationCounter
-                  pageSize={10}
-                  totalCount={totalCount}
-                  elems={comments.length}
-                  disabled={isDisabled}
-                />
                 <CustomPagination
                   count={10}
                   totalCount={totalCount}

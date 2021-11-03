@@ -8,7 +8,6 @@ import ListContainer from "./List/ListContainer";
 import TitleMainBtn from "Common/TitleMainBtn/TitleMainBtn";
 import CustomPagination from "Common/CustomPagination/CustomPagination";
 import withPageRedirect from "hoc/withPageRedirect";
-import TotalCounterContainer from "./TotalCounter/TotalCounterContainer";
 import ToolsContainer from "./Tools/ToolsContainer";
 import ModalPriceFilterFromContainer from "./ModalPriceFilterFrom/ModalPriceFilterFromContainer";
 import ModalPriceFilterToContainer from "./ModalPriceFilterTo/ModalPriceFilterToContainer";
@@ -16,78 +15,71 @@ import ModalDeleteContainer from "./ModalDelete/ModalDeleteContainer";
 import ModalOrderPreviewContainer from "./ModalOrderPreview/ModalOrderPreviewContainer";
 import ModalOrderManagerNotesContainer from "./ModalOrderManagerNotes/ModalOrderManagerNotesContainer";
 import LayoutWrapper from "Common/LayoutWrapper/LayoutWrapper";
+import TotalCounter from "Common/TotalCounter/TotalCounter";
 
 const Orders = React.memo(({ pageSize, totalCount, pathName, isDisabled }) => {
   return (
     <LayoutWrapper>
-      <div>
-        <div className={css.titleLine}>
-          <Title anim={isDisabled}>Заказы</Title>
-          <div className={css.tools}>
-            <Link
-              className={[css.addLink, isDisabled ? css.disabled : ""].join(
-                " "
-              )}
-              to="/orders/addorder"
-            >
-              <TitleMainBtn>Создать</TitleMainBtn>
-            </Link>
-          </div>
-        </div>
-        <TabMenu>
-          <li>
-            <NavLink
-              to="/orders/all"
-              className={isDisabled ? css.disabled : ""}
-            >
-              Все
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/orders/new"
-              className={isDisabled ? css.disabled : ""}
-            >
-              Новые
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/orders/process"
-              className={isDisabled ? css.disabled : ""}
-            >
-              В обработке
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/orders/warning"
-              className={isDisabled ? css.disabled : ""}
-            >
-              Проблемные
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/orders/delivery"
-              className={isDisabled ? css.disabled : ""}
-            >
-              Доставка
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/orders/completed"
-              className={isDisabled ? css.disabled : ""}
-            >
-              Завершенные
-            </NavLink>
-          </li>
-        </TabMenu>
-      </div>
+      <Title
+        anim={isDisabled}
+        button={
+          <Link
+            className={[css.addLink, isDisabled ? css.disabled : ""].join(" ")}
+            to="/orders/addorder"
+          >
+            <TitleMainBtn>Создать</TitleMainBtn>
+          </Link>
+        }
+      >
+        Заказы
+      </Title>
+      <TabMenu>
+        <li>
+          <NavLink to="/orders/all" className={isDisabled ? css.disabled : ""}>
+            Все
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/orders/new" className={isDisabled ? css.disabled : ""}>
+            Новые
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/orders/process"
+            className={isDisabled ? css.disabled : ""}
+          >
+            В обработке
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/orders/warning"
+            className={isDisabled ? css.disabled : ""}
+          >
+            Проблемные
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/orders/delivery"
+            className={isDisabled ? css.disabled : ""}
+          >
+            Доставка
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/orders/completed"
+            className={isDisabled ? css.disabled : ""}
+          >
+            Завершенные
+          </NavLink>
+        </li>
+      </TabMenu>
       <Layout className={css.layout}>
         <ToolsContainer disabled={isDisabled} />
-        <TotalCounterContainer disabled={isDisabled} />
+        <TotalCounter totalCount={totalCount} disabled={isDisabled} />
         <ListContainer pageSize={pageSize} isDisabled={isDisabled} />
 
         <div className={css.pagination}>

@@ -8,7 +8,7 @@ import ListItems from "./ListItems/ListItems";
 const List = React.memo(({ orders = [], sort, isDisabled, ...props }) => {
   return (
     <Table>
-      <thead className={css.thead}>
+      <thead>
         <tr>
           <th className={css.structure}>ID Заказа</th>
           <th className={css.structure}>Состав</th>

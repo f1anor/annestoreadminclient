@@ -5,3 +5,10 @@
   height: 480px;
   align-items: stretch;
 }
+
+.chartLine.second {
+  height: unset;
+  align-content: stretch;
+  height: 550px;
+  margin-bottom: 100px;
+}

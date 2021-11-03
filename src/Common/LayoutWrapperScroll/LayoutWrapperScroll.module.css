@@ -1,6 +1,7 @@
 .wrapper {
   overflow: scroll;
   height: 100%;
+  padding-top: 65px;
 }
 
 .content {

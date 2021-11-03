@@ -7,6 +7,7 @@ import css from "./ModalOrderPreview.module.css";
 import "./style.css";
 import { ReactComponent as PrinterIcon } from "assets/svg/printer.svg";
 import { ReactComponent as EditIcon } from "assets/svg/pen.svg";
+import { Link } from "react-router-dom";
 
 const ModalOrderPreview = ({ order, handleCloseModal, handlePrint }, ref) => {
   const products = order.products || [];
@@ -147,10 +148,12 @@ const ModalOrderPreview = ({ order, handleCloseModal, handlePrint }, ref) => {
           <PrinterIcon className={css.printIcon} />
           Печать
         </FormButtonMini>
-        <FormButtonMini>
-          <EditIcon className={css.editIcon} />
-          Редактировать
-        </FormButtonMini>
+        <Link to={`/orders/editorder/${order._id}`}>
+          <FormButtonMini>
+            <EditIcon className={css.editIcon} />
+            Редактировать
+          </FormButtonMini>
+        </Link>
       </div>
     </Modal>
   );

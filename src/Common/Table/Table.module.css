@@ -34,6 +34,20 @@
   padding-right: 40px !important;
 }
 
+/* без отступов */
+.table.nopadding > tbody > tr > td:first-of-type {
+  padding-left: 0px !important;
+}
+.table.nopadding > thead > tr > th:first-of-type {
+  padding-left: 0px !important;
+}
+.table.nopadding > tbody > tr > td:last-of-type {
+  padding-right: 0px !important;
+}
+.table.nopadding > thead > tr > th:last-of-type {
+  padding-right: 0px !important;
+}
+
 /* шрифты и цвета шрифтов */
 
 .table > thead {

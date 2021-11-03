@@ -9,13 +9,20 @@ const Order = ({
   creationDate,
   handleSetModalNotes,
   id,
+  handleSetImg,
   isDisabled,
 }) => {
   return (
     <tr>
       <td className="text-center">#{id}</td>
-      <td>
-        <Structure products={order.products} isDisabled={isDisabled} />
+      <td className={css.imgs}>
+        <div>
+          <Structure
+            products={order.products}
+            isDisabled={isDisabled}
+            onClick={handleSetImg}
+          />
+        </div>
       </td>
       <td>{order.name}</td>
       <td>{order.phone}</td>
@@ -37,7 +44,7 @@ const Order = ({
           isDisabled={isDisabled}
         />
       </td>
-      <td className={css.menu}>
+      <td>
         <MenuContainer id={order._id} isDisabled={isDisabled} />
       </td>
     </tr>

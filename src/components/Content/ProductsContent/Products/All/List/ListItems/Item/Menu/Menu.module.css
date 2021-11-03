@@ -1,0 +1,47 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.dots {
+  width: 20px;
+  height: 20px;
+}
+
+.dots path {
+  fill: #4c6077;
+}
+
+.menuIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.wrapper .delete {
+  color: var(--color-red);
+}
+
+.wrapper .delete svg path {
+  fill: var(--color-red);
+}
+
+.wrapper .menuLink {
+  position: relative;
+  color: var(--color-title);
+}
+
+.menuLink > svg {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translate(0, -50%);
+}
+
+.menuLink > svg path {
+  fill: var(--color-title);
+}
+
+.penIcon {
+  width: 17px;
+  height: 17px;
+}

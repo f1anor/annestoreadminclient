@@ -1,24 +1,38 @@
 import React from "react";
+import Avatar from "./Avatar/Avatar";
+import { ReactComponent as LogoutIcon } from "assets/svg/account-login.svg";
 
 import css from "./Header.module.css";
 
-const Header = ({ signOut, ava, name }) => {
+const Header = ({ display, handleSigneOut, ava, name }) => {
   return (
-    <div className={css.wrapper}>
-      <div className={css.logo}></div>
+    <div className={[css.wrapper, !!display ? css.visible : " "].join(" ")}>
+      <div className={css.content}>
+        <div className={css.name}>{name}</div>
+        <Avatar />
+        <button className={css.logout} onClick={handleSigneOut}>
+          <LogoutIcon />
+        </button>
+      </div>
+      {/* <div className={css.logo}></div>
       <div className={css.mainSide}>
         <div className={css.controls}>
           <div className={css.btnWrapper}>
-            {/* <Button size="sm" onClick={signOut}>
+            <Button size="sm" onClick={signOut}>
               Выйти из системы
-            </Button> */}
+            </Button>
           </div>
           <div className={css.avatar}>
-            <img src={`${process.env.REACT_APP_SERVER_ASSETS}${ava}`} alt="" />
+            {ava !== null && ava !== undefined && (
+              <img
+                src={`${process.env.REACT_APP_SERVER_ASSETS}${ava}`}
+                alt=""
+              />
+            )}
           </div>
           <span>{name}</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

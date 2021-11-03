@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { change } from "redux-form";
-import { getCoords } from "../../../utils/utils";
+import { getCoords } from "utils/utils";
 import EditImage from "./EditImage";
 
 class EditImageContainer extends Component {

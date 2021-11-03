@@ -4,11 +4,15 @@ import ModalTitle from "Common/ModalTitle/ModalTitle";
 import React from "react";
 import css from "./ModalError.module.css";
 
+//TODO: сделать так чтобы вставка HTML в компоненте была безопасной
 const ModalError = ({ handleCloseModal, children, ...props }) => {
   return (
     <Modal close={handleCloseModal} className={css.wrapper}>
       <ModalTitle>Ошибка!</ModalTitle>
-      <ModalText>{children}</ModalText>
+
+      <ModalText>
+        <span dangerouslySetInnerHTML={{ __html: children }}></span>
+      </ModalText>
       <div className={css.btnsLine}>
         <button type="button" data-modal-close="true">
           Закрыть

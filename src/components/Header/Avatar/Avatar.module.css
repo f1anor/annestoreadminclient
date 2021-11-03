@@ -1,0 +1,20 @@
+.wrapper {
+  width: 40px;
+  height: 40px;
+  background-color: #e9e9ef;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.icon {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon path {
+  fill: #585e6d;
+}

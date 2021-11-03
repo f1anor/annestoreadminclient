@@ -86,14 +86,12 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         isAddedSuccess: null,
         isAdding: true,
       };
-
     case ADD_ORDER_SUCCESS:
       return {
         ...state,
         isAddedSuccess: true,
         isAdding: null,
       };
-
     case ADD_ORDER_FAILURE:
       return {
         ...state,
@@ -108,7 +106,6 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         currentOrders: [],
         isFetching: true,
       };
-
     case FETCH_ORDERS_SUCCESS:
       const obj = {};
       payload.orders.forEach((item) => (obj[item._id] = item));
@@ -122,7 +119,6 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         isAddedSuccess: null,
         isEditingSuccess: null,
       };
-
     case FETCH_ORDERS_FAILURE:
       return {
         ...state,
@@ -137,7 +133,6 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         isFetching: true,
         lastOrders: [],
       };
-
     case FETCH_LAST_ORDERS_SUCCESS:
       return {
         ...state,
@@ -150,19 +145,18 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         isFetching: null,
         message: payload,
       };
+
     // Изменение статуса заказа
     case CHANGE_STATUS_START:
       return {
         ...state,
         isStatusChanging: true,
       };
-
     case CHANGE_STATUS_SUCCESS:
       return {
         ...state,
         isStatusChanging: null,
       };
-
     case CHANGE_STATUS_FAILURE:
       return {
         ...state,
@@ -176,14 +170,12 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         isEditing: true,
       };
-
     case EDIT_ORDER_SUCCESS:
       return {
         ...state,
         isEditing: null,
         isEditingSuccess: true,
       };
-
     case EDIT_ORDER_FAILURE:
       return {
         ...state,
@@ -203,14 +195,12 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         isFetchSingle: true,
       };
-
     case FETCH_ORDER_SUCCESS:
       return {
         ...state,
         isFetchSingle: null,
         order: payload.order,
       };
-
     case FETCH_ORDER_FAILURE:
       return {
         ...state,
@@ -224,13 +214,11 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         isDeliveryPriceGetting: true,
       };
-
     case GET_DELIVERY_PRICE_SUCCESS:
       return {
         ...state,
         isDeliveryPriceGetting: null,
       };
-
     case GET_DELIVERY_PRICE_FAILURE:
       return {
         ...state,
@@ -244,13 +232,11 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         isProductAdding: true,
       };
-
     case ADD_ORDER_PRODUCT_SUCCESS:
       return {
         ...state,
         isProductAdding: null,
       };
-
     case ADD_ORDER_PRODUCT_FAILURE:
       return {
         ...state,
@@ -263,13 +249,11 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         isDeleting: true,
       };
-
     case REMOVE_ORDER_SUCCESS:
       return {
         ...state,
         isDeleting: null,
       };
-
     case REMOVE_ORDER_FAILURE:
       return {
         ...state,
@@ -285,14 +269,12 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         isOrderNotesFetching: true,
         orderNotes: null,
       };
-
     case FETCH_ORDER_NOTES_SUCCESS:
       return {
         ...state,
         isOrderNotesFetching: null,
         orderNotes: payload,
       };
-
     case FETCH_ORDER_NOTES_FAILURE:
       return {
         ...state,
@@ -305,13 +287,11 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         isNoteAdding: true,
       };
-
     case ADD_MANAGER_NOTE_SUCCESS:
       return {
         ...state,
         isNoteAdding: null,
       };
-
     case ADD_MANAGER_NOTE_FAILURE:
       return {
         ...state,
@@ -369,6 +349,7 @@ export const ordersReducer = (state = initialState, { type, payload }) => {
         ...state,
         message: "",
       };
+
     default:
       return state;
   }

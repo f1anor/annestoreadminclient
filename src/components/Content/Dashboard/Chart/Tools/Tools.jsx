@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import CallendarContainer from "./Callendar/CallendarContainer";
 import css from "./Tools.module.css";
 
-const Tools = ({ currentRange, paramsArr }) => {
+const Tools = React.memo(({ currentRange, paramsArr, rangeParam }) => {
   return (
     <div className={css.wrapper}>
-      <CallendarContainer />
+      <CallendarContainer rangeParam={rangeParam} />
       <DropdownMenuContainer
         button={<div className={css.button}>{currentRange || "Неделя"}</div>}
       >
@@ -21,5 +21,5 @@ const Tools = ({ currentRange, paramsArr }) => {
       </DropdownMenuContainer>
     </div>
   );
-};
+});
 export default Tools;

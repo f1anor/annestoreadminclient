@@ -1,0 +1,62 @@
+.checkWrapper {
+  position: relative;
+}
+
+.imgs {
+  height: 100%;
+  position: relative;
+}
+
+.imgs > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon {
+  height: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.category {
+  position: relative;
+}
+
+.tooltip {
+  position: unset;
+  display: inline-block;
+}
+
+.amount {
+  text-align: center;
+}
+
+.time {
+  text-align: center;
+}
+
+.status .toggler {
+  margin: 0 auto;
+}
+
+.price {
+  text-align: center;
+}
+
+.views {
+  text-align: center;
+}
+
+.stars {
+  text-align: center;
+}
+
+.comments {
+  text-align: center;
+}
+
+.comments a {
+  color: var(--color-red);
+}

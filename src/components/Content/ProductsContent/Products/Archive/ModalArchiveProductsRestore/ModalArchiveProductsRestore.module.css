@@ -1,0 +1,35 @@
+.wrapper {
+  width: 490px;
+}
+
+.name {
+  font-family: var(--font-bold);
+  color: var(--color-red);
+}
+
+.btnsLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnsLine button {
+  height: 50px;
+  width: 48%;
+  border: none;
+  border-radius: 8px;
+}
+
+.btnsLine button:first-of-type {
+  background-color: #f6f6f7;
+  color: var(--color-title);
+  font-family: var(--font-bold);
+}
+
+.btnsLine button:last-of-type {
+  background-color: var(--color-violet-modal);
+  color: #fff;
+}
+
+.icon path {
+  fill: var(--color-info-blue);
+}

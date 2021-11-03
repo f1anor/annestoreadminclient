@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import css from "./Modal.module.css";
 import { ReactComponent as XIcon } from "assets/svg/x.svg";
 
-const Modal = ({ close, children, className = "", wrapperClassName = "" }) => {
+const Modal = (
+  { close, children, className = "", wrapperClassName = "" },
+  ref
+) => {
   const inner = useRef();
 
   const handleClose = (e) => {
@@ -30,6 +33,7 @@ const Modal = ({ close, children, className = "", wrapperClassName = "" }) => {
       <div
         className={[css.wrapper, wrapperClassName].join(" ")}
         onClick={handleClose}
+        ref={ref}
       >
         <div className={[css.inner, className].join(" ")} ref={inner}>
           <button
@@ -46,4 +50,4 @@ const Modal = ({ close, children, className = "", wrapperClassName = "" }) => {
   );
 };
 
-export default Modal;
+export default forwardRef(Modal);

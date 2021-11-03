@@ -1,8 +1,6 @@
 .wrapper {
   background-color: #fff;
   padding-top: 30px;
-  /* padding-left: 40px; */
-  /* padding-right: 40px; */
   box-sizing: border-box;
   box-shadow: var(--main-shadow);
   height: calc(100% - 160px);

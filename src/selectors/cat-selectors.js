@@ -14,7 +14,7 @@ export const getCatForFrom = createSelector(getCat, (cat) => {
   return arr;
 });
 
-export const getIsFetching = (state) => {
+export const getIsCatFetching = (state) => {
   return state.category.isFetching;
 };
 
@@ -39,7 +39,7 @@ export const getIsBisy = createSelector(
   getIsMovingDown,
   getIsDeleting,
   getIsAdding,
-  getIsFetching,
+  getIsCatFetching,
   (isMovingUp, isMovingDown, isDeleting, isAdding, isFetching) => {
     return isMovingUp || isMovingDown || isDeleting || isAdding || isFetching;
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "../../utils/utils";
+import { useQuery } from "utils/utils";
 
 import css from "./CustomPagination.module.css";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -94,7 +94,7 @@ const CustomPagination = React.memo(
         <li key={p}>
           <Link
             className={[
-              disabled ? css.btnDisabled : " ",
+              !!disabled ? css.btnDisabled : " ",
               page === p ? css.active : " ",
               css.page,
             ].join(" ")}

@@ -62,7 +62,7 @@ export const regNewAdmin = (values) => (dispatch) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.info(err);
       dispatch(stopSubmit("regForm", { _error: err.message }));
       dispatch({
         type: REG_NEW_ADMIN_FAILURE,
@@ -126,7 +126,7 @@ export const restore = () => async (dispatch) => {
       )
     );
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: RESTORE_FAILURE,
       payload: err.message,

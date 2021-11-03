@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { clearSelectCat, fetchCategories } from "actions/cat-actions";
 import {
   getIsBisy,
-  getIsFetching,
+  getIsCatFetching,
   getActiveCat,
   getPassiveCat,
 } from "selectors/cat-selectors";
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
   isBisy: getIsBisy(state),
   activeCat: getActiveCat(state),
   passiveCat: getPassiveCat(state),
-  isFetching: getIsFetching(state),
+  isFetching: getIsCatFetching(state),
 });
 
 export default connect(mapStateToProps, {

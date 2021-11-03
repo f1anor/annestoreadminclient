@@ -1,0 +1,31 @@
+.modalWrapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: fadeout 0.2s, ease;
+  display: block;
+  overflow: scroll;
+}
+
+.modal {
+  position: static;
+  border-radius: 0px;
+  margin: 100px auto;
+  width: 696px;
+  padding: 0;
+}
+
+.modal button:first-of-type {
+  position: fixed;
+}
+
+.modal button:first-of-type svg path {
+  fill: #fff;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

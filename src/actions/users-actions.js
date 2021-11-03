@@ -47,7 +47,7 @@ export const toggleAccess = (status, id, query) => async (dispatch) => {
 
     dispatch(fetchAdmins(query));
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: TOGGLE_ACCESS_FAILURE,
       payload: err.message,

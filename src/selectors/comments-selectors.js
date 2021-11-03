@@ -36,6 +36,23 @@ export const getCurrentComments = (state) => {
   return state.comments.currentComments;
 };
 
+export const getCommentsForScroll = (state) => {
+  return state.comments.commentsForScroll;
+};
+
+export const getCurrentCommentsForScroll = (state) => {
+  return state.comments.currentCommentsForScroll;
+};
+
+// Узнать является ли подгружаемый прокручиваемый список уже полным
+export const getCommentsScrollFull = createSelector(
+  getTotalCount,
+  getCurrentCommentsForScroll,
+  (totalCount, currentCommentsForScroll) => {
+    return currentCommentsForScroll.length >= totalCount;
+  }
+);
+
 export const getCommentsById = createSelector(
   getComments,
   getCurrentComments,
@@ -43,6 +60,17 @@ export const getCommentsById = createSelector(
     if (!currentComments) return;
     return currentComments.map((comment) => {
       return comments[comment];
+    });
+  }
+);
+
+export const getCommentsForScrollById = createSelector(
+  getCommentsForScroll,
+  getCurrentCommentsForScroll,
+  (commentsForScroll, currentCommentsForScroll) => {
+    if (!currentCommentsForScroll) return;
+    return currentCommentsForScroll.map((comment) => {
+      return commentsForScroll[comment];
     });
   }
 );
@@ -95,3 +123,11 @@ export const getCommentsDisabled = createSelector(
     );
   }
 );
+
+export const getCurrentScrollPage = (state) => {
+  return state.comments.currentScrollPage;
+};
+
+export const getIsCommentsForScrollFetching = (state) => {
+  return state.comments.isCommentsForScrollFetching;
+};

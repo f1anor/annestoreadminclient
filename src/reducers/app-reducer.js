@@ -10,7 +10,6 @@ import {
 const initialState = {
   init: null,
   messages: [],
-  img: null,
   tableSize: {
     window: null,
     size: 10,
@@ -18,6 +17,12 @@ const initialState = {
   tooltip: {
     text: "",
     target: null,
+  },
+
+  //Модальные окна
+  modalImg: {
+    imgs: [],
+    commments: null,
   },
 };
 
@@ -56,7 +61,10 @@ export const appReducer = (state = initialState, { type, payload }) => {
     case SET_IMG:
       return {
         ...state,
-        img: payload,
+        modalImg: {
+          imgs: payload.imgs, //массив
+          comments: payload.comments, //id
+        },
       };
     case SET_TOOLTIP:
       return {

@@ -46,10 +46,10 @@ export const removeToastMessage = (id) => (dispatch) => {
   });
 };
 
-export const setImg = (img) => (dispatch) => {
+export const setImg = (imgs, comments) => (dispatch) => {
   dispatch({
     type: SET_IMG,
-    payload: img,
+    payload: { imgs: imgs ?? [], comments: comments ?? null },
   });
 };
 

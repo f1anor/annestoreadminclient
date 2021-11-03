@@ -1,18 +1,16 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import AddProductContainer from "./AddProduct/AddProductContainer";
 import CategoriesContainer from "./Categories/CategoriesContainer";
 import CommentsContainer from "./Comments/CommentsContainer";
 import DashboardContainer from "./Dashboard/DashboardContainer";
-import EditProductContainer from "./EditProduct/EditProductContainer";
 import OrdersContentContainer from "./OrdersContent/OrdersContentContainer";
-import ProductsContainer from "./Products/ProductsContainer";
+import ProductsContentContainer from "./ProductsContent/ProductsContentContainer";
 import UsersContainer from "./Users/UsersContainer";
 
 const Content = ({ isProductAddingSuccess, isProductEditingSuccess }) => {
   return (
     <Switch>
-      <Route path="/products" render={() => <ProductsContainer />} />
+      {/* <Route path="/products" render={() => <ProductsContainer />} />
       <Route
         path="/addproduct"
         render={() =>
@@ -32,8 +30,8 @@ const Content = ({ isProductAddingSuccess, isProductEditingSuccess }) => {
             <Redirect to="/products/" />
           )
         }
-      />
-      {/* <Route path="/editorder/:id" render={() => <OrdersContainer />} /> */}
+      /> */}
+      <Route path="/products" render={() => <ProductsContentContainer />} />
       <Route path="/orders" render={() => <OrdersContentContainer />} />
       <Route path="/comments/:id?" render={() => <CommentsContainer />} />
       <Route path="/categories" render={() => <CategoriesContainer />} />

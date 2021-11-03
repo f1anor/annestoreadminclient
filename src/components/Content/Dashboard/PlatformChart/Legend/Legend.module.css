@@ -1,0 +1,27 @@
+.wrapper {
+  flex-grow: 1;
+  max-height: 160px;
+  overflow: scroll;
+}
+
+.listItem {
+  display: flex;
+
+  align-items: center;
+}
+
+.content {
+  margin-left: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+}
+
+.value {
+  font-family: var(--font-medium);
+}

@@ -1,0 +1,11 @@
+.wrapper {
+  width: 33%;
+}
+
+.chartWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid #e4e9f1;
+  margin-bottom: 20px;
+}

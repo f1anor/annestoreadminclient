@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.dots {
+  width: 20px;
+  height: 20px;
+}
+
+.dots path {
+  fill: #4c6077;
+}
+
+.menuIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.delete {
+  color: var(--color-red);
+}
+
+.delete svg path {
+  fill: var(--color-red);
+}

@@ -6,23 +6,12 @@ import CategoriesContainer from "./Categories/CategoriesContainer";
 import Main from "./Info/Main";
 import SizeContainer from "./Size/SizeContainer";
 
-const MainProductForm = ({
-  catForForm,
-  isCatFetching,
-  preloadImage,
-  setTooltip,
-  form,
-  error,
-}) => {
+const MainProductForm = ({ catForForm, isCatFetching, form, error }) => {
+  console.log(catForForm);
   return (
     <div className={css.wrapper}>
       <div className={css.leftSide}>
-        <Main
-          preloadImage={preloadImage}
-          setTooltip={setTooltip}
-          form={form}
-          error={error}
-        />
+        <Main form={form} error={error} />
       </div>
       <div className={css.rightSide}>
         <Publication />

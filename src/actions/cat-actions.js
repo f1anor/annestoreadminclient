@@ -48,7 +48,7 @@ export const fetchCategories = (query) => async (dispatch) => {
       payload: ans.data.categories,
     });
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: FETCH_CAT_FAILURE,
       payload: err.message,
@@ -89,7 +89,7 @@ export const removeCat = (num) => async (dispatch) => {
     dispatch(addToastMessage(`Категория удалена`));
     dispatch(fetchCategories());
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: REMOVE_CAT_FAILURE,
       payload: err.message,
@@ -113,7 +113,7 @@ export const moveUpCat = (num) => async (dispatch) => {
     });
     dispatch(fetchCategories());
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: MOVE_UP_CAT_FAILURE,
       payload: err.message,
@@ -137,7 +137,7 @@ export const moveDownCat = (num) => async (dispatch) => {
     });
     dispatch(fetchCategories());
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: MOVE_DOWN_CAT_FAILURE,
       payload: err.message,

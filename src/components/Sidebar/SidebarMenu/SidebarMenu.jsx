@@ -14,7 +14,7 @@ const SidebarMenu = () => {
       <ul className={css.menu}>
         <li>
           <NavLink
-            to="/dashboard/?page=1"
+            to="/dashboard?page=1"
             activeClassName={css.active}
             className={css.menuItem}
           >

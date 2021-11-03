@@ -55,6 +55,9 @@ import {
   REMOVE_NOTE_FROM_ORDER_START,
   REMOVE_NOTE_FROM_ORDER_FAILURE,
   REMOVE_NOTE_FROM_ORDER_SUCCESS,
+  ADD_CUSTOM_PRODUCTS_TO_ORDER_START,
+  ADD_CUSTOM_PRODUCTS_TO_ORDER_SUCCESS,
+  ADD_CUSTOM_PRODUCTS_TO_ORDER_FAILUE,
 } from "../actionTypes";
 import {
   addOrderProductApi,
@@ -70,6 +73,8 @@ import {
   addManagerNoteApi,
   removeNoteFromOrderApi,
 } from "../api/orders-api";
+
+import { makeCustomOrder } from "./product-actions";
 
 // Получить заказы
 export const fetchOrders = (type, query, pageSize) => async (dispatch) => {
@@ -136,55 +141,93 @@ export const addOrderNote = (form, values) => (dispatch, getState) => {
 export const addOrderProduct = (art, form, values) => (dispatch) => {
   const val = values || [];
 
-  dispatch({
-    type: ADD_ORDER_PRODUCT_START,
-  });
-
-  addOrderProductApi(art)
-    .then((ans) => {
-      if (!!ans.data.status) {
-        try {
-          const error = JSON.parse(ans.data.message);
-          dispatch(stopSubmit("ordAddProdForm", error));
-          dispatch({ type: ADD_ORDER_PRODUCT_FAILURE, payload: error });
-        } catch (err) {
-          dispatch(stopSubmit("ordAddProdForm", { _error: ans.data.message }));
-          dispatch({ type: ADD_ORDER_PRODUCT_FAILURE, payload: err.message });
-        }
-      } else {
-        const { product } = ans.data;
-        const exist = val.filter((item) => item.id === product._id);
-        if (exist.length > 0) {
-          dispatch(
-            stopSubmit("ordAddProdForm", { name: "Продукт уже в списке" })
-          );
-          return;
-        }
-
-        dispatch(
-          arrayPush(form, "products", {
-            id: product._id,
-            title: product.title,
-            article: product.article,
-            amount: 1,
-            imgs: product.imgs,
-            price: product.price,
-          })
-        );
-
-        dispatch({
-          type: ADD_ORDER_PRODUCT_SUCCESS,
-        });
-        dispatch(setModalAddProduct(null));
-      }
-    })
-    .catch((err) => {
-      dispatch({
-        type: ADD_ORDER_PRODUCT_FAILURE,
-        payload: err.message,
-      });
+  return new Promise((resolve, reject) => {
+    dispatch({
+      type: ADD_ORDER_PRODUCT_START,
     });
+
+    addOrderProductApi(art)
+      .then((ans) => {
+        if (!!ans.data.status) {
+          try {
+            const error = JSON.parse(ans.data.message);
+            dispatch(stopSubmit("ordAddProdForm", error));
+            dispatch({ type: ADD_ORDER_PRODUCT_FAILURE, payload: error });
+          } catch (err) {
+            dispatch(
+              stopSubmit("ordAddProdForm", { _error: ans.data.message })
+            );
+            dispatch({ type: ADD_ORDER_PRODUCT_FAILURE, payload: err.message });
+          }
+        } else {
+          const { product } = ans.data;
+          const exist = val.filter((item) => item.id === product._id);
+          if (exist.length > 0) {
+            dispatch(
+              stopSubmit("ordAddProdForm", { name: "Продукт уже в списке" })
+            );
+            return;
+          }
+
+          dispatch(
+            arrayPush(form, "products", {
+              id: product._id,
+              title: product.title,
+              amount: 1,
+              imgs: product.imgs,
+              price: product.price,
+            })
+          );
+
+          dispatch({
+            type: ADD_ORDER_PRODUCT_SUCCESS,
+          });
+
+          dispatch(setModalAddProduct(null));
+          resolve(true);
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: ADD_ORDER_PRODUCT_FAILURE,
+          payload: err.message,
+        });
+        reject(err.message);
+      });
+
+    return true;
+  });
 };
+
+// Добавление в новый заказ заранее выбранных продуктов из раздела продукты
+export const addCustomProductsToOrder =
+  (form, value) => (dispatch, getState) => {
+    const { productsToOrder } = getState().product;
+
+    if (!productsToOrder || productsToOrder.length === 0) return;
+    dispatch({
+      type: ADD_CUSTOM_PRODUCTS_TO_ORDER_START,
+    });
+
+    Promise.all(
+      productsToOrder.map((art) => dispatch(addOrderProduct(art, form, value)))
+    )
+      .then(() => {
+        dispatch({
+          type: ADD_CUSTOM_PRODUCTS_TO_ORDER_SUCCESS,
+        });
+        dispatch(makeCustomOrder([]));
+      })
+      .catch((err) => {
+        console.info(err);
+        dispatch({
+          type: ADD_CUSTOM_PRODUCTS_TO_ORDER_FAILUE,
+          payload: err.message,
+        });
+
+        dispatch(makeCustomOrder([]));
+      });
+  };
 
 // Сохранение созданного заказа
 export const addOrder = (values) => (dispatch) => {
@@ -202,7 +245,7 @@ export const addOrder = (values) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.info(err);
       dispatch({
         type: ADD_ORDER_FAILURE,
         payload: err.message,
@@ -225,7 +268,7 @@ export const editOrder = (id, values) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.info(err);
       dispatch({
         type: EDIT_ORDER_FAILURE,
         payload: err.message,
@@ -416,7 +459,7 @@ export const checkDeliveryPrice =
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.info(err);
         dispatch({
           type: GET_DELIVERY_PRICE_FAILURE,
           payload: err.message,

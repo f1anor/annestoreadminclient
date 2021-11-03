@@ -1,0 +1,7 @@
+.pagination {
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 40px;
+  border-top: 1px solid #c5c5c5;
+}

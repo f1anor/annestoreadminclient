@@ -36,7 +36,8 @@
   margin-left: 15px;
 }
 
-.btn.btnDisabled {
+.btn.btnDisabled,
+.page.btnDisabled {
   pointer-events: none;
   user-select: none;
 }

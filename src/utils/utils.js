@@ -189,3 +189,15 @@ export const convertToTimeAgo = (time) => {
 export const generateRandom = (min, max) => {
   return Math.floor(min + Math.random() * (max + 1 - min));
 };
+
+export const tableDate = (date) => {
+  if (!date) return "данные отсутствуют";
+  const objDate = new Date(+date);
+  return `${formatNumber(objDate.getDate(), 2)}-${formatNumber(
+    objDate.getMonth() + 1,
+    2
+  )}-${objDate.getFullYear().toString().slice(-2)} ${formatNumber(
+    objDate.getHours(),
+    2
+  )}:${formatNumber(objDate.getMinutes(), 2)}`;
+};

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { preloadImage } from "../../../../../../actions/product-actions";
+import { useDispatch } from "react-redux";
+import { preloadImage } from "actions/product-actions";
 import ImgLoader from "./ImgLoder";
 
-const ImgLoaderContainer = ({ preloadImage, name, form, value = [] }) => {
+const ImgLoaderContainer = ({ name, form, value = [] }) => {
+  const dispatch = useDispatch();
   const [active, setActive] = useState(false);
 
   const checkTotal = (files) => {
@@ -51,7 +52,7 @@ const ImgLoaderContainer = ({ preloadImage, name, form, value = [] }) => {
     const dt = e.dataTransfer;
     const files = checkTotal(dt.files);
 
-    preloadImage(files, form, name, value);
+    dispatch(preloadImage(files, form, name, value));
   };
 
   return (
@@ -66,4 +67,4 @@ const ImgLoaderContainer = ({ preloadImage, name, form, value = [] }) => {
   );
 };
 
-export default connect(null, { preloadImage })(ImgLoaderContainer);
+export default ImgLoaderContainer;

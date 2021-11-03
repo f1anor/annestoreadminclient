@@ -15,7 +15,7 @@ import css from "./Chart.module.css";
 import Metricks from "./Metricks/Metricks";
 import ToolsContainer from "./Tools/ToolsContainer";
 
-const Chart = ({ data, isFetching }) => {
+const Chart = React.memo(({ data = [], isFetching }) => {
   const renderTooltip = ({ payload }) => {
     const { visitors, makedOrders } =
       !!payload && payload[0] && payload[0].payload ? payload[0].payload : {};
@@ -83,6 +83,6 @@ const Chart = ({ data, isFetching }) => {
       </div>
     </AnimatedCard>
   );
-};
+});
 
 export default Chart;

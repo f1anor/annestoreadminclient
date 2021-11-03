@@ -1,0 +1,41 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title h4 {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-bold);
+  color: var(--color-title);
+}
+
+.counter {
+  background-color: #f6f6f7;
+  margin-left: 10px;
+  font-size: 16px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 50px;
+}
+
+.leftSide {
+  display: flex;
+  justify-content: space-between;
+}
+
+.children {
+  margin-right: 0px;
+}

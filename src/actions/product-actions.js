@@ -22,8 +22,6 @@ import {
   FETCH_EDIT_PRODUCT_START,
   FETCH_EDIT_PRODUCT_SUCCESS,
   FETCH_EDIT_PRODUCT_FAILURE,
-  TOGGLE_ADDING_SUCCESS,
-  TOGGLE_EDITING_SUCCESS,
   MOVE_TO_ARCHIVE_START,
   MOVE_TO_ARCHIVE_FAILURE,
   MOVE_TO_ARCHIVE_SUCCESS,
@@ -33,12 +31,22 @@ import {
   RESTORE_FROM_ARCHIVE_START,
   RESTORE_FROM_ARCHIVE_SUCCESS,
   RESTORE_FROM_ARCHIVE_FAILURE,
-  SELECT_ALL,
+  SELECT_ALL_START,
+  SELECT_ALL_SUCCESS,
+  SELECT_ALL_FAILURE,
   SELECT_ARCHIVE_ALL,
   TOGGLE_STATUS_START,
   TOGGLE_STATUS_FAILURE,
   TOGGLE_STATUS_SUCCESS,
   CHECK_ARTICLE_START,
+  SET_MODAL_PRODUCTS_ERROR,
+  SET_MODAL_PRODUCT_PRICE_FILTER,
+  SET_MODAL_ALL_PRODUCTS_TO_ARCHIVE,
+  SET_MODAL_ARCHIVE_PRODUCTS_DELETE,
+  SET_MODAL_ARCHIVE_PRODUCTS_RESTORE,
+  MAKE_CUSTOM_ORDER_START,
+  MAKE_CUSTOM_ORDER_SUCCESS,
+  MAKE_CUSTOM_ORDER_FAILURE,
 } from "../actionTypes";
 
 import {
@@ -53,7 +61,34 @@ import {
   fetchArchiveProductsApi,
   toggleStatusApi,
   checkArticleApi,
+  fetchAllProductsIds,
+  checkNoActiveProductsApi,
 } from "../api/product-api";
+
+//Сформировать список артукулов для предзагрузки при автоматического добалении нового заказа
+export const makeCustomOrder = (ids) => async (dispatch) => {
+  dispatch({
+    type: MAKE_CUSTOM_ORDER_START,
+    payload: ids,
+  });
+
+  try {
+    const ans = await checkNoActiveProductsApi(ids);
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: MAKE_CUSTOM_ORDER_SUCCESS,
+      payload: ids,
+    });
+  } catch (err) {
+    console.info(err);
+    dispatch({
+      type: MAKE_CUSTOM_ORDER_FAILURE,
+      payload: err.message,
+    });
+  }
+};
 
 export const checkArticle = (values, history) => (dispatch) => {
   if (!values.article) return;
@@ -219,7 +254,7 @@ export const fetchEditProduct = (id) => async (dispatch) => {
       type: FETCH_EDIT_PRODUCT_SUCCESS,
     });
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: FETCH_EDIT_PRODUCT_FAILURE,
       payload: err.message,
@@ -227,10 +262,12 @@ export const fetchEditProduct = (id) => async (dispatch) => {
   }
 };
 
-export const fetchProducts = (params, pageSize) => async (dispatch) => {
+export const fetchProducts = (params) => async (dispatch, getState) => {
   dispatch({
     type: FETCH_PRODUCTS_START,
   });
+
+  const pageSize = getState().app.tableSize.size;
 
   try {
     const ans = await fetchProductsApi(params, pageSize);
@@ -251,10 +288,27 @@ export const addSelected = (id) => (dispatch) => {
   dispatch({ type: ADD_SELECTED, payload: id });
 };
 
-export const selectAll = () => (dispatch) => {
+export const selectAll = () => async (dispatch) => {
   dispatch({
-    type: SELECT_ALL,
+    type: SELECT_ALL_START,
   });
+
+  try {
+    const ans = await fetchAllProductsIds();
+
+    if (!!ans.data.status) throw new Error(ans.data.message);
+
+    dispatch({
+      type: SELECT_ALL_SUCCESS,
+      payload: ans.data,
+    });
+  } catch (err) {
+    console.info(err);
+    dispatch({
+      type: SELECT_ALL_FAILURE,
+      payload: err.message,
+    });
+  }
 };
 
 export const selectArchiveAll = () => (dispatch) => {
@@ -274,16 +328,18 @@ export const clearSelectedAll = () => (dispatch) => {
 };
 
 export const deleteProducts =
-  (query, history) => async (dispatch, getState) => {
+  (ids, query, history) => async (dispatch, getState) => {
     dispatch({
       type: DELETE_PRODUCTS_START,
     });
 
     const product = getState().product;
-    const { selected, currentProducts } = product;
+    const { currentProducts } = product;
+
+    dispatch(setModalArchiveProductsDelete(null));
 
     try {
-      const ans = await deleteProductsApi(selected);
+      const ans = await deleteProductsApi(ids);
 
       if (!!ans.data.status) throw new Error(ans.data.message);
 
@@ -292,14 +348,14 @@ export const deleteProducts =
       });
 
       const page = +query.get("page");
-      if (selected.length === currentProducts.length && page > 1) {
+      if (ids.length === currentProducts.length && page > 1) {
         query.set("page", page - 1);
         history.push(`${history.location.pathname}?${query}`);
       } else {
         dispatch(fetchArchiveProducts(query.toString()));
       }
     } catch (err) {
-      console.log(err);
+      console.info(err);
       dispatch({
         type: DELETE_PRODUCTS_FAILURE,
         payload: err.message,
@@ -307,78 +363,75 @@ export const deleteProducts =
     }
   };
 
-export const toggleAddingSuccess = () => (dispatch) => {
-  dispatch({
-    type: TOGGLE_ADDING_SUCCESS,
-  });
-};
-
-export const toggleEditingSuccess = () => (dispatch) => {
-  dispatch({
-    type: TOGGLE_EDITING_SUCCESS,
-  });
-};
-
-export const moveToArchive = (query, history) => async (dispatch, getState) => {
-  dispatch({
-    type: MOVE_TO_ARCHIVE_START,
-  });
-
-  const product = getState().product;
-  const { selected, currentProducts } = product;
-
-  try {
-    const ans = await moveToArchiveApi(selected);
-
-    if (!!ans.data.status) throw new Error(ans.data.message);
-
+// TODO: переделать
+export const moveToArchive =
+  (ids, query, history) => async (dispatch, getState) => {
     dispatch({
-      type: MOVE_TO_ARCHIVE_SUCCESS,
+      type: MOVE_TO_ARCHIVE_START,
     });
 
-    const page = +query.get("page");
-    if (selected.length === currentProducts.length && page > 1) {
-      query.set("page", page - 1);
-      history.push(`${history.location.pathname}?${query}`);
-    } else {
-      dispatch(fetchProducts(query.toString()));
+    const product = getState().product;
+
+    const { currentProducts } = product;
+
+    try {
+      const ans = await moveToArchiveApi(ids);
+
+      if (!!ans.data.status) throw new Error(ans.data.message);
+
+      dispatch({
+        type: MOVE_TO_ARCHIVE_SUCCESS,
+      });
+      dispatch(setModalAllProductsToArchive(null));
+      dispatch(clearSelectedAll());
+
+      const page = +query.get("page");
+      if (ids.length === currentProducts.length && page > 1) {
+        query.set("page", page - 1);
+        history.push(`${history.location.pathname}?${query}`);
+      } else {
+        dispatch(fetchProducts(query.toString()));
+      }
+    } catch (err) {
+      console.info(err);
+      dispatch(setModalAllProductsToArchive(null));
+      setTimeout(() => {
+        dispatch({
+          type: MOVE_TO_ARCHIVE_FAILURE,
+          payload: err.message,
+        });
+      }, 0.5);
     }
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: MOVE_TO_ARCHIVE_FAILURE,
-      payload: err.message,
-    });
-  }
-};
+  };
 
 export const restoreFromArchive =
-  (query, history) => async (dispatch, getState) => {
+  (ids, query, history) => async (dispatch, getState) => {
     dispatch({
       type: RESTORE_FROM_ARCHIVE_START,
     });
 
     const product = getState().product;
-    const { selected, currentArchiveProducts } = product;
+    const { currentArchiveProducts } = product;
 
     try {
-      const ans = await restoreFromArchiveApi(selected);
+      const ans = await restoreFromArchiveApi(ids);
 
       if (!!ans.data.status) throw new Error(ans.data.message);
 
       dispatch({
         type: RESTORE_FROM_ARCHIVE_SUCCESS,
       });
+      dispatch(setModalArchiveProductsRestore(null));
 
       const page = +query.get("page");
-      if (selected.length === currentArchiveProducts.length && page > 1) {
+      if (ids.length === currentArchiveProducts.length && page > 1) {
         query.set("page", page - 1);
         history.push(`${history.location.pathname}?${query}`);
       } else {
         dispatch(fetchArchiveProducts(query.toString()));
       }
     } catch (err) {
-      console.log(err);
+      console.info(err);
 
       dispatch({
         type: RESTORE_FROM_ARCHIVE_FAILURE,
@@ -387,13 +440,15 @@ export const restoreFromArchive =
     }
   };
 
-export const fetchArchiveProducts = (query) => async (dispatch) => {
+export const fetchArchiveProducts = (params) => async (dispatch, getState) => {
   dispatch({
     type: FETCH_ARCHIVE_PRODUCTS_START,
   });
 
+  const pageSize = getState().app.tableSize.size + 1;
+
   try {
-    const ans = await fetchArchiveProductsApi(query);
+    const ans = await fetchArchiveProductsApi(params, pageSize);
 
     if (!!ans.data.status) throw new Error(ans.data.message);
 
@@ -402,7 +457,7 @@ export const fetchArchiveProducts = (query) => async (dispatch) => {
       payload: ans.data,
     });
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: FETCH_ARCHIVE_PRODUCTS_FAILURE,
       payload: err.message,
@@ -429,10 +484,49 @@ export const toggleStatus =
       const pageSize = getPageSize(getState());
       dispatch(fetchProducts(query, pageSize));
     } catch (err) {
-      console.log(err.message);
+      console.info(err.message);
       dispatch({
         type: TOGGLE_STATUS_FAILURE,
         payload: err.message,
       });
     }
   };
+
+//Управление модальным окном ошибок
+export const setModalProductsError = () => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_PRODUCTS_ERROR,
+  });
+};
+
+//Управление модальным окном фильтра цены
+export const setModalProductPriceFilter = (value) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_PRODUCT_PRICE_FILTER,
+    payload: value,
+  });
+};
+
+//Управление модальным окном переноса продуктов в архив
+export const setModalAllProductsToArchive = (id) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ALL_PRODUCTS_TO_ARCHIVE,
+    payload: id,
+  });
+};
+
+//Управление модальным окном удаления продуктов
+export const setModalArchiveProductsDelete = (id) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ARCHIVE_PRODUCTS_DELETE,
+    payload: id,
+  });
+};
+
+//Управление модальным окном восстановления продуктов из архива
+export const setModalArchiveProductsRestore = (id) => (dispatch) => {
+  dispatch({
+    type: SET_MODAL_ARCHIVE_PRODUCTS_RESTORE,
+    payload: id,
+  });
+};

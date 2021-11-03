@@ -29,7 +29,7 @@ const ListItem = ({
           )}
         </div>
       </td>
-      <td className="text-center">{formatNumber(product.id, 5)}</td>
+      <td className="text-center">#{formatNumber(product.id, 5)}</td>
       <td className="text-center">{product.price}₽</td>
       <td className={css.amount}>
         <Amount value={product.amount} dec={handleDec} inc={handleInc} />

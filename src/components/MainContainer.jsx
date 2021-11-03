@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { toggleLog, toggleReg } from "../actions/auth-actions";
 import Main from "./Main";
-import { setImg } from "actions/app-actions";
 
 const MainContainer = ({
   regSuccess,
@@ -26,11 +25,9 @@ const MainContainer = ({
 const mapStateToProps = (state) => ({
   regSuccess: state.auth.regSuccess,
   logSuccess: state.auth.logSuccess,
-  img: state.app.img,
 });
 
 export default connect(mapStateToProps, {
   toggleLog,
   toggleReg,
-  setImg,
 })(MainContainer);

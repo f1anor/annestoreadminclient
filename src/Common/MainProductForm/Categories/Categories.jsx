@@ -1,12 +1,12 @@
 import React from "react";
 import { Field } from "redux-form";
-import FormBlock from "../../FormBlock/FormBlock";
-import FormBlockTitle from "../../FormBlockTitle/FormBlockTitle";
-import OpenAnim from "../../OpenAnim/OpenAnim";
+import FormBlock from "Common/FormBlock/FormBlock";
+import FormBlockTitle from "Common/FormBlockTitle/FormBlockTitle";
+import OpenAnim from "Common/OpenAnim/OpenAnim";
 import AddModal from "./AddModal/AddModal";
 import css from "./Categories.module.css";
 import CategoryInputContainer from "./CategoryInput/CategoryInputContainer";
-import ArrowBtn from "../../ArrowBtn/ArrowBtn";
+import ArrowBtn from "Common/ArrowBtn/ArrowBtn";
 
 const Categories = ({
   catForForm,

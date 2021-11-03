@@ -18,6 +18,10 @@ import {
   REMOVE_COMMENT_ANS_START,
   REMOVE_COMMENT_ANS_SUCCESS,
   REMOVE_COMMENT_ANS_FAILURE,
+  FETCH_COMMENTS_FOR_SCROLL_PAGE_START,
+  FETCH_COMMENTS_FOR_SCROLL_PAGE_SUCCESS,
+  FETCH_COMMENTS_FOR_SCROLL_PAGE_FAILURE,
+  CLEAR_COMMENTS_FOR_SCROLL_PAGE,
 } from "actionTypes";
 import {
   fetchCommentsApi,
@@ -44,12 +48,41 @@ export const fetchComments = (id, query) => async (dispatch) => {
     dispatch(setAns(""));
     dispatch(setEditAns(""));
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: FETCH_COMMENTS_FAILURE,
       payload: err.message,
     });
   }
+};
+
+// Загрузить коменты по айдишнику продукта для бесконечного списка.
+export const fetchCommentsToScrollPage = (id, query) => async (dispatch) => {
+  dispatch({
+    type: FETCH_COMMENTS_FOR_SCROLL_PAGE_START,
+  });
+
+  try {
+    const ans = await fetchCommentsApi(id, query);
+    if (!!ans.data.status) throw new Error(ans.data.message);
+    dispatch({
+      type: FETCH_COMMENTS_FOR_SCROLL_PAGE_SUCCESS,
+      payload: ans.data.data,
+    });
+  } catch (err) {
+    console.info(err);
+    dispatch({
+      type: FETCH_COMMENTS_FOR_SCROLL_PAGE_FAILURE,
+      payload: err.message,
+    });
+  }
+};
+
+//Очистить список комантов продукта для бесконечного списка
+export const clearCommentsToScrollPage = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_COMMENTS_FOR_SCROLL_PAGE,
+  });
 };
 
 export const addComment = (id, values) => async (dispatch) => {
@@ -65,7 +98,7 @@ export const addComment = (id, values) => async (dispatch) => {
       type: ADD_COMMENT_SUCCESS,
     });
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: ADD_COMMENT_FAILURE,
       payload: err.message,
@@ -89,7 +122,7 @@ export const applyComment = (id, productId, query) => async (dispach) => {
 
     dispach(fetchComments(productId, query));
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispach({
       type: APPLY_COMMENT_FAILURE,
       payload: err.message,
@@ -112,7 +145,7 @@ export const removeComment = (id, productId, query) => async (dispach) => {
     });
     dispach(fetchComments(productId, query));
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispach({
       type: REMOVE_COMMENT_FAILURE,
       payload: err.message,
@@ -136,7 +169,7 @@ export const removeCommentAns = (id, productId, query) => async (dispatch) => {
 
     dispatch(fetchComments(productId, query));
   } catch (err) {
-    console.log(err);
+    console.info(err);
     dispatch({
       type: REMOVE_COMMENT_ANS_FAILURE,
       payload: err.message,

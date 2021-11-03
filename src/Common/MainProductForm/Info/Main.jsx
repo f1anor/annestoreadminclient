@@ -5,7 +5,7 @@ import CustomInfoContainer from "./CustomInfo/CustomInfoContainer";
 import ImgsContainer from "./Imgs/ImgsContainer";
 import Info from "./Info/Info";
 
-const Main = ({ preloadImage, form, error }) => {
+const Main = ({ form, error }) => {
   return (
     <FormBlock>
       {!!error && (
@@ -14,7 +14,7 @@ const Main = ({ preloadImage, form, error }) => {
         </Alert>
       )}
       <Info />
-      <ImgsContainer preloadImage={preloadImage} form={form} />
+      <ImgsContainer form={form} />
       <CustomInfoContainer />
     </FormBlock>
   );

@@ -18,11 +18,18 @@ import {
   REMOVE_COMMENT_ANS_START,
   REMOVE_COMMENT_ANS_SUCCESS,
   REMOVE_COMMENT_ANS_FAILURE,
+  FETCH_COMMENTS_FOR_SCROLL_PAGE_SUCCESS,
+  FETCH_COMMENTS_FOR_SCROLL_PAGE_START,
+  FETCH_COMMENTS_FOR_SCROLL_PAGE_FAILURE,
+  CLEAR_COMMENTS_FOR_SCROLL_PAGE,
 } from "actionTypes";
 
 const initialState = {
   comments: {},
   currentComments: [],
+  commentsForScroll: {}, // комментарии которые нужны для прокручиваемого списка
+  currentCommentsForScroll: [], // массив с id комментариев которые нужны непосредственно на странице
+  currentScrollPage: 1, // текущая порция в постепенно подгружаемом списке
   totalCount: 0,
   pageSize: 10,
   metaImg: null,
@@ -43,6 +50,7 @@ const initialState = {
   isAnsAdding: null,
   isAnsRemoving: null,
   isSettingActive: null,
+  isCommentsForScrollFetching: null, // закгружаются ли комментарии для прокручиваемого списка
 };
 
 export const commentsReducer = (state = initialState, { type, payload }) => {
@@ -81,6 +89,47 @@ export const commentsReducer = (state = initialState, { type, payload }) => {
         message: payload,
       };
     }
+    // Загрузили коменты для страниц с бесконечной прокруткой
+    case FETCH_COMMENTS_FOR_SCROLL_PAGE_START:
+      return {
+        ...state,
+        isCommentsForScrollFetching: true,
+      };
+    case FETCH_COMMENTS_FOR_SCROLL_PAGE_SUCCESS:
+      const tmp = {};
+      payload.comments.forEach((comment) => {
+        tmp[comment._id] = comment;
+      });
+
+      return {
+        ...state,
+        commentsForScroll: {
+          ...state.commentsForScroll,
+          ...tmp,
+        },
+        currentCommentsForScroll: [
+          ...state.currentCommentsForScroll,
+          ...payload.comments.map((comment) => comment._id),
+        ],
+        currentScrollPage: state.currentScrollPage + 1,
+        isCommentsForScrollFetching: null,
+        totalCount: payload.totalActive,
+      };
+    case FETCH_COMMENTS_FOR_SCROLL_PAGE_FAILURE:
+      return {
+        ...state,
+        isCommentsForScrollFetching: null,
+      };
+
+    // Сбросить загруженные коментарии для страницы с бесконечной прокруткой
+    case CLEAR_COMMENTS_FOR_SCROLL_PAGE:
+      return {
+        ...state,
+        commentsForScroll: {},
+        currentCommentsForScroll: [],
+        currentScrollPage: 1,
+      };
+
     case SET_COMMENT_ANSWER: {
       return {
         ...state,

@@ -27,7 +27,7 @@
   bottom: 50px;
 }
 
-.btnsLine > button {
+.btnsLine button {
   background-color: #f6f6f7;
   color: var(--color-title);
   font-family: var(--font-bold);
@@ -36,7 +36,7 @@
   margin-right: 10px;
 }
 
-.btnsLine > button svg {
+.btnsLine button svg {
   margin-right: 10px;
   margin-right: 10px;
 }

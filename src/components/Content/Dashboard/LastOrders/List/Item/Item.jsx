@@ -2,11 +2,11 @@ import Structure from "Common/Structure/Structure";
 import React from "react";
 import css from "./Item.module.css";
 
-const Item = ({ order, timeAgo }) => {
+const Item = ({ order, timeAgo, handleSetImg }) => {
   return (
     <div className={css.wrapper}>
       <div className={css.structure}>
-        <Structure products={order.products} />
+        <Structure products={order.products} onClick={handleSetImg} />
       </div>
 
       <div className={css.info}>

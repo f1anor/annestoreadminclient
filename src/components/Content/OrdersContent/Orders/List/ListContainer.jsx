@@ -1,10 +1,12 @@
 import React from "react";
 import List from "./List";
 import { useQuery } from "utils/utils";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { getOrders } from "selectors/orders-selectors";
 
 const ListContainer = ({ ...props }) => {
+  const orders = useSelector((state) => getOrders(state));
+
   const query = useQuery();
   const sort = {};
   ["creationDate", "changeDate", "name", "phone", "status", "price"].forEach(
@@ -21,11 +23,7 @@ const ListContainer = ({ ...props }) => {
     }
   );
 
-  return <List sort={sort} {...props} />;
+  return <List sort={sort} orders={orders} {...props} />;
 };
 
-const mapStateToProps = (state) => ({
-  orders: getOrders(state),
-});
-
-export default connect(mapStateToProps, null)(ListContainer);
+export default ListContainer;

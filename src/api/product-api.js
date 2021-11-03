@@ -35,8 +35,8 @@ export const moveToArchiveApi = async (selected) => {
   return await instance.post("/product/toarchive", { selected });
 };
 
-export const fetchArchiveProductsApi = async (query) => {
-  return await instance.get(`/product/archive?${query}`);
+export const fetchArchiveProductsApi = async (query, pageSize) => {
+  return await instance.get(`/product/archive?${query}&size=${pageSize}`);
 };
 
 export const restoreFromArchiveApi = async (selected) => {
@@ -45,4 +45,12 @@ export const restoreFromArchiveApi = async (selected) => {
 
 export const toggleStatusApi = async (id, status) => {
   return await instance.put("/product/status", { id, status });
+};
+
+export const fetchAllProductsIds = async () => {
+  return await instance.get("/product/allids");
+};
+
+export const checkNoActiveProductsApi = async (ids) => {
+  return await instance.post("/product/checkactive", { ids });
 };

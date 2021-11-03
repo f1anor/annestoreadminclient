@@ -4,11 +4,12 @@ import css from "./Comments.module.css";
 import FindContainer from "./Find/FindContainer";
 import InfoContainer from "./Info/InfoContainer";
 import MainTableContainer from "./MainTable/MainTableContainer";
+import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
 
 //FIXME: Переделать редирект
 const Comments = ({ id, isDisabled }) => {
   return (
-    <div className={css.wrapper}>
+    <LayoutWrapperScroll>
       <div className={css.content}>
         <Title anim={isDisabled} className={css.title}>
           Комментарии
@@ -27,7 +28,7 @@ const Comments = ({ id, isDisabled }) => {
           render={() => <Redirect to="/comments/?page=1" />}
         /> */}
       </div>
-    </div>
+    </LayoutWrapperScroll>
   );
 };
 

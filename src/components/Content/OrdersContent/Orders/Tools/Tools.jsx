@@ -6,20 +6,22 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import DeliveryFilterContainer from "./DeliveryFilter/DeliveryFilterContainer";
 import DateFromFilterContainer from "Common/DateFromFilter/DateFromFilterContainer";
 import DateToFilterContainer from "Common/DateToFilter/DateToFilterContainer";
-import PriceFilterContainer from "./PriceFilter/PriceFilterContainer";
+import PriceFilterContainer from "Common/PriceFilter/PriceFilterContainer";
 
-const Tools = ({ disabled }) => {
+const Tools = ({ disabled, handleOpenModal }) => {
   return (
     <LayoutToolsLine>
       <DeliveryFilterContainer disabled={disabled} />
       <DateFromFilterContainer disabled={disabled} />
       <DateToFilterContainer disabled={disabled} />
       <PriceFilterContainer
-        type={{ title: "от", value: "from" }}
+        type={{ title: "Сумма от", value: "from" }}
+        onOpen={() => handleOpenModal("from")}
         disabled={disabled}
       />
       <PriceFilterContainer
-        type={{ title: "до", value: "to" }}
+        type={{ title: "Сумма до", value: "to" }}
+        onOpen={() => handleOpenModal("to")}
         disabled={disabled}
       />
 

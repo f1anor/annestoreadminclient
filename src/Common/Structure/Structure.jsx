@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { generateRandom } from "utils/utils";
 import css from "./Structure.module.css";
 
-const Structure = ({ products = [], isDisabled }) => {
+const Structure = ({ products = [], onClick = () => {}, isDisabled }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const tmp = generateRandom(1000, 9999).toString();
@@ -20,7 +20,6 @@ const Structure = ({ products = [], isDisabled }) => {
     setIsOpen(false);
   };
 
-  const imgs = products.map((product) => product.imgs[0]).reverse();
   return (
     <div
       className={css.wrapper}
@@ -29,14 +28,22 @@ const Structure = ({ products = [], isDisabled }) => {
       data-wrapper={tmp}
     >
       <div>
-        <ImgPreview img={imgs[0].small} disabled={isDisabled} />
-        {imgs.length > 1 && !isOpen && (
-          <span className={css.badge}>{imgs.length}</span>
+        <ImgPreview
+          img={products[0].imgs[0].small}
+          onClick={() => onClick(products[0].imgs)}
+          disabled={isDisabled}
+        />
+        {products.length > 1 && !isOpen && (
+          <span className={css.badge}>{products.length}</span>
         )}
-        {imgs.length > 1 && !!isOpen && (
+        {products.length > 1 && !!isOpen && (
           <AnimatedCard className={css.card}>
-            {imgs.map((img) => (
-              <ImgPreview img={img.small} key={img.small} />
+            {products.map((product) => (
+              <ImgPreview
+                img={product.imgs[0].small}
+                key={product.imgs[0].small}
+                onClick={() => onClick(product.imgs)}
+              />
             ))}
           </AnimatedCard>
         )}

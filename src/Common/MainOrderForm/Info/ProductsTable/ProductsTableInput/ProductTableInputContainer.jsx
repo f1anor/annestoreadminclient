@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductTableInput from "./ProductTableInput";
 
-import { setModalAddProduct } from "actions/orders-actions.js";
+import {
+  addCustomProductsToOrder,
+  setModalAddProduct,
+} from "actions/orders-actions.js";
 import { useDispatch } from "react-redux";
 
 const ProductTableInputContainer = ({
@@ -14,6 +17,13 @@ const ProductTableInputContainer = ({
   const handleOpenModal = () => {
     dispatch(setModalAddProduct({ form, value }));
   };
+
+  useEffect(() => {
+    if (form === "addOrder") {
+      dispatch(addCustomProductsToOrder(form, value));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ProductTableInput

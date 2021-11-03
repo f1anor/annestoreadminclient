@@ -3,8 +3,23 @@ import { useHistory } from "react-router-dom";
 import { useQuery } from "utils/utils";
 import Callendar from "./Callendar";
 
-const CallendarContainer = () => {
+const CallendarContainer = ({ rangeParam }) => {
   const maxDate = Date.now();
+  let minDate = maxDate - 604800000 * 2;
+
+  switch (rangeParam) {
+    case "all":
+      minDate = maxDate - 1;
+      break;
+    case "day":
+      minDate = maxDate - 604800000 * 2;
+      break;
+    case "week":
+      minDate = maxDate - 604800000;
+      break;
+    default:
+      minDate = maxDate - 604800000;
+  }
 
   const history = useHistory();
   const query = useQuery();
@@ -23,6 +38,7 @@ const CallendarContainer = () => {
   return (
     <Callendar
       maxDate={maxDate}
+      minDate={minDate}
       handleTimeChange={handleTimeChange}
       startDate={startDate}
     />
