@@ -24,3 +24,18 @@
   flex-direction: column;
   /* height: 100% !important; */
 }
+
+.printIcon {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.print {
+  pointer-events: none;
+  user-select: none;
+}
+
+.btn {
+  margin-left: 10px;
+}

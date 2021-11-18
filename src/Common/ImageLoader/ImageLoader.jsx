@@ -9,18 +9,19 @@ const ImageLoader = ({
   width,
   height,
   form,
+  Label,
   className = "",
 }) => {
   const { value } = input;
 
-  const isLoaded = value.preloadedImg;
+  const isLoaded = value.avatarTmp;
   return (
-    <div className={[css.wrapper, className].join(" ")}>
+    <div className={css.wrapper}>
       <div
-        className={css.imgWrapper}
+        className={[css.imgWrapper, className].join(" ")}
         style={{ width: width + "px", height: height + "px" }}
       >
-        {!isLoaded && (
+        {!isLoaded && !Label && (
           <label className={css.label}>
             <input
               type="file"
@@ -29,6 +30,16 @@ const ImageLoader = ({
               name="myImage"
             />
           </label>
+        )}
+        {!isLoaded && !!Label && (
+          <Label>
+            <input
+              type="file"
+              className={css.input}
+              onChange={handlePreloadImg}
+              name="myImage"
+            />
+          </Label>
         )}
         {!!isLoaded && (
           <EditImageContainer

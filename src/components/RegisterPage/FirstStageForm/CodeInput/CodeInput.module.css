@@ -1,0 +1,41 @@
+.wrapper {
+  width: 340px;
+  margin: 100px auto;
+  margin-bottom: 150px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.part {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.part input {
+  display: block;
+  width: 44px;
+  height: 50px;
+  padding: 10px;
+  border: 2px solid #d9d8d4;
+  box-shadow: none;
+  background-color: transparent;
+  font-family: var(--font-bold);
+  font-size: 20px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.part input:focus {
+  outline: 2px solid var(--color-violet-modal);
+}
+
+.error {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: var(--color-red);
+  font-family: var(--font-medium);
+}

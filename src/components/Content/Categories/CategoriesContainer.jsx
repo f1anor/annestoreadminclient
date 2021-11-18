@@ -1,38 +1,41 @@
 import React from "react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
-import { clearSelectCat, fetchCategories } from "actions/cat-actions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories, setModalNew } from "actions/cat-actions";
 import {
   getIsBisy,
-  getIsCatFetching,
   getActiveCat,
   getPassiveCat,
 } from "selectors/cat-selectors";
 import Categories from "./Categories";
 import { useQuery } from "utils/utils";
 
-const CategoriesContainer = ({
-  fetchCategories,
-  clearSelectCat,
-  setModalEdit,
-  ...props
-}) => {
+const CategoriesContainer = ({ ...props }) => {
+  const dispatch = useDispatch();
   const query = useQuery().toString();
-  useEffect(() => {
-    fetchCategories(query);
-  }, [fetchCategories, query]);
 
-  return <Categories {...props} />;
+  const isBisy = useSelector((state) => getIsBisy(state));
+  const activeCat = useSelector((state) => getActiveCat(state));
+  const passiveCat = useSelector((state) => getPassiveCat(state));
+
+  // Загружаем категории
+  useEffect(() => {
+    dispatch(fetchCategories(query));
+  }, [dispatch, query]);
+
+  const handleNewModalOpen = () => {
+    dispatch(setModalNew(true));
+  };
+
+  return (
+    <Categories
+      isBisy={isBisy}
+      activeCat={activeCat}
+      passiveCat={passiveCat}
+      handleNewModalOpen={handleNewModalOpen}
+      {...props}
+    />
+  );
 };
 
-const mapStateToProps = (state) => ({
-  isBisy: getIsBisy(state),
-  activeCat: getActiveCat(state),
-  passiveCat: getPassiveCat(state),
-  isFetching: getIsCatFetching(state),
-});
-
-export default connect(mapStateToProps, {
-  fetchCategories,
-  clearSelectCat,
-})(CategoriesContainer);
+export default CategoriesContainer;

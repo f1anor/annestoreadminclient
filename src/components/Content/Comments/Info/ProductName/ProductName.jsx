@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as StackIcon } from "assets/svg/stackIcon.svg";
 
 import css from "./ProductName.module.css";
+import { formatNumber } from "utils/utils";
 
 const ProductName = ({ metaName, metaImg, id }) => {
   return (
@@ -23,7 +24,7 @@ const ProductName = ({ metaName, metaImg, id }) => {
 
       <div className={css.title}>
         <h3 className={css.name}>{metaName}</h3>
-        <p className={css.article}>Артикул: {id}</p>
+        <p className={css.article}>Артикул: #{!!id && formatNumber(id, 5)}</p>
       </div>
     </div>
   );

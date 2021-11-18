@@ -1,14 +1,15 @@
 import React from "react";
 import Modal from "Common/Modal/Modal";
 import ModalTitle from "Common/ModalTitle/ModalTitle";
-import ModalText from "Common/ModalText/ModalText";
-import Input from "Common/Input/Input";
-import css from "./ModalNew.module.css";
-import { reduxForm, Field } from "redux-form";
-import { required } from "utils/validators";
-import { ReactComponent as PlusIcon } from "assets/svg/file-earmark-plus.svg";
 
-const ModalNew = ({ handleModalClose, handleSubmit }) => {
+import css from "./ModalNew.module.css";
+import { reduxForm } from "redux-form";
+
+import { ReactComponent as PlusIcon } from "assets/svg/file-earmark-plus.svg";
+import MainCatForm from "Common/MainCatForm/MainCatForm";
+import Button from "Common/Button/Button";
+
+const ModalNew = ({ handleModalClose, handleSubmit, adding }) => {
   return (
     <>
       <Modal close={handleModalClose} className={css.modal}>
@@ -16,22 +17,21 @@ const ModalNew = ({ handleModalClose, handleSubmit }) => {
           Добавление категории
         </ModalTitle>
 
-        <ModalText>
-          Внимание! Новая категория не будет отображатья пользователям пока в
-          ней отсутствуют продукты.
-        </ModalText>
         <form onSubmit={handleSubmit}>
-          <Field
-            component={Input}
-            name="name"
-            className={css.input}
-            validate={[required]}
-          />
+          <MainCatForm />
           <div className={css.btnsLine}>
-            <button type="button" data-modal-close="true">
+            <Button
+              type="button"
+              secondary="true"
+              disabled={adding}
+              data-modal-close="true"
+              modal="true"
+            >
               Отмена
-            </button>
-            <button>Добавить</button>
+            </Button>
+            <Button disabled={adding} anim={adding} modal="true">
+              Ок
+            </Button>
           </div>
         </form>
       </Modal>
@@ -39,4 +39,7 @@ const ModalNew = ({ handleModalClose, handleSubmit }) => {
   );
 };
 
-export default reduxForm({ form: "newCatForm" })(ModalNew);
+export default reduxForm({
+  form: "newCatForm",
+  initialValues: { sizeTable: [], type: 0 },
+})(ModalNew);

@@ -6,7 +6,7 @@ const ImageLoaderContainer = ({ preloadImage, input, ...props }) => {
 
   const handlePreloadImg = (e) => {
     const { files } = e.target;
-    preloadImage(files[0], input.name);
+    preloadImage(files[0], files[0].name);
   };
   return (
     <ImageLoader

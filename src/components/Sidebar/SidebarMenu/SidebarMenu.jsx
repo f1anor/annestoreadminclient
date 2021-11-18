@@ -81,7 +81,7 @@ const SidebarMenu = () => {
           <NavLink
             to="/users"
             activeClassName={css.active}
-            className={css.menuItem}
+            className={[css.menuItem, css.users].join(" ")}
           >
             <UsersIcon className={css.icon} />
             Пользователи

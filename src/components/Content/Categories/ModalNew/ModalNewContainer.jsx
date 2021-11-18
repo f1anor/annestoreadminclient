@@ -1,16 +1,20 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalNew from "./ModalNew";
 import { setModalNew, addCat } from "actions/cat-actions";
-import { getModalNew } from "selectors/cat-selectors";
+import { getIsAdding, getModalNew } from "selectors/cat-selectors";
 
-const ModalNewContainer = ({ setModalNew, addCat, open, ...props }) => {
+const ModalNewContainer = ({ ...props }) => {
+  const dispatch = useDispatch();
+  const open = useSelector((state) => getModalNew(state));
+  const adding = useSelector((state) => getIsAdding(state));
+
   const handleModalClose = () => {
-    setModalNew(null);
+    dispatch(setModalNew(null));
   };
 
   const handleSubmit = (values) => {
-    addCat(values);
+    dispatch(addCat(values));
   };
 
   return (
@@ -19,6 +23,7 @@ const ModalNewContainer = ({ setModalNew, addCat, open, ...props }) => {
         <ModalNew
           handleModalClose={handleModalClose}
           onSubmit={handleSubmit}
+          adding={adding}
           {...props}
         />
       )}
@@ -26,10 +31,4 @@ const ModalNewContainer = ({ setModalNew, addCat, open, ...props }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  open: getModalNew(state),
-});
-
-export default connect(mapStateToProps, { setModalNew, addCat })(
-  ModalNewContainer
-);
+export default ModalNewContainer;

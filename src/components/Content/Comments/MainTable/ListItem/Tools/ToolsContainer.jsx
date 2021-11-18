@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   applyComment,
   removeComment,
@@ -11,40 +11,32 @@ import Tools from "./Tools";
 import { useQuery } from "utils/utils";
 import { useParams } from "react-router-dom";
 
-const ToolsContainer = ({
-  id,
-  applyComment,
-  removeComment,
-  removeCommentAns,
-  setAns,
-  setEditAns,
-  haveAns,
-  ...props
-}) => {
+const ToolsContainer = ({ id, haveAns, ...props }) => {
+  const dispatch = useDispatch();
   const query = useQuery().toString();
   const productId = useParams().id;
 
   const handleApply = () => {
-    applyComment(id, productId, query);
+    dispatch(applyComment(id, productId, query));
   };
 
   const handleRemove = () => {
-    removeComment(id, productId, query);
+    dispatch(removeComment(id, productId, query));
   };
 
   const handleSetAns = () => {
-    setAns(id);
+    dispatch(setAns(id));
   };
 
   const handleSetEditAns = () => {
-    setAns("");
+    dispatch(setAns(""));
     setTimeout(() => {
-      setEditAns(id, haveAns);
+      dispatch(setEditAns(id, haveAns));
     }, 1);
   };
 
   const handleRemoveAns = () => {
-    removeCommentAns(id, productId, query);
+    dispatch(removeCommentAns(id, productId, query));
   };
 
   return (
@@ -61,10 +53,4 @@ const ToolsContainer = ({
   );
 };
 
-export default connect(null, {
-  applyComment,
-  removeComment,
-  removeCommentAns,
-  setAns,
-  setEditAns,
-})(ToolsContainer);
+export default ToolsContainer;

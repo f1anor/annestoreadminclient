@@ -1,20 +1,26 @@
+import AnimatedCard from "Common/AnimatedCard/AnimatedCard";
 import React from "react";
-import { Card } from "react-bootstrap";
-import Title from "../../Common/Title/Title";
-import RegisterFormContainer from "./RegisterForm/RegisterFormContainer";
+import { Link } from "react-router-dom";
+import FirstStageFormConitanier from "./FirstStageForm/FirstStageFormConitanier";
+import FourthStageFormContainer from "./FourthStageForm/FourthStageFormContainer";
 import css from "./RegisterPage.module.css";
+import RegStage from "./RegStage/RegStage";
+import SecondStageFormContainer from "./SecondStageForm/SecondStageFormContainer";
+import ThirdStageFormContainer from "./ThirdStageForm/ThirdStageFormContainer";
 
-const RegisterPage = (props) => {
+const RegisterPage = ({ stage, disabled, ...props }) => {
   return (
-    <div className={css.wrapper}>
-      <Card>
-        <Card.Header>
-          <Title>Регистрация нового администратора</Title>
-        </Card.Header>
-        <Card.Body>
-          <RegisterFormContainer {...props} />
-        </Card.Body>
-      </Card>
+    <div className={css.pageWrapper}>
+      <AnimatedCard className={css.wrapper}>
+        <RegStage stage={stage} />
+        {+stage === 0 && <FirstStageFormConitanier disabled={disabled} />}
+        {+stage === 1 && <SecondStageFormContainer disabled={disabled} />}
+        {+stage === 2 && <ThirdStageFormContainer disabled={disabled} />}
+        {+stage === 3 && <FourthStageFormContainer disabled={disabled} />}
+        <div className={css.backToLogin}>
+          Уже есть аккаунт? <Link to="/">Войти</Link>
+        </div>
+      </AnimatedCard>
     </div>
   );
 };

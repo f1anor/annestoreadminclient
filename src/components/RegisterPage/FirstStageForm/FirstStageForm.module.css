@@ -1,0 +1,43 @@
+.wrapper {
+  animation: fadeOut 0.4s;
+}
+
+.inner {
+  height: 390px;
+  padding-top: 50px;
+  position: relative;
+}
+
+.title {
+  /* margin-top: 50px; */
+  text-align: center;
+}
+
+.btns {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+}
+
+.btns button {
+  margin: 0;
+  width: 220px;
+}
+
+.btns a button {
+  background-color: transparent !important;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

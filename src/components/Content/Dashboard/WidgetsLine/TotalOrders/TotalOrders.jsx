@@ -8,7 +8,7 @@ const TotalOrders = ({ orders }) => {
     <WidgetBlock icon={<ArchiveIcon className={css.icon} />} title="Заказы">
       <div className={css.count}>{orders.all}</div>
       <div className={css.footer}>
-        <span>+{orders.last}%</span> За неделю
+        <span>+{orders.last.toFixed(1)}%</span> За неделю
       </div>
     </WidgetBlock>
   );

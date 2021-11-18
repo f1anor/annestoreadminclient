@@ -7,7 +7,6 @@ import Main from "./Info/Main";
 import SizeContainer from "./Size/SizeContainer";
 
 const MainProductForm = ({ catForForm, isCatFetching, form, error }) => {
-  console.log(catForForm);
   return (
     <div className={css.wrapper}>
       <div className={css.leftSide}>

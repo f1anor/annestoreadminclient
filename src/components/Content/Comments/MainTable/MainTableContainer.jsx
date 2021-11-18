@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import MainTable from "./MainTable";
 import {
   getCommentsById,
@@ -8,13 +8,17 @@ import {
 } from "selectors/comments-selectors";
 
 const MainTableContainer = ({ ...props }) => {
-  return <MainTable {...props} />;
+  const ansId = useSelector((state) => getAnsId(state));
+  const totalCount = useSelector((state) => getTotalCount(state));
+  const comments = useSelector((state) => getCommentsById(state));
+  return (
+    <MainTable
+      ansId={ansId}
+      totalCount={totalCount}
+      comments={comments}
+      {...props}
+    />
+  );
 };
 
-const mapStateToProps = (state) => ({
-  comments: getCommentsById(state),
-  totalCount: getTotalCount(state),
-  ansId: getAnsId(state),
-});
-
-export default connect(mapStateToProps, {})(MainTableContainer);
+export default MainTableContainer;

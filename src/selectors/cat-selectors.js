@@ -14,6 +14,7 @@ export const getCatForFrom = createSelector(getCat, (cat) => {
   return arr;
 });
 
+// Состояния
 export const getIsCatFetching = (state) => {
   return state.category.isFetching;
 };
@@ -32,6 +33,14 @@ export const getIsMovingDown = (state) => {
 
 export const getIsMovingUp = (state) => {
   return state.category.isMovingUp;
+};
+
+export const getEditCatFetching = (state) => {
+  return state.category.isEditCatFetching;
+};
+
+export const getIsCatEditing = (state) => {
+  return state.category.isCatEditing;
 };
 
 export const getIsBisy = createSelector(
@@ -53,6 +62,7 @@ export const getPassiveCat = createSelector(getCat, (cat) => {
   return cat.filter((item) => +item.count === 0);
 });
 
+// Управление модальными окнами
 export const getModalEdit = (state) => {
   return state.category.modalEdit;
 };

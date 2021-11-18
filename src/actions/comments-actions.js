@@ -33,6 +33,7 @@ import {
 } from "api/comments-api";
 import { initialize, stopSubmit } from "redux-form";
 
+// Загрузка всех комментариев
 export const fetchComments = (id, query) => async (dispatch) => {
   dispatch({
     type: FETCH_COMMENTS_START,
@@ -85,7 +86,8 @@ export const clearCommentsToScrollPage = () => (dispatch) => {
   });
 };
 
-export const addComment = (id, values) => async (dispatch) => {
+// Добавление нового коментария
+export const addComment = (id, values, query) => async (dispatch) => {
   dispatch({
     type: ADD_COMMENT_START,
   });
@@ -97,6 +99,8 @@ export const addComment = (id, values) => async (dispatch) => {
     dispatch({
       type: ADD_COMMENT_SUCCESS,
     });
+
+    dispatch(fetchComments(id, query));
   } catch (err) {
     console.info(err);
     dispatch({

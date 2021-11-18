@@ -183,7 +183,6 @@ export const fetchSessions = (page) => async (dispatch) => {
     const ans = await fetchSessionsApi(page);
 
     if (!!ans.data.status) throw new Error(ans.data.message);
-    console.log(ans.data);
     dispatch({
       type: FETCH_SESSIONS_SUCCESS,
       payload: ans.data,

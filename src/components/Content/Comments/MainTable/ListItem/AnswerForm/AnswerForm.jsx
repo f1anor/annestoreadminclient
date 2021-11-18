@@ -2,6 +2,7 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 import TextAreaInput from "Common/TextAreaInput/TextAreaInput";
 import css from "./AnswerForm.module.css";
+import Button from "Common/Button/Button";
 
 const AnswerForm = ({ handleSubmit, handleClearAns }) => {
   return (
@@ -9,10 +10,12 @@ const AnswerForm = ({ handleSubmit, handleClearAns }) => {
       <h6 className={css.title}>Ответ</h6>
       <Field component={TextAreaInput} name="content" className={css.area} />
       <div className={css.btns}>
-        <button className={css.cancel} type="button" onClick={handleClearAns}>
+        <Button type="button" onClick={handleClearAns} clear="true" mini="true">
           Отмена
-        </button>
-        <button className={css.success}>Сохранить</button>
+        </Button>
+        <Button mini="true" className={css.saveBtn}>
+          Сохранить
+        </Button>
       </div>
     </form>
   );

@@ -20,6 +20,15 @@ export const addCatApi = async (values) => {
   return await instance.post("/category", values);
 };
 
-export const renameCatApi = async (id, values) => {
-  return await instance.put(`/category/rename/${id}`, values);
+// Редактирование категории
+export const editCatApi = async (id, values) => {
+  return await instance.put(`/category/edit/${id}`, values);
+};
+
+export const setCatPositionApi = async (pos1, pos2) => {
+  return await instance.put(`/category/setposition/${pos1}/${pos2}`);
+};
+
+export const fetchEditCatApi = async (id) => {
+  return await instance.get(`/category/fetchedit/${id}`);
 };

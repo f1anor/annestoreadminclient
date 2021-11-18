@@ -1,0 +1,7 @@
+/* Скрытая часть для перетаскивания */
+.phantom {
+  width: 1238px;
+  height: 15px;
+  /* background-color: silver; */
+  transition: height 0.4s ease;
+}

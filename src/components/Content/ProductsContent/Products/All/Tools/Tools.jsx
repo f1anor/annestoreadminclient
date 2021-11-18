@@ -6,6 +6,7 @@ import CategoryFilterContainer from "./CategoryFilter/CategoryFilterContainer";
 import PriceFilterContainer from "Common/PriceFilter/PriceFilterContainer";
 import { Link } from "react-router-dom";
 import css from "./Tools.module.css";
+import Button from "Common/Button/Button";
 
 const Tools = ({ isProdDisabled, handleOpenModal }) => {
   return (
@@ -23,8 +24,10 @@ const Tools = ({ isProdDisabled, handleOpenModal }) => {
         onOpen={() => handleOpenModal("to")}
         disabled={isProdDisabled}
       />
-      <Link to="/products">
-        <div className={css.cancel}>Сброс</div>
+      <Link to="/products" className={css.cancel}>
+        <Button className={css.clear} secondary="true">
+          Сброс
+        </Button>
       </Link>
     </LayoutToolsLine>
   );

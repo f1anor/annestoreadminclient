@@ -1,0 +1,23 @@
+.sizeTable {
+  margin-top: 20px;
+}
+
+.sizeTable table {
+  /* min-width: 200px; */
+  margin: 0 auto;
+  color: var(--color-title);
+}
+
+.sizeTable td {
+  border: 1px solid #000 !important;
+}
+
+.sizeTable th {
+  border: none;
+}
+
+.sizeTable th,
+.sizeTable td {
+  padding: 10px;
+  text-align: center;
+}

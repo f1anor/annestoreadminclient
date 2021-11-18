@@ -1,16 +1,29 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ModalEdit from "./ModalEdit";
-import { getModalEdit } from "selectors/cat-selectors";
-import { setModalEdit, renameCat } from "actions/cat-actions";
+import {
+  getEditCatFetching,
+  getIsCatEditing,
+  getModalEdit,
+} from "selectors/cat-selectors";
+import { setModalEdit, editCat, fetchEditCat } from "actions/cat-actions";
 
-const ModalEditContainer = ({ setModalEdit, renameCat, open }) => {
+const ModalEditContainer = () => {
+  const dispatch = useDispatch();
+  const open = useSelector((state) => getModalEdit(state));
+  const disabled = useSelector((state) => getEditCatFetching(state));
+  const editing = useSelector((state) => getIsCatEditing(state));
+  useEffect(() => {
+    if (!open) return;
+    dispatch(fetchEditCat(open));
+  }, [dispatch, open]);
+
   const handleSubmit = (values) => {
-    renameCat(open, values);
+    dispatch(editCat(open, values));
   };
 
   const handleCloseModal = () => {
-    setModalEdit(null);
+    dispatch(setModalEdit(null));
   };
 
   return (
@@ -19,16 +32,12 @@ const ModalEditContainer = ({ setModalEdit, renameCat, open }) => {
         <ModalEdit
           onSubmit={handleSubmit}
           handleCloseModal={handleCloseModal}
+          disabled={disabled}
+          editing={editing}
         />
       )}
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  open: getModalEdit(state),
-});
-
-export default connect(mapStateToProps, { setModalEdit, renameCat })(
-  ModalEditContainer
-);
+export default ModalEditContainer;

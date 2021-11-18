@@ -9,7 +9,7 @@ const CatList = ({ cat }) => {
         .sort((a, b) => a.number - b.number)
         .map((item, index) => (
           <ListItemContainer
-            key={item._id}
+            key={item.number}
             category={item}
             first={index === 0}
             last={index === cat.length - 1}

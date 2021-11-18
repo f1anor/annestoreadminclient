@@ -34,6 +34,7 @@
   font-size: 16px;
   margin-top: 5px;
   color: var(--color-title);
+  font-family: var(--font-medium);
 }
 
 .article {
@@ -43,6 +44,7 @@
 
 .article > a {
   color: var(--color-red);
+  font-family: var(--font-medium);
 }
 
 .comment {
@@ -69,6 +71,7 @@
 .commentContent {
   margin-top: 10px;
   color: #78797d;
+  font-family: var(--font-medium);
 }
 
 .tools {
@@ -101,4 +104,5 @@
   border-radius: 4px;
   background-color: #fceec0;
   color: var(--color-title);
+  font-family: var(--font-medium);
 }

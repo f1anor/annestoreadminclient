@@ -170,6 +170,7 @@ export const editProduct = (values, id) => (dispatch) => {
 };
 
 export const preloadImage = (files, form, name, value) => async (dispatch) => {
+  console.log(files, form, name, value);
   dispatch({
     type: PRELOAD_IMAGE_START,
   });

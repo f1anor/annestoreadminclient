@@ -10,7 +10,7 @@
 .inner:after {
   content: "";
   display: block;
-  background-image: url(../../assets/svg/arrow-down.svg);
+  background-image: url(assets/svg/arrow-down.svg);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -38,6 +38,19 @@
   padding-right: 20px;
   border-radius: 6px;
   height: 50px;
-  color: #757b82;
+  /* color: #757b82; */
+  color: var(--color-title);
+  font-family: var(--font-medium);
   cursor: pointer;
+}
+
+.wrapper.simple .inner > select {
+  border: 1px solid #d9d8d4;
+  background-color: transparent;
+  box-shadow: none !important;
+  font-family: var(--font-medium);
+  color: var(--color-title);
+}
+.wrapper.simple .inner > select:focus {
+  outline: 2px solid var(--color-violet-modal);
 }

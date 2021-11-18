@@ -13,3 +13,30 @@
 .dots {
   width: 16px;
 }
+
+.trashIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.penIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.successIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.menuItem {
+  padding-left: 60px !important;
+}
+
+.menuItem.trash {
+  color: var(--color-red);
+}
+
+.menuItem.trash svg path {
+  fill: var(--color-red);
+}

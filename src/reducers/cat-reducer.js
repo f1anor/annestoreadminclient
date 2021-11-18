@@ -19,20 +19,34 @@ import {
   SET_MODAL_EDIT,
   SET_MODAL_NEW,
   SET_MODAL_DELETE,
+  FETCH_EDIT_CAT_START,
+  FETCH_EDIT_CAT_SUCCESS,
+  FETCH_EDIT_CAT_FAILURE,
+  EDIT_CAT_START,
+  EDIT_CAT_SUCCESS,
+  EDIT_CAT_FAILURE,
 } from "../actionTypes";
 
 const initialState = {
   cat: [],
   selected: null,
+
+  // Состояния
   isMovingUp: null,
   isMovingDown: null,
   isFetching: null,
   isDeleting: null,
   isAdding: null,
-  message: "",
+  isEditCatFetching: null,
+  isCatEditing: null,
+
+  // Модальные окна
   modalEdit: null,
   modalNew: null,
   modalDelete: null,
+
+  // Ошибка
+  message: "",
 };
 
 export const catReducer = (state = initialState, { type, payload }) => {
@@ -132,6 +146,43 @@ export const catReducer = (state = initialState, { type, payload }) => {
         isDeleting: null,
         message: payload,
       };
+
+    // Предзагружаем категорию для изменения
+    case FETCH_EDIT_CAT_START:
+      return {
+        ...state,
+        isEditCatFetching: true,
+      };
+    case FETCH_EDIT_CAT_SUCCESS:
+      return {
+        ...state,
+        isEditCatFetching: null,
+      };
+    case FETCH_EDIT_CAT_FAILURE:
+      return {
+        ...state,
+        isEditCatFetching: null,
+      };
+
+    // Сохраняем изменения в отредактированной категории
+    case EDIT_CAT_START:
+      return {
+        ...state,
+        isCatEditing: true,
+      };
+    case EDIT_CAT_SUCCESS:
+      return {
+        ...state,
+        isCatEditing: null,
+      };
+    case EDIT_CAT_FAILURE: {
+      return {
+        ...state,
+        isCatEditing: null,
+      };
+    }
+
+    // Управление модальными окнами
     case SET_MODAL_EDIT:
       return {
         ...state,
@@ -147,6 +198,7 @@ export const catReducer = (state = initialState, { type, payload }) => {
         ...state,
         modalDelete: payload,
       };
+
     default:
       return state;
   }

@@ -1,10 +1,17 @@
 .cancel {
   background-color: var(--color-violet);
-  color: #fff;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 6px;
   cursor: pointer;
+  width: 45px;
+  margin: 0;
+  padding: 0;
+}
+
+.clear {
+  height: 100% !important;
+  font-family: var(--font-bold) !important ;
 }

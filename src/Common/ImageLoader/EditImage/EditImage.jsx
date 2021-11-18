@@ -45,13 +45,23 @@ const ImgEditor = ({
               }}
             />
           </div>
+          <div className={css.btns}>
+            <button
+              type="button"
+              className={css.zoomBtn}
+              onClick={handleZoomOut}
+            >
+              -
+            </button>
+            <button
+              type="button"
+              className={css.zoomBtn}
+              onClick={handleZoomIn}
+            >
+              +
+            </button>
+          </div>
 
-          <button type="button" className={css.zoomBtn} onClick={handleZoomOut}>
-            -
-          </button>
-          <button type="button" className={css.zoomBtn} onClick={handleZoomIn}>
-            +
-          </button>
           <button className={css.clear} onClick={clear}>
             &times;
           </button>

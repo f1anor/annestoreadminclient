@@ -1,0 +1,15 @@
+.avatar {
+  position: absolute !important;
+  z-index: 1000;
+  /* width: 50px; */
+  user-select: none;
+}
+
+.avatar:hover * {
+  display: none;
+}
+
+.target {
+  border: 2px solid var(--color-violet-modal) !important;
+  box-sizing: border-box;
+}

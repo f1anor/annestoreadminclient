@@ -10,7 +10,7 @@ const Title = ({ children, anim, className = "", button }) => {
       <h2 className={css.title}>
         {children} {!!anim && <PreloaderAnim className={css.preloader} />}
       </h2>
-      {!!button && button}
+      <div className={css.buttons}>{!!button && button}</div>
     </div>
   );
 };

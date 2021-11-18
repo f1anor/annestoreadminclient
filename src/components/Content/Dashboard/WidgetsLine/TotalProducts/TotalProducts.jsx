@@ -8,7 +8,7 @@ const TotalProducts = ({ products }) => {
     <WidgetBlock icon={<BagIcon className={css.icon} />} title="Продукты">
       <div className={css.count}>{products.all}</div>
       <div className={css.footer}>
-        <span>+{products.last}%</span> За неделю
+        <span>+{products.last.toFixed(1)}%</span> За неделю
       </div>
     </WidgetBlock>
   );

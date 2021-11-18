@@ -1,9 +1,9 @@
 import React from "react";
 import css from "./FormBlock.module.css";
 
-const FormBlock = ({ children, style, className = "" }) => {
+const FormBlock = ({ children, className = "", ...props }) => {
   return (
-    <div className={[css.wrapper, className].join(" ")} style={style}>
+    <div className={[css.wrapper, className].join(" ")} {...props}>
       {children}
     </div>
   );

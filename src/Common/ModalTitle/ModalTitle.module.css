@@ -6,6 +6,7 @@
   margin-bottom: 10px;
   position: relative;
   font-family: var(--font-bold);
+  display: flex;
 }
 
 .title svg {
@@ -14,4 +15,16 @@
   position: absolute;
   top: 3px;
   left: -40px;
+}
+
+.preloader {
+  width: 50px;
+  height: 50px;
+  animation: fadeIn 0.8s;
+  position: static !important;
+  margin-left: 20px !important;
+}
+
+.preloader {
+  stroke: #757b82;
 }

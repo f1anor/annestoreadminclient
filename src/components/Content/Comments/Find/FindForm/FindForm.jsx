@@ -5,6 +5,7 @@ import TooltipBtn from "Common/TooltipBtn/TooltipBtn";
 import css from "./FindForm.module.css";
 import { required } from "utils/validators";
 import { Link } from "react-router-dom";
+import Button from "Common/Button/Button";
 
 const FindForm = ({ error, handleSubmit, id }) => {
   return (
@@ -21,11 +22,9 @@ const FindForm = ({ error, handleSubmit, id }) => {
       </label>
       <div className={css.btns}>
         <Link to="/comments/?page=1">
-          <button type="button" className={css.cancelBtn}>
-            Отмена
-          </button>
+          <Button clear="true">Сброс</Button>
         </Link>
-        <button className={css.apply}>Найти</button>
+        <Button className={css.findBtn}>Найти</Button>
       </div>
     </form>
   );

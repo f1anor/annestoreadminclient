@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   getMetaActive,
   getMetaStars,
@@ -9,16 +9,22 @@ import {
 } from "selectors/comments-selectors";
 import Info from "./Info";
 
-const InfoContainer = ({ ...props }) => {
-  return <Info {...props} />;
-};
-
-const mapStateToProps = (state) => ({
-  metaActive: getMetaActive(state),
-  metaWait: getMetaWait(state),
-  metaStars: getMetaStars(state),
-  metaName: getMetaName(state),
-  metaImg: getMetaImg(state),
+const InfoContainer = React.memo(({ ...props }) => {
+  const metaActive = useSelector((state) => getMetaActive(state));
+  const metaWait = useSelector((state) => getMetaWait(state));
+  const metaStars = useSelector((state) => getMetaStars(state));
+  const metaName = useSelector((state) => getMetaName(state));
+  const metaImg = useSelector((state) => getMetaImg(state));
+  return (
+    <Info
+      metaActive={metaActive}
+      metaWait={metaWait}
+      metaStars={metaStars}
+      metaName={metaName}
+      metaImg={metaImg}
+      {...props}
+    />
+  );
 });
 
-export default connect(mapStateToProps, null)(InfoContainer);
+export default InfoContainer;

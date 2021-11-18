@@ -1,13 +1,29 @@
-.btn {
-  height: 45px;
-  border: none;
-  margin-left: 20px;
-  background-color: var(--color-red);
-  font-size: 16px;
-  color: #fff;
+.button {
   padding-left: 20px;
   padding-right: 20px;
-  border-radius: 50px;
-  box-sizing: border-box;
-  box-shadow: 0 0 15px 1px #ff275248;
+  height: 47px;
+  border-radius: 4px;
+  border: none;
+  background-color: var(--color-violet-modal);
+  font-family: var(--font-medium);
+  color: #fff;
+  transition: background-color 0.4s ease;
+  margin-left: 10px;
+}
+
+.button:hover {
+  background-color: var(--color-violet);
+}
+
+.secondary {
+  background-color: #e9e9ef;
+  color: var(--color-title);
+  font-family: var(--font-bold);
+}
+
+.button:disabled {
+  background-color: #eee;
+  font-family: var(--font-bold);
+  color: var(--color-title);
+  transition: none;
 }

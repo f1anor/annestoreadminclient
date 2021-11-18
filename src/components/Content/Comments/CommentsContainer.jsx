@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import Comments from "./Comments";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchComments } from "actions/comments-actions";
 import { useQuery } from "utils/utils";
 import { getCommentsDisabled } from "selectors/comments-selectors";
 
-const CommentsContainer = ({ fetchComments, ...props }) => {
+const CommentsContainer = ({ ...props }) => {
+  const dispatch = useDispatch();
+
+  const isDisabled = useSelector((state) => getCommentsDisabled(state));
   const { id } = useParams();
   const queryString = useQuery().toString();
+
   useEffect(() => {
-    fetchComments(id, queryString);
-  }, [id, fetchComments, queryString]);
-  return <Comments id={id} {...props} />;
+    dispatch(fetchComments(id, queryString));
+  }, [id, dispatch, queryString]);
+
+  return <Comments id={id} isDisabled={isDisabled} {...props} />;
 };
 
-const mapStateToProps = (state) => ({
-  isDisabled: getCommentsDisabled(state),
-});
-
-export default connect(mapStateToProps, { fetchComments })(CommentsContainer);
+export default CommentsContainer;

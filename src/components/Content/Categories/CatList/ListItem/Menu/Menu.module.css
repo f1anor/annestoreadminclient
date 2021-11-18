@@ -1,0 +1,27 @@
+.dotsBtn {
+  width: 25px;
+  margin-left: 5px;
+}
+
+.dotsBtn path {
+  fill: var(--color-title);
+}
+
+.menuIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.penIcon {
+  width: 15px;
+  height: 15px;
+}
+
+.trashIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.btn {
+  padding-left: 60px !important;
+}

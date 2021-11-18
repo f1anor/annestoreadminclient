@@ -1,0 +1,128 @@
+button.button {
+  background-color: var(--color-violet);
+  outline: none;
+  height: 47px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: var(--font-medium);
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  box-sizing: border-box;
+  transition: background-color 0.2s, color 0.2s ease;
+}
+
+button.button:hover {
+  background-color: #6061f3;
+}
+
+button.button:active {
+  background-color: #828df8;
+}
+
+button.button:disabled {
+  background-color: #edefff;
+  color: #d7dcf3;
+}
+
+button.button svg path {
+  fill: #fff !important;
+}
+
+/*  */
+
+button.button.modal {
+  width: 48%;
+  margin-top: 30px;
+}
+
+button.button.mini {
+  height: 35px;
+}
+
+/* Secondary */
+
+button.button.secondary {
+  background-color: var(--color-lightgray);
+  color: var(--color-title);
+}
+
+button.button.secondary:hover {
+  background-color: #f0f0f0;
+}
+
+button.button.secondary:active {
+  background-color: #e2e2e2;
+}
+
+button.button.secondary svg path {
+  fill: var(--color-title) !important;
+}
+
+/* Clear */
+
+button.button.clear {
+  background-color: #fff;
+  color: #484a50;
+}
+
+button.button.clear:hover {
+  background-color: var(--color-lightgray);
+  color: var(--color-title);
+}
+
+button.button.clear:active {
+  color: #333;
+}
+
+button.button.clear:disabled {
+  color: #e7e8ec;
+}
+
+/* Extra */
+
+button.button.extra {
+  background-color: #e9e9ef;
+  color: var(--color-title);
+  font-family: var(--font-bold);
+}
+
+button.button.extra:hover {
+  background-color: #e0e0e2;
+}
+
+button.button.extra:active {
+  background-color: #cacacc;
+}
+
+button.button.extra:disabled {
+  background-color: var(--color-lightgray);
+  color: var(--color-title);
+}
+
+button.button.extra svg path {
+  fill: var(--color-title) !important;
+}
+
+/* Destructive */
+
+button.button.destructive {
+  background-color: var(--color-red);
+}
+
+button.button.destructive:hover {
+  background-color: #fb7478;
+}
+
+button.button.destructive:active {
+  background-color: #de2c2a;
+}
+
+button.button.destructive:disabled {
+  background-color: #ffebec;
+  color: #f1d6d5;
+}
+
+button.button.destructive svg path {
+  fill: #fff !important;
+}

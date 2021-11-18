@@ -14,29 +14,6 @@
   justify-content: flex-end;
 }
 
-.btns button {
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: center;
-  height: 40px;
-  line-height: 40px;
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.1s, color 0.1s ease;
-}
-
-.cancel {
-  background-color: transparent;
-  margin-right: 10px;
-  color: var(--color-violet);
-}
-
-.cancel:hover {
-  background-color: var(--color-violet);
-  color: #fff;
-}
-
-.success {
-  background-color: var(--color-red);
-  color: #fff;
+.saveBtn {
+  margin-left: 10px;
 }

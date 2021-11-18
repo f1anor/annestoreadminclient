@@ -6,7 +6,6 @@ import InfoContainer from "./Info/InfoContainer";
 import MainTableContainer from "./MainTable/MainTableContainer";
 import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
 
-//FIXME: Переделать редирект
 const Comments = ({ id, isDisabled }) => {
   return (
     <LayoutWrapperScroll>
@@ -23,10 +22,6 @@ const Comments = ({ id, isDisabled }) => {
             <MainTableContainer id={id} isDisabled={isDisabled} />
           </div>
         </div>
-        {/* <Route
-          path="/comments/"
-          render={() => <Redirect to="/comments/?page=1" />}
-        /> */}
       </div>
     </LayoutWrapperScroll>
   );

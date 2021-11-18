@@ -4,6 +4,7 @@ import CheckboxInput from "Common/CheckboxInput/CheckboxInput";
 import Input from "Common/Input/Input";
 import FormBlockTitle from "Common/FormBlockTitle/FormBlockTitle";
 import StarInput from "Common/StarInput/StarInput";
+import Button from "Common/Button/Button";
 
 const New = ({
   handleCheck,
@@ -56,9 +57,9 @@ const New = ({
           />
           Как администратор
         </label>
-        <button className={css.btn} disabled={isDisabled} onClick={handleSend}>
+        <Button disabled={isDisabled} onClick={handleSend}>
           Добавить
-        </button>
+        </Button>
       </div>
     </div>
   );

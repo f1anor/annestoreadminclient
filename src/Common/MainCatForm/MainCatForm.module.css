@@ -1,0 +1,10 @@
+.input {
+  background-color: transparent;
+  box-shadow: none;
+  border: 2px solid var(--color-violet-modal);
+  border-radius: 8px;
+}
+
+.label {
+  margin-top: 10px !important;
+}

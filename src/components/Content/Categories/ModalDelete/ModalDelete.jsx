@@ -4,6 +4,7 @@ import ModalTitle from "Common/ModalTitle/ModalTitle";
 import ModalText from "Common/ModalText/ModalText";
 import css from "./ModalDelete.module.css";
 import { ReactComponent as AlertIcon } from "assets/svg/exclamation-triangle.svg";
+import Button from "Common/Button/Button";
 
 const ModalDelete = ({ handleCloseModal, handleRemove, name }) => {
   return (
@@ -18,12 +19,17 @@ const ModalDelete = ({ handleCloseModal, handleRemove, name }) => {
         собой удаление категории во всех продуктах данной категории.
       </ModalText>
       <div className={css.btnsLine}>
-        <button type="button" data-modal-close="true">
+        <Button
+          type="button"
+          data-modal-close="true"
+          secondary="true"
+          modal="true"
+        >
           Отменить
-        </button>
-        <button type="button" onClick={handleRemove}>
-          Подтвердить
-        </button>
+        </Button>
+        <Button type="button" onClick={handleRemove} modal="true">
+          Ok
+        </Button>
       </div>
     </Modal>
   );

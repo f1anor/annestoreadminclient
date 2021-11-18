@@ -8,7 +8,7 @@ const TotralUsers = ({ users }) => {
     <WidgetBlock icon={<UsersIcon className={css.icon} />} title="Пользователи">
       <div className={css.count}>{users.all}</div>
       <div className={css.footer}>
-        <span>+{users.last}%</span> За неделю
+        <span>+{users.last.toFixed(1)}%</span> За неделю
       </div>
     </WidgetBlock>
   );

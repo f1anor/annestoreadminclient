@@ -1,7 +1,8 @@
+import InputAnimProvider from "Common/InputAnimProvider/InputAnimProvider";
 import React from "react";
 import css from "./ModalButton.module.css";
 
-const ModalButton = ({ children, className, secondary, ...props }) => {
+const ModalButton = ({ anim, children, className, secondary, ...props }) => {
   return (
     <button
       className={[css.button, className, secondary ? css.secondary : " "].join(
@@ -9,7 +10,7 @@ const ModalButton = ({ children, className, secondary, ...props }) => {
       )}
       {...props}
     >
-      {children}
+      <InputAnimProvider anim={anim}>{children}</InputAnimProvider>
     </button>
   );
 };

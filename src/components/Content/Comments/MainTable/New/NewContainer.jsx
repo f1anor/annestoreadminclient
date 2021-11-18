@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addComment } from "actions/comments-actions";
 import New from "./New";
+import { useQuery } from "utils/utils";
 
-const NewContainer = ({ addComment, id, ...props }) => {
+const NewContainer = ({ id, ...props }) => {
+  const dispatch = useDispatch();
+  const query = useQuery().toString();
+
   const [checkValue, setCheck] = useState(true);
   const [areaValue, setAreaValue] = useState("");
   const [starsValue, setStarValue] = useState(0);
@@ -27,12 +31,18 @@ const NewContainer = ({ addComment, id, ...props }) => {
   const handleSend = () => {
     if (!areaValue) return;
     if (!checkValue && !starsValue && !firstName) return;
-    addComment(id, {
-      name: firstName,
-      rate: +starsValue,
-      isAdmin: checkValue,
-      content: areaValue,
-    });
+    dispatch(
+      addComment(
+        id,
+        {
+          name: firstName,
+          rate: +starsValue,
+          isAdmin: checkValue,
+          content: areaValue,
+        },
+        query
+      )
+    );
     setAreaValue("");
     setStarValue("");
     setFirstName("");
@@ -54,4 +64,4 @@ const NewContainer = ({ addComment, id, ...props }) => {
   );
 };
 
-export default connect(null, { addComment })(NewContainer);
+export default NewContainer;

@@ -9,7 +9,6 @@ body {
   min-height: 100vh;
   font-size: 0.875rem;
   background-color: #fcfefc !important;
-  /* font-family: Roboto !important; */
   font-family: "Montserrat" !important;
 }
 
@@ -61,15 +60,15 @@ ul {
   --main-border-color: #e6e8e5;
   --main-text-color: #7a7c7b;
   --main-table-color: #8793a2;
-  --color-violet: #6c7af7;
+  --color-violet: #504ce6;
   --color-violet-modal: #4f4ce6;
   --color-title: #2f2f35;
   --color-text-modal: #6b7597;
   --color-background: #f8f8fe;
-  --color-red: #ff2753;
+  --color-red: #f34141;
   --color-badge-red: #ff705b;
   --color-darkgray: #333;
-  --color-lightgray: #676a72;
+  --color-lightgray: #f6f6f7;
   --color-info-blue: #69ebff;
   --inset-shadow: inset 0 0 10px 1px rgba(160, 160, 160, 0.1);
   --inset-shadow-error: inset 0 0 10px 1px #ff275228;

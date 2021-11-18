@@ -1,14 +1,11 @@
 import React from "react";
 import ListItem from "./ListItem";
 import { getAnsId } from "selectors/comments-selectors";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 const ListItemContainer = ({ ...props }) => {
-  return <ListItem {...props} />;
+  const ansId = useSelector((state) => getAnsId(state));
+  return <ListItem ansId={ansId} {...props} />;
 };
 
-const mapStateToProps = (state) => ({
-  ansId: getAnsId(state),
-});
-
-export default connect(mapStateToProps, null)(ListItemContainer);
+export default ListItemContainer;

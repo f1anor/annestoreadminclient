@@ -1,0 +1,44 @@
+.wrapper {
+  padding: 30px;
+  border: 1px solid #c7c7cc;
+  margin-bottom: 30px;
+
+  animation: fadeOut 0.4s;
+}
+
+.title {
+  font-family: var(--font-bold);
+  color: var(--color-title);
+}
+
+.count {
+  margin-bottom: 30px;
+  font-family: var(--font-medium);
+  color: #4d6077;
+}
+
+.count > span {
+  color: var(--color-title);
+}
+
+.hide {
+  display: none;
+}
+
+.avatar {
+  position: absolute;
+  z-index: 1000;
+}
+
+.move {
+  height: 105px;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,39 +1,58 @@
 import React from "react";
 import css from "./Categories.module.css";
 import Title from "Common/Title/Title";
-import FormBlockTitle from "Common/FormBlockTitle/FormBlockTitle";
 import CatList from "./CatList/CatList";
-import ToolsContainer from "./Tools/ToolsContainer";
+import Button from "Common/Button/Button";
 import ModalNewContainer from "./ModalNew/ModalNewContainer";
 import ModalDeleteContainer from "./ModalDelete/ModalDeleteContainer";
 import ModalEditContainer from "./ModalEdit/ModalEditContainer";
+import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
+import CategoriesBorderedWrapperContainer from "Common/CategoriesBorderedWrapper/CategoriesBorderedWrapperContainer";
+import { ReactComponent as PrinterIcon } from "assets/svg/printer.svg";
 
-const Categories = ({
-  activeCat,
-  passiveCat,
-  handleCloseModal,
-  modalEdit,
-  isBisy,
-}) => {
+const Categories = ({ activeCat, passiveCat, isBisy, handleNewModalOpen }) => {
   return (
-    <div className={css.wrapper}>
+    <LayoutWrapperScroll>
       <div className={css.content}>
-        <Title anim={!!isBisy} className={css.title}>
+        {/* <Title anim={!!isBisy} className={css.title}>
+          Категории
+        </Title> */}
+        <Title
+          anim={!!isBisy}
+          button={
+            <>
+              <Button extra="true">
+                <PrinterIcon className={css.printIcon} />
+                Экспортировать
+              </Button>
+              <Button onClick={handleNewModalOpen} className={css.btn}>
+                Добавить
+              </Button>
+            </>
+          }
+        >
           Категории
         </Title>
-        <div className={css.layout}>
-          <ToolsContainer />
-          <FormBlockTitle>Активные</FormBlockTitle>
+        {/* <ToolsContainer /> */}
+        <CategoriesBorderedWrapperContainer
+          title="Активные"
+          total={activeCat.length}
+        >
           <CatList cat={activeCat} />
-          <FormBlockTitle>Пустые</FormBlockTitle>
+        </CategoriesBorderedWrapperContainer>
+        <CategoriesBorderedWrapperContainer
+          title="Пустые"
+          total={passiveCat.length}
+        >
           <CatList cat={passiveCat} />
-        </div>
+        </CategoriesBorderedWrapperContainer>
       </div>
 
+      {/* Модальные окна */}
       <ModalNewContainer />
       <ModalDeleteContainer />
       <ModalEditContainer />
-    </div>
+    </LayoutWrapperScroll>
   );
   // return (
   //   <div className={css.wrapper}>

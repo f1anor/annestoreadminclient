@@ -8,7 +8,7 @@ const TotalCash = ({ cash }) => {
     <WidgetBlock icon={<WalletIcon className={css.icon} />} title="Прибыль">
       <div className={css.count}>{cash.all}₽</div>
       <div className={css.footer}>
-        <span>+{cash.last}%</span> За неделю
+        <span>+{cash.last.toFixed(1)}%</span> За неделю
       </div>
     </WidgetBlock>
   );

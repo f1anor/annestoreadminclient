@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
+// FIXME: Кажется можно удалять. Проверить
 const Select = ({
   label,
   options = [],

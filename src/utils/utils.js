@@ -201,3 +201,32 @@ export const tableDate = (date) => {
     2
   )}:${formatNumber(objDate.getMinutes(), 2)}`;
 };
+
+// Преобразуем данные о размерах из массива строк в данные которые можно обернуть в таблицу
+export const parseSizeTable = (data) => {
+  if (!data.length) return;
+
+  const titles = {};
+
+  const tableArr = [];
+
+  data.forEach((size) => {
+    const arr = size.split("-");
+
+    const arrLine = {};
+
+    arr.forEach((item) => {
+      const indexOfStart = item.indexOf("[");
+      const indexOfEnd = item.indexOf("]");
+      let title;
+      if (indexOfStart === -1 || indexOfEnd === -1) title = "";
+      else title = item.slice(indexOfStart + 1, indexOfEnd);
+
+      titles[title] = item;
+      arrLine[title] = indexOfStart !== -1 ? item.slice(0, indexOfStart) : item;
+    });
+
+    tableArr.push(arrLine);
+  });
+  return { titles: Object.keys(titles), sizes: tableArr };
+};
