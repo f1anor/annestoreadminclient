@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "./configureStore";
 
@@ -11,9 +11,9 @@ import LayoutContainer from "./LayoutContainer";
 const App = () => {
   return (
     <Provider store={configureStore}>
-      <BrowserRouter>
+      <HashRouter>
         <LayoutContainer />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 };

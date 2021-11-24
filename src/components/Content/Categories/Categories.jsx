@@ -3,7 +3,6 @@ import css from "./Categories.module.css";
 import Title from "Common/Title/Title";
 import CatList from "./CatList/CatList";
 import Button from "Common/Button/Button";
-import ModalNewContainer from "./ModalNew/ModalNewContainer";
 import ModalDeleteContainer from "./ModalDelete/ModalDeleteContainer";
 import ModalEditContainer from "./ModalEdit/ModalEditContainer";
 import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
