@@ -9,6 +9,7 @@
 
 .pagination {
   padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: flex-end;
   padding-right: 40px;
