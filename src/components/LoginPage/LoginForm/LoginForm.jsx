@@ -2,13 +2,13 @@ import React from "react";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
-import Input from "../../../Common/Input/Input";
-import { required } from "../../../utils/validators";
+import Input from "Common/Input/Input";
+import { required } from "utils/validators";
 import css from "./LoginForm.module.css";
 import { ReactComponent as UserIcon } from "assets/svg/user.svg";
 import { ReactComponent as LockIcon } from "assets/svg/lock.svg";
-import CheckboxInput from "../../../Common/CheckboxInput/CheckboxInput";
-import ModalButton from "Common/ModalButton/ModalButton";
+import CheckboxInput from "Common/CheckboxInput/CheckboxInput";
+import Button from "Common/Button/Button";
 
 const LoginForm = ({ error, handleSubmit }) => {
   return (
@@ -49,9 +49,9 @@ const LoginForm = ({ error, handleSubmit }) => {
         </Link>
       </div>
       {!!error && <Alert variant="danger">{error}</Alert>}
-      <ModalButton type="submit" className={css.loginBtn}>
+      <Button className={css.loginBtn} type="submit">
         Войти
-      </ModalButton>
+      </Button>
     </form>
   );
 };

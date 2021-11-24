@@ -41,11 +41,6 @@
   justify-content: space-between;
 }
 
-/* TODO: сделать анимацию на модальной кнопке */
-.loginBtn:hover {
-  opacity: 90%;
-}
-
 .checkLabel {
   margin-bottom: 30px;
   /* padding-left: px; */
@@ -65,4 +60,8 @@
 
 .regLink:hover {
   color: #6e757c;
+}
+
+.loginBtn {
+  width: 100%;
 }
