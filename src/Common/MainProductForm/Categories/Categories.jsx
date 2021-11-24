@@ -45,5 +45,5 @@ const Categories = ({
     </FormBlock>
   );
 };
-console.log(123);
+
 export default Categories;
