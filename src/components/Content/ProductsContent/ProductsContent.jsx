@@ -1,3 +1,4 @@
+import ModalNewCategoryContainer from "Common/ModalNewCategory/ModalNewCategoryContainer";
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import AddProduct from "./AddProduct/AddProduct";
@@ -46,6 +47,7 @@ const ProductsContent = ({
       </Switch>
       {/* Модальные окна */}
       <ModalProductsErrorContainer />
+      <ModalNewCategoryContainer />
     </>
   );
 };

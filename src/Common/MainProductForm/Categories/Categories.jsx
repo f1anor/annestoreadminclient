@@ -3,22 +3,18 @@ import { Field } from "redux-form";
 import FormBlock from "Common/FormBlock/FormBlock";
 import FormBlockTitle from "Common/FormBlockTitle/FormBlockTitle";
 import OpenAnim from "Common/OpenAnim/OpenAnim";
-import AddModal from "./AddModal/AddModal";
 import css from "./Categories.module.css";
 import CategoryInputContainer from "./CategoryInput/CategoryInputContainer";
 import ArrowBtn from "Common/ArrowBtn/ArrowBtn";
+import Button from "Common/Button/Button";
 
 const Categories = ({
   catForForm,
-  modalAddShow,
-  setModalAddShow,
-  handleAddCategory,
-  catAdding,
-  catMessage,
   isCatFetching,
   catValues = [],
   handleSetOpen,
   isOpen,
+  handleNewModalOpen,
 }) => {
   return (
     <FormBlock className={css.wrapper}>
@@ -36,25 +32,16 @@ const Categories = ({
           />
         )}
         <div className={css.btns}>
-          <button
+          <Button
             type="button"
-            className={css.addCatBtn}
-            onClick={() => setModalAddShow(true)}
+            mini={true}
             disabled={!!isCatFetching}
+            onClick={handleNewModalOpen}
           >
             Новая
-          </button>
+          </Button>
         </div>
       </OpenAnim>
-      <AddModal
-        show={!!modalAddShow}
-        handler={handleAddCategory}
-        title="Добавить категорию"
-        placeholder="Имя"
-        inProgress={catAdding}
-        message={catMessage}
-        onHide={() => setModalAddShow(null)}
-      />
     </FormBlock>
   );
 };

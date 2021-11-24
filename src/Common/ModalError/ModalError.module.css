@@ -7,18 +7,6 @@
   justify-content: center;
 }
 
-.btnsLine button {
-  height: 50px;
-  width: 48%;
-  border: none;
-  border-radius: 8px;
-}
-
-.btnsLine button {
-  background-color: var(--color-red);
-  color: #fff;
-}
-
 .icon path {
   fill: var(--color-red);
 }

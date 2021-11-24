@@ -1,7 +1,6 @@
 export const dontRepeatSize = (value) => {
   if (!value) return;
   const obj = {};
-  console.log(obj);
   value.forEach((item) => (obj[item] = ""));
   return Object.keys(obj).length === value.length
     ? undefined

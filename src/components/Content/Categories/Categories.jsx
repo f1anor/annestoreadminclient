@@ -9,14 +9,12 @@ import ModalEditContainer from "./ModalEdit/ModalEditContainer";
 import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
 import CategoriesBorderedWrapperContainer from "Common/CategoriesBorderedWrapper/CategoriesBorderedWrapperContainer";
 import { ReactComponent as PrinterIcon } from "assets/svg/printer.svg";
+import ModalNewCategoryContainer from "Common/ModalNewCategory/ModalNewCategoryContainer";
 
 const Categories = ({ activeCat, passiveCat, isBisy, handleNewModalOpen }) => {
   return (
     <LayoutWrapperScroll>
       <div className={css.content}>
-        {/* <Title anim={!!isBisy} className={css.title}>
-          Категории
-        </Title> */}
         <Title
           anim={!!isBisy}
           button={
@@ -33,7 +31,6 @@ const Categories = ({ activeCat, passiveCat, isBisy, handleNewModalOpen }) => {
         >
           Категории
         </Title>
-        {/* <ToolsContainer /> */}
         <CategoriesBorderedWrapperContainer
           title="Активные"
           total={activeCat.length}
@@ -49,7 +46,7 @@ const Categories = ({ activeCat, passiveCat, isBisy, handleNewModalOpen }) => {
       </div>
 
       {/* Модальные окна */}
-      <ModalNewContainer />
+      <ModalNewCategoryContainer />
       <ModalDeleteContainer />
       <ModalEditContainer />
     </LayoutWrapperScroll>

@@ -1,15 +1,6 @@
 import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getChartData,
-  getIsFetching,
-  getIsStatisticDisabled,
-  getSessions,
-  getTotalCount,
-} from "selectors/dashboard-selectors";
-import { fetchStatistic } from "actions/dashboard-actions";
-import { useQuery } from "utils/utils";
+import { useSelector } from "react-redux";
+import { getIsStatisticDisabled } from "selectors/dashboard-selectors";
 import Dashboard from "./Dashboard";
 
 const DashboardContainer = () => {

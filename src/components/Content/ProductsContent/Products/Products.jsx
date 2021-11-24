@@ -7,9 +7,9 @@ import Layout from "Common/Layout/Layout";
 import TabMenu from "Common/TabMenu/TabMenu";
 import ArchiveContainer from "./Archive/ArchiveContainer";
 import LayoutWrapper from "Common/LayoutWrapper/LayoutWrapper";
-import TitleMainBtn from "Common/TitleMainBtn/TitleMainBtn";
 import ModalPriceFilterFromContainer from "./ModalPriceFilterFrom/ModalPriceFilterFromContainer";
 import ModalPriceFilterToContainer from "./ModalPriceFilterTo/ModalPriceFilterToContainer";
+import Button from "Common/Button/Button";
 
 const Products = React.memo(
   ({ isProdFetching, isArchiveProdFetching, isCatFetching, isDisabled }) => {
@@ -24,7 +24,7 @@ const Products = React.memo(
               )}
               to="/products/addproduct"
             >
-              <TitleMainBtn>Добавить</TitleMainBtn>
+              <Button>Добавить</Button>
             </Link>
           }
         >

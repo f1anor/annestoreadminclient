@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { addCat } from "../../../actions/cat-actions";
+import { connect, useDispatch } from "react-redux";
+import { addCat, setModalNew } from "../../../actions/cat-actions";
 import { getIsBisy } from "selectors/cat-selectors";
 import Categories from "./Categories";
 import { formValueSelector } from "redux-form";
@@ -14,6 +14,7 @@ const CategoriesContainer = ({
   form,
   ...props
 }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     selector = formValueSelector(form);
   }, [form]);
@@ -25,22 +26,13 @@ const CategoriesContainer = ({
     else setOpen(false);
   };
 
-  const [modalAddShow, setModalAddShow] = useState(null);
-
-  const handleAddCategory = (title) => {
-    addCat(title);
+  const handleNewModalOpen = () => {
+    dispatch(setModalNew(true));
   };
 
-  useEffect(() => {
-    if (!catAdding && !catMessage) setModalAddShow(false);
-  }, [catAdding, catMessage]);
   return (
     <Categories
-      modalAddShow={modalAddShow}
-      setModalAddShow={setModalAddShow}
-      handleAddCategory={handleAddCategory}
-      catAdding={catAdding}
-      catMessage={catMessage}
+      handleNewModalOpen={handleNewModalOpen}
       isOpen={isOpen}
       handleSetOpen={handleSetOpen}
       {...props}

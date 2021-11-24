@@ -3,8 +3,8 @@ import ModalText from "Common/ModalText/ModalText";
 import ModalTitle from "Common/ModalTitle/ModalTitle";
 import React from "react";
 import css from "./ModalError.module.css";
+import Button from "Common/Button/Button";
 
-//TODO: сделать так чтобы вставка HTML в компоненте была безопасной
 const ModalError = ({ handleCloseModal, children, ...props }) => {
   return (
     <Modal close={handleCloseModal} className={css.wrapper}>
@@ -14,9 +14,14 @@ const ModalError = ({ handleCloseModal, children, ...props }) => {
         <span dangerouslySetInnerHTML={{ __html: children }}></span>
       </ModalText>
       <div className={css.btnsLine}>
-        <button type="button" data-modal-close="true">
+        <Button
+          type="button"
+          data-modal-close="true"
+          modal={true}
+          destructive={true}
+        >
           Закрыть
-        </button>
+        </Button>
       </div>
     </Modal>
   );

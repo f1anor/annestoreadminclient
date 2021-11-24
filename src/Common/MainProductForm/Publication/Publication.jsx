@@ -7,6 +7,8 @@ import css from "./Publication.module.css";
 import CheckboxInput from "Common/CheckboxInput/CheckboxInput";
 import { Link } from "react-router-dom";
 import { required, isNumber } from "utils/validators";
+import Button from "Common/Button/Button";
+
 const Price = ({ catForForm }) => {
   return (
     <div>
@@ -43,14 +45,13 @@ const Price = ({ catForForm }) => {
         </div>
         <div className={css.btns}>
           <Link to="/products">
-            <button type="button" className={css.cancelBtn}>
+            <Button type="button" clear={true}>
               Отмена
-            </button>
+            </Button>
           </Link>
-
-          <button type="submit" className={css.submit}>
+          <Button type="submit" destructive={true}>
             Сохранить
-          </button>
+          </Button>
         </div>
       </FormBlock>
     </div>

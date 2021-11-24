@@ -2,14 +2,14 @@ import React from "react";
 import Modal from "Common/Modal/Modal";
 import ModalTitle from "Common/ModalTitle/ModalTitle";
 
-import css from "./ModalNew.module.css";
+import css from "./ModalNewCategory.module.css";
 import { reduxForm } from "redux-form";
 
 import { ReactComponent as PlusIcon } from "assets/svg/file-earmark-plus.svg";
 import MainCatForm from "Common/MainCatForm/MainCatForm";
 import Button from "Common/Button/Button";
 
-const ModalNew = ({ handleModalClose, handleSubmit, adding }) => {
+const ModalNewCategory = ({ handleModalClose, handleSubmit, adding }) => {
   return (
     <>
       <Modal close={handleModalClose} className={css.modal}>
@@ -42,4 +42,4 @@ const ModalNew = ({ handleModalClose, handleSubmit, adding }) => {
 export default reduxForm({
   form: "newCatForm",
   initialValues: { sizeTable: [], type: 0 },
-})(ModalNew);
+})(ModalNewCategory);

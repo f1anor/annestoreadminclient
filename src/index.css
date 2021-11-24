@@ -20,41 +20,6 @@ ul {
   margin: 0;
   padding: 0;
 }
-/* 
-.table {
-  box-sizing: border-box;
-  border-bottom: 2px solid #f0f0f0 !important;
-}
-
-.table thead {
-  color: #292829 !important;
-}
-
-.table thead a {
-  color: var(--color-lightgray);
-  text-decoration: none !important;
-}
-
-.table > thead > tr > th {
-  border: none !important;
-  border-bottom: 2px solid #f0f0f0 !important;
-  box-sizing: border-box;
-  font-family: "Roboto-bold", sans-serif;
-  letter-spacing: 0.6px;
-  font-size: 14px;
-  text-transform: uppercase;
-  color: var(--color-lightgray);
-  line-height: 50px;
-}
-
-.table > tbody > tr > td {
-  height: 70px !important;
-  line-height: 70px !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  color: var(--color-darkgray) !important;
-  font-family: "Roboto-bold", sans-serif;
-} */
 
 :root {
   --main-border-color: #e6e8e5;

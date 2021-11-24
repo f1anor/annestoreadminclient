@@ -36,38 +36,13 @@
 .btns {
   display: flex;
   justify-content: space-between;
+  padding-top: 20px;
 }
 
-.btns button {
-  display: block;
-  width: 135px;
-  height: 50px;
-  border: none;
-  border-radius: 50px;
-  margin-top: 40px;
-  background-color: transparent;
-  transition: background-color 0.2s, color 0.2s ease;
-  box-sizing: border-box;
-  outline: none;
-  font-weight: 500;
+.btns > * {
+  width: 48%;
 }
 
-.btns .cancelBtn {
-  color: var(--color-violet);
-}
-
-.btns > .submit {
-  background-color: var(--color-red);
-  color: #fff;
-  box-shadow: 0 0 15px 1px #ff275248;
-}
-
-.btns .cancelBtn:hover {
-  background-color: var(--color-violet);
-  color: #fff;
-  text-decoration: none;
-}
-
-.btns > .submit:hover {
-  background-color: #fa4d70;
+.btns > a > button {
+  width: 100%;
 }

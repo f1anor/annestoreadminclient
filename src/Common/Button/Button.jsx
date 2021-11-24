@@ -15,7 +15,6 @@ const ModalButton = ({
   children,
   ...props
 }) => {
-  console.log(123123, disabled);
   const black = clear || extra || secondary;
   return (
     <button

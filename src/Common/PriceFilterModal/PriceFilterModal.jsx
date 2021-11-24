@@ -6,8 +6,8 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 import { isNumber, required } from "utils/validators";
 import { ReactComponent as WalletIcon } from "assets/svg/wallet2.svg";
-import ModalButton from "Common/ModalButton/ModalButton";
 import css from "./PriceFilterModal.module.css";
+import Button from "Common/Button/Button";
 
 const PriceFilterModal = ({
   children,
@@ -29,10 +29,15 @@ const PriceFilterModal = ({
           validate={[validator || required, isNumber]}
         />
         <div className={css.btnsLine}>
-          <ModalButton type="button" data-modal-close="true" secondary={true}>
+          <Button
+            type="button"
+            data-modal-close="true"
+            modal="true"
+            secondary={true}
+          >
             Отмена
-          </ModalButton>
-          <ModalButton>Подтвердить</ModalButton>
+          </Button>
+          <Button modal="true">Подтвердить</Button>
         </div>
       </form>
     </Modal>

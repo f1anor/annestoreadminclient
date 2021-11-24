@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ModalNew from "./ModalNew";
+import ModalNewCategory from "./ModalNewCategory";
 import { setModalNew, addCat } from "actions/cat-actions";
 import { getIsAdding, getModalNew } from "selectors/cat-selectors";
 
-const ModalNewContainer = ({ ...props }) => {
+const ModalNewCategoryContainer = ({ ...props }) => {
   const dispatch = useDispatch();
   const open = useSelector((state) => getModalNew(state));
   const adding = useSelector((state) => getIsAdding(state));
@@ -20,7 +20,7 @@ const ModalNewContainer = ({ ...props }) => {
   return (
     <>
       {!!open && (
-        <ModalNew
+        <ModalNewCategory
           handleModalClose={handleModalClose}
           onSubmit={handleSubmit}
           adding={adding}
@@ -31,4 +31,4 @@ const ModalNewContainer = ({ ...props }) => {
   );
 };
 
-export default ModalNewContainer;
+export default ModalNewCategoryContainer;

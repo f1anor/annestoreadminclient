@@ -24,7 +24,6 @@ const InputPhone = React.memo(({ input, meta, ...props }) => {
           (e.keyCode >= 48 && e.keyCode <= 57))
       )
     ) {
-      console.log(e.keyCode);
       e.preventDefault();
       return false;
     }

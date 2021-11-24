@@ -230,7 +230,6 @@ export const fetchEditCat = (id) => (dispatch) => {
       }
 
       const { cat } = ans.data;
-      console.log(cat);
 
       dispatch({
         type: FETCH_EDIT_CAT_SUCCESS,

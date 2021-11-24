@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect, useSelector } from "react-redux";
 import { getCurrentStage, getIsRegBisy } from "selectors/auth-selectors";
 import { preloadAvatar } from "../../actions/auth-actions";
