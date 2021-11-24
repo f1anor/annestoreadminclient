@@ -14,19 +14,22 @@ const LoginForm = ({ error, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className={css.wrapper}>
       <div className={css.inputWrapper}>
-        <UserIcon className={css.userIcon} />
         <Field
           name="login"
           component={Input}
+          simple="true"
+          Icon={() => <UserIcon className={css.userIcon} />}
           placeholder="Логин"
           validate={[required]}
           className={css.input}
         />
       </div>
       <div className={css.inputWrapper}>
-        <LockIcon className={css.lockIcon} />
         <Field
           name="pass"
+          type="password"
+          simple="true"
+          Icon={() => <LockIcon className={css.lockIcon} />}
           className={css.input}
           component={Input}
           placeholder="Пароль"

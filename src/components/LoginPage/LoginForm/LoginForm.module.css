@@ -2,17 +2,6 @@
   padding: 30px;
 }
 
-.input {
-  border: 1px solid #d9d8d4;
-  background-color: transparent;
-  /* height: 40px; */
-  box-shadow: none !important;
-}
-
-.inputWrapper {
-  position: relative;
-}
-
 .inputWrapper:not(:first-of-type) {
   margin-top: 30px;
 }
