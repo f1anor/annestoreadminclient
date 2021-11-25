@@ -1,12 +1,12 @@
-import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
+import LayoutWrapper from "Common/LayoutWrapper/LayoutWrapper";
 import React from "react";
 import AddFormConatiner from "./AddForm/AddFormConatiner";
 
 const AddProduct = () => {
   return (
-    <LayoutWrapperScroll>
+    <LayoutWrapper>
       <AddFormConatiner />
-    </LayoutWrapperScroll>
+    </LayoutWrapper>
   );
 };
 

@@ -62,7 +62,7 @@ button.button.secondary svg path {
 /* Clear */
 
 button.button.clear {
-  background-color: #fff;
+  background-color: transparent;
   color: #484a50;
 }
 

@@ -16,19 +16,16 @@ const HeaderContainer = () => {
   }, [pathName]);
 
   useEffect(() => {
-    const scrollWrapper = document.querySelector("div[data-scroll=true]");
-
-    if (!scrollWrapper) return;
-    scrollWrapper.addEventListener("scroll", handleControlHeader);
+    window.addEventListener("scroll", handleControlHeader);
     return () => {
-      scrollWrapper.removeEventListener("scroll", handleControlHeader);
+      window.removeEventListener("scroll", handleControlHeader);
     };
   });
 
-  const handleControlHeader = (e) => {
-    const scrollWrapper = document.querySelector("div[data-scroll=true]");
-    if (!!display && scrollWrapper.scrollTop > 55) setDisplay(false);
-    else if (!display && scrollWrapper.scrollTop <= 55) setDisplay(true);
+  const handleControlHeader = () => {
+    if (!!display && document.documentElement.scrollTop > 30) setDisplay(false);
+    else if (!display && document.documentElement.scrollTop <= 30)
+      setDisplay(true);
   };
 
   const ava = useSelector((state) => getAva(state));

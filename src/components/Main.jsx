@@ -6,14 +6,16 @@ import ContentContaner from "./Content/ContentContaner";
 import ModalImgConitainer from "Common/ModalImg/ModalImgConitainer";
 import HeaderContainer from "./Header/HeaderContainer";
 
-const Main = () => {
+const Main = ({ sidebarType }) => {
   return (
     <div className={css.wrapper}>
       <div className={css.main}>
         <div className={css.sidebar}>
-          <SidebarContainer />
+          <SidebarContainer sidebarType={sidebarType} />
         </div>
-        <div className={css.content}>
+        <div
+          className={[css.content, sidebarType === 1 ? css.mini : ""].join(" ")}
+        >
           <HeaderContainer />
           <ContentContaner />
         </div>

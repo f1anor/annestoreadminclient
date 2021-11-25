@@ -2,7 +2,11 @@
   height: 100%;
   background-color: #e9e9ef;
   box-sizing: border-box;
-  padding-top: 105px;
+  padding-top: 25px;
+}
+
+.wrapper.mini {
+  width: 80px;
 }
 
 .link:hover {
@@ -10,34 +14,39 @@
 }
 
 .logo {
-  margin-left: 55px;
-  padding-left: 50px;
+  margin-left: 45px;
+  height: 36px;
   font-size: 24px;
   position: relative;
   font-family: var(--font-bold);
   color: var(--color-title);
 }
 
-.icon {
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  position: absolute;
-  top: -3px;
-  left: 0;
-  border-radius: 50%;
-  box-shadow: 0 0 15px 1px rgba(122, 121, 121, 0.1);
+.logo span {
+  color: var(--color-violet);
 }
 
-.icon:after {
-  content: "";
-  width: 12px;
-  height: 12px;
+.logo svg {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ff2753;
-  box-shadow: 0px 6px 8px 1px #ff275244;
-  border-radius: 50%;
+  right: 25px;
+}
+
+.mainIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.sidebarBtn {
+  position: absolute;
+  left: 10px;
+  bottom: 40px;
+}
+
+.sidebarBtn .sidebarIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.sidebarBtn .sidebarIcon path {
+  fill: #333 !important;
 }

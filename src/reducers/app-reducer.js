@@ -3,6 +3,7 @@ import {
   INIT_APP,
   REMOVE_TOAST_MESSAGE,
   SET_IMG,
+  SET_SIDEBAR_TYPE,
   SET_TABLE_SIZE,
   SET_TOOLTIP,
 } from "../actionTypes";
@@ -18,6 +19,7 @@ const initialState = {
     text: "",
     target: null,
   },
+  sidebarType: 0,
 
   //Модальные окна
   modalImg: {
@@ -58,6 +60,8 @@ export const appReducer = (state = initialState, { type, payload }) => {
         ...state,
         messages: state.messages.filter((mess) => mess.id !== payload),
       };
+
+    // Устанавливаем картинку в общую галерею
     case SET_IMG:
       return {
         ...state,
@@ -66,6 +70,14 @@ export const appReducer = (state = initialState, { type, payload }) => {
           comments: payload.comments, //id
         },
       };
+
+    // Устанавливаем тип (размер сайдбара)
+    case SET_SIDEBAR_TYPE:
+      return {
+        ...state,
+        sidebarType: +payload,
+      };
+
     case SET_TOOLTIP:
       return {
         ...state,

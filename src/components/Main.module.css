@@ -1,22 +1,23 @@
 .wrapper {
-  height: 100vh;
-}
-
-.main {
-  height: 100vh;
-  display: flex;
+  min-height: 100vh;
 }
 
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 250px !important;
   box-sizing: border-box;
-  height: 100%;
-  height: inherit;
+  height: 100vh;
 }
 
 .content {
-  height: 100%;
-  width: calc(100vw - 250px);
-  background-color: #f8f8fe;
+  padding-left: 315px;
+  padding-right: 65px;
+  box-sizing: border-box;
   z-index: 1;
+}
+
+.content.mini {
+  padding-left: 145px;
 }

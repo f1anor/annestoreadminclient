@@ -8,8 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   font-size: 0.875rem;
-  background-color: #fcfefc !important;
   font-family: "Montserrat" !important;
+  background-color: #f8f8fe !important;
 }
 
 a:hover {
@@ -41,20 +41,7 @@ ul {
   --font-bold: "Montserrat-bold", sans-serif;
   --font-medium: "Montserrat-medium", sans-serif;
   --font: "Montserrat", sans-serif;
-  /* --font-bold: "Roboto-bold", sans-serif; */
 }
-
-/* @font-face {
-  font-family: "Roboto-Bold";
-  src: local("MyFont"),
-    url(./assets/fonts/Roboto/Roboto-Bold.ttf) format("woff");
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: local("MyFont"),
-    url(./assets/fonts/Roboto/Roboto-Regular.ttf) format("woff");
-} */
 
 @font-face {
   font-family: "Montserrat-Bold";

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
+import { getSidebarType } from "selectors/app-selectors";
 import { toggleLog, toggleReg } from "../actions/auth-actions";
 import Main from "./Main";
 
@@ -11,6 +12,8 @@ const MainContainer = ({
   setImg,
   img,
 }) => {
+  const sidebarType = useSelector((state) => getSidebarType(state));
+
   useEffect(() => {
     if (!!regSuccess) toggleReg();
   }, [regSuccess, toggleReg]);
@@ -19,7 +22,7 @@ const MainContainer = ({
     if (!!logSuccess) toggleLog();
   }, [logSuccess, toggleLog]);
 
-  return <Main setImg={setImg} img={img} />;
+  return <Main setImg={setImg} img={img} sidebarType={sidebarType} />;
 };
 
 const mapStateToProps = (state) => ({

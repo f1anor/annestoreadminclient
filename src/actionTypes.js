@@ -284,6 +284,8 @@ export const SET_TOOLTIP = "SET_TOOLTIP";
 
 export const SET_TABLE_SIZE = "SET_TABLE_SIZE";
 
+export const SET_SIDEBAR_TYPE = "SET_SIDEBAR_TYPE";
+
 // users
 
 export const FETCH_ADMINS_START = "FETCH_ADMINS_START";

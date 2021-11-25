@@ -4,11 +4,11 @@ import css from "./Comments.module.css";
 import FindContainer from "./Find/FindContainer";
 import InfoContainer from "./Info/InfoContainer";
 import MainTableContainer from "./MainTable/MainTableContainer";
-import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
+import LayoutWrapper from "Common/LayoutWrapper/LayoutWrapper";
 
 const Comments = ({ id, isDisabled }) => {
   return (
-    <LayoutWrapperScroll>
+    <LayoutWrapper>
       <div className={css.content}>
         <Title anim={isDisabled} className={css.title}>
           Комментарии
@@ -23,7 +23,7 @@ const Comments = ({ id, isDisabled }) => {
           </div>
         </div>
       </div>
-    </LayoutWrapperScroll>
+    </LayoutWrapper>
   );
 };
 

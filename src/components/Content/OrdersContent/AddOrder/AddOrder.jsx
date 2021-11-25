@@ -3,16 +3,16 @@ import { reduxForm } from "redux-form";
 import css from "./AddOrder.module.css";
 import Title from "Common/Title/Title";
 import MainOrderForm from "Common/MainOrderForm/MainOrderForm";
-import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
+import LayoutWrapper from "Common/LayoutWrapper/LayoutWrapper";
 
 const AddOrder = ({ handleSubmit, ...props }) => {
   return (
-    <LayoutWrapperScroll>
+    <LayoutWrapper>
       <form onSubmit={handleSubmit} className={css.form}>
         <Title className={css.title}>Добавить заказ</Title>
         <MainOrderForm form="addOrder" editMode="true" {...props} />
       </form>
-    </LayoutWrapperScroll>
+    </LayoutWrapper>
   );
 };
 

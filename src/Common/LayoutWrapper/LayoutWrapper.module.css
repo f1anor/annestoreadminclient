@@ -1,4 +1,10 @@
 .wrapper {
-  margin: 65px auto;
+  padding-top: 65px;
+  margin: 0 auto;
   max-width: 1300px;
+  overflow-x: scroll;
+}
+
+.inner {
+  width: 1300px;
 }

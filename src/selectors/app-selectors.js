@@ -6,3 +6,7 @@ export const getPageSize = (state) => {
 export const getModalImgs = (state) => {
   return state.app.modalImg;
 };
+
+export const getSidebarType = (state) => {
+  return state.app.sidebarType;
+};

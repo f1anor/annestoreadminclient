@@ -1,6 +1,6 @@
 .wrapper {
   width: 220px;
-  margin-top: 30px;
+  margin-top: 115px;
 }
 
 .menu {
@@ -13,8 +13,8 @@
   position: relative;
   padding-left: 80px;
   display: block;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  height: 48px;
+  line-height: 48px;
   color: #585e6d;
   font-weight: bold;
   transition: color 0.2s;
@@ -55,4 +55,15 @@
 
 .users {
   pointer-events: none;
+}
+
+.wrapper.mini {
+  width: unset;
+}
+
+.wrapper.mini .menu .active {
+  background-color: unset;
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
+  box-shadow: unset;
 }

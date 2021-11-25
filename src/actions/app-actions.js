@@ -5,6 +5,7 @@ import {
   SET_IMG,
   SET_TOOLTIP,
   SET_TABLE_SIZE,
+  SET_SIDEBAR_TYPE,
 } from "../actionTypes";
 import { restore } from "./auth-actions";
 
@@ -12,18 +13,28 @@ export const initApp = () => async (dispatch, getState) => {
   await dispatch(restore());
   dispatch(setTableSize());
 
+  if (document.documentElement.clientWidth <= 1680) dispatch(setSidebarType(1));
+
   let timeout = null;
 
-  window.onresize = () => {
+  // Слушаем ресайз и выставляем размер таблицы
+  window.onresize = (e) => {
     clearTimeout(timeout);
     timeout = null;
 
     timeout = setTimeout(() => {
-      const windowHeight = getState().app.tableSize.window;
+      const state = getState();
+      const windowHeight = state.app.tableSize.window;
       if (windowHeight !== window.innerHeight) {
         dispatch(setTableSize());
       }
-    }, 2000);
+
+      // складываем сайдбар при маленькой ширине экрана
+      const sidebarType = state.app.sidebarType;
+
+      if (document.documentElement.clientWidth <= 1680 && sidebarType === 0)
+        dispatch(setSidebarType(1));
+    }, 200);
   };
   dispatch({
     type: INIT_APP,
@@ -70,5 +81,12 @@ export const setTableSize = () => (dispatch) => {
           : 1,
       window: window.innerHeight,
     },
+  });
+};
+
+export const setSidebarType = (val) => (dispatch) => {
+  dispatch({
+    type: SET_SIDEBAR_TYPE,
+    payload: val,
   });
 };

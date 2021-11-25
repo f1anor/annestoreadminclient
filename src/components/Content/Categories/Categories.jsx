@@ -5,14 +5,14 @@ import CatList from "./CatList/CatList";
 import Button from "Common/Button/Button";
 import ModalDeleteContainer from "./ModalDelete/ModalDeleteContainer";
 import ModalEditContainer from "./ModalEdit/ModalEditContainer";
-import LayoutWrapperScroll from "Common/LayoutWrapperScroll/LayoutWrapperScroll";
 import CategoriesBorderedWrapperContainer from "Common/CategoriesBorderedWrapper/CategoriesBorderedWrapperContainer";
 import { ReactComponent as PrinterIcon } from "assets/svg/printer.svg";
 import ModalNewCategoryContainer from "Common/ModalNewCategory/ModalNewCategoryContainer";
+import LayoutWrapper from "Common/LayoutWrapper/LayoutWrapper";
 
 const Categories = ({ activeCat, passiveCat, isBisy, handleNewModalOpen }) => {
   return (
-    <LayoutWrapperScroll>
+    <LayoutWrapper>
       <div className={css.content}>
         <Title
           anim={!!isBisy}
@@ -48,7 +48,7 @@ const Categories = ({ activeCat, passiveCat, isBisy, handleNewModalOpen }) => {
       <ModalNewCategoryContainer />
       <ModalDeleteContainer />
       <ModalEditContainer />
-    </LayoutWrapperScroll>
+    </LayoutWrapper>
   );
   // return (
   //   <div className={css.wrapper}>

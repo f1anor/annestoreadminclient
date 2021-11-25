@@ -8,9 +8,9 @@ import { ReactComponent as CatIcon } from "assets/svg/card-list.svg";
 import { ReactComponent as UsersIcon } from "assets/svg/people-fill.svg";
 import { ReactComponent as CommentsIcon } from "assets/svg/comments.svg";
 
-const SidebarMenu = () => {
+const SidebarMenu = ({ sidebarType }) => {
   return (
-    <div className={css.wrapper}>
+    <div className={[css.wrapper, sidebarType === 1 ? css.mini : ""].join(" ")}>
       <ul className={css.menu}>
         <li>
           <NavLink
@@ -19,7 +19,7 @@ const SidebarMenu = () => {
             className={css.menuItem}
           >
             <DashboardIcon className={css.icon} />
-            Дашборд
+            {+sidebarType !== 1 ? "Дашборд" : ""}
           </NavLink>
         </li>
         <li>
@@ -34,7 +34,7 @@ const SidebarMenu = () => {
             }
           >
             <OrdersIcon className={css.icon} />
-            Заказы
+            {+sidebarType !== 1 ? "Заказы" : ""}
           </NavLink>
         </li>
         <li>
@@ -54,7 +54,7 @@ const SidebarMenu = () => {
             }}
           >
             <ProductsIcon className={css.icon} />
-            Продукты
+            {+sidebarType !== 1 ? "Продукты" : ""}
           </NavLink>
         </li>
         <li>
@@ -64,7 +64,7 @@ const SidebarMenu = () => {
             className={css.menuItem}
           >
             <CommentsIcon className={css.icon} />
-            Комментарии
+            {+sidebarType !== 1 ? "Комментарии" : ""}
           </NavLink>
         </li>
         <li>
@@ -74,7 +74,7 @@ const SidebarMenu = () => {
             className={css.menuItem}
           >
             <CatIcon className={css.icon} />
-            Категории
+            {+sidebarType !== 1 ? "Категории" : ""}
           </NavLink>
         </li>
         <li>
@@ -84,7 +84,7 @@ const SidebarMenu = () => {
             className={[css.menuItem, css.users].join(" ")}
           >
             <UsersIcon className={css.icon} />
-            Пользователи
+            {+sidebarType !== 1 ? "Пользователи" : ""}
           </NavLink>
         </li>
       </ul>
